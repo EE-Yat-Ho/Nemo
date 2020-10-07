@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BackPack" representedClassName="BackPack" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="numberOfNote" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="opened" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Memo" representedClassName="Memo" syncable="YES" codeGenerationType="class">
+        <attribute name="backPackName" optional="YES" attributeType="String"/>
+        <attribute name="content" optional="YES" attributeType="String"/>
+        <attribute name="images" optional="YES" attributeType="Transformable" customClassName="[Data]"/>
+        <attribute name="noteName" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+        <attribute name="backPackName" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="numberOfM" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfQ" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Question" representedClassName="Question" syncable="YES" codeGenerationType="class">
+        <attribute name="backPackName" optional="YES" attributeType="String"/>
+        <attribute name="explanation" optional="YES" attributeType="String"/>
+        <attribute name="explanationImages" optional="YES" attributeType="Transformable" customClassName="[Data]"/>
+        <attribute name="isSubjective" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="multipleChoiceAnswers" optional="YES" attributeType="Transformable" valueTransformerName="" customClassName="[String]"/>
+        <attribute name="multipleChoiceWrongAnswers" optional="YES" attributeType="Transformable" customClassName="[String]"/>
+        <attribute name="noteName" optional="YES" attributeType="String"/>
+        <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="question" optional="YES" attributeType="String"/>
+        <attribute name="questionImages" optional="YES" attributeType="Transformable" customClassName="[Data]"/>
+        <attribute name="subjectiveAnswer" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="BackPack" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Memo" positionX="-45" positionY="63" width="128" height="118"/>
+        <element name="Note" positionX="-45" positionY="36" width="128" height="118"/>
+        <element name="Question" positionX="-54" positionY="45" width="128" height="208"/>
+    </elements>
+</model>

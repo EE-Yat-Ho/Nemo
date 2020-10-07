@@ -1,0 +1,598 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */; };
+		2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */; };
+		2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C724DBDB62004A2CEB /* TimerViewController.swift */; };
+		2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C924DBE598004A2CEB /* TestViewController.swift */; };
+		2A4886CC24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */; };
+		2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94B624A1C73B000596D8 /* AppDelegate.swift */; };
+		2A5E94B924A1C73B000596D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */; };
+		2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */; };
+		2A5E94C324A1C73E000596D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E94C224A1C73E000596D8 /* Assets.xcassets */; };
+		2A5E94C624A1C73E000596D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */; };
+		2A5E94D024A1CAA5000596D8 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94CF24A1CAA5000596D8 /* RoundButton.swift */; };
+		2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */; };
+		2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94D424A1D4D0000596D8 /* DataManager.swift */; };
+		2A5E94DB24A2261B000596D8 /* MakeBackPackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */; };
+		2A5E94DD24A22877000596D8 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */; };
+		2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */; };
+		2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94E824A721FF000596D8 /* DropDownButton.swift */; };
+		2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94EA24A73727000596D8 /* DropDownView.swift */; };
+		2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94ED24A8587C000596D8 /* BackPackCell.swift */; };
+		2A5E94F024A860EF000596D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E94EF24A860EF000596D8 /* Main.storyboard */; };
+		2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */; };
+		2A6D74AE24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */; };
+		2A6D74B024A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */; };
+		2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */; };
+		2A6D74B824B4875D00AFD0E1 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B724B4875D00AFD0E1 /* QuestionCell.swift */; };
+		2A6D74BA24B4877000AFD0E1 /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B924B4877000AFD0E1 /* MemoCell.swift */; };
+		2A6D74BC24BAA7AB00AFD0E1 /* QuestionOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BB24BAA7AB00AFD0E1 /* QuestionOpenCell.swift */; };
+		2A6D74BE24BAA7CA00AFD0E1 /* MemoOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BD24BAA7CA00AFD0E1 /* MemoOpenCell.swift */; };
+		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
+		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
+		2A6D74CC24C41BCA00AFD0E1 /* QuestionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */; };
+		2A6D74D324C5783C00AFD0E1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */; };
+		2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */; };
+		2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */; };
+		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
+		2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */; };
+		2ADA4C5E24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */; };
+		2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */; };
+		2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */; };
+		2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */; };
+		3788CF0D15F44D47BA359ECC /* Pods_Nemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735D830427728A39401B7DF3 /* Pods_Nemo.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCheckCell.swift; sourceTree = "<group>"; };
+		2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		2A4886C724DBDB62004A2CEB /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		2A4886C924DBE598004A2CEB /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionViewCell.swift; sourceTree = "<group>"; };
+		2A5E94B324A1C73B000596D8 /* Nemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5E94B624A1C73B000596D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		2A5E94C024A1C73B000596D8 /* BrainSupporter2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrainSupporter2.xcdatamodel; sourceTree = "<group>"; };
+		2A5E94C224A1C73E000596D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Nemo/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		2A5E94C524A1C73E000596D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A5E94C724A1C73E000596D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A5E94CF24A1CAA5000596D8 /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
+		2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		2A5E94D424A1D4D0000596D8 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackPackViewController.swift; sourceTree = "<group>"; };
+		2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeNoteViewController.swift; sourceTree = "<group>"; };
+		2A5E94E824A721FF000596D8 /* DropDownButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownButton.swift; sourceTree = "<group>"; };
+		2A5E94EA24A73727000596D8 /* DropDownView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
+		2A5E94ED24A8587C000596D8 /* BackPackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackCell.swift; sourceTree = "<group>"; };
+		2A5E94EF24A860EF000596D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Nemo/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
+		2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
+		2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSubjectiveQuestionViewController.swift; sourceTree = "<group>"; };
+		2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMemoViewController.swift; sourceTree = "<group>"; };
+		2A6D74B724B4875D00AFD0E1 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
+		2A6D74B924B4877000AFD0E1 /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
+		2A6D74BB24BAA7AB00AFD0E1 /* QuestionOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOpenCell.swift; sourceTree = "<group>"; };
+		2A6D74BD24BAA7CA00AFD0E1 /* MemoOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoOpenCell.swift; sourceTree = "<group>"; };
+		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
+		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
+		2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTabBarController.swift; sourceTree = "<group>"; };
+		2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTimeTabBarController.swift; sourceTree = "<group>"; };
+		2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTestSettingViewController.swift; sourceTree = "<group>"; };
+		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
+		2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCell.swift; sourceTree = "<group>"; };
+		2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCellForTest.swift; sourceTree = "<group>"; };
+		2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingCell.swift; sourceTree = "<group>"; };
+		2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTestTableViewController.swift; sourceTree = "<group>"; };
+		735D830427728A39401B7DF3 /* Pods_Nemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		824906C8C52517E3020608CD /* Pods-Nemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nemo.release.xcconfig"; path = "Target Support Files/Pods-Nemo/Pods-Nemo.release.xcconfig"; sourceTree = "<group>"; };
+		D0B22AD1724CE7C93030A3CC /* Pods-Nemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Nemo.debug.xcconfig"; path = "Target Support Files/Pods-Nemo/Pods-Nemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A5E94B024A1C73B000596D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3788CF0D15F44D47BA359ECC /* Pods_Nemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		045976B5179A8202CB34AE31 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D0B22AD1724CE7C93030A3CC /* Pods-Nemo.debug.xcconfig */,
+				824906C8C52517E3020608CD /* Pods-Nemo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2A5E94AA24A1C73B000596D8 = {
+			isa = PBXGroup;
+			children = (
+				2A5E94B524A1C73B000596D8 /* Nemo */,
+				2A5E94B424A1C73B000596D8 /* Products */,
+				045976B5179A8202CB34AE31 /* Pods */,
+				D0FF8176F59D5ADED261FB2C /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2A5E94B424A1C73B000596D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94B324A1C73B000596D8 /* Nemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A5E94B524A1C73B000596D8 /* Nemo */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94EC24A85847000596D8 /* Cells */,
+				2A5E94E724A721D8000596D8 /* Buttons */,
+				2A5E94E424A71C42000596D8 /* MakeUnitViewControllers */,
+				2A5E94D324A1D4A7000596D8 /* Data */,
+				2A5E94B624A1C73B000596D8 /* AppDelegate.swift */,
+				2AFFE4B6252B20920046C687 /* HomeViewController */,
+				2A5E94EF24A860EF000596D8 /* Main.storyboard */,
+				2A5E94C224A1C73E000596D8 /* Assets.xcassets */,
+				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
+				2A5E94C724A1C73E000596D8 /* Info.plist */,
+				2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */,
+				2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */,
+				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
+				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
+				2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */,
+				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
+				2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */,
+				2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */,
+				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
+				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
+				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
+				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
+				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
+				2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */,
+			);
+			path = Nemo;
+			sourceTree = "<group>";
+		};
+		2A5E94D324A1D4A7000596D8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94D424A1D4D0000596D8 /* DataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		2A5E94E424A71C42000596D8 /* MakeUnitViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */,
+				2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */,
+				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
+				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
+				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
+			);
+			path = MakeUnitViewControllers;
+			sourceTree = "<group>";
+		};
+		2A5E94E724A721D8000596D8 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94CF24A1CAA5000596D8 /* RoundButton.swift */,
+				2A5E94E824A721FF000596D8 /* DropDownButton.swift */,
+				2A5E94EA24A73727000596D8 /* DropDownView.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		2A5E94EC24A85847000596D8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2A6D74B724B4875D00AFD0E1 /* QuestionCell.swift */,
+				2A6D74B924B4877000AFD0E1 /* MemoCell.swift */,
+				2A6D74BB24BAA7AB00AFD0E1 /* QuestionOpenCell.swift */,
+				2A6D74BD24BAA7CA00AFD0E1 /* MemoOpenCell.swift */,
+				2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */,
+				2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */,
+				2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */,
+				2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */,
+				2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */,
+				2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		2AFFE4B6252B20920046C687 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */,
+				2A5E94ED24A8587C000596D8 /* BackPackCell.swift */,
+				2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */,
+			);
+			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		D0FF8176F59D5ADED261FB2C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				735D830427728A39401B7DF3 /* Pods_Nemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2A5E94B224A1C73B000596D8 /* Nemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A5E94CA24A1C73E000596D8 /* Build configuration list for PBXNativeTarget "Nemo" */;
+			buildPhases = (
+				3E7F37449D748E3EA6A053A5 /* [CP] Check Pods Manifest.lock */,
+				2A5E94AF24A1C73B000596D8 /* Sources */,
+				2A5E94B024A1C73B000596D8 /* Frameworks */,
+				2A5E94B124A1C73B000596D8 /* Resources */,
+				016A2C7F264981D2FCC59598 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nemo;
+			productName = BrainSupporter2;
+			productReference = 2A5E94B324A1C73B000596D8 /* Nemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A5E94AB24A1C73B000596D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Park young ho";
+				TargetAttributes = {
+					2A5E94B224A1C73B000596D8 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+				};
+			};
+			buildConfigurationList = 2A5E94AE24A1C73B000596D8 /* Build configuration list for PBXProject "Nemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2A5E94AA24A1C73B000596D8;
+			productRefGroup = 2A5E94B424A1C73B000596D8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2A5E94B224A1C73B000596D8 /* Nemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2A5E94B124A1C73B000596D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A5E94F024A860EF000596D8 /* Main.storyboard in Resources */,
+				2A5E94C624A1C73E000596D8 /* LaunchScreen.storyboard in Resources */,
+				2A5E94C324A1C73E000596D8 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		016A2C7F264981D2FCC59598 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E7F37449D748E3EA6A053A5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Nemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2A5E94AF24A1C73B000596D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2ADA4C5E24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift in Sources */,
+				2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */,
+				2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */,
+				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
+				2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */,
+				2A5E94D024A1CAA5000596D8 /* RoundButton.swift in Sources */,
+				2A6D74D324C5783C00AFD0E1 /* CollectionViewCell.swift in Sources */,
+				2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */,
+				2A6D74AE24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift in Sources */,
+				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
+				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
+				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
+				2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */,
+				2A6D74BA24B4877000AFD0E1 /* MemoCell.swift in Sources */,
+				2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */,
+				2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */,
+				2A6D74BE24BAA7CA00AFD0E1 /* MemoOpenCell.swift in Sources */,
+				2A5E94DD24A22877000596D8 /* UIViewController+Alert.swift in Sources */,
+				2A5E94B924A1C73B000596D8 /* SceneDelegate.swift in Sources */,
+				2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */,
+				2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */,
+				2A4886CC24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift in Sources */,
+				2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */,
+				2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */,
+				2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */,
+				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
+				2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */,
+				2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */,
+				2A6D74CC24C41BCA00AFD0E1 /* QuestionTabBarController.swift in Sources */,
+				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,
+				2A6D74B824B4875D00AFD0E1 /* QuestionCell.swift in Sources */,
+				2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */,
+				2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */,
+				2A6D74B024A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift in Sources */,
+				2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */,
+				2A5E94DB24A2261B000596D8 /* MakeBackPackViewController.swift in Sources */,
+				2A6D74BC24BAA7AB00AFD0E1 /* QuestionOpenCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A5E94C524A1C73E000596D8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2A5E94C824A1C73E000596D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2A5E94C924A1C73E000596D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A5E94CB24A1C73E000596D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D0B22AD1724CE7C93030A3CC /* Pods-Nemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KXKQCH6X89;
+				INFOPLIST_FILE = Nemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2A5E94CC24A1C73E000596D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 824906C8C52517E3020608CD /* Pods-Nemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KXKQCH6X89;
+				INFOPLIST_FILE = Nemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A5E94AE24A1C73B000596D8 /* Build configuration list for PBXProject "Nemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5E94C824A1C73E000596D8 /* Debug */,
+				2A5E94C924A1C73E000596D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2A5E94CA24A1C73E000596D8 /* Build configuration list for PBXNativeTarget "Nemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A5E94CB24A1C73E000596D8 /* Debug */,
+				2A5E94CC24A1C73E000596D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2A5E94C024A1C73B000596D8 /* BrainSupporter2.xcdatamodel */,
+			);
+			currentVersion = 2A5E94C024A1C73B000596D8 /* BrainSupporter2.xcdatamodel */;
+			path = BrainSupporter2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2A5E94AB24A1C73B000596D8 /* Project object */;
+}

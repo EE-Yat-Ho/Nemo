@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "HomeViewController.prepare(for:sender:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "qm.bpName">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.noteList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:commit:forRowAt:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList[3].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[0].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[5].order">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[2].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[4].order">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[1].order">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:cellForRowAt:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.noteList">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[indexPath.section].name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeSubjectiveQuestionViewController.viewDidLoad():MakeSubjectiveQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "CollectionViewHeight">
+            </PersistentString>
+            <PersistentString
+               value = "editTarget">
+            </PersistentString>
+            <PersistentString
+               value = "CollectionView_2Height">
+            </PersistentString>
+            <PersistentString
+               value = "ExplanationInput.frame.maxY">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BackPackTestSettingViewController.tableView(_:didDeselectRowAt:):BackPackTestSettingViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "boolListForCheck">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mach_msg_trap:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList[0].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[1].order">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ContentsCollectionViewCell.cellDidLoad():ContentsCollectionViewCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "Int(UIScreen.main.bounds.width)">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.nowQAmount!">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.nowQNumber!">
+            </PersistentString>
+            <PersistentString
+               value = "layout.itemSize">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataManager.fetchQuestion():DataManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "questionList">
+            </PersistentString>
+            <PersistentString
+               value = "questionList[0].images">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TestViewController.viewDidLoad():TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "contentCollectionView.collectionViewLayout">
+            </PersistentString>
+            <PersistentString
+               value = "imageCollectionView.collectionViewLayout">
+            </PersistentString>
+            <PersistentString
+               value = "nowQNumber">
+            </PersistentString>
+            <PersistentString
+               value = "layout">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.testQuestionList">
+            </PersistentString>
+            <PersistentString
+               value = "layout2">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.testAnswerList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.tableView(_:cellForRowAt:):MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.rightList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeSubjectiveQuestionViewController.collectionView(_:numberOfItemsInSection:):MakeSubjectiveQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "collectionView.tag">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataManager.addNewBackPack(_:):DataManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "backPackList">
+            </PersistentString>
+            <PersistentString
+               value = "newBackPack.notes[0].name">
+            </PersistentString>
+            <PersistentString
+               value = "Notes">
+            </PersistentString>
+            <PersistentString
+               value = "Notes.order">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "NoteCell.init(coder:):NoteCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "noteImage">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataManager.addNewQuestion(question:answer:):DataManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "dataList">
+            </PersistentString>
+            <PersistentString
+               value = "imageList">
+            </PersistentString>
+            <PersistentString
+               value = "newQuestion.images[0]">
+            </PersistentString>
+            <PersistentString
+               value = "newQuestion.images">
+            </PersistentString>
+            <PersistentString
+               value = "noteList">
+            </PersistentString>
+            <PersistentString
+               value = "dataList[0]">
+            </PersistentString>
+            <PersistentString
+               value = "imageList[0]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.ClickEditButton(_:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList[2].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[0].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[3].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[1].order">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TestViewController.NextQuestionButtonClick(_:):TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "answer">
+            </PersistentString>
+            <PersistentString
+               value = "answer.subjectiveAnswer">
+            </PersistentString>
+            <PersistentString
+               value = "AnswerInput.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:numberOfRowsInSection:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DataManager.addNewNote(noteName:backPackName:):DataManager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "i.numberOfNote">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeSubjectiveQuestionViewController.collectionView(_:didSelectItemAt:):MakeSubjectiveQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "imageViewController.img">
+            </PersistentString>
+            <PersistentString
+               value = "imageViewController.imageView.image">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.imageList[indexPath.row]">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.imgTest">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:moveRowAt:to:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList[3].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[2].order">
+            </PersistentString>
+            <PersistentString
+               value = "ModifiedSourceIndexPathRow">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[1].order">
+            </PersistentString>
+            <PersistentString
+               value = "target.order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[0].order">
+            </PersistentString>
+            <PersistentString
+               value = "ModifiedDestinationIndexParhRow">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[5].order">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.noteList">
+            </PersistentString>
+            <PersistentString
+               value = "sourceIndexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[sourceIndexPath.section].name">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[4].order">
+            </PersistentString>
+            <PersistentString
+               value = "destinationIndexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeSubjectiveQuestionViewController.viewWillAppear(_:):MakeSubjectiveQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "editTarget">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EndTestTableViewController.xmarkClick(_:):EndTestTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.testQuestionList">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.testAnswerList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "QuestionTabBarController.viewDidLoad():QuestionTabBarController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "editTarget">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BackPackTestSettingViewController.tableView(_:didSelectRowAt:):BackPackTestSettingViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "boolListForCheck[indexPath.section].count">
+            </PersistentString>
+            <PersistentString
+               value = "boolListForCheck[indexPath.section][i - 1]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EndTestTableViewController.tableView(_:cellForRowAt:):EndTestTableViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.testQuestionList">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.testAnswerList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.xButtonClick(_:):MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.rightList">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ImageViewController.viewDidLoad():ImageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "img">
+            </PersistentString>
+            <PersistentString
+               value = "imageView.image">
+            </PersistentString>
+            <PersistentString
+               value = "imageView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TestViewController.collectionView(_:cellForItemAt:):TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.imageList">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "nowQ.questionImages">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeSubjectiveQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeSubjectiveQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.imageList">
+            </PersistentString>
+            <PersistentString
+               value = "CollectionView_2Height">
+            </PersistentString>
+            <PersistentString
+               value = "CollectionViewHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.tableView(_:didSelectRowAt:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.noteList">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.backPackList[indexPath.section].name">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
