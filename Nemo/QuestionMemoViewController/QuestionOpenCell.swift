@@ -1,20 +1,21 @@
 //
-//  BackPackCell.swift
-//  BrainSupporter2
+//  QuestionOpenCell.swift
+//  Nemo
 //
-//  Created by 박영호 on 2020/06/28.
+//  Created by 박영호 on 2020/10/12.
 //  Copyright © 2020 Park young ho. All rights reserved.
 //
 
 import UIKit
-import Then
 
-class BackPackCell: UITableViewCell {
-    let backPackImage = UIImageView().then {
-        $0.image = UIImage(named: "가방")
+class QuestionOpenCell: UITableViewCell {
+    let questionImage = UIImageView().then {
+        $0.image = UIImage(named: "문제")
     }
-    let backPackName = UILabel()
-    let numberOfNote = UILabel().then {
+    let questionLabel = UILabel().then {
+        $0.text = "문제 보기"
+    }
+    let numberOfQuestion = UILabel().then {
         $0.textColor = UIColor.gray
     }
     var rightImage = UIImageView()
@@ -23,7 +24,6 @@ class BackPackCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -32,26 +32,26 @@ class BackPackCell: UITableViewCell {
     }
     
     func setupLayout() {
-        self.addSubview(backPackImage)
-        self.addSubview(backPackName)
-        self.addSubview(numberOfNote)
+        self.addSubview(questionImage)
+        self.addSubview(questionLabel)
+        self.addSubview(numberOfQuestion)
         self.addSubview(rightImage)
         self.addSubview(aboveLine)
         
         aboveLine.layer.borderColor = UIColor(displayP3Red: 219.0/255.0, green: 219.0/255.0, blue: 219.0/255.0, alpha: 1.0).cgColor
         aboveLine.layer.borderWidth = 1.0
         
-        backPackImage.snp.makeConstraints{
+        questionImage.snp.makeConstraints{
             $0.height.width.equalTo(30)
             $0.leading.equalToSuperview().offset(20)
             $0.centerY.equalToSuperview()
         }
-        backPackName.snp.makeConstraints{
+        questionLabel.snp.makeConstraints{
             //$0.height.width.equalTo(30)
-            $0.leading.equalTo(backPackImage.snp.trailing).offset(10)
+            $0.leading.equalTo(questionImage.snp.trailing).offset(10)
             $0.centerY.equalToSuperview()
         }
-        numberOfNote.snp.makeConstraints{
+        numberOfQuestion.snp.makeConstraints{
             //$0.height.width.equalTo(30)
             $0.trailing.equalTo(rightImage.snp.leading).offset(-10)
             $0.centerY.equalToSuperview()
@@ -66,7 +66,5 @@ class BackPackCell: UITableViewCell {
             $0.trailing.leading.equalToSuperview().inset(20)
             $0.top.equalToSuperview()
         }
-        
-        
     }
 }

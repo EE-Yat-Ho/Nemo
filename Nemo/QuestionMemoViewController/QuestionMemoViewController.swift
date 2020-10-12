@@ -8,11 +8,20 @@
 
 import UIKit
 import SwiftUI
+import SnapKit
+import Then
 
 class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var questionOpened:Bool? = false
     var memoOpened:Bool? = false
+    var tableView = UITableView().then{
+        $0.register(QuestionCell.self, forCellReuseIdentifier: "QuestionCell")
+        $0.register(QuestionOpenCell.self, forCellReuseIdentifier: "QuestionOpenCell")
+        $0.register(MemoCell.self, forCellReuseIdentifier: "MemoCell")
+        $0.register(MemoOpenCell.self, forCellReuseIdentifier: "MemoOpenCell")
+        $0.separatorColor = UIColor.clear
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +33,15 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     // + 눌렀을때 팝업창 띄우기
-    @IBAction func showPopUp(_ sender: Any) {
-        //20200716 와 액션시트 알게되서 쓸모없게됨;;
-//        let popOverVC = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "PopupViewController_QM") as! PopUpViewController
-//        self.addChild(popOverVC)
-//        popOverVC.view.frame = self.view.frame
-//        self.view.addSubview(popOverVC.view)
-//        popOverVC.didMove(toParent: self)
+    @objc func showPopUp(_ sender: Any) {
         
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let addQuestionAction = UIAlertAction(title: "문제 만들기", style: .default){[weak self] (action) in
-            //self?.tabBarController?.tabBar.isHidden = true
-            //self?.tabBarController?.tabBar.layer.zPosition = -1
-            //self?.tabBarController?.tabBar.items?[0].isEnabled = false
-            //self?.tabBarController?.tabBar.items?[1].isEnabled = false
+
             self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
             let questionTabBarController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
             self?.navigationController?.pushViewController(questionTabBarController, animated: true)
-            //let vc = self?.storyboard?.instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
-            //self?.present(vc, animated: true, completion: nil)
+ 
         }
         alert.addAction(addQuestionAction)
         let addMemoAction = UIAlertAction(title: "메모 만들기", style: .default){[weak self] (action) in
@@ -66,19 +65,6 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         tableView.reloadData() // 배열 데이터로 뷰를 업데이트함
     }
 
-    // 20200712 토큰 나중에 생각 ㄱ
-//    var token: NSObjectProtocol? // 옵저버 해제할때 쓸 객체 보통 토큰이라 부름
-//
-//    // 소멸자에서 토큰을 이용하여 옵저버 해제
-//    deinit {
-//        if let token = token {
-//            NotificationCenter.default.removeObserver(token)
-//        }
-//    }
-    
-    @IBOutlet weak var tableView: UITableView!
-    // MARK: - Table view data source
-    
     //섹션 수
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
@@ -106,34 +92,34 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         
         if indexPath.section == 0 { // 문제들
             if indexPath.row == 0 {
-                let questionOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "questionOpenCell", for: indexPath) as! QuestionOpenCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
+                let questionOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionOpenCell", for: indexPath) as! QuestionOpenCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
                 questionOpenCell.numberOfQuestion.text = String(DataManager.shared.questionList.count)
                 if questionOpened == true {
-                    questionOpenCell.leftDownImage.image = UIImage(named: "down")
+                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
                 } else {
-                    questionOpenCell.leftDownImage.image = UIImage(named: "left")
+                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
                 }
                 //questionOpenCell.leftDownImage.constraints.
                 return questionOpenCell
             } else {
-                let questionCell = self.tableView.dequeueReusableCell(withIdentifier: "questionCell", for: indexPath) as! QuestionCell
-                questionCell.questionName.text = DataManager.shared.questionList[indexPath.row - 1].question
+                let questionCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionCell
+                questionCell.questionTitle.text = DataManager.shared.questionList[indexPath.row - 1].question
                 return questionCell
             }
         }
         else { // 메모들
             if indexPath.row == 0{
-                let memoOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "memoOpenCell", for: indexPath) as! MemoOpenCell
+                let memoOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "MemoOpenCell", for: indexPath) as! MemoOpenCell
                 memoOpenCell.numberOfMemo.text = String(DataManager.shared.memoList.count)
                 if memoOpened == true {
-                    memoOpenCell.leftDownImage.image = UIImage(named: "down")
+                    memoOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
                 } else {
-                    memoOpenCell.leftDownImage.image = UIImage(named: "left")
+                    memoOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
                 }
                 return memoOpenCell
             } else {
-                let memoCell = self.tableView.dequeueReusableCell(withIdentifier: "memoCell", for: indexPath) as! MemoCell
-                memoCell.memoContent.text = DataManager.shared.memoList[indexPath.row - 1].content
+                let memoCell = self.tableView.dequeueReusableCell(withIdentifier: "MemoCell", for: indexPath) as! MemoCell
+                memoCell.memoTitle.text = DataManager.shared.memoList[indexPath.row - 1].content
                 return memoCell
             }
         }

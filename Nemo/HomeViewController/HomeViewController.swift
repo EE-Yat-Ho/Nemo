@@ -16,7 +16,11 @@ class HomeViewController: UIViewController {
     var tableView = UITableView()
     var titleLabel = UILabel().then{
         $0.text = "가방"
-        $0.font = $0.font.withSize(50)
+        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
+    }
+    var addButton = UIButton().then{
+        $0.setImage(UIImage(named: "가방만들기"), for: .normal)
+        $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     
     //화면 전환 전에 콜되는 함수 샌더는 선택한 셀
@@ -58,15 +62,23 @@ class HomeViewController: UIViewController {
     func setLayout() {
         view.addSubview(tableView)
         view.addSubview(titleLabel)
+        view.addSubview(addButton)
         
         titleLabel.snp.makeConstraints{
-            $0.top.equalTo(55)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(80)
+            $0.height.equalTo(50)
         }
         tableView.snp.makeConstraints{
             $0.leading.trailing.bottom.equalToSuperview()
             $0.top.equalTo(titleLabel.snp.bottom)
+        }
+        
+        addButton.snp.makeConstraints{
+            $0.width.equalTo(120)
+            $0.height.equalTo(60)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
         }
     }
     
@@ -78,7 +90,7 @@ class HomeViewController: UIViewController {
     }
     
     // +버튼 눌렀을 때 가방, 노트 만드는 액션시트 띄우는 함수
-    @IBAction func showPopup(_ sender: Any) {
+    @objc func showPopup() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let addBackPackAction = UIAlertAction(title: "가방 만들기", style: .default){[weak self] (action) in
             let makeBackPackViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeBackPackViewController") as! MakeBackPackViewController
@@ -135,9 +147,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             backPackCell.backPackName.text = DataManager.shared.backPackList[indexPath.section].name
             backPackCell.numberOfNote.text = String(DataManager.shared.backPackList[indexPath.section].numberOfNote)
             if DataManager.shared.backPackList[indexPath.section].opened == true {
-                backPackCell.rightImage.image = UIImage(named: "기본아이콘_이동")
-            } else {
                 backPackCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
+            } else {
+                backPackCell.rightImage.image = UIImage(named: "기본아이콘_이동")
             }
             backPackCell.backgroundColor = UIColor.clear
             return backPackCell
@@ -161,7 +173,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             tableView.reloadSections(sections, with: .none)
         } else { // 노트 선택
-            
+            let noteVC = QuestionMemoViewController()
+            self.navigationController?.pushViewController(noteVC, animated: true)
         }
     }
     
