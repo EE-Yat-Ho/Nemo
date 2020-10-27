@@ -119,9 +119,30 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2A1A6A98253AFDE100577E10 /* MakerQ&M */ = {
+			isa = PBXGroup;
+			children = (
+				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
+				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
+				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
+				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
+			);
+			path = "MakerQ&M";
+			sourceTree = "<group>";
+		};
+		2A1A6A99253AFF9D00577E10 /* MakeB&N */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */,
+				2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */,
+			);
+			path = "MakeB&N";
+			sourceTree = "<group>";
+		};
 		2A36E26A25346F230031E55C /* QuestionMemoViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2A1A6A98253AFDE100577E10 /* MakerQ&M */,
 				2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */,
 				2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */,
 				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
@@ -154,7 +175,6 @@
 			children = (
 				2A5E94EC24A85847000596D8 /* Cells */,
 				2A5E94E724A721D8000596D8 /* Buttons */,
-				2A5E94E424A71C42000596D8 /* MakeUnitViewControllers */,
 				2A5E94D324A1D4A7000596D8 /* Data */,
 				2A5E94B624A1C73B000596D8 /* AppDelegate.swift */,
 				2A5E94EF24A860EF000596D8 /* Main.storyboard */,
@@ -167,7 +187,6 @@
 				2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */,
 				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
 				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
-				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
 				2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */,
 				2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */,
 				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
@@ -186,18 +205,6 @@
 				2A5E94D424A1D4D0000596D8 /* DataManager.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		2A5E94E424A71C42000596D8 /* MakeUnitViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */,
-				2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */,
-				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
-				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
-				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
-			);
-			path = MakeUnitViewControllers;
 			sourceTree = "<group>";
 		};
 		2A5E94E724A721D8000596D8 /* Buttons */ = {
@@ -226,6 +233,7 @@
 		2AFFE4B6252B20920046C687 /* HomeViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2A1A6A99253AFF9D00577E10 /* MakeB&N */,
 				2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */,
 				2A5E94ED24A8587C000596D8 /* BackPackCell.swift */,
 				2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */,

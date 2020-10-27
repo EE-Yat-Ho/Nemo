@@ -26,12 +26,21 @@ class NoteCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func setupLayout() {
+        backgroundColor = UIColor.clear
         
-        self.addSubview(noteImage)
-        self.addSubview(noteName)
-        self.addSubview(numberOfQuestion)
-        self.addSubview(numberOfMemo)
-        self.addSubview(rightImage)
+        addSubview(noteImage)
+        addSubview(noteName)
+        addSubview(numberOfQuestion)
+        addSubview(numberOfMemo)
+        addSubview(rightImage)
         
         noteImage.snp.makeConstraints{
             $0.height.width.equalTo(30)
@@ -58,10 +67,6 @@ class NoteCell: UITableViewCell {
             $0.trailing.equalToSuperview().offset(-20)
             $0.centerY.equalToSuperview()
         }
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
 }

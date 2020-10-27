@@ -9,6 +9,8 @@
 import Foundation
 import CoreData
 import UIKit
+import RxSwift
+import RxCocoa
 //ios에서 db는 core data를 사용. 프로젝트 생성시 core data 체크했기 때문에 기본적인 파일 있는 상태
 //모델 파일 => 디비 설계도 개념
 //core data에서는 엔티티를 클래스로 다룸
@@ -16,9 +18,10 @@ import UIKit
 class DataManager{
     // 싱글톤으로 클래스를 구현하는 방식. 공유인스턴스로 앱 전체에서 하나의 인스턴스 사용가능. 아 정처기 거기있었는데 싱글톤
     static let shared = DataManager()
-    private init(){
-        
-    }
+//    private init(){
+//
+//    }
+    let homeViewTalbeReloadTrigger = PublishRelay<Void>()
     
     // 코어데이터에서 실행하는 대부분 작업은 컨텍스트 객체가 처리. 기본적으로 제공해주긴 하는데 그냥 하나 선언
     var mainContext:NSManagedObjectContext{

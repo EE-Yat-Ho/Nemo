@@ -10,10 +10,18 @@ import UIKit
 import SwiftUI
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+// 헛짓하지말고 옵저버블로 해결하자 ㄱ
 
 class HomeViewController: UIViewController {
     
-    var tableView = UITableView()
+    var tableView = UITableView().then {
+        $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
+        $0.register(BackPackCell.self, forCellReuseIdentifier: "BackPackCell")
+        $0.tableFooterView = UIView()
+    }
     var titleLabel = UILabel().then{
         $0.text = "가방"
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
@@ -23,32 +31,20 @@ class HomeViewController: UIViewController {
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     
-    //화면 전환 전에 콜되는 함수 샌더는 선택한 셀
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
-            DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
-            DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
-            DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.row - 1].name
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
-        tableView.register(BackPackCell.self, forCellReuseIdentifier: "BackPackCell")
         tableView.separatorColor = UIColor.clear
-        // 테이블 섹션 없는 곳에 seperator 없애기
-        self.tableView.tableFooterView = UIView()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
-        self.tableView.backgroundColor = UIColor.clear
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        tableView.backgroundColor = UIColor.clear
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-        setLayout()
-        
+        setupLayout()
+        bindingData()
         // 폰트 이름 확인하기
 //        for name in UIFont.familyNames {
 //            print(name)
@@ -59,7 +55,21 @@ class HomeViewController: UIViewController {
 //        }
     }
     
-    func setLayout() {
+    override func viewWillAppear(_ animated: Bool) { // 화면이 전환 될때(나타날때) 호출
+        super.viewWillAppear(animated)
+        
+        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
+        tableView.reloadData() // 배열 데이터로 뷰를 업데이트함
+    }
+    
+    func bindingData() {
+        DataManager.shared.homeViewTalbeReloadTrigger
+            .bind(onNext: {[weak self] in
+                    self?.tableView.reloadData()})
+            .disposed(by: rx.disposeBag)
+    }
+    
+    func setupLayout() {
         view.addSubview(tableView)
         view.addSubview(titleLabel)
         view.addSubview(addButton)
@@ -82,24 +92,18 @@ class HomeViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) { // 화면이 전환 될때(나타날때) 호출
-        super.viewWillAppear(animated)
-        
-        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
-        tableView.reloadData() // 배열 데이터로 뷰를 업데이트함
-    }
+    
     
     // +버튼 눌렀을 때 가방, 노트 만드는 액션시트 띄우는 함수
     @objc func showPopup() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let addBackPackAction = UIAlertAction(title: "가방 만들기", style: .default){[weak self] (action) in
-            let makeBackPackViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeBackPackViewController") as! MakeBackPackViewController
-            self?.navigationController?.pushViewController(makeBackPackViewController, animated: true)
+            let vc = MakeBackPackViewController()
+            self?.present(vc, animated: true)
         }
         alert.addAction(addBackPackAction)
         let addNoteAction = UIAlertAction(title: "노트 만들기", style: .default){[weak self] (action) in
-            let vc = self?.storyboard?.instantiateViewController(withIdentifier: "MakeNoteViewController") as! MakeNoteViewController
-            self?.present(vc, animated: true, completion: nil)
+            self?.present(MakeNoteViewController(), animated: true)
         }
         alert.addAction(addNoteAction)
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
@@ -151,14 +155,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 backPackCell.rightImage.image = UIImage(named: "기본아이콘_이동")
             }
-            backPackCell.backgroundColor = UIColor.clear
             return backPackCell
         } else { // 노트일경우
             let noteCell = self.tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             noteCell.noteName.text = DataManager.shared.noteList[indexPath.row - 1].name
             noteCell.numberOfQuestion.text = "문제 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfQ)
             noteCell.numberOfMemo.text = "필기 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfM)
-            noteCell.backgroundColor = UIColor.clear
             return noteCell
         }
     }
@@ -173,6 +175,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             tableView.reloadSections(sections, with: .none)
         } else { // 노트 선택
+            DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
+            DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
+            DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.row - 1].name
+
             let noteVC = QuestionMemoViewController()
             self.navigationController?.pushViewController(noteVC, animated: true)
         }

@@ -11,7 +11,10 @@ import UIKit
 public class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
     var DropDownOption = [String]()
     
-    var tableView = UITableView()
+    var tableView = UITableView().then{
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.lightGray.cgColor
+    }
     
     var delegate : DropDownProtocol!
     

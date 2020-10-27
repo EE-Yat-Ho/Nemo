@@ -23,20 +23,22 @@ class QuestionOpenCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupLayout()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupLayout()
     }
     
     func setupLayout() {
-        self.addSubview(questionImage)
-        self.addSubview(questionLabel)
-        self.addSubview(numberOfQuestion)
-        self.addSubview(rightImage)
-        self.addSubview(aboveLine)
+        backgroundColor = UIColor.clear
+        
+        addSubview(questionImage)
+        addSubview(questionLabel)
+        addSubview(numberOfQuestion)
+        addSubview(rightImage)
+        addSubview(aboveLine)
         
         aboveLine.layer.borderColor = UIColor(displayP3Red: 219.0/255.0, green: 219.0/255.0, blue: 219.0/255.0, alpha: 1.0).cgColor
         aboveLine.layer.borderWidth = 1.0

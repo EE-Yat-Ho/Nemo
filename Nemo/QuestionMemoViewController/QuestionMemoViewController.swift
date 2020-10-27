@@ -12,7 +12,6 @@ import SnapKit
 import Then
 
 class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
     var questionOpened:Bool? = false
     var memoOpened:Bool? = false
     var tableView = UITableView().then{
@@ -20,36 +19,70 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         $0.register(QuestionOpenCell.self, forCellReuseIdentifier: "QuestionOpenCell")
         $0.register(MemoCell.self, forCellReuseIdentifier: "MemoCell")
         $0.register(MemoOpenCell.self, forCellReuseIdentifier: "MemoOpenCell")
-        $0.separatorColor = UIColor.clear
+        $0.tableFooterView = UIView()
+    }
+    var titleLabel = UILabel().then{
+        $0.text = DataManager.shared.nowNoteName
+        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
+    }
+    var addButton = UIButton().then{
+        $0.setImage(UIImage(named: "필기하기"), for: .normal)
+        $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        self.navigationItem.title = DataManager.shared.nowNoteName
-        // 테이블 섹션 없는 곳에 seperator 없애기
-        self.tableView.tableFooterView = UIView()
+        tableView.separatorColor = UIColor.clear
+        tableView.backgroundColor = UIColor.clear
+        //self.navigationItem.title = DataManager.shared.nowNoteName
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
+        setupLayout()
+        
+    }
+    
+    func setupLayout() {
+        view.addSubview(tableView)
+        view.addSubview(titleLabel)
+        view.addSubview(addButton)
+        
+        titleLabel.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
+        }
+        tableView.snp.makeConstraints{
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(titleLabel.snp.bottom)
+        }
+        
+        addButton.snp.makeConstraints{
+            $0.width.equalTo(120)
+            $0.height.equalTo(60)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
+        }
+        
     }
     
     // + 눌렀을때 팝업창 띄우기
-    @objc func showPopUp(_ sender: Any) {
-        
+    @objc func showPopup() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let addMemoAction = UIAlertAction(title: "필기 만들기", style: .default){[weak self] (action) in
+            let makeMemoViewController = MakeMemoViewController()
+            self?.navigationController?.pushViewController(makeMemoViewController, animated: true)
+            
+        }
+        alert.addAction(addMemoAction)
         let addQuestionAction = UIAlertAction(title: "문제 만들기", style: .default){[weak self] (action) in
-
             self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
             let questionTabBarController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
             self?.navigationController?.pushViewController(questionTabBarController, animated: true)
  
         }
         alert.addAction(addQuestionAction)
-        let addMemoAction = UIAlertAction(title: "메모 만들기", style: .default){[weak self] (action) in
-            let makeMemoViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeMemoViewController") as! MakeMemoViewController
-            self?.navigationController?.pushViewController(makeMemoViewController, animated: true)
-            
-        }
-        alert.addAction(addMemoAction)
         let cancel = UIAlertAction(title: "취소", style: .cancel, handler: nil)
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
@@ -73,12 +106,12 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     //섹션당 로우 수
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            if questionOpened == true { // 열려있으면 문제수 + 1
-                return DataManager.shared.questionList.count + 1
-            }
-        } else {
             if memoOpened == true {
                 return DataManager.shared.memoList.count + 1
+            }
+        } else {
+            if questionOpened == true { // 열려있으면 문제수 + 1
+                return DataManager.shared.questionList.count + 1
             }
         } // 닫혀있으면 그냥 1이지 ㅇㅇ
         return 1
@@ -89,26 +122,8 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     // 테이블 뷰에게 어떤 디자인으로 어떤 데이터를 표시하면 되는지 알려주는 부분
     // 셀 하나당 한번씩 호출. indexPath로 목록내의 해당 순서의 셀을 접근
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.section == 0 { // 문제들
+        if indexPath.section == 0 { // 필기들
             if indexPath.row == 0 {
-                let questionOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionOpenCell", for: indexPath) as! QuestionOpenCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
-                questionOpenCell.numberOfQuestion.text = String(DataManager.shared.questionList.count)
-                if questionOpened == true {
-                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
-                } else {
-                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
-                }
-                //questionOpenCell.leftDownImage.constraints.
-                return questionOpenCell
-            } else {
-                let questionCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionCell
-                questionCell.questionTitle.text = DataManager.shared.questionList[indexPath.row - 1].question
-                return questionCell
-            }
-        }
-        else { // 메모들
-            if indexPath.row == 0{
                 let memoOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "MemoOpenCell", for: indexPath) as! MemoOpenCell
                 memoOpenCell.numberOfMemo.text = String(DataManager.shared.memoList.count)
                 if memoOpened == true {
@@ -123,28 +138,44 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 return memoCell
             }
         }
+        else { // 문제들
+            if indexPath.row == 0 {
+                let questionOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionOpenCell", for: indexPath) as! QuestionOpenCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
+                questionOpenCell.numberOfQuestion.text = String(DataManager.shared.questionList.count)
+                if questionOpened == true {
+                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
+                } else {
+                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
+                }
+                return questionOpenCell
+            } else {
+                let questionCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionCell", for: indexPath) as! QuestionCell
+                questionCell.questionTitle.text = DataManager.shared.questionList[indexPath.row - 1].question
+                return questionCell
+            }
+        }
     }
     
     // 눌러졌을때 할일
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0 { // 문제보기, 메모보기 눌러짐
-            if indexPath.section == 0 { // 문제보기 눌러짐
-                questionOpened?.toggle()
-            } else { // 메모보기 눌러짐
+        if indexPath.row == 0 { // 필기보기, 문제보기 눌러짐
+            if indexPath.section == 0 { // 필기보기 눌러짐
                 memoOpened?.toggle()
+            } else { // 메모보기 눌러짐
+                questionOpened?.toggle()
             }
             let sections = IndexSet.init(integer: indexPath.section) // 아 바로 밑에쓰이니 지우지말라고 ㅋㅋ
             tableView.reloadSections(sections, with: .none)
         } else {
-            if indexPath.section == 0 { // 문제
+            if indexPath.section == 0 { // 필기
+                let makeMemoViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeMemoViewController") as! MakeMemoViewController
+                makeMemoViewController.editTarget = DataManager.shared.memoList[indexPath.row - 1]
+                self.navigationController?.pushViewController(makeMemoViewController, animated: true)
+            } else { // 문제
                 self.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
                 let questionTabBarController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
                 questionTabBarController.editTarget = DataManager.shared.questionList[indexPath.row - 1]
                 self.navigationController?.pushViewController(questionTabBarController, animated: true)
-            } else { // 메모
-                let makeMemoViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeMemoViewController") as! MakeMemoViewController
-                makeMemoViewController.editTarget = DataManager.shared.memoList[indexPath.row - 1]
-                self.navigationController?.pushViewController(makeMemoViewController, animated: true)
             }
         }
     }
@@ -293,19 +324,4 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         } else if editingStyle == .insert {
         }
     }
-    
-//    var memo: Memo?
-//    var question: Question?
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // 네비게이션 컨트롤러가 관리하는 첫번째 뷰 컨트롤러로 메모가 전달된데요. 그 첫번째 뷰 컨트롤러는 바로 컴포즈 뷰 컨트롤러!
-//        if let vc = segue.destination.children.first as? MakeMemoViewController {
-//            vc.editTarget = memo
-//        }
-//        if let vc = segue.destination.children.first as? MakeSubjectiveQuestionViewController {
-//            vc.editTarget = question
-//        }
-//        if let vc = segue.destination.children.first as? MakeMultipleChoiceQuestionViewController {
-//            vc.editTarget = question
-//        }
-//    }
 }

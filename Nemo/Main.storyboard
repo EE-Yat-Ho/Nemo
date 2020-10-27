@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -77,45 +77,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btD-kz-L7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1814" y="-899"/>
-        </scene>
-        <!--Make Back Pack View Controller-->
-        <scene sceneID="bqq-hz-Nu2">
-            <objects>
-                <viewController storyboardIdentifier="MakeBackPackViewController" id="Je9-47-VWo" customClass="MakeBackPackViewController" customModule="Nemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="P2Z-Qq-wiq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가방 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfN-BH-Ch8">
-                                <rect key="frame" x="20" y="64" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="가방 이름 입력" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hkX-jI-CTr">
-                                <rect key="frame" x="20" y="95" width="374" height="34"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="l1o-4p-k76"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="l1o-4p-k76" firstAttribute="trailing" secondItem="hkX-jI-CTr" secondAttribute="trailing" constant="20" id="8mO-af-wig"/>
-                            <constraint firstItem="nfN-BH-Ch8" firstAttribute="top" secondItem="l1o-4p-k76" secondAttribute="top" constant="20" id="BlS-wB-rXw"/>
-                            <constraint firstItem="nfN-BH-Ch8" firstAttribute="leading" secondItem="l1o-4p-k76" secondAttribute="leading" constant="20" id="CSA-14-jBa"/>
-                            <constraint firstItem="hkX-jI-CTr" firstAttribute="top" secondItem="nfN-BH-Ch8" secondAttribute="bottom" constant="10" id="DMy-lU-rtj"/>
-                            <constraint firstItem="hkX-jI-CTr" firstAttribute="leading" secondItem="l1o-4p-k76" secondAttribute="leading" constant="20" id="HV2-mY-7QP"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backpackName" destination="hkX-jI-CTr" id="bkj-0o-Rlt"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Drc-FH-eNp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="677" y="-1615"/>
         </scene>
         <!--객관식 만들기-->
         <scene sceneID="V24-bP-ppQ">
@@ -815,55 +776,6 @@
             </objects>
             <point key="canvasLocation" x="5056.521739130435" y="-1313.1696428571429"/>
         </scene>
-        <!--Make Note View Controller-->
-        <scene sceneID="ZRa-pk-CZf">
-            <objects>
-                <viewController storyboardIdentifier="MakeNoteViewController" id="hrr-3w-hqd" customClass="MakeNoteViewController" customModule="Nemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4sj-de-es9">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y11-Cn-IGv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="노트 만들기" id="ydA-Dn-Yuw">
-                                        <barButtonItem key="leftBarButtonItem" title="취소" id="w43-sG-DKM">
-                                            <connections>
-                                                <action selector="cancel:" destination="hrr-3w-hqd" id="ODv-PP-WJT"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="저장" id="8WC-TO-8Mw">
-                                            <connections>
-                                                <action selector="save:" destination="hrr-3w-hqd" id="hl8-fe-knf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="노트 이름 입력" textAlignment="natural" minimumFontSize="17" id="eUh-dv-viB">
-                                <rect key="frame" x="20" y="120" width="374" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="bdn-8q-cPB"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="bdn-8q-cPB" firstAttribute="trailing" secondItem="eUh-dv-viB" secondAttribute="trailing" constant="20" id="F3K-xw-EqX"/>
-                            <constraint firstItem="eUh-dv-viB" firstAttribute="leading" secondItem="bdn-8q-cPB" secondAttribute="leading" constant="20" id="Ro0-Os-S0T"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="NoteName" destination="eUh-dv-viB" id="wNz-I1-brc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gzR-R5-r2e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1355" y="-1615"/>
-        </scene>
         <!--홈-->
         <scene sceneID="41D-kA-U3l">
             <objects>
@@ -906,97 +818,6 @@
                 <customObject id="3G0-io-KsB" customClass="AnimUtils" customModule="Nemo" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-1599" y="171"/>
-        </scene>
-        <!--Make Memo View Controller-->
-        <scene sceneID="uFJ-Ih-P7q">
-            <objects>
-                <viewController storyboardIdentifier="MakeMemoViewController" id="yfL-NK-mJw" customClass="MakeMemoViewController" customModule="Nemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="oX8-8r-hNn">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메모 내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl7-P1-VDj">
-                                <rect key="frame" x="20" y="64" width="64" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2cs-h3-pN0">
-                                <rect key="frame" x="20" y="93" width="374" height="128"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="5dC-dO-pgA"/>
-                                </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xdt-Vo-h2o">
-                                <rect key="frame" x="104" y="64" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="20" id="Cci-tf-bUA"/>
-                                    <constraint firstAttribute="height" constant="20" id="vH2-M6-XqL"/>
-                                </constraints>
-                                <state key="normal" image="카메라"/>
-                                <connections>
-                                    <action selector="addImageToQuestion:" destination="yfL-NK-mJw" eventType="touchUpInside" id="iFs-a7-COe"/>
-                                </connections>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tfu-wr-rtM">
-                                <rect key="frame" x="20" y="243" width="374" height="10"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="XUR-mX-Nfq">
-                                    <size key="itemSize" width="100" height="100"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="qkt-Lo-QNa" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0VI-EI-b3q">
-                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDB-xG-B2h">
-                                                    <rect key="frame" x="5" y="5" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                            </subviews>
-                                        </collectionViewCellContentView>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="imageView" destination="nDB-xG-B2h" id="YAC-JF-tnp"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                            </collectionView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="HbY-Rs-h2c"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="2cs-h3-pN0" firstAttribute="top" secondItem="HbY-Rs-h2c" secondAttribute="top" constant="49" id="0xV-YH-QS6"/>
-                            <constraint firstItem="tfu-wr-rtM" firstAttribute="leading" secondItem="HbY-Rs-h2c" secondAttribute="leading" constant="20" id="Ckh-kU-zpD"/>
-                            <constraint firstItem="bl7-P1-VDj" firstAttribute="leading" secondItem="HbY-Rs-h2c" secondAttribute="leading" constant="20" id="NNW-1c-WT6"/>
-                            <constraint firstItem="HbY-Rs-h2c" firstAttribute="trailing" secondItem="tfu-wr-rtM" secondAttribute="trailing" constant="20" id="Pca-f5-Irk"/>
-                            <constraint firstItem="HbY-Rs-h2c" firstAttribute="trailing" secondItem="2cs-h3-pN0" secondAttribute="trailing" constant="20" id="TcL-vZ-Yt8"/>
-                            <constraint firstItem="Xdt-Vo-h2o" firstAttribute="top" secondItem="HbY-Rs-h2c" secondAttribute="top" constant="20" id="ou9-Pc-XZl"/>
-                            <constraint firstItem="bl7-P1-VDj" firstAttribute="top" secondItem="HbY-Rs-h2c" secondAttribute="top" constant="20" id="ptj-MT-7BU"/>
-                            <constraint firstItem="tfu-wr-rtM" firstAttribute="top" secondItem="2cs-h3-pN0" secondAttribute="bottom" constant="10" id="quo-BG-kZ1"/>
-                            <constraint firstItem="Xdt-Vo-h2o" firstAttribute="leading" secondItem="bl7-P1-VDj" secondAttribute="trailing" constant="20" id="sBN-uV-YZt"/>
-                            <constraint firstItem="2cs-h3-pN0" firstAttribute="leading" secondItem="HbY-Rs-h2c" secondAttribute="leading" constant="20" id="uN2-EH-Bod"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="CollectionView" destination="tfu-wr-rtM" id="FMC-zF-mUm"/>
-                        <outlet property="memoContent" destination="2cs-h3-pN0" id="Nvv-6J-RHc"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ml6-TU-uo0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2683" y="-1324"/>
         </scene>
         <!--오답노트-->
         <scene sceneID="RHv-H0-YpA">

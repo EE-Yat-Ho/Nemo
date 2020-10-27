@@ -10,65 +10,116 @@ import UIKit
 
 class MakeMemoViewController: UIViewController {
     var editTarget: Memo?
-    @IBOutlet weak var memoContent: UITextView!
-    @IBOutlet weak var CollectionView: UICollectionView!
-    var CollectionViewHeight: CGFloat! = 10.0
-    var CollectionViewHeightAnchor: NSLayoutConstraint?
+    var naviBar = UINavigationBar()
+    var naviItem = UINavigationItem().then{
+        $0.title = "필기 만들기"
+    }
+    var saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(save)).then{
+        $0.title = "저장"
+    }
+    var cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(cancel)).then{
+        $0.title = "취소"
+    }
+    
+    var memoLabel = UILabel().then{
+        $0.text = "메모 내용"
+    }
+    var cameraButton = UIButton().then{
+        $0.setImage(UIImage(named: "이미지"), for: .normal)
+    }
+    var memoContent = UITextView().then{
+        $0.tag = 1
+        $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 5.0
+        $0.becomeFirstResponder()
+    }
+    lazy var collectionView = UICollectionView(
+        frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+        collectionViewLayout: layout).then{
+        $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 5.0
+    }
+    var collectionViewHeight: CGFloat! = 10.0
+    var collectionViewHeightAnchor: NSLayoutConstraint?
+    let layout = UICollectionViewFlowLayout().then{
+        $0.itemSize = CGSize(width: 110, height: 110)
+        $0.minimumLineSpacing = 0
+    }
     let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CollectionView.delegate = self
-        CollectionView.dataSource = self
-        self.navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: "완료",
-                            style: UIBarButtonItem.Style.plain,
-                            target: nil,
-                            action: #selector(save(_:)))
-        // 처음에 메모 내용에 커서 옮겨놓기
-        memoContent.becomeFirstResponder()
-        
-        // 텍스트 필드에 초기값 회색으로 넣는거
+        collectionView.delegate = self
+        collectionView.dataSource = self
         memoContent.delegate = self
-        memoContent.tag = 1
+        self.navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
+                            action: #selector(save(_:)))
         
-        memoContent.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        memoContent.layer.borderWidth = 1.0
-        memoContent.layer.cornerRadius = 5.0
+        setupLayout()
+        dataLoad()
+    }
+    
+    func setupLayout() {
+        view.backgroundColor = .white
+        view.addSubview(naviBar)
+        view.addSubview(memoLabel)
+        view.addSubview(cameraButton)
+        view.addSubview(memoContent)
+        view.addSubview(collectionView)
         
-        if editTarget != nil {
-            memoContent.text = editTarget?.content
+        
+        naviItem.setLeftBarButton(cancelButton, animated: true)
+        naviItem.setRightBarButton(saveButton, animated: true)
+        naviBar.setItems([naviItem], animated: true)
+        
+        naviBar.snp.makeConstraints{
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(44)
         }
-        
-        CollectionView.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        CollectionView.layer.borderWidth = 1.0
-        CollectionView.layer.cornerRadius = 5.0
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 110, height: 110)
-        layout.minimumLineSpacing = 0
-        CollectionView.collectionViewLayout = layout
-        
-        CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-        CollectionViewHeightAnchor!.isActive = true
-        
-        DataManager.shared.imageList.removeAll()
-        if editTarget != nil {
-            memoContent.text = editTarget?.content
-            
-            for i in editTarget!.images ?? [Data]() {
-                DataManager.shared.imageList.append(UIImage(data: i)!)
-            }
-            CollectionViewHeight = CGFloat((DataManager.shared.imageList.count + 2) / 3) * 110
-            if CollectionViewHeight == 0.0 { CollectionViewHeight = 10.0 }
-            if CollectionViewHeight > 270.0 { CollectionViewHeight = 270.0}
-            CollectionViewHeightAnchor?.isActive = false
-            CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-            CollectionViewHeightAnchor?.isActive = true
+        memoLabel.snp.makeConstraints{
+            $0.top.equalTo(naviBar.snp.bottom).inset(30)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        cameraButton.snp.makeConstraints{
+            $0.top.equalTo(naviBar.snp.bottom).inset(30)
+            $0.leading.equalTo(memoLabel.snp.trailing).inset(10)
+            $0.height.width.equalTo(20)
+        }
+        memoContent.snp.makeConstraints{
+            $0.top.equalTo(memoLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(135)
+        }
+        collectionView.snp.makeConstraints{
+            $0.top.equalTo(memoContent.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(10)
         }
     }
     
+    func dataLoad() {
+        guard let editTarget = editTarget else {return}
+        
+        memoContent.text = editTarget.content
+        
+        DataManager.shared.imageList.removeAll()
+        for i in editTarget.images ?? [Data]() {
+            DataManager.shared.imageList.append(UIImage(data: i)!)
+        }
+        collectionViewHeight = CGFloat((DataManager.shared.imageList.count + 2) / 3) * 110
+        if collectionViewHeight == 0.0 { collectionViewHeight = 10.0 }
+        if collectionViewHeight > 270.0 { collectionViewHeight = 270.0}
+        collectionView.snp.updateConstraints{
+            $0.height.equalTo(collectionViewHeight)
+        }
+    }
+    @objc func cancel() {
+        navigationController?.popViewController(animated: true)
+    }
     @objc private func save(_ sender: Any) {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if memoContent.text.count == 0 || memoContent.text == "메모 내용 입력" {
@@ -112,13 +163,13 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
         dismiss(animated: true, completion: nil)
         if let img = info[.originalImage] as? UIImage{
             DataManager.shared.imageList.append(img)
-            self.CollectionView.reloadData()
-            CollectionViewHeight = CGFloat(((DataManager.shared.imageList.count + 2) / 3) * 110)
-            if CollectionViewHeight == 0 { CollectionViewHeight = 10 }
-            if CollectionViewHeight > 270 { CollectionViewHeight = 270 }
-            CollectionViewHeightAnchor?.isActive = false
-            CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-            CollectionViewHeightAnchor?.isActive = true
+            self.collectionView.reloadData()
+            collectionViewHeight = CGFloat(((DataManager.shared.imageList.count + 2) / 3) * 110)
+            if collectionViewHeight == 0 { collectionViewHeight = 10 }
+            if collectionViewHeight > 270 { collectionViewHeight = 270 }
+            collectionView.snp.updateConstraints{
+                $0.height.equalTo(collectionViewHeight)
+            }
         }
     }
 }

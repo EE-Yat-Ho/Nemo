@@ -28,15 +28,18 @@ class MemoOpenCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        backgroundColor = UIColor.clear
         setupLayout()
     }
     
     func setupLayout() {
-        self.addSubview(memoImage)
-        self.addSubview(memoLabel)
-        self.addSubview(numberOfMemo)
-        self.addSubview(rightImage)
-        self.addSubview(aboveLine)
+        backgroundColor = UIColor.clear
+        
+        addSubview(memoImage)
+        addSubview(memoLabel)
+        addSubview(numberOfMemo)
+        addSubview(rightImage)
+        addSubview(aboveLine)
         
         aboveLine.layer.borderColor = UIColor(displayP3Red: 219.0/255.0, green: 219.0/255.0, blue: 219.0/255.0, alpha: 1.0).cgColor
         aboveLine.layer.borderWidth = 1.0

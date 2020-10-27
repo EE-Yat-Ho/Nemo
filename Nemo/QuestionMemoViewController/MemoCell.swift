@@ -10,4 +10,21 @@ import UIKit
 
 class MemoCell: UITableViewCell {
     var memoTitle = UILabel()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupLayout()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    func setupLayout() {
+        backgroundColor = UIColor.clear
+        contentView.addSubview(memoTitle)
+        memoTitle.snp.makeConstraints{
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().offset(20)
+        }
+    }
 }
