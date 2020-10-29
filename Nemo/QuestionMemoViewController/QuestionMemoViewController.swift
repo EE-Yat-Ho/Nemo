@@ -36,14 +36,15 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
-        //self.navigationItem.title = DataManager.shared.nowNoteName
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
         
         setupLayout()
         
     }
     
     func setupLayout() {
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
         view.addSubview(tableView)
         view.addSubview(titleLabel)
         view.addSubview(addButton)

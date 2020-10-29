@@ -10,16 +10,6 @@ import UIKit
 
 class MakeMemoViewController: UIViewController {
     var editTarget: Memo?
-    var naviBar = UINavigationBar()
-    var naviItem = UINavigationItem().then{
-        $0.title = "필기 만들기"
-    }
-    var saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(save)).then{
-        $0.title = "저장"
-    }
-    var cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(cancel)).then{
-        $0.title = "취소"
-    }
     
     var memoLabel = UILabel().then{
         $0.text = "메모 내용"
@@ -40,6 +30,7 @@ class MakeMemoViewController: UIViewController {
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
+        $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
     }
     var collectionViewHeight: CGFloat! = 10.0
     var collectionViewHeightAnchor: NSLayoutConstraint?
@@ -54,39 +45,33 @@ class MakeMemoViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         memoContent.delegate = self
-        self.navigationItem.rightBarButtonItem =
+        
+        navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
                             action: #selector(save(_:)))
+        navigationController?.title = "필기 만들기"
         
         setupLayout()
         dataLoad()
     }
     
     func setupLayout() {
-        view.backgroundColor = .white
-        view.addSubview(naviBar)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
         view.addSubview(memoLabel)
         view.addSubview(cameraButton)
         view.addSubview(memoContent)
         view.addSubview(collectionView)
         
         
-        naviItem.setLeftBarButton(cancelButton, animated: true)
-        naviItem.setRightBarButton(saveButton, animated: true)
-        naviBar.setItems([naviItem], animated: true)
-        
-        naviBar.snp.makeConstraints{
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(44)
-        }
         memoLabel.snp.makeConstraints{
-            $0.top.equalTo(naviBar.snp.bottom).inset(30)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(20)
         }
         cameraButton.snp.makeConstraints{
-            $0.top.equalTo(naviBar.snp.bottom).inset(30)
-            $0.leading.equalTo(memoLabel.snp.trailing).inset(10)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            $0.leading.equalTo(memoLabel.snp.trailing).offset(10)
             $0.height.width.equalTo(20)
         }
         memoContent.snp.makeConstraints{

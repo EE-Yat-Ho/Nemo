@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
@@ -70,6 +70,8 @@ class HomeViewController: UIViewController {
     }
     
     func setupLayout() {
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
         view.addSubview(tableView)
         view.addSubview(titleLabel)
         view.addSubview(addButton)

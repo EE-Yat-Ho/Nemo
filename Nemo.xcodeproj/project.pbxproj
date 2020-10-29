@@ -122,10 +122,10 @@
 		2A1A6A98253AFDE100577E10 /* MakerQ&M */ = {
 			isa = PBXGroup;
 			children = (
+				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
 				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
 				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
 				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
-				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
 			);
 			path = "MakerQ&M";
 			sourceTree = "<group>";
