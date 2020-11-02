@@ -10,6 +10,26 @@ import UIKit
 import Then
 
 class NoteCell: UITableViewCell {
+    var editMode = false{
+        didSet{
+            if editMode {
+                noteImage.snp.remakeConstraints{
+                    $0.height.width.equalTo(30)
+                    $0.leading.equalToSuperview().offset(50)
+                    $0.centerY.equalToSuperview()
+                }
+                rightImage.isHidden = true
+            } else {
+                noteImage.snp.remakeConstraints{
+                    $0.height.width.equalTo(30)
+                    $0.leading.equalToSuperview().offset(20)
+                    $0.centerY.equalToSuperview()
+                }
+                rightImage.isHidden = false
+            }
+        }
+    }
+    
     var noteImage = UIImageView().then {
         $0.image = UIImage(named: "노트")
     }

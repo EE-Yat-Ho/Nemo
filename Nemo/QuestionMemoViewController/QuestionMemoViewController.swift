@@ -29,6 +29,8 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         $0.setImage(UIImage(named: "필기하기"), for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
+    //clickEditButton가 생성된 후 만들어야하므로 lazy
+    lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +39,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
         
-        
+        navigationItem.rightBarButtonItem = editButton
         setupLayout()
         
     }
@@ -66,6 +68,19 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
         }
         
+    }
+    
+    // 우측 상단 버튼 조정
+    @objc public func clickEditButton() {
+        if tableView.isEditing {
+            tableView.setEditing(false, animated: true)
+            editButton.title = ""//("", for: .normal)
+            editButton.image = UIImage(named: "기본아이콘_편집")//(UIImage(named: "기본아이콘_편집"), for: .normal)
+        } else {
+            tableView.setEditing(true, animated: true)
+            editButton.title = "완료"//("완료", for: .normal)
+            editButton.image = nil//(nil, for: .normal)
+        }
     }
     
     // + 눌렀을때 팝업창 띄우기
@@ -181,20 +196,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         }
     }
 
-    // 우측 상단 버튼 조정
-    @IBAction func ClickEditButton(_ sender: UIButton) {
-        if tableView.isEditing {
-            tableView.setEditing(false, animated: true)
-            //tableView.separatorInset.left = 55
-            sender.setTitle("", for: .normal)
-            sender.setImage(UIImage(named: "편집 복사본"), for: .normal)
-        } else {
-            tableView.setEditing(true, animated: true)
-            //tableView.separatorInset.left = 100
-            sender.setTitle("완료", for: .normal)
-            sender.setImage(nil, for: .normal)
-        }
-    }
+    
 
 
     //순서바꾸기 허용

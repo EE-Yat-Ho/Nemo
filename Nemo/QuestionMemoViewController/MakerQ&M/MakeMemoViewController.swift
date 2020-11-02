@@ -16,8 +16,9 @@ class MakeMemoViewController: UIViewController {
     }
     var cameraButton = UIButton().then{
         $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.addTarget(self, action: #selector(addImageToQuestion), for: .touchUpInside)
     }
-    var memoContent = UnderlinedTextView().then{
+    var memoContent = UITextView().then{
         $0.tag = 1
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
@@ -31,6 +32,7 @@ class MakeMemoViewController: UIViewController {
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
         $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
     }
     var collectionViewHeight: CGFloat! = 10.0
     var collectionViewHeightAnchor: NSLayoutConstraint?
@@ -77,7 +79,7 @@ class MakeMemoViewController: UIViewController {
         memoContent.snp.makeConstraints{
             $0.top.equalTo(memoLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(135)
+            $0.height.equalTo(270)
         }
         collectionView.snp.makeConstraints{
             $0.top.equalTo(memoContent.snp.bottom).offset(10)
@@ -133,7 +135,7 @@ class MakeMemoViewController: UIViewController {
 
 extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigationControllerDelegate {
     //20200720 사진을 고르는 화면 구현
-    @IBAction func addImageToQuestion(_ sender: UIButton) {
+    @objc func addImageToQuestion() {
         self.openImagePicker()
     }
     func openImagePicker(){
@@ -171,13 +173,9 @@ extension MakeMemoViewController: UICollectionViewDelegate, UICollectionViewData
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
 
-            cell.imageView?.image = DataManager.shared.imageList[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList[indexPath.row]
          
-            cell.imageView?.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-            cell.imageView?.layer.borderWidth = 1.0
-            cell.imageView?.layer.cornerRadius = 5.0
             
-            cell.imageView?.backgroundColor = UIColor.black
             return cell
         }
 }

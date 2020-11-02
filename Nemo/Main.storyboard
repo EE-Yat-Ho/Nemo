@@ -21,62 +21,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="y58-JY-mNS"/>
-                    <navigationItem key="navigationItem" id="Ll7-eB-TMG">
-                        <barButtonItem key="rightBarButtonItem" id="1Ye-2V-wq7">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" id="EFe-go-wVg">
-                                <rect key="frame" x="247" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="기본아이콘_편집">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="ClickEditButton:" destination="Hxq-OZ-N90" eventType="touchUpInside" id="uxM-CV-E5B"/>
-                                </connections>
-                            </button>
-                            <color key="tintColor" systemColor="systemBlueColor"/>
-                            <connections>
-                                <action selector="ClickEditButton:" destination="Hxq-OZ-N90" id="a0H-ez-9ho"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="Ll7-eB-TMG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="20n-qT-4Id" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="298.55072463768118" y="-899.33035714285711"/>
-        </scene>
-        <!--Question Memo View Controller-->
-        <scene sceneID="m4E-7t-OHx">
-            <objects>
-                <viewController id="EJ0-4k-v8F" customClass="QuestionMemoViewController" customModule="Nemo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="cqU-EB-Lvq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="KKV-Na-jrA"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="ieL-e4-JDX">
-                        <barButtonItem key="rightBarButtonItem" id="BgF-aI-r2i">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" id="w0j-DR-w3k">
-                                <rect key="frame" x="334.5" y="10.5" width="59.5" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="18"/>
-                                <state key="normal" image="편집 복사본">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="ClickEditButton:" destination="EJ0-4k-v8F" eventType="touchUpInside" id="Wcn-Si-AcU"/>
-                                    <action selector="ClickEditButton:" destination="Hxq-OZ-N90" eventType="touchUpInside" id="taN-L3-Mi9"/>
-                                </connections>
-                            </button>
-                            <connections>
-                                <action selector="ClickEditButton:" destination="Hxq-OZ-N90" id="IyO-3D-oXl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="btD-kz-L7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1814" y="-899"/>
         </scene>
         <!--객관식 만들기-->
         <scene sceneID="V24-bP-ppQ">
@@ -133,7 +82,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="1f7-MR-UlX" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellt" id="1f7-MR-UlX" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="S8E-7G-j6g">
@@ -205,7 +154,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="IOn-VT-HNf" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellt" id="IOn-VT-HNf" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="es1-Wp-SW8">
@@ -511,7 +460,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="VH9-yd-LU5" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellt" id="VH9-yd-LU5" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="hd2-zK-oxJ">
@@ -591,7 +540,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="KW9-tH-Nc8" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellt" id="KW9-tH-Nc8" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="FTK-X2-yuy">
@@ -1279,7 +1228,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="AQc-zo-i5e" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCellt" id="AQc-zo-i5e" customClass="CollectionViewCell" customModule="Nemo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UMI-GN-ibY">
@@ -1809,7 +1758,6 @@
         <image name="xmark" width="48" height="48"/>
         <image name="xmark.circle" catalog="system" width="128" height="121"/>
         <image name="가방" width="48" height="48"/>
-        <image name="기본아이콘_편집" width="24" height="24"/>
         <image name="노트" width="48" height="48"/>
         <image name="메모(필기)" width="200" height="201"/>
         <image name="문제" width="48" height="48"/>
@@ -1824,7 +1772,6 @@
         <image name="타이머" width="101" height="100"/>
         <image name="타이머_선택" width="101" height="100"/>
         <image name="틀린표시2" width="401" height="401"/>
-        <image name="편집 복사본" width="22.333333969116211" height="22.333333969116211"/>
         <image name="홈" width="24" height="24"/>
         <image name="홈_선택" width="24" height="24"/>
         <systemColor name="darkTextColor">

@@ -16,7 +16,7 @@ import NSObject_Rx
 // 헛짓하지말고 옵저버블로 해결하자 ㄱ
 
 class HomeViewController: UIViewController {
-    
+    var tableViewEditMode = false
     var tableView = UITableView().then {
         $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
         $0.register(BackPackCell.self, forCellReuseIdentifier: "BackPackCell")
@@ -30,6 +30,7 @@ class HomeViewController: UIViewController {
         $0.setImage(UIImage(named: "가방만들기"), for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
+    lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,10 +40,12 @@ class HomeViewController: UIViewController {
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
         
+        navigationItem.rightBarButtonItem = editButton
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
 
+        
         setupLayout()
         bindingData()
         // 폰트 이름 확인하기
@@ -113,16 +116,23 @@ class HomeViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    @IBAction func ClickEditButton(_ sender: UIButton) {
-        if tableView.isEditing {
+    @IBAction func clickEditButton() {
+        if tableView.isEditing { // 정상 상태로
             tableView.setEditing(false, animated: true)
-            sender.setTitle("", for: .normal)
-            sender.setImage(UIImage(named: "기본아이콘_편집"), for: .normal)
-        } else {
+//            editButton.setTitle("", for: .normal)
+//            editButton.setImage(UIImage(named: "기본아이콘_편집"), for: .normal)
+            editButton.title = ""//("", for: .normal)
+            editButton.image = UIImage(named: "기본아이콘_편집")
+            tableViewEditMode = false
+        } else { // 편집 모드로
             tableView.setEditing(true, animated: true)
-            sender.setTitle("완료", for: .normal)
-            sender.setImage(nil, for: .normal)
+//            editButton.setTitle("완료", for: .normal)
+//            editButton.setImage(nil, for: .normal)
+            editButton.title = "완료"//("완료", for: .normal)
+            editButton.image = nil
+            tableViewEditMode = true
         }
+        tableView.reloadData()
     }
 }
 
@@ -157,12 +167,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 backPackCell.rightImage.image = UIImage(named: "기본아이콘_이동")
             }
+            backPackCell.editMode = tableViewEditMode
             return backPackCell
         } else { // 노트일경우
             let noteCell = self.tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
             noteCell.noteName.text = DataManager.shared.noteList[indexPath.row - 1].name
             noteCell.numberOfQuestion.text = "문제 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfQ)
             noteCell.numberOfMemo.text = "필기 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfM)
+            noteCell.editMode = tableViewEditMode
             return noteCell
         }
     }

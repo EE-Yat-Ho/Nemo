@@ -10,6 +10,26 @@ import UIKit
 import Then
 
 class BackPackCell: UITableViewCell {
+    var editMode = false{
+        didSet{
+            if editMode {
+                backPackImage.snp.remakeConstraints{
+                    $0.height.width.equalTo(30)
+                    $0.leading.equalToSuperview().offset(50)
+                    $0.centerY.equalToSuperview()
+                }
+                rightImage.isHidden = true
+            } else {
+                backPackImage.snp.remakeConstraints{
+                    $0.height.width.equalTo(30)
+                    $0.leading.equalToSuperview().offset(20)
+                    $0.centerY.equalToSuperview()
+                }
+                rightImage.isHidden = false
+            }
+        }
+    }
+    
     let backPackImage = UIImageView().then {
         $0.image = UIImage(named: "가방")
     }

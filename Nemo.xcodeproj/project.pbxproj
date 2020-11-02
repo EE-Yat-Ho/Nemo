@@ -38,10 +38,11 @@
 		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
 		2A6D74CC24C41BCA00AFD0E1 /* QuestionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */; };
-		2A6D74D324C5783C00AFD0E1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */; };
+		2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */; };
 		2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */; };
 		2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F84DC254C16370000345F /* UnderlinedTextView.swift */; };
+		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
 		2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */; };
 		2ADA4C5E24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */; };
@@ -85,10 +86,11 @@
 		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
 		2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTabBarController.swift; sourceTree = "<group>"; };
-		2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellt.swift; sourceTree = "<group>"; };
 		2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTimeTabBarController.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTestSettingViewController.swift; sourceTree = "<group>"; };
 		2A6F84DC254C16370000345F /* UnderlinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
+		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCell.swift; sourceTree = "<group>"; };
@@ -223,12 +225,13 @@
 		2A5E94EC24A85847000596D8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2A6D74D224C5783C00AFD0E1 /* CollectionViewCell.swift */,
+				2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */,
 				2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */,
 				2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */,
 				2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */,
 				2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */,
 				2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */,
+				2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -381,8 +384,9 @@
 				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
 				2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */,
 				2A5E94D024A1CAA5000596D8 /* RoundButton.swift in Sources */,
-				2A6D74D324C5783C00AFD0E1 /* CollectionViewCell.swift in Sources */,
+				2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */,
 				2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */,
+				2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */,
 				2A6D74AE24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift in Sources */,
 				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
@@ -549,7 +553,7 @@
 			baseConfigurationReference = D0B22AD1724CE7C93030A3CC /* Pods-Nemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
 				INFOPLIST_FILE = Nemo/Info.plist;
@@ -560,6 +564,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -570,7 +575,7 @@
 			baseConfigurationReference = 824906C8C52517E3020608CD /* Pods-Nemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
 				INFOPLIST_FILE = Nemo/Info.plist;
@@ -581,6 +586,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
