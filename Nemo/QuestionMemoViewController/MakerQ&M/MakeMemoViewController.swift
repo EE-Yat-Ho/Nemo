@@ -17,7 +17,7 @@ class MakeMemoViewController: UIViewController {
     var cameraButton = UIButton().then{
         $0.setImage(UIImage(named: "이미지"), for: .normal)
     }
-    var memoContent = UITextView().then{
+    var memoContent = UnderlinedTextView().then{
         $0.tag = 1
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
@@ -49,7 +49,7 @@ class MakeMemoViewController: UIViewController {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
                             action: #selector(save(_:)))
-        navigationController?.title = "필기 만들기"
+        navigationController?.navigationItem.title = "필기 만들기"
         
         setupLayout()
         dataLoad()

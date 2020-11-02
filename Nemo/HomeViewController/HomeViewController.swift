@@ -116,7 +116,7 @@ class HomeViewController: UIViewController {
     @IBAction func ClickEditButton(_ sender: UIButton) {
         if tableView.isEditing {
             tableView.setEditing(false, animated: true)
-            sender.setTitle("    ", for: .normal)
+            sender.setTitle("", for: .normal)
             sender.setImage(UIImage(named: "기본아이콘_편집"), for: .normal)
         } else {
             tableView.setEditing(true, animated: true)

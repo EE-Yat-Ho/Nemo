@@ -22,11 +22,11 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="y58-JY-mNS"/>
                     <navigationItem key="navigationItem" id="Ll7-eB-TMG">
-                        <barButtonItem key="rightBarButtonItem" image="기본아이콘_편집" id="1Ye-2V-wq7">
+                        <barButtonItem key="rightBarButtonItem" id="1Ye-2V-wq7">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" id="EFe-go-wVg">
-                                <rect key="frame" x="351" y="10" width="43" height="24"/>
+                                <rect key="frame" x="247" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="    " image="기본아이콘_편집">
+                                <state key="normal" image="기본아이콘_편집">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
