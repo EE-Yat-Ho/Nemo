@@ -44,6 +44,11 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        DataManager.shared.imageList = []
+    }
+    
     func setupLayout() {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
         

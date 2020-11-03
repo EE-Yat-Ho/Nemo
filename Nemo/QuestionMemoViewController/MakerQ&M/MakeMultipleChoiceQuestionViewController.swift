@@ -298,15 +298,10 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UINavigationCo
         print("indexPath.row = \(indexPath.row)" )
         
         if collectionView.tag == 1 {
-            cell.imageView?.image = DataManager.shared.imageList_MC[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList_MC[indexPath.row]
         } else {
-            cell.imageView?.image = DataManager.shared.imageList_MC_2[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList_MC_2[indexPath.row]
         }
-        cell.imageView?.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        cell.imageView?.layer.borderWidth = 1.0
-        cell.imageView?.layer.cornerRadius = 5.0
-
-        cell.imageView?.backgroundColor = UIColor.black
         return cell
     }
     @IBAction func plusButtonClick(_ sender: Any) {

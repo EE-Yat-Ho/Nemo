@@ -15,11 +15,18 @@ class CollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        contentView.addSubview(imageView)
+        
         imageView.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         imageView.layer.borderWidth = 1.0
         imageView.layer.cornerRadius = 5.0
         
+        imageView.clipsToBounds = true
         imageView.backgroundColor = UIColor.black
+        
+        imageView.snp.makeConstraints{
+            $0.edges.equalToSuperview().inset(5)
+        }
     }
     
     required init?(coder: NSCoder) {

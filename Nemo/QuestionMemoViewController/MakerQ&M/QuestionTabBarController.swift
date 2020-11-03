@@ -12,6 +12,11 @@ class QuestionTabBarController: UITabBarController {
     var editTarget: Question?
     override func viewDidLoad() {
         super.viewDidLoad()
+        tabBarController?.tabBar.backgroundColor = UIColor.clear
+        // 왜 안먹냐 ㅡㅡ
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
         //글자 크기 늘리기, 글자 오프셋은 스토리보드에서
         let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)

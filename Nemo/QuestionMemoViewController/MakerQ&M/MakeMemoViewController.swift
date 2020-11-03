@@ -11,6 +11,9 @@ import UIKit
 class MakeMemoViewController: UIViewController {
     var editTarget: Memo?
     
+    var scrollView = UIScrollView()
+    var contentView = UIView()
+    
     var memoLabel = UILabel().then{
         $0.text = "메모 내용"
     }
@@ -25,21 +28,24 @@ class MakeMemoViewController: UIViewController {
         $0.layer.cornerRadius = 5.0
         $0.becomeFirstResponder()
     }
+    
+    let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
     lazy var collectionView = UICollectionView(
         frame: CGRect(x: 0, y: 0, width: 0, height: 0),
-        collectionViewLayout: layout).then{
-        $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        $0.layer.borderWidth = 1.0
-        $0.layer.cornerRadius = 5.0
-        $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
-        $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
-    }
-    var collectionViewHeight: CGFloat! = 10.0
+        collectionViewLayout: UICollectionViewFlowLayout().then {
+            $0.itemSize = CGSize(width: collectionItemSize, height: collectionItemSize)
+            $0.minimumInteritemSpacing = 0
+            $0.minimumLineSpacing = 0}
+        ).then{
+            $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+            $0.layer.borderWidth = 1.0
+            $0.layer.cornerRadius = 5.0
+            $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+            $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+        }
+    var collectionViewHeight: CGFloat = 10.0
     var collectionViewHeightAnchor: NSLayoutConstraint?
-    let layout = UICollectionViewFlowLayout().then{
-        $0.itemSize = CGSize(width: 110, height: 110)
-        $0.minimumLineSpacing = 0
-    }
+    
     let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,28 +57,35 @@ class MakeMemoViewController: UIViewController {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
                             action: #selector(save(_:)))
-        navigationController?.navigationItem.title = "필기 만들기"
+        //navigationController?.navigationItem.title = "필기 만들기"
         
         setupLayout()
         dataLoad()
     }
     
     func setupLayout() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(memoLabel)
+        contentView.addSubview(cameraButton)
+        contentView.addSubview(memoContent)
+        contentView.addSubview(collectionView)
+        
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
         
-        view.addSubview(memoLabel)
-        view.addSubview(cameraButton)
-        view.addSubview(memoContent)
-        view.addSubview(collectionView)
+        scrollView.snp.makeConstraints{ $0.edges.equalTo(self.view.safeAreaLayoutGuide) }
         
+        contentView.snp.makeConstraints{
+            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width) }
         
         memoLabel.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            $0.top.equalTo(contentView.snp.top).inset(20)
             $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(20)
         }
         cameraButton.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            $0.top.equalTo(contentView.snp.top).inset(20)
             $0.leading.equalTo(memoLabel.snp.trailing).offset(10)
             $0.height.width.equalTo(20)
         }
@@ -83,7 +96,7 @@ class MakeMemoViewController: UIViewController {
         }
         collectionView.snp.makeConstraints{
             $0.top.equalTo(memoContent.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.trailing.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(10)
         }
     }
@@ -97,9 +110,9 @@ class MakeMemoViewController: UIViewController {
         for i in editTarget.images ?? [Data]() {
             DataManager.shared.imageList.append(UIImage(data: i)!)
         }
-        collectionViewHeight = CGFloat((DataManager.shared.imageList.count + 2) / 3) * 110
+        collectionViewHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
         if collectionViewHeight == 0.0 { collectionViewHeight = 10.0 }
-        if collectionViewHeight > 270.0 { collectionViewHeight = 270.0}
+        if collectionViewHeight > collectionItemSize * 2.5 { collectionViewHeight = collectionItemSize * 2.5}
         collectionView.snp.updateConstraints{
             $0.height.equalTo(collectionViewHeight)
         }
@@ -151,7 +164,7 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
         if let img = info[.originalImage] as? UIImage{
             DataManager.shared.imageList.append(img)
             self.collectionView.reloadData()
-            collectionViewHeight = CGFloat(((DataManager.shared.imageList.count + 2) / 3) * 110)
+            collectionViewHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
             if collectionViewHeight == 0 { collectionViewHeight = 10 }
             if collectionViewHeight > 270 { collectionViewHeight = 270 }
             collectionView.snp.updateConstraints{

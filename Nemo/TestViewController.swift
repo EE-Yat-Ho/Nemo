@@ -179,14 +179,7 @@ extension TestViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         } else { // 사진 콜렉션 뷰
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-
-            cell.imageView?.image = DataManager.shared.imageList[indexPath.row]
-
-            cell.imageView?.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-            cell.imageView?.layer.borderWidth = 1.0
-            cell.imageView?.layer.cornerRadius = 5.0
-            
-            cell.imageView?.backgroundColor = UIColor.black
+            cell.imageView.image = DataManager.shared.imageList[indexPath.row]
 
             return cell
         }

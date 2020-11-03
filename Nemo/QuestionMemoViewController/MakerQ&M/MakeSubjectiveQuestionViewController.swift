@@ -266,24 +266,11 @@ class MakeSubjectiveQuestionViewController: UIViewController, UINavigationContro
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         print("indexPath.row = \(indexPath.row)" )
-        
         if collectionView.tag == 1 {
-            cell.imageView?.image = DataManager.shared.imageList[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList[indexPath.row]
         } else {
-            cell.imageView?.image = DataManager.shared.imageList_2[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList_2[indexPath.row]
         }
-        cell.imageView?.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        cell.imageView?.layer.borderWidth = 1.0
-        cell.imageView?.layer.cornerRadius = 5.0
-        
-        cell.imageView?.backgroundColor = UIColor.black
-//        if ScrollView.contentOffset.y >= ScrollView.contentSize.height - ScrollView.bounds.size.height + 68.5 {
-//            CompleteButton.isEnabled = true
-//            CompleteButton.backgroundColor = UIColor.systemBlue
-//        } else {
-//            CompleteButton.isEnabled = false
-//            CompleteButton.backgroundColor = UIColor.lightGray
-//        }
         return cell
     }
     
