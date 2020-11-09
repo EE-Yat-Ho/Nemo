@@ -99,8 +99,9 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         alert.addAction(addMemoAction)
         let addQuestionAction = UIAlertAction(title: "문제 만들기", style: .default){[weak self] (action) in
             self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
-            let questionTabBarController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
-            self?.navigationController?.pushViewController(questionTabBarController, animated: true)
+            //let questionTabBarController = QuestionTabBarController()
+            let makeQuestionViewController = MakeQuestionViewController()
+            self?.navigationController?.pushViewController(makeQuestionViewController, animated: true)
  
         }
         alert.addAction(addQuestionAction)
@@ -189,19 +190,17 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
             tableView.reloadSections(sections, with: .none)
         } else {
             if indexPath.section == 0 { // 필기
-                let makeMemoViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeMemoViewController") as! MakeMemoViewController
+                let makeMemoViewController = MakeMemoViewController()
                 makeMemoViewController.editTarget = DataManager.shared.memoList[indexPath.row - 1]
                 self.navigationController?.pushViewController(makeMemoViewController, animated: true)
             } else { // 문제
                 self.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
-                let questionTabBarController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "QuestionTabBarController") as! QuestionTabBarController
+                let questionTabBarController = QuestionTabBarController()
                 questionTabBarController.editTarget = DataManager.shared.questionList[indexPath.row - 1]
                 self.navigationController?.pushViewController(questionTabBarController, animated: true)
             }
         }
     }
-
-    
 
 
     //순서바꾸기 허용

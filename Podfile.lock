@@ -2,6 +2,7 @@ PODS:
   - Action (4.1.0):
     - RxCocoa (~> 5.0)
     - RxSwift (~> 5.0)
+  - BonMot (5.6.0)
   - "Cell+Rx (1.4)":
     - RxSwift (>= 4)
   - Differentiator (4.0.1)
@@ -45,6 +46,7 @@ PODS:
 
 DEPENDENCIES:
   - Action
+  - BonMot
   - "Cell+Rx"
   - lottie-ios
   - "NSObject+Rx"
@@ -62,6 +64,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Action
+    - BonMot
     - "Cell+Rx"
     - Differentiator
     - lottie-ios
@@ -80,6 +83,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Action: 79e6c5dc91e13eea045ab6744b3e5609086671aa
+  BonMot: 2217a66e5ddc6a8d2ffb759fe8c85a8528e0d3e7
   "Cell+Rx": 80e460b65816fee45dc8a09fdb454c2b7c01ee7d
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
@@ -96,6 +100,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 80a65604806e1a4ec987e1cb856c46b96972beef
+PODFILE CHECKSUM: 58a0665da2b1916c4a1ae74033a20d0249fa2704
 
 COCOAPODS: 1.9.3

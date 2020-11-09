@@ -12,24 +12,22 @@ class QuestionTabBarController: UITabBarController {
     var editTarget: Question?
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.backgroundColor = UIColor.clear
+        //tabBarController?.tabBar.backgroundColor = UIColor.clear
         // 왜 안먹냐 ㅡㅡ
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = UIColor.clear
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.backgroundColor = UIColor.clear
         //글자 크기 늘리기, 글자 오프셋은 스토리보드에서
         let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+        
+        
+        viewControllers = [MakeMultipleChoiceQuestionViewController(), MakeSubjectiveQuestionViewController()]
+        
         //편집화면일 경우
         if editTarget != nil {
             if editTarget?.isSubjective == true{
-                let targetView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeSubjectiveQuestionViewController") as! MakeSubjectiveQuestionViewController
-                //targetView.editTarget = editTarget
-                self.viewControllers?[1] = targetView
                 self.selectedIndex = 1
-            } else {
-                let targetView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MakeMultipleChoiceQuestionViewController") as! MakeMultipleChoiceQuestionViewController
-                //targetView.editTarget = editTarget
             }
         }
     }
@@ -39,16 +37,4 @@ class QuestionTabBarController: UITabBarController {
 
         super.viewDidLayoutSubviews()
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -23,4 +23,6 @@ target 'Nemo' do
   pod 'SDWebImage'
   pod 'lottie-ios'
 
+  pod 'BonMot'
+
 end

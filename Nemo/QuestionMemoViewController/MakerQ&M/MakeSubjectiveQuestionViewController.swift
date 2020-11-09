@@ -76,6 +76,9 @@ class MakeSubjectiveQuestionViewController: UIViewController, UINavigationContro
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        ContentView.backgroundColor = UIColor.clear
+        
         if #available(iOS 11.0, *) {
             additionalSafeAreaInsets.top = 43.5 // 위 탭바부분만큼 세이프 영역 내려버러기
         } else {

@@ -6,29 +6,13 @@
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row - 1">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "main:AppDelegate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "parent">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MakeNoteViewController.save():MakeNoteViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "parent">
+               value = "DataManager.shared.questionList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -37,6 +21,14 @@
          <PersistentStrings>
             <PersistentString
                value = "DataManager.shared.backPackList[indexPath.section].opened">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "main:AppDelegate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parent">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -53,6 +45,28 @@
          <PersistentStrings>
             <PersistentString
                value = "(presentingViewController as! HomeViewController)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeNoteViewController.save():MakeNoteViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.imageList">
+            </PersistentString>
+            <PersistentString
+               value = "questionCollectionHeight">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.imageList_MC">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

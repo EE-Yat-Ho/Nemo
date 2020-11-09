@@ -1,5 +1,6 @@
 ${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/Action/Action.framework
+${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework
 ${BUILT_PRODUCTS_DIR}/Cell+Rx/Cell_Rx.framework
 ${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework
 ${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework
