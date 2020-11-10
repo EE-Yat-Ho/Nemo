@@ -98,7 +98,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         }
         alert.addAction(addMemoAction)
         let addQuestionAction = UIAlertAction(title: "문제 만들기", style: .default){[weak self] (action) in
-            self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
+            //self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
             //let questionTabBarController = QuestionTabBarController()
             let makeQuestionViewController = MakeQuestionViewController()
             self?.navigationController?.pushViewController(makeQuestionViewController, animated: true)

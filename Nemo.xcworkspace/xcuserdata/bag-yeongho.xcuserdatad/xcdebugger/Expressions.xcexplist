@@ -6,13 +6,13 @@
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -67,6 +67,14 @@
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.imageList_MC">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TabPagerView.binding():TabPagerView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "current">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

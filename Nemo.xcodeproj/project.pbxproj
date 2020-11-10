@@ -135,19 +135,27 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		2A1A6A98253AFDE100577E10 /* MakerQ&M */ = {
+		2A06C0C1255AA44300852443 /* TabPager */ = {
 			isa = PBXGroup;
 			children = (
-				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
-				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
-				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
-				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
+				2A06BF2425598E8000852443 /* TabPagerHeaderCellModel.swift */,
+				2A06BF27255991B300852443 /* TabPagerHeaderView.swift */,
 				2A06BF052559840F00852443 /* TabPagerView.swift */,
 				2A06BF082559848F00852443 /* TabPagerHeaderCell.swift */,
 				2A06BF0B255984F600852443 /* TabPagerContents.swift */,
+			);
+			path = TabPager;
+			sourceTree = "<group>";
+		};
+		2A1A6A98253AFDE100577E10 /* MakerQ&M */ = {
+			isa = PBXGroup;
+			children = (
+				2A06C0C1255AA44300852443 /* TabPager */,
+				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
 				2A06BF0E2559855900852443 /* MakeQuestionViewController.swift */,
-				2A06BF2425598E8000852443 /* TabPagerHeaderCellModel.swift */,
-				2A06BF27255991B300852443 /* TabPagerHeaderView.swift */,
+				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
+				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
+				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
 			);
 			path = "MakerQ&M";
 			sourceTree = "<group>";

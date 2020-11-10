@@ -268,8 +268,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
     }
     
     func editCheck() {
-        let tabbarCR = self.tabBarController as! QuestionTabBarController
-        editTarget = tabbarCR.editTarget
+        editTarget = (parent as! MakeQuestionViewController).editTarget
         if editTarget != nil { // 문제 편집일 경우
             questionText.text = editTarget?.question
             questionText.textColor = UIColor.black
