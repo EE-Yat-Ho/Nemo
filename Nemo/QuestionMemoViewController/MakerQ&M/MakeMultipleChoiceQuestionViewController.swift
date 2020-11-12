@@ -138,13 +138,15 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         
         questionText.tag = 1
         explanationText.tag = 3
+        
+        answerTable.isUserInteractionEnabled = false
     }
     
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
         contentView.backgroundColor = UIColor.clear
         
-        additionalSafeAreaInsets.top = 43.5 // 위 탭바부분만큼 세이프 영역 내려버러기
+        //additionalSafeAreaInsets.top = 43.5 // 위 탭바부분만큼 세이프 영역 내려버러기
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -162,10 +164,10 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         contentView.addSubview(completeButton)
         
         
-        scrollView.snp.makeConstraints{ $0.edges.equalTo(self.view.safeAreaLayoutGuide) }
+        scrollView.snp.makeConstraints{ $0.edges.equalToSuperview() }
         
         contentView.snp.makeConstraints{
-            $0.edges.equalTo(scrollView.contentLayoutGuide)
+            $0.edges.equalToSuperview()
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width) }
         
         questionLabel.snp.makeConstraints{
@@ -224,11 +226,12 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             $0.top.equalTo(explanationText.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(10)
-            $0.bottom.equalToSuperview().inset(100)
+            $0.bottom.equalToSuperview().inset(230)
         }
         
         completeButton.snp.makeConstraints{
-            $0.leading.trailing.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-150)
             $0.height.equalTo(60)
         }
         
@@ -325,22 +328,22 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         DataManager.shared.rightList.append(true)
         answerTable.reloadData()
     }
-    @objc func OXbuttonClick(_ sender: UIButton) {
+    func OXbuttonClick() {
         let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
         let indexPath = answerTable.indexPath(for: cell)! as IndexPath
         if cell.right == true {
-            cell.OX.layer.borderColor = UIColor.systemRed.cgColor
-            cell.OX.setTitleColor(UIColor.systemRed, for: .normal)
-            cell.OX.setTitle("오답", for: .normal)
+            cell.answerButton.layer.borderColor = UIColor.systemRed.cgColor
+            cell.answerButton.setTitleColor(UIColor.systemRed, for: .normal)
+            cell.answerButton.setTitle("오답", for: .normal)
         } else {
-            cell.OX.layer.borderColor = UIColor.systemGreen.cgColor
-            cell.OX.setTitleColor(UIColor.systemGreen, for: .normal)
-            cell.OX.setTitle("정답", for: .normal)
+            cell.answerButton.layer.borderColor = UIColor.systemGreen.cgColor
+            cell.answerButton.setTitleColor(UIColor.systemGreen, for: .normal)
+            cell.answerButton.setTitle("정답", for: .normal)
         }
         cell.right.toggle()
         DataManager.shared.rightList[indexPath.row].toggle()
     }
-    @objc func xButtonClick(_ sender: UIButton) {
+    func xButtonClick() {
         let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
         let indexPath = answerTable.indexPath(for: cell)! as IndexPath
         listAmount -= 1
@@ -414,7 +417,7 @@ extension MakeMultipleChoiceQuestionViewController: UINavigationControllerDelega
         if let img = info[.originalImage] as? UIImage{
             if imageButtonTag == 1 {
                 DataManager.shared.imageList_MC.append(img)
-                self.questionImages.reloadData()
+                questionImages.reloadData()
                 questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
                 if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
                 if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
@@ -423,6 +426,7 @@ extension MakeMultipleChoiceQuestionViewController: UINavigationControllerDelega
                 }
             } else {
                 DataManager.shared.imageList_MC_2.append(img)
+                explanationImages.reloadData()
                 explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
                 if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
                 if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
@@ -516,6 +520,8 @@ extension MakeMultipleChoiceQuestionViewController: UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.answerTable.dequeueReusableCell(withIdentifier: "MultipleChoiceQuestionAnswerCell", for: indexPath) as! MultipleChoiceQuestionAnswerCell
+        
+        cell.mappingData(index: indexPath.row)
 //        cell.num.text = String(indexPath.row + 1)
 //        cell.contents.delegate = self
 //        cell.contents.text = DataManager.shared.answerList[indexPath.row]

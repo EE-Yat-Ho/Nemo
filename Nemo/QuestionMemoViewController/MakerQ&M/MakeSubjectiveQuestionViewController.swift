@@ -147,8 +147,8 @@ class MakeSubjectiveQuestionViewController: UIViewController, UINavigationContro
         
         DataManager.shared.imageList.removeAll()
         DataManager.shared.imageList_2.removeAll()
-        let tabbarCR = self.tabBarController as! QuestionTabBarController
-        editTarget = tabbarCR.editTarget
+        
+        editTarget = (parent as! MakeQuestionViewController).editTarget
         if editTarget != nil { // 문제 편집일 경우
             QuestionInput.text = editTarget?.question
             QuestionInput.textColor = UIColor.black

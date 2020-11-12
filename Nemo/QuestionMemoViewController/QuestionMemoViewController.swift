@@ -98,8 +98,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         }
         alert.addAction(addMemoAction)
         let addQuestionAction = UIAlertAction(title: "문제 만들기", style: .default){[weak self] (action) in
-            //self?.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
-            //let questionTabBarController = QuestionTabBarController()
+            
             let makeQuestionViewController = MakeQuestionViewController()
             self?.navigationController?.pushViewController(makeQuestionViewController, animated: true)
  
@@ -194,10 +193,9 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 makeMemoViewController.editTarget = DataManager.shared.memoList[indexPath.row - 1]
                 self.navigationController?.pushViewController(makeMemoViewController, animated: true)
             } else { // 문제
-                self.tabBarController?.tabBar.alpha = 0 //와아ㅏ아아아ㅏㅇㅇ
-                let questionTabBarController = QuestionTabBarController()
-                questionTabBarController.editTarget = DataManager.shared.questionList[indexPath.row - 1]
-                self.navigationController?.pushViewController(questionTabBarController, animated: true)
+                let makeQuestionViewController = MakeQuestionViewController()
+                makeQuestionViewController.editTarget = DataManager.shared.questionList[indexPath.row - 1]
+                self.navigationController?.pushViewController(makeQuestionViewController, animated: true)
             }
         }
     }

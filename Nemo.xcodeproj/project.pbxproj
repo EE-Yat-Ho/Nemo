@@ -43,7 +43,6 @@
 		2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */; };
 		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
-		2A6D74CC24C41BCA00AFD0E1 /* QuestionTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */; };
 		2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */; };
 		2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */; };
@@ -97,7 +96,6 @@
 		2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
-		2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTabBarController.swift; sourceTree = "<group>"; };
 		2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellt.swift; sourceTree = "<group>"; };
 		2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTimeTabBarController.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTestSettingViewController.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 				2A06C0C1255AA44300852443 /* TabPager */,
 				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
 				2A06BF0E2559855900852443 /* MakeQuestionViewController.swift */,
-				2A6D74CB24C41BCA00AFD0E1 /* QuestionTabBarController.swift */,
 				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
 				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
 			);
@@ -178,6 +175,7 @@
 				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
 				2A36E26B25346FD40031E55C /* QuestionCell.swift */,
 				2A36E272253470360031E55C /* MemoCell.swift */,
+				2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */,
 			);
 			path = QuestionMemoViewController;
 			sourceTree = "<group>";
@@ -255,7 +253,6 @@
 				2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */,
 				2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */,
 				2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */,
-				2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */,
 				2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */,
 				2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */,
 			);
@@ -439,7 +436,6 @@
 				2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */,
 				2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */,
 				2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */,
-				2A6D74CC24C41BCA00AFD0E1 /* QuestionTabBarController.swift in Sources */,
 				2A36E273253470360031E55C /* MemoCell.swift in Sources */,
 				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,
 				2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */,
