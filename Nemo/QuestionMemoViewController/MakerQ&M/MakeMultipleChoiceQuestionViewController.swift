@@ -139,7 +139,8 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         questionText.tag = 1
         explanationText.tag = 3
         
-        answerTable.isUserInteractionEnabled = false
+        answerTable.allowsSelection = false
+        //answerTable.isUserInteractionEnabled = false
     }
     
     func setupLayout() {
@@ -328,34 +329,34 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         DataManager.shared.rightList.append(true)
         answerTable.reloadData()
     }
-    func OXbuttonClick() {
-        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
-        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
-        if cell.right == true {
-            cell.answerButton.layer.borderColor = UIColor.systemRed.cgColor
-            cell.answerButton.setTitleColor(UIColor.systemRed, for: .normal)
-            cell.answerButton.setTitle("오답", for: .normal)
-        } else {
-            cell.answerButton.layer.borderColor = UIColor.systemGreen.cgColor
-            cell.answerButton.setTitleColor(UIColor.systemGreen, for: .normal)
-            cell.answerButton.setTitle("정답", for: .normal)
-        }
-        cell.right.toggle()
-        DataManager.shared.rightList[indexPath.row].toggle()
-    }
-    func xButtonClick() {
-        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
-        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
-        listAmount -= 1
-        if listAmount < 0 { listAmount = 0 }
-        answerTableHeight = CGFloat(listAmount) * 43.5
-        answerTable.snp.updateConstraints{
-            $0.height.equalTo(answerTableHeight)
-        }
-        DataManager.shared.answerList.remove(at: indexPath.row)
-        DataManager.shared.rightList.remove(at: indexPath.row)
-        answerTable.reloadData()
-    }
+//    func OXbuttonClick() {
+//        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
+//        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
+//        if cell.right == true {
+//            cell.answerButton.layer.borderColor = UIColor.systemRed.cgColor
+//            cell.answerButton.setTitleColor(UIColor.systemRed, for: .normal)
+//            cell.answerButton.setTitle("오답", for: .normal)
+//        } else {
+//            cell.answerButton.layer.borderColor = UIColor.systemGreen.cgColor
+//            cell.answerButton.setTitleColor(UIColor.systemGreen, for: .normal)
+//            cell.answerButton.setTitle("정답", for: .normal)
+//        }
+//        cell.right.toggle()
+//        DataManager.shared.rightList[indexPath.row].toggle()
+//    }
+//    func xButtonClick() {
+//        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
+//        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
+//        listAmount -= 1
+//        if listAmount < 0 { listAmount = 0 }
+//        answerTableHeight = CGFloat(listAmount) * 43.5
+//        answerTable.snp.updateConstraints{
+//            $0.height.equalTo(answerTableHeight)
+//        }
+//        DataManager.shared.answerList.remove(at: indexPath.row)
+//        DataManager.shared.rightList.remove(at: indexPath.row)
+//        answerTable.reloadData()
+//    }
     
     @objc func CompleteButtonClick() {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
@@ -437,6 +438,20 @@ extension MakeMultipleChoiceQuestionViewController: UINavigationControllerDelega
         }
     }
 }
+
+extension MakeMultipleChoiceQuestionViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listAmount
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.answerTable.dequeueReusableCell(withIdentifier: "MultipleChoiceQuestionAnswerCell", for: indexPath) as! MultipleChoiceQuestionAnswerCell
+        cell.delegate = self
+        cell.mappingData(index: indexPath.row)
+        return cell
+    }
+}
+
     
 extension MakeMultipleChoiceQuestionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     // 20200720 올린 사진을 보여줄 콜랙션뷰 구현
@@ -513,38 +528,30 @@ extension MakeMultipleChoiceQuestionViewController: UITextViewDelegate {
     }
 }
 
-extension MakeMultipleChoiceQuestionViewController: UITableViewDataSource, UITableViewDelegate {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listAmount
+
+
+extension MakeMultipleChoiceQuestionViewController: vcDelegate{
+    func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell) {
+        listAmount -= 1
+        if listAmount < 0 { listAmount = 0 }
+        answerTableHeight = CGFloat(listAmount) * 43.5
+        answerTable.snp.updateConstraints{
+            $0.height.equalTo(answerTableHeight)
+        }
+        DataManager.shared.answerList.remove(at: cell.index)
+        DataManager.shared.rightList.remove(at: cell.index)
+        answerTable.reloadData()
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.answerTable.dequeueReusableCell(withIdentifier: "MultipleChoiceQuestionAnswerCell", for: indexPath) as! MultipleChoiceQuestionAnswerCell
-        
-        cell.mappingData(index: indexPath.row)
-//        cell.num.text = String(indexPath.row + 1)
-//        cell.contents.delegate = self
-//        cell.contents.text = DataManager.shared.answerList[indexPath.row]
-//        cell.right = DataManager.shared.rightList[indexPath.row]
-//        cell.OX.layer.borderWidth = 1.0
-//        cell.OX.layer.cornerRadius = 5.0
-//        if cell.right == true {
-//            cell.OX.layer.borderColor = UIColor.systemGreen.cgColor
-//            cell.OX.setTitleColor(UIColor.systemGreen, for: .normal)
-//            cell.OX.setTitle("정답", for: .normal)
-//        } else {
-//            cell.OX.layer.borderColor = UIColor.systemRed.cgColor
-//            cell.OX.setTitleColor(UIColor.systemRed, for: .normal)
-//            cell.OX.setTitle("오답", for: .normal)
-//        }
-        return cell
+    func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell) {
+        if cell.index < listAmount {
+            DataManager.shared.answerList[cell.index] = cell.contents.text!
+        }
     }
-}
-
-extension MakeMultipleChoiceQuestionViewController: UITextFieldDelegate{
-    func textFieldDidChangeSelection(_ textField: UITextField) {// 캬 완벽~
-        let cell = textField.superview?.superview as! MultipleChoiceQuestionAnswerCell
-        let indexPath = answerTable.indexPath(for: cell)
-        DataManager.shared.answerList[indexPath!.row] = textField.text!
-    }
+//
+//    func textFieldDidChangeSelection(_ textField: UITextField) {// 캬 완벽~
+//        let cell = textField.superview?.superview as! MultipleChoiceQuestionAnswerCell
+//        let indexPath = answerTable.indexPath(for: cell)
+//        DataManager.shared.answerList[indexPath!.row] = textField.text!
+//    }
 }

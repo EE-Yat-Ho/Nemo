@@ -7,8 +7,20 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
+protocol vcDelegate {
+    func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell)
+    func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell)
+}
 
 class MultipleChoiceQuestionAnswerCell: UITableViewCell {
+    
+    override func prepareForReuse() {
+        disposeBag = DisposeBag()
+    }
+    
     let num = UIImageView()
     
     let contents = UITextField().then {
@@ -23,22 +35,26 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
     }
     let answerButton = UIButton().then {
         $0.setImage(UIImage(named: "정답"), for: .normal)
+        $0.setImage(UIImage(named: "오답"), for: .highlighted)
     }
     let xButton = UIButton().then {
         $0.setImage(UIImage(named: "엑스_검정"), for: .normal)
+        $0.setImage(UIImage(named: "오답"), for: .highlighted)
     }
     var index: Int = 0
     var right: Bool! = false
+    var delegate: vcDelegate!
+    var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func setupLayout() {
-        contentView.addSubview(num)
-        contentView.addSubview(contents)
-        contentView.addSubview(answerButton)
-        contentView.addSubview(xButton)
+        self.contentView.addSubview(num)
+        self.contentView.addSubview(contents)
+        self.contentView.addSubview(answerButton)
+        self.contentView.addSubview(xButton)
         
         num.snp.makeConstraints{
             $0.centerY.equalToSuperview()
@@ -66,21 +82,29 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
     
     func mappingData(index: Int) {
         setupLayout()
+        self.index = index
         num.image = UIImage(named: "객관식번호_\(index + 1)")
+        contents.text = DataManager.shared.answerList[index]
+        self.right = DataManager.shared.rightList[index]
+        if right {
+            answerButton.setTitle("정답", for: .normal)
+        } else {
+            answerButton.setTitle("오답", for: .normal)
+        }
         
-        answerButton.rx.tap.bind
         
         xButton.rx.tap.bind { [weak self] in
-            self?.delegate.tapXButton(self!)
+            self?.delegate.clickXButton(self!)
         }.disposed(by:disposeBag)
-        
-        answerTextField.rx.text
+    
+        contents.rx.text
             .distinctUntilChanged()
             .bind { [weak self] _ in // _ 여기에 newValue가 들어가네 호옹이
                 self?.delegate?.textFieldDidChangeSelection(self!)
-        }.disposed(by:disposeBag)
+            }
+            .disposed(by:disposeBag)
     }
-
+    
     @objc func clickAnswerButton() {
         if right {
             answerButton.setImage(UIImage(named: "오답"), for: .normal)
