@@ -3,16 +3,73 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "MultipleChoiceQuestionAnswerCell.mappingData(index:):MultipleChoiceQuestionAnswerCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.answerList">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.rightList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "QuestionMemoViewController.tableView(_:didSelectRowAt:):QuestionMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "indexPath.section">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeNoteViewController.save():MakeNoteViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parent">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeBackPackViewController.viewWillDisappear(_:):MakeBackPackViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "(presentingViewController as! HomeViewController)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TabPagerView.binding():TabPagerView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "current">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.imageList">
+            </PersistentString>
+            <PersistentString
+               value = "questionCollectionHeight">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.imageList_MC">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -31,17 +88,6 @@
                value = "parent">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "QuestionMemoViewController.tableView(_:didSelectRowAt:):QuestionMemoViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "indexPath.section">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MakeMultipleChoiceQuestionViewController.clickXButton(_:):MakeMultipleChoiceQuestionViewController.swift">
       </ContextState>
       <ContextState
          contextName = "MakeMultipleChoiceQuestionViewController.textFieldDidChangeSelection(_:):MakeMultipleChoiceQuestionViewController.swift">
@@ -63,40 +109,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "MakeBackPackViewController.viewWillDisappear(_:):MakeBackPackViewController.swift">
+         contextName = "MakeMultipleChoiceQuestionViewController.clickXButton(_:):MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "(presentingViewController as! HomeViewController)">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MakeNoteViewController.save():MakeNoteViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "parent">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "DataManager.shared.imageList">
+               value = "DataManager.shared.answerList">
             </PersistentString>
             <PersistentString
-               value = "questionCollectionHeight">
-            </PersistentString>
-            <PersistentString
-               value = "DataManager.shared.imageList_MC">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "TabPagerView.binding():TabPagerView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "current">
+               value = "DataManager.shared.rightList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

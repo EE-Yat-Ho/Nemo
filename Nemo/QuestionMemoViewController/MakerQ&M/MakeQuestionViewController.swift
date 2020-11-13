@@ -24,6 +24,9 @@ class MakeQuestionViewController: UIViewController {
     let separateView = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
     }
+    let separateView2 = UIView().then {
+        $0.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+    }
     let containerView = UIView()
     
     let mutipleChoiceQuestionVC = MakeMultipleChoiceQuestionViewController()
@@ -62,6 +65,7 @@ class MakeQuestionViewController: UIViewController {
         view.addSubview(multipleChoiceQuestionButton)
         view.addSubview(subjectQuestionButton)
         view.addSubview(separateView)
+        view.addSubview(separateView2)
         view.addSubview(containerView)
         
         multipleChoiceQuestionButton.snp.makeConstraints{
@@ -80,8 +84,13 @@ class MakeQuestionViewController: UIViewController {
             $0.width.equalTo(UIScreen.main.bounds.size.width / 2 - 40)
             $0.height.equalTo(3)
         }
-        containerView.snp.makeConstraints{
+        separateView2.snp.makeConstraints{
             $0.top.equalTo(separateView.snp.bottom)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(1)
+        }
+        containerView.snp.makeConstraints{
+            $0.top.equalTo(separateView2.snp.bottom)
             $0.bottom.trailing.leading.equalToSuperview()
         }
     }

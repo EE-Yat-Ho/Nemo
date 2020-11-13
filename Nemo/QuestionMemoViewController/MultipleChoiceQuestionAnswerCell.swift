@@ -12,6 +12,7 @@ import RxCocoa
 
 protocol vcDelegate {
     func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell)
+    func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell)
     func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell)
 }
 
@@ -85,18 +86,21 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
         self.index = index
         num.image = UIImage(named: "객관식번호_\(index + 1)")
         contents.text = DataManager.shared.answerList[index]
-        self.right = DataManager.shared.rightList[index]
+        right = DataManager.shared.rightList[index]
         if right {
-            answerButton.setTitle("정답", for: .normal)
+            answerButton.setImage(UIImage(named: "정답"), for: .normal)
         } else {
-            answerButton.setTitle("오답", for: .normal)
+            answerButton.setImage(UIImage(named: "오답"), for: .normal)
         }
-        
         
         xButton.rx.tap.bind { [weak self] in
             self?.delegate.clickXButton(self!)
         }.disposed(by:disposeBag)
     
+        answerButton.rx.tap.bind { [weak self] in
+            self?.delegate.clickAnswerButton(self!)
+        }.disposed(by:disposeBag)
+        
         contents.rx.text
             .distinctUntilChanged()
             .bind { [weak self] _ in // _ 여기에 newValue가 들어가네 호옹이
@@ -104,20 +108,4 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
             }
             .disposed(by:disposeBag)
     }
-    
-    @objc func clickAnswerButton() {
-        if right {
-            answerButton.setImage(UIImage(named: "오답"), for: .normal)
-        } else {
-            answerButton.setImage(UIImage(named: "정답"), for: .normal)
-        }
-        right.toggle()
-        DataManager.shared.rightList[index].toggle()
-    }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

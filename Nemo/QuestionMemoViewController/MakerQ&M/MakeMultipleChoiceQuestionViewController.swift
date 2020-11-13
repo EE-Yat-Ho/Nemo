@@ -86,6 +86,15 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
     let completeButton = UIButton().then{
         $0.setImage(UIImage(named: "완료버튼"), for: .normal)
     }
+    let touchesBeganButton = UIButton().then {
+        $0.setImage(nil, for: .normal)
+        $0.addTarget(self, action: #selector(keyBoardDown), for: .touchUpInside)
+    }
+    
+    @objc func keyBoardDown() {
+//        print("MMQ touchesBegan")
+        self.view.endEditing(true)
+    }
     
     
     // MARK:- Properties
@@ -111,6 +120,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         setupLayout()
         editCheck()
     }
+   
     
     override func viewWillAppear(_ animated: Bool) {
         questionImages.reloadData()
@@ -140,14 +150,11 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         explanationText.tag = 3
         
         answerTable.allowsSelection = false
-        //answerTable.isUserInteractionEnabled = false
     }
     
     func setupLayout() {
-        view.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
-        contentView.backgroundColor = UIColor.clear
-        
-        //additionalSafeAreaInsets.top = 43.5 // 위 탭바부분만큼 세이프 영역 내려버러기
+        //view.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
+        //contentView.backgroundColor = UIColor.clear
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -163,6 +170,14 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         contentView.addSubview(explanationText)
         contentView.addSubview(explanationImages)
         contentView.addSubview(completeButton)
+        
+        /// ㅋㅋㅋㅋ 키보드 내리는거 결국 이캐하네
+        contentView.addSubview(touchesBeganButton)
+        touchesBeganButton.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        contentView.sendSubviewToBack(touchesBeganButton)
+        /// 굳
         
         
         scrollView.snp.makeConstraints{ $0.edges.equalToSuperview() }
@@ -329,35 +344,8 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         DataManager.shared.rightList.append(true)
         answerTable.reloadData()
     }
-//    func OXbuttonClick() {
-//        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
-//        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
-//        if cell.right == true {
-//            cell.answerButton.layer.borderColor = UIColor.systemRed.cgColor
-//            cell.answerButton.setTitleColor(UIColor.systemRed, for: .normal)
-//            cell.answerButton.setTitle("오답", for: .normal)
-//        } else {
-//            cell.answerButton.layer.borderColor = UIColor.systemGreen.cgColor
-//            cell.answerButton.setTitleColor(UIColor.systemGreen, for: .normal)
-//            cell.answerButton.setTitle("정답", for: .normal)
-//        }
-//        cell.right.toggle()
-//        DataManager.shared.rightList[indexPath.row].toggle()
-//    }
-//    func xButtonClick() {
-//        let cell = sender.superview?.superview as! MultipleChoiceQuestionAnswerCell
-//        let indexPath = answerTable.indexPath(for: cell)! as IndexPath
-//        listAmount -= 1
-//        if listAmount < 0 { listAmount = 0 }
-//        answerTableHeight = CGFloat(listAmount) * 43.5
-//        answerTable.snp.updateConstraints{
-//            $0.height.equalTo(answerTableHeight)
-//        }
-//        DataManager.shared.answerList.remove(at: indexPath.row)
-//        DataManager.shared.rightList.remove(at: indexPath.row)
-//        answerTable.reloadData()
-//    }
-    
+   
+
     @objc func CompleteButtonClick() {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if questionText.text.count < 1 || questionText.text == "질문 입력" {
@@ -541,6 +529,16 @@ extension MakeMultipleChoiceQuestionViewController: vcDelegate{
         DataManager.shared.answerList.remove(at: cell.index)
         DataManager.shared.rightList.remove(at: cell.index)
         answerTable.reloadData()
+    }
+    
+    func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell) {
+        if cell.right == true {
+            cell.answerButton.setImage(UIImage(named: "오답"), for: .normal)
+        } else {
+            cell.answerButton.setImage(UIImage(named: "정답"), for: .normal)
+        }
+        cell.right.toggle()
+        DataManager.shared.rightList[cell.index].toggle()
     }
     
     func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell) {
