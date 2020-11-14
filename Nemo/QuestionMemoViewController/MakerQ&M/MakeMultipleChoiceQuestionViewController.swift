@@ -43,15 +43,32 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             $0.tag = 1
         }
     // MARK:- Answer
-    let answerTable = UITableView().then{
-        $0.register(MultipleChoiceQuestionAnswerCell.self, forCellReuseIdentifier: "MultipleChoiceQuestionAnswerCell")
-    }
     let answerLabel = UILabel().then {
         $0.text = "정답"
+    }
+    let answerTextField = UITextField().then {
+        $0.placeholder = "Enter"
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.borderStyle = UITextField.BorderStyle.roundedRect
+        $0.autocorrectionType = UITextAutocorrectionType.no
+        $0.keyboardType = UIKeyboardType.default
+        $0.returnKeyType = UIReturnKeyType.done
+        $0.clearButtonMode = UITextField.ViewMode.whileEditing
+        $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+    }
+    
+    let wrongLabel = UILabel().then {
+        $0.text = "오답"
     }
     let plusButton = UIButton().then {
         $0.setImage(UIImage(named: "플러스"), for: .normal)
         $0.addTarget(self, action: #selector(plusButtonClick), for: .touchUpInside)
+    }
+    let answerTable = UITableView().then{
+        $0.register(MultipleChoiceQuestionAnswerCell.self, forCellReuseIdentifier: "MultipleChoiceQuestionAnswerCell")
+        $0.separatorStyle = .none
+        $0.backgroundColor = UIColor.clear
+        $0.isScrollEnabled = false
     }
     
     // MARK:- Explanation
@@ -84,7 +101,9 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         }
     // MARK:- ETC Views
     let completeButton = UIButton().then{
-        $0.setImage(UIImage(named: "완료버튼"), for: .normal)
+        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.setTitle("완료", for: .normal)
+        $0.addTarget(self, action: #selector(clickCompleteButton), for: .touchUpInside)
     }
     let touchesBeganButton = UIButton().then {
         $0.setImage(nil, for: .normal)
@@ -101,7 +120,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
     var questionCollectionHeight: CGFloat = 10.0
     var questionCollectionHeightAnchor: NSLayoutConstraint?
-    var answerTableHeight: CGFloat! = 43.5 * 3
+    var answerTableHeight: CGFloat! = 44 * 3
     var explanationCollectionHeight: CGFloat = 10.0
     var explanationCollectionHeightAnchor: NSLayoutConstraint?
     
@@ -156,6 +175,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         //view.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
         //contentView.backgroundColor = UIColor.clear
         
+        
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(questionLabel)
@@ -163,6 +183,8 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         contentView.addSubview(questionText)
         contentView.addSubview(questionImages)
         contentView.addSubview(answerLabel)
+        contentView.addSubview(answerTextField)
+        contentView.addSubview(wrongLabel)
         contentView.addSubview(plusButton)
         contentView.addSubview(answerTable)
         contentView.addSubview(explanationLabel)
@@ -209,18 +231,29 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         
         answerLabel.snp.makeConstraints{
             $0.top.equalTo(questionImages.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().offset(20)
+            $0.height.equalTo(20)
+        }
+        answerTextField.snp.makeConstraints{
+            $0.top.equalTo(answerLabel.snp.bottom).offset(10)
+            $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalToSuperview().offset(-65)
+        }
+        
+        wrongLabel.snp.makeConstraints{
+            $0.top.equalTo(answerTextField.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(20)
         }
         plusButton.snp.makeConstraints{
-            $0.top.equalTo(questionImages.snp.bottom).offset(20)
+            $0.top.equalTo(answerTextField.snp.bottom).offset(20)
             $0.leading.equalTo(answerLabel.snp.trailing).offset(10)
             $0.height.width.equalTo(20)
         }
         answerTable.snp.makeConstraints{
-            $0.top.equalTo(answerLabel.snp.bottom).offset(20)
+            $0.top.equalTo(wrongLabel.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(43.5 * 3)
+            $0.height.equalTo(44 * 3)
         }
         
         explanationLabel.snp.makeConstraints{
@@ -242,13 +275,13 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             $0.top.equalTo(explanationText.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(10)
-            $0.bottom.equalToSuperview().inset(230)
+            $0.bottom.equalToSuperview().inset(100)
         }
         
         completeButton.snp.makeConstraints{
             $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-150)
-            $0.height.equalTo(60)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            $0.height.equalTo(40)
         }
         
         // 텍스트 필드 테두리(border)설정
@@ -271,9 +304,9 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
         completeButton.layer.borderWidth = 1.0
         completeButton.layer.cornerRadius = 15.0
         
-        answerTable.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        answerTable.layer.borderWidth = 1.0
-        answerTable.layer.cornerRadius = 5.0
+//        answerTable.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+//        answerTable.layer.borderWidth = 1.0
+//        answerTable.layer.cornerRadius = 5.0
         
         questionCamera.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         questionCamera.layer.borderWidth = 1.0
@@ -287,6 +320,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
     }
     
     func editCheck() {
+        guard let parent = parent else { return }
         editTarget = (parent as! MakeQuestionViewController).editTarget
         if editTarget != nil { // 문제 편집일 경우
             questionText.text = editTarget?.question
@@ -298,7 +332,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
                 DataManager.shared.imageList_MC.append(UIImage(data: i)!)
             }
             
-            questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
+            questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
             if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
             if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
             questionImages.snp.updateConstraints{
@@ -308,7 +342,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             for i in editTarget?.explanationImages ?? [Data]() {
                 DataManager.shared.imageList_MC_2.append(UIImage(data: i)!)
             }
-            explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
+            explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
             if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
             if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
             explanationImages.snp.updateConstraints{
@@ -320,7 +354,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
                 DataManager.shared.answerList = (editTarget?.multipleChoiceAnswers)! + (editTarget?.multipleChoiceWrongAnswers)!
                 DataManager.shared.rightList = [Bool](repeating: true, count: (editTarget?.multipleChoiceAnswers!.count)!) + [Bool](repeating: false, count: (editTarget?.multipleChoiceWrongAnswers!.count)!)
                 
-                answerTableHeight = CGFloat(listAmount) * 43.5
+                answerTableHeight = CGFloat(listAmount) * 44
                 answerTable.snp.updateConstraints{
                     $0.height.equalTo(answerTableHeight)
                 }
@@ -335,7 +369,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             
         }
         listAmount += 1
-        answerTableHeight = CGFloat(listAmount) * 43.5
+        answerTableHeight = CGFloat(listAmount) * 44
         answerTable.snp.updateConstraints{
             $0.height.equalTo(answerTableHeight)
         }
@@ -346,7 +380,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
     }
    
 
-    @objc func CompleteButtonClick() {
+    @objc func clickCompleteButton() {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if questionText.text.count < 1 || questionText.text == "질문 입력" {
             alert(message: "질문을 입력하세요")
@@ -365,7 +399,7 @@ class MakeMultipleChoiceQuestionViewController: UIViewController, UICollectionVi
             
             editTarget?.question = questionText.text
             editTarget?.explanation = explanationText.text
-            editTarget?.isSubjective = true
+            //editTarget?.isSubjective = true
             
             for i in DataManager.shared.imageList_MC {
                 dataList.append(i.jpegData(compressionQuality: 0.01)!)
@@ -428,6 +462,10 @@ extension MakeMultipleChoiceQuestionViewController: UINavigationControllerDelega
 }
 
 extension MakeMultipleChoiceQuestionViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listAmount
     }
@@ -522,7 +560,7 @@ extension MakeMultipleChoiceQuestionViewController: vcDelegate{
     func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell) {
         listAmount -= 1
         if listAmount < 0 { listAmount = 0 }
-        answerTableHeight = CGFloat(listAmount) * 43.5
+        answerTableHeight = CGFloat(listAmount) * 44
         answerTable.snp.updateConstraints{
             $0.height.equalTo(answerTableHeight)
         }
@@ -531,15 +569,15 @@ extension MakeMultipleChoiceQuestionViewController: vcDelegate{
         answerTable.reloadData()
     }
     
-    func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell) {
-        if cell.right == true {
-            cell.answerButton.setImage(UIImage(named: "오답"), for: .normal)
-        } else {
-            cell.answerButton.setImage(UIImage(named: "정답"), for: .normal)
-        }
-        cell.right.toggle()
-        DataManager.shared.rightList[cell.index].toggle()
-    }
+//    func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell) {
+//        if cell.right == true {
+//            cell.answerButton.setImage(UIImage(named: "오답"), for: .normal)
+//        } else {
+//            cell.answerButton.setImage(UIImage(named: "정답"), for: .normal)
+//        }
+//        cell.right.toggle()
+//        DataManager.shared.rightList[cell.index].toggle()
+//    }
     
     func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell) {
         if cell.index < listAmount {

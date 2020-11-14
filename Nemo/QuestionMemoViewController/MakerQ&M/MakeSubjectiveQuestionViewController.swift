@@ -1,5 +1,5 @@
 //
-//  MakeSubjectiveQuestionViewController.swift
+//  MakeMultipleChoiceQuestionViewController.swift
 //  BrainSupporter2
 //
 //  Created by 박영호 on 2020/06/28.
@@ -8,201 +8,392 @@
 
 import UIKit
 
-class MakeSubjectiveQuestionViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+class MakeSubjectiveQuestionViewController: UIViewController, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     var editTarget: Question?
-    @IBOutlet weak var QuestionInput: UITextView!
-    @IBOutlet weak var AnswerInput: UITextView!
-    @IBOutlet weak var ExplanationInput: UITextView!
-    @IBOutlet weak var CollectionView: UICollectionView!
-    @IBOutlet weak var CollectionView_2: UICollectionView!
-    @IBOutlet weak var ContentView: UIView!
-    @IBOutlet weak var ScrollView: UIScrollView!
-    @IBOutlet weak var CompleteButton: UIButton!
     
-    
-    var CollectionViewHeightAnchor: NSLayoutConstraint?
-    var CollectionView_2HeightAnchor: NSLayoutConstraint?
-    var ContentViewHeightAnchor: NSLayoutConstraint?
-    var CollectionViewHeight: CGFloat! = 10.0
-    var CollectionView_2Height: CGFloat! = 10.0
-    var answerInputBottom: CGFloat?
-    
-    @IBAction func cancel(_ sender: Any) {
-        //모달 방식은 디스미스 메소드 첫 파라미터가 트루면 전환 에니메이션 제공
-        dismiss(animated: true, completion: nil)
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+    // MARK:- Question
+    let questionLabel = UILabel().then {
+        $0.text = "질문"
     }
-    @IBAction func CompleteButtonClick(_ sender: Any) {
+    lazy var questionCamera = UIButton().then {
+        $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.addTarget(self, action: #selector(addQuestionImage), for: .touchUpInside)
+    }
+    let questionText = UITextView().then {
+        $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 5.0
+        $0.becomeFirstResponder()
+    }
+    
+    lazy var questionImages = UICollectionView(
+        frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+        collectionViewLayout: UICollectionViewFlowLayout().then {
+            $0.itemSize = CGSize(width: collectionItemSize, height: collectionItemSize)
+            $0.minimumInteritemSpacing = 0
+            $0.minimumLineSpacing = 0}
+        ).then{
+            $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+            $0.layer.borderWidth = 1.0
+            $0.layer.cornerRadius = 5.0
+            $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+            $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+            $0.tag = 1
+        }
+    // MARK:- Answer
+    let answerTable = UITableView().then{
+        $0.register(MultipleChoiceQuestionAnswerCell.self, forCellReuseIdentifier: "MultipleChoiceQuestionAnswerCell")
+    }
+    let answerLabel = UILabel().then {
+        $0.text = "정답"
+    }
+    let plusButton = UIButton().then {
+        $0.setImage(UIImage(named: "플러스"), for: .normal)
+        $0.addTarget(self, action: #selector(plusButtonClick), for: .touchUpInside)
+    }
+    
+    // MARK:- Explanation
+    let explanationLabel = UILabel().then {
+        $0.text = "풀이"
+    }
+    let explanationCamera = UIButton().then {
+        $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.addTarget(self, action: #selector(addExplanationImage), for: .touchUpInside)
+    }
+    let explanationText = UITextView().then {
+        $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 5.0
+        $0.becomeFirstResponder()
+    }
+    lazy var explanationImages = UICollectionView(
+        frame: CGRect(x: 0, y: 0, width: 0, height: 0),
+        collectionViewLayout: UICollectionViewFlowLayout().then {
+            $0.itemSize = CGSize(width: collectionItemSize, height: collectionItemSize)
+            $0.minimumInteritemSpacing = 0
+            $0.minimumLineSpacing = 0}
+        ).then{
+            $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+            $0.layer.borderWidth = 1.0
+            $0.layer.cornerRadius = 5.0
+            $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+            $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+            $0.tag = 3
+        }
+    // MARK:- ETC Views
+    let completeButton = UIButton().then{
+        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.setTitle("완료", for: .normal)
+        $0.addTarget(self, action: #selector(clickCompleteButton), for: .touchUpInside)
+    }
+    let touchesBeganButton = UIButton().then {
+        $0.setImage(nil, for: .normal)
+        $0.addTarget(self, action: #selector(keyBoardDown), for: .touchUpInside)
+    }
+    
+    @objc func keyBoardDown() {
+//        print("MMQ touchesBegan")
+        self.view.endEditing(true)
+    }
+    
+    
+    // MARK:- Properties
+    let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
+    var questionCollectionHeight: CGFloat = 10.0
+    var questionCollectionHeightAnchor: NSLayoutConstraint?
+    var answerTableHeight: CGFloat! = 43.5 * 3
+    var explanationCollectionHeight: CGFloat = 10.0
+    var explanationCollectionHeightAnchor: NSLayoutConstraint?
+    
+    var listAmount: Int! = 3
+    
+    var imageButtonTag: Int!
+    let imagePicker = UIImagePickerController()
+    
+    
+    
+    // MARK:- Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        configure()
+        setupLayout()
+        editCheck()
+    }
+   
+    
+    override func viewWillAppear(_ animated: Bool) {
+        questionImages.reloadData()
+        explanationImages.reloadData()
+    }
+    
+    func configure() {
+        questionImages.delegate = self
+        questionImages.dataSource = self
+        explanationImages.delegate = self
+        explanationImages.dataSource = self
+        answerTable.delegate = self
+        answerTable.dataSource = self
+        scrollView.delegate = self
+        
+        DataManager.shared.answerList = ["","",""]
+        DataManager.shared.rightList = [true,true,true]
+        
+        DataManager.shared.imageList_MC.removeAll()
+        DataManager.shared.imageList_MC_2.removeAll()
+        
+        // 텍스트 필드에 초기값 회색으로 넣는거
+        questionText.delegate = self
+        explanationText.delegate = self
+        
+        questionText.tag = 1
+        explanationText.tag = 3
+        
+        answerTable.allowsSelection = false
+    }
+    
+    func setupLayout() {
+        //view.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
+        //contentView.backgroundColor = UIColor.clear
+        
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(questionLabel)
+        contentView.addSubview(questionCamera)
+        contentView.addSubview(questionText)
+        contentView.addSubview(questionImages)
+        contentView.addSubview(answerLabel)
+        contentView.addSubview(plusButton)
+        contentView.addSubview(answerTable)
+        contentView.addSubview(explanationLabel)
+        contentView.addSubview(explanationCamera)
+        contentView.addSubview(explanationText)
+        contentView.addSubview(explanationImages)
+        contentView.addSubview(completeButton)
+        
+        /// ㅋㅋㅋㅋ 키보드 내리는거 결국 이캐하네
+        contentView.addSubview(touchesBeganButton)
+        touchesBeganButton.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        contentView.sendSubviewToBack(touchesBeganButton)
+        /// 굳
+        
+        
+        scrollView.snp.makeConstraints{ $0.edges.equalToSuperview() }
+        
+        contentView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(scrollView.frameLayoutGuide.snp.width) }
+        
+        questionLabel.snp.makeConstraints{
+            $0.top.equalTo(contentView.snp.top).inset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        questionCamera.snp.makeConstraints{
+            $0.top.equalTo(contentView.snp.top).inset(20)
+            $0.leading.equalTo(questionLabel.snp.trailing).offset(10)
+            $0.height.width.equalTo(20)
+        }
+        questionText.snp.makeConstraints{
+            $0.top.equalTo(questionLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(135)
+        }
+        questionImages.snp.makeConstraints{
+            $0.top.equalTo(questionText.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(10)
+        }
+        
+        answerLabel.snp.makeConstraints{
+            $0.top.equalTo(questionImages.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        plusButton.snp.makeConstraints{
+            $0.top.equalTo(questionImages.snp.bottom).offset(20)
+            $0.leading.equalTo(answerLabel.snp.trailing).offset(10)
+            $0.height.width.equalTo(20)
+        }
+        answerTable.snp.makeConstraints{
+            $0.top.equalTo(answerLabel.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(43.5 * 3)
+        }
+        
+        explanationLabel.snp.makeConstraints{
+            $0.top.equalTo(answerTable.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        explanationCamera.snp.makeConstraints{
+            $0.top.equalTo(answerTable.snp.bottom).offset(20)
+            $0.leading.equalTo(questionLabel.snp.trailing).offset(10)
+            $0.height.width.equalTo(20)
+        }
+        explanationText.snp.makeConstraints{
+            $0.top.equalTo(explanationLabel.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(135)
+        }
+        explanationImages.snp.makeConstraints{
+            $0.top.equalTo(explanationText.snp.bottom).offset(10)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.height.equalTo(10)
+            $0.bottom.equalToSuperview().inset(100)
+        }
+        
+        completeButton.snp.makeConstraints{
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            $0.height.equalTo(40)
+        }
+        
+        // 텍스트 필드 테두리(border)설정
+        questionText.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        questionText.layer.borderWidth = 1.0
+        questionText.layer.cornerRadius = 5.0
+        explanationText.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        explanationText.layer.borderWidth = 1.0
+        explanationText.layer.cornerRadius = 5.0
+        // 20200720 콜랜션 뷰 테두리 설정
+        questionImages.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        questionImages.layer.borderWidth = 1.0
+        questionImages.layer.cornerRadius = 5.0
+        
+        explanationImages.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        explanationImages.layer.borderWidth = 1.0
+        explanationImages.layer.cornerRadius = 5.0
+        // 20200728 확인버튼 테두리 설정
+        completeButton.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        completeButton.layer.borderWidth = 1.0
+        completeButton.layer.cornerRadius = 15.0
+        
+        answerTable.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        answerTable.layer.borderWidth = 1.0
+        answerTable.layer.cornerRadius = 5.0
+        
+        questionCamera.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        questionCamera.layer.borderWidth = 1.0
+        questionCamera.layer.cornerRadius = 5.0
+        explanationCamera.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        explanationCamera.layer.borderWidth = 1.0
+        explanationCamera.layer.cornerRadius = 5.0
+        plusButton.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
+        plusButton.layer.borderWidth = 1.0
+        plusButton.layer.cornerRadius = 5.0
+    }
+    
+    func editCheck() {
+        guard let parent = parent else { return }
+        editTarget = (parent as! MakeQuestionViewController).editTarget
+        if editTarget != nil { // 문제 편집일 경우
+            questionText.text = editTarget?.question
+            questionText.textColor = UIColor.black
+            explanationText.text = editTarget?.explanation
+            explanationText.textColor = UIColor.black
+            
+            for i in editTarget?.questionImages ?? [Data]() {
+                DataManager.shared.imageList_MC.append(UIImage(data: i)!)
+            }
+            
+            questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
+            if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
+            if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
+            questionImages.snp.updateConstraints{
+                $0.height.equalTo(questionCollectionHeight)
+            }
+            
+            for i in editTarget?.explanationImages ?? [Data]() {
+                DataManager.shared.imageList_MC_2.append(UIImage(data: i)!)
+            }
+            explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
+            if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
+            if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
+            explanationImages.snp.updateConstraints{
+                $0.height.equalTo(explanationCollectionHeight)
+            }
+            
+            if editTarget!.isSubjective == false {
+                listAmount = (editTarget?.multipleChoiceWrongAnswers!.count)! + (editTarget?.multipleChoiceAnswers!.count)!
+                DataManager.shared.answerList = (editTarget?.multipleChoiceAnswers)! + (editTarget?.multipleChoiceWrongAnswers)!
+                DataManager.shared.rightList = [Bool](repeating: true, count: (editTarget?.multipleChoiceAnswers!.count)!) + [Bool](repeating: false, count: (editTarget?.multipleChoiceWrongAnswers!.count)!)
+                
+                answerTableHeight = CGFloat(listAmount) * 43.5
+                answerTable.snp.updateConstraints{
+                    $0.height.equalTo(answerTableHeight)
+                }
+            }
+        }
+    }
+    
+    
+    // MARK:- Methods
+    @objc func plusButtonClick() {
+        if listAmount > 6 {
+            
+        }
+        listAmount += 1
+        answerTableHeight = CGFloat(listAmount) * 43.5
+        answerTable.snp.updateConstraints{
+            $0.height.equalTo(answerTableHeight)
+        }
+        
+        DataManager.shared.answerList.append("")
+        DataManager.shared.rightList.append(true)
+        answerTable.reloadData()
+    }
+   
+
+    @objc func clickCompleteButton() {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
-        if QuestionInput.text.count < 1 || QuestionInput.text == "질문 입력" {
+        if questionText.text.count < 1 || questionText.text == "질문 입력" {
             alert(message: "질문을 입력하세요")
             return
         }
-        if AnswerInput.text.count < 1 || AnswerInput.text == "정답 입력" {
-            alert(message: "정답을 입력하세요")
-            return
-        }
-        if ExplanationInput.text.count < 1 || ExplanationInput.text == "풀이 입력" {
+        if explanationText.text.count < 1 || explanationText.text == "풀이 입력" {
             alert(message: "풀이를 입력하세요")
             return
         }
         if editTarget == nil { // 새로만드는 경우
-            DataManager.shared.addNewQuestion(question: QuestionInput.text, answer: AnswerInput.text, explanation: ExplanationInput.text)
+            DataManager.shared.addNewQuestion(question: questionText.text, explanation: explanationText.text)
         } else { // 편집인 경우
             var dataList = [Data]()
             var dataList_2 = [Data]()
             editTarget?.questionImages?.removeAll()
             
-            editTarget?.question = QuestionInput.text
-            editTarget?.subjectiveAnswer = AnswerInput.text
-            editTarget?.explanation = ExplanationInput.text
-            editTarget?.isSubjective = true
+            editTarget?.question = questionText.text
+            editTarget?.explanation = explanationText.text
+            //editTarget?.isSubjective = true
             
-            for i in DataManager.shared.imageList {
+            for i in DataManager.shared.imageList_MC {
                 dataList.append(i.jpegData(compressionQuality: 0.01)!)
             }
             editTarget?.questionImages = dataList
             
-            for i in DataManager.shared.imageList_2 {
+            for i in DataManager.shared.imageList_MC_2 {
                 dataList_2.append(i.jpegData(compressionQuality: 0.01)!)
             }
             editTarget?.explanationImages = dataList_2
             
             DataManager.shared.saveContext()
         }
-        // 20200731 tabbarController 는 dismiss로 안사라짐. 네비게이션에서 팝해버리면됨.
         navigationController?.popViewController(animated: true)
-        //dismiss(animated: true, completion: nil)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
-        ContentView.backgroundColor = UIColor.clear
-        
-        if #available(iOS 11.0, *) {
-            additionalSafeAreaInsets.top = 43.5 // 위 탭바부분만큼 세이프 영역 내려버러기
-        } else {
-            // Fallback on earlier versions
-        }
-        navigationController?.navigationBar.barTintColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-        tabBarController?.tabBar.barTintColor = UIColor(red: 245/255, green: 245/255, blue: 245/255, alpha: 1.0)
-        CollectionView.delegate = self
-        CollectionView.dataSource = self
-        CollectionView_2.delegate = self
-        CollectionView_2.dataSource = self
-        // 텍스트 필드에 초기값 회색으로 넣는거
-        QuestionInput.delegate = self
-        AnswerInput.delegate = self
-        ExplanationInput.delegate = self
-        
-        QuestionInput.tag = 1
-        AnswerInput.tag = 2
-        ExplanationInput.tag = 3
-        
-        // 텍스트 필드 테두리(border)설정
-        QuestionInput.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        QuestionInput.layer.borderWidth = 1.0
-        QuestionInput.layer.cornerRadius = 5.0
-        AnswerInput.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        AnswerInput.layer.borderWidth = 1.0
-        AnswerInput.layer.cornerRadius = 5.0
-        ExplanationInput.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        ExplanationInput.layer.borderWidth = 1.0
-        ExplanationInput.layer.cornerRadius = 5.0
-        // 20200720 콜랜션 뷰 테두리 설정
-        CollectionView.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        CollectionView.layer.borderWidth = 1.0
-        CollectionView.layer.cornerRadius = 5.0
-        
-        CollectionView_2.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        CollectionView_2.layer.borderWidth = 1.0
-        CollectionView_2.layer.cornerRadius = 5.0
-        // 20200728 확인버튼 테두리 설정
-        CompleteButton.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        CompleteButton.layer.borderWidth = 1.0
-        CompleteButton.layer.cornerRadius = 15.0
-        
-        CompleteButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        // 20200721 콜렉션 뷰 레이아웃 지정이라는데.. 이거 안하니까 사진 한장일때 가운데 정렬되버림; 뭐 이상함..
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 110, height: 110)
-        layout.minimumLineSpacing = 0
-        let layout2 = UICollectionViewFlowLayout() // 도대체 왜 또만들어야하는지 ㅋㅋ ㅠ 내부 구현이 궁금하네 ㅠ
-        layout2.itemSize = CGSize(width: 110, height: 110)
-        layout2.minimumLineSpacing = 0
+}
 
-        CollectionView.collectionViewLayout = layout
-        CollectionView_2.collectionViewLayout = layout2
-        
-        CollectionView.translatesAutoresizingMaskIntoConstraints = false
-        CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-        CollectionViewHeightAnchor!.isActive = true
-        
-        CollectionView_2.translatesAutoresizingMaskIntoConstraints = false
-        CollectionView_2HeightAnchor = CollectionView_2.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-        CollectionView_2HeightAnchor!.isActive = true
-        
-        ScrollView.delegate = self
-        
-        DataManager.shared.imageList.removeAll()
-        DataManager.shared.imageList_2.removeAll()
-        
-        editTarget = (parent as! MakeQuestionViewController).editTarget
-        if editTarget != nil { // 문제 편집일 경우
-            QuestionInput.text = editTarget?.question
-            QuestionInput.textColor = UIColor.black
-            if editTarget?.isSubjective == true {
-                AnswerInput.text = editTarget?.subjectiveAnswer
-                AnswerInput.textColor = UIColor.black
-            }
-            ExplanationInput.text = editTarget?.explanation
-            ExplanationInput.textColor = UIColor.black
-            
-            for i in editTarget?.questionImages ?? [Data]() {
-                DataManager.shared.imageList.append(UIImage(data: i)!)
-            }
-            CollectionViewHeight = CGFloat((DataManager.shared.imageList.count + 2) / 3) * 110
-            if CollectionViewHeight == 0.0 { CollectionViewHeight = 10.0 }
-            if CollectionViewHeight > 270.0 { CollectionViewHeight = 270.0}
-            CollectionViewHeightAnchor?.isActive = false
-            CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-            CollectionViewHeightAnchor?.isActive = true
-            
-            for i in editTarget?.explanationImages ?? [Data]() {
-                DataManager.shared.imageList_2.append(UIImage(data: i)!)
-            }
-            CollectionView_2Height = CGFloat((DataManager.shared.imageList_2.count + 2) / 3) * 110
-            if CollectionView_2Height == 0.0 { CollectionView_2Height = 10.0 }
-            if CollectionView_2Height > 270.0 { CollectionView_2Height = 270.0}
-            CollectionView_2HeightAnchor?.isActive = false
-            CollectionView_2HeightAnchor = CollectionView_2.heightAnchor.constraint(equalToConstant: CollectionView_2Height)
-            CollectionView_2HeightAnchor?.isActive = true
-        }
-        ContentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        ContentViewHeightAnchor?.isActive = false
-        ContentViewHeightAnchor = ContentView.heightAnchor.constraint(equalToConstant: 620 + CollectionViewHeight + CollectionView_2Height)
-        ContentViewHeightAnchor!.isActive = true
-        
-        qImageButton.tag = 1
-        eImageButton.tag = 2
-        CollectionView.tag = 1
-        CollectionView_2.tag = 2
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        CollectionView.reloadData()
-        CollectionView_2.reloadData()
-    }
-    
+extension MakeSubjectiveQuestionViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     //20200720 사진을 고르는 화면 구현
-    @IBOutlet weak var qImageButton: UIButton! // tag = 1
-    @IBOutlet weak var eImageButton: UIButton! // tag = 2
-    var imageButtonTag: Int!
-    let imagePicker = UIImagePickerController()
-    @IBAction func addImageToQuestion(_ sender: UIButton) {
-        imageButtonTag = sender.tag
+    @objc func addQuestionImage() {
+        imageButtonTag = 1
+        self.openImagePicker()
+    }
+    @objc func addExplanationImage() {
+        imageButtonTag = 3
         self.openImagePicker()
     }
     func openImagePicker(){
@@ -217,90 +408,84 @@ class MakeSubjectiveQuestionViewController: UIViewController, UINavigationContro
         dismiss(animated: true, completion: nil)
         if let img = info[.originalImage] as? UIImage{
             if imageButtonTag == 1 {
-                DataManager.shared.imageList.append(img)
-                self.CollectionView.reloadData()
-                CollectionViewHeight = CGFloat(((DataManager.shared.imageList.count + 2) / 3) * 110)
-                if CollectionViewHeight == 0 { CollectionViewHeight = 10 }
-                if CollectionViewHeight > 270.0 { CollectionViewHeight = 270.0}
-                CollectionViewHeightAnchor?.isActive = false
-                CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-                CollectionViewHeightAnchor?.isActive = true
+                DataManager.shared.imageList_MC.append(img)
+                questionImages.reloadData()
+                questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
+                if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
+                if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
+                questionImages.snp.updateConstraints{
+                    $0.height.equalTo(questionCollectionHeight)
+                }
             } else {
-                DataManager.shared.imageList_2.append(img)
-                self.CollectionView_2.reloadData()
-                CollectionView_2Height = CGFloat(((DataManager.shared.imageList_2.count + 2) / 3) * 110)
-                if CollectionView_2Height == 0 { CollectionView_2Height = 10 }
-                if CollectionView_2Height > 270.0 { CollectionView_2Height = 270.0}
-                CollectionView_2HeightAnchor?.isActive = false
-                CollectionView_2HeightAnchor = CollectionView_2.heightAnchor.constraint(equalToConstant: CollectionView_2Height)
-                CollectionView_2HeightAnchor?.isActive = true
+                DataManager.shared.imageList_MC_2.append(img)
+                explanationImages.reloadData()
+                explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
+                if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
+                if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
+                explanationImages.snp.updateConstraints{
+                    $0.height.equalTo(explanationCollectionHeight)
+                }
             }
-            
-            ContentViewHeightAnchor?.isActive = false
-            ContentViewHeightAnchor = ContentView.heightAnchor.constraint(equalToConstant: 620 + CollectionViewHeight + CollectionView_2Height)
-            ContentViewHeightAnchor?.isActive = true
-            
         }
+    }
+}
+
+extension MakeSubjectiveQuestionViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listAmount
     }
     
-    // 20200720 올린 사진을 보여줄 콜랙션뷰 구현
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        collectionView.deselectItem(at: indexPath, animated: true)
-        print("You tapped me")
-        let imageViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageViewController") as! ImageViewController
-        if collectionView.tag == 1 {
-            imageViewController.img = DataManager.shared.imageList[indexPath.row]
-            imageViewController.tag = 1
-        } else {
-            imageViewController.img = DataManager.shared.imageList_2[indexPath.row]
-            imageViewController.tag = 2
-        }
-        imageViewController.idxPath = indexPath
-        self.navigationController?.pushViewController(imageViewController, animated: true)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.answerTable.dequeueReusableCell(withIdentifier: "MultipleChoiceQuestionAnswerCell", for: indexPath) as! MultipleChoiceQuestionAnswerCell
+        cell.delegate = self
+        cell.mappingData(index: indexPath.row)
+        return cell
     }
+}
+
+    
+extension MakeSubjectiveQuestionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    // 20200720 올린 사진을 보여줄 콜랙션뷰 구현
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("imageList.count = \(DataManager.shared.imageList.count)")
+        print("imageList_MC.count = \(DataManager.shared.imageList_MC.count)")
         if collectionView.tag == 1 {
-            return DataManager.shared.imageList.count
+            return DataManager.shared.imageList_MC.count
         } else {
-            return DataManager.shared.imageList_2.count
+            return DataManager.shared.imageList_MC_2.count
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
         print("indexPath.row = \(indexPath.row)" )
+        
         if collectionView.tag == 1 {
-            cell.imageView.image = DataManager.shared.imageList[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList_MC[indexPath.row]
         } else {
-            cell.imageView.image = DataManager.shared.imageList_2[indexPath.row]
+            cell.imageView.image = DataManager.shared.imageList_MC_2[indexPath.row]
         }
         return cell
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print("scrollView.contentOffset.y = \(scrollView.contentOffset.y)")
-//        print("scrollView.contentSize.height = \(scrollView.contentSize.height)")
-//        print("scrollView.bounds.size.height = \(scrollView.bounds.size.height)")
-//
-//        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height + 68.5 {
-//            CompleteButton.isEnabled = true
-//        //    CompleteButton.backgroundColor = UIColor.systemBlue
-//        } else {
-//            CompleteButton.isEnabled = false
-//        //   CompleteButton.backgroundColor = UIColor.lightGray
-//        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        collectionView.deselectItem(at: indexPath, animated: true)
+        print("You tapped me")
+        let imageViewController = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ImageViewController") as! ImageViewController
+        if collectionView.tag == 1 {
+            imageViewController.img = DataManager.shared.imageList_MC[indexPath.row]
+            imageViewController.tag = 1
+        } else {
+            imageViewController.img = DataManager.shared.imageList_MC_2[indexPath.row]
+            imageViewController.tag = 2
+        }
+        imageViewController.idxPath = indexPath
+        self.navigationController?.pushViewController(imageViewController, animated: true)
     }
 }
 
+    
 extension MakeSubjectiveQuestionViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.tag == 1 {
             if textView.text == "질문 입력"{
-                textView.text = ""
-                textView.textColor = UIColor.black
-            }
-        } else if textView.tag == 2 {
-            if textView.text == "정답 입력"{
                 textView.text = ""
                 textView.textColor = UIColor.black
             }
@@ -318,11 +503,6 @@ extension MakeSubjectiveQuestionViewController: UITextViewDelegate {
                 textView.text = "질문 입력"
                 textView.textColor = UIColor.lightGray
             }
-        } else if textView.tag == 2 {
-            if textView.text == ""{
-                textView.text = "정답 입력"
-                textView.textColor = UIColor.lightGray
-            }
         } else {
             if textView.text == ""{
                 textView.text = "풀이 입력"
@@ -337,4 +517,42 @@ extension MakeSubjectiveQuestionViewController: UITextViewDelegate {
         }
         return true
     }
+}
+
+
+
+extension MakeSubjectiveQuestionViewController: vcDelegate{
+    func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell) {
+        listAmount -= 1
+        if listAmount < 0 { listAmount = 0 }
+        answerTableHeight = CGFloat(listAmount) * 43.5
+        answerTable.snp.updateConstraints{
+            $0.height.equalTo(answerTableHeight)
+        }
+        DataManager.shared.answerList.remove(at: cell.index)
+        DataManager.shared.rightList.remove(at: cell.index)
+        answerTable.reloadData()
+    }
+    
+//    func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell) {
+//        if cell.right == true {
+//            cell.answerButton.setImage(UIImage(named: "오답"), for: .normal)
+//        } else {
+//            cell.answerButton.setImage(UIImage(named: "정답"), for: .normal)
+//        }
+//        cell.right.toggle()
+//        DataManager.shared.rightList[cell.index].toggle()
+//    }
+    
+    func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell) {
+        if cell.index < listAmount {
+            DataManager.shared.answerList[cell.index] = cell.contents.text!
+        }
+    }
+//
+//    func textFieldDidChangeSelection(_ textField: UITextField) {// 캬 완벽~
+//        let cell = textField.superview?.superview as! MultipleChoiceQuestionAnswerCell
+//        let indexPath = answerTable.indexPath(for: cell)
+//        DataManager.shared.answerList[indexPath!.row] = textField.text!
+//    }
 }

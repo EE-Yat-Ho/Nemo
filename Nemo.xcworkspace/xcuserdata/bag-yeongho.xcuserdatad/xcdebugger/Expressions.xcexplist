@@ -25,13 +25,13 @@
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -105,6 +105,20 @@
          <PersistentStrings>
             <PersistentString
                value = "DataManager.shared.answerList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.editCheck():MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "listAmount">
+            </PersistentString>
+            <PersistentString
+               value = "questionCollectionHeight">
+            </PersistentString>
+            <PersistentString
+               value = "editTarget">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

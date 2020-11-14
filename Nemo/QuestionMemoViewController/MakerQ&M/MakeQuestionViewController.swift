@@ -33,19 +33,40 @@ class MakeQuestionViewController: UIViewController {
     let subjectQuestionVC = MakeSubjectiveQuestionViewController()
     var currentTab = -1
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBarController?.tabBar.isHidden = true
         setupLayout()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                       
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        configure()
+    }
+    @objc func KeyBoardwillShow(_ noti : Notification ){
+        let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        containerView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-keyboardHeight)
+        }
+    }
+    @objc func KeyBoardwillHide(_ noti : Notification ){
+        containerView.snp.updateConstraints{
+            $0.bottom.equalToSuperview()
+        }
     }
     
+    
     override func viewDidLayoutSubviews() {
-        configure()
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tabBarController?.tabBar.isHidden = false
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func configure() {
@@ -100,6 +121,13 @@ class MakeQuestionViewController: UIViewController {
         currentTab = 0
         addChild(mutipleChoiceQuestionVC)
         containerView.addSubview(mutipleChoiceQuestionVC.view)
+        
+        subjectQuestionVC.removeFromParent()
+        subjectQuestionVC.view.removeFromSuperview()
+        
+        mutipleChoiceQuestionVC.view.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
         separateView.snp.updateConstraints{
             $0.leading.equalToSuperview().offset(20)
         }
@@ -110,6 +138,13 @@ class MakeQuestionViewController: UIViewController {
         currentTab = 1
         addChild(subjectQuestionVC)
         containerView.addSubview(subjectQuestionVC.view)
+        
+        mutipleChoiceQuestionVC.removeFromParent()
+        mutipleChoiceQuestionVC.view.removeFromSuperview()
+        
+        subjectQuestionVC.view.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
         separateView.snp.updateConstraints{
             $0.leading.equalToSuperview().offset(UIScreen.main.bounds.size.width / 2 + 20 )
         }

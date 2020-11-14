@@ -41,8 +41,8 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         
         navigationItem.rightBarButtonItem = editButton
         setupLayout()
-        
     }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -284,7 +284,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
                     // 확인 눌렀을 때 하는 소스
-                    if indexPath.section == 0 { // 문제 삭제
+                    if indexPath.section != 0 { // 문제 삭제
                         let target = DataManager.shared.questionList[indexPath.row - 1]
                         DataManager.shared.questionList.remove(at: indexPath.row - 1)
                         for i in 0..<indexPath.row - 1{
