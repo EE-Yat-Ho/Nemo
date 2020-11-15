@@ -10,19 +10,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol vcDelegate {
-    func clickXButton(_ cell: MultipleChoiceQuestionAnswerCell)
-    //func clickAnswerButton(_ cell: MultipleChoiceQuestionAnswerCell)
-    func textFieldDidChangeSelection(_ cell: MultipleChoiceQuestionAnswerCell)
+protocol QuestionAnswerDelegate {
+    func clickXButton(_ cell: QuestionAnswerCell)
+    func textFieldDidChangeSelection(_ cell: QuestionAnswerCell)
 }
 
-class MultipleChoiceQuestionAnswerCell: UITableViewCell {
+class QuestionAnswerCell: UITableViewCell {
     
     override func prepareForReuse() {
         disposeBag = DisposeBag()
     }
-    
-    //let num = UIImageView()
     
     let contents = UITextField().then {
         $0.placeholder = "Enter"
@@ -33,18 +30,15 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
         $0.returnKeyType = UIReturnKeyType.done
         $0.clearButtonMode = UITextField.ViewMode.whileEditing
         $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        $0.layer.borderWidth = 1
+        $0.layer.cornerRadius = 5
     }
-//    let answerButton = UIButton().then {
-//        $0.setImage(UIImage(named: "정답"), for: .normal)
-//        $0.setImage(UIImage(named: "오답"), for: .highlighted)
-//    }
     let xButton = UIButton().then {
         $0.setImage(UIImage(named: "엑스_검정"), for: .normal)
-        $0.setImage(UIImage(named: "오답"), for: .highlighted)
     }
     var index: Int = 0
     var right: Bool! = false
-    var delegate: vcDelegate!
+    var delegate: QuestionAnswerDelegate!
     var disposeBag = DisposeBag()
     
     override func awakeFromNib() {
@@ -55,28 +49,13 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
         //contentView.backgroundColor = UIColor.clear
         backgroundColor = UIColor.clear
         
-        //self.contentView.addSubview(num)
         contentView.addSubview(contents)
-        //self.contentView.addSubview(answerButton)
         contentView.addSubview(xButton)
         
-//        num.snp.makeConstraints{
-//            $0.centerY.equalToSuperview()
-//            $0.leading.equalToSuperview().offset(10)
-//            $0.width.equalTo(25)
-//            $0.height.equalTo(30)
-//        }
         contents.snp.makeConstraints{
             $0.centerY.leading.equalToSuperview()
-            //$0.leading.equalTo(num.snp.trailing).offset(10)
             $0.trailing.equalTo(xButton.snp.leading).offset(-10)
-            //$0.trailing.equalTo(answerButton.snp.leading).offset(-10)
         }
-//        answerButton.snp.makeConstraints{
-//            $0.centerY.equalToSuperview()
-//            $0.trailing.equalTo(xButton.snp.leading).offset(-10)
-//            $0.width.height.equalTo(35)
-//        }
         xButton.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.trailing.equalToSuperview().offset(-10)
@@ -84,25 +63,22 @@ class MultipleChoiceQuestionAnswerCell: UITableViewCell {
         }
     }
     
-    func mappingData(index: Int) {
+    func mappingData(index: Int, isSubjective: Bool) {
         setupLayout()
         self.index = index
-        //num.image = UIImage(named: "객관식번호_\(index + 1)")
         contents.text = DataManager.shared.answerList[index]
-//        right = DataManager.shared.rightList[index]
-//        if right {
-//            answerButton.setImage(UIImage(named: "정답"), for: .normal)
-//        } else {
-//            answerButton.setImage(UIImage(named: "오답"), for: .normal)
-//        }
+        
+        if isSubjective {
+            contents.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+            contents.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.2)
+        } else {
+            contents.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
+            contents.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.2)
+        }
         
         xButton.rx.tap.bind { [weak self] in
             self?.delegate.clickXButton(self!)
         }.disposed(by:disposeBag)
-    
-//        answerButton.rx.tap.bind { [weak self] in
-//            self?.delegate.clickAnswerButton(self!)
-//        }.disposed(by:disposeBag)
         
         contents.rx.text
             .distinctUntilChanged()

@@ -176,7 +176,8 @@ class DataManager{
     
     var dataList = [Data]()
     var dataList_2 = [Data]()
-    func addNewQuestion(question: String?, answer: String?, explanation: String?) { // 주관식
+    var answerList = [String]()
+    func addNewQuestion(question: String?, answer: String?, explanation: String?, isSubjective: Bool) { // 주관식
         fetchQuestion()
         
         let newQuestion = Question(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
@@ -184,9 +185,10 @@ class DataManager{
         newQuestion.backPackName = nowBackPackName // 여기존재
         newQuestion.order = Int16(questionList.count) // 순서
         newQuestion.question = question // 파라미터
-        newQuestion.subjectiveAnswer = answer // 파라미터
-        newQuestion.isSubjective = true
+        newQuestion.isSubjective = isSubjective
         newQuestion.explanation = explanation
+        newQuestion.answer = answer
+        newQuestion.answers = answerList
         
         for i in imageList {
             dataList.append(i.jpegData(compressionQuality: 0.75)!)
@@ -206,50 +208,49 @@ class DataManager{
         saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
     }
     
-    var answerList = [String]()
-    var rightList = [Bool]()
-    var mca = [String]()
-    var mcwa = [String]()
-    func addNewQuestion(question: String?, explanation: String?) { // 객관식
-        fetchQuestion()
-        
-        mca.removeAll()
-        mcwa.removeAll()
-        let newQuestion = Question(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
-        newQuestion.noteName = nowNoteName // 여기존재
-        newQuestion.backPackName = nowBackPackName // 여기존재
-        newQuestion.order = Int16(questionList.count) // 순서
-        newQuestion.question = question // 파라미터
-        for i in 0..<answerList.count {
-            if rightList[i] == true {
-                mca.append(answerList[i])
-            } else {
-                mcwa.append(answerList[i])
-            }
-        }
-        newQuestion.multipleChoiceAnswers = mca
-        newQuestion.multipleChoiceWrongAnswers = mcwa
-        
-        newQuestion.isSubjective = false
-        newQuestion.explanation = explanation
-
-        for i in imageList_MC {
-            dataList.append(i.jpegData(compressionQuality: 0.75)!)
-        }
-        newQuestion.questionImages = dataList
-        for i in imageList_MC_2 {
-            dataList_2.append(i.jpegData(compressionQuality: 0.75)!)
-        }
-        newQuestion.explanationImages = dataList_2
-
-        for i in noteList{
-            if i.name == nowNoteName{
-                i.numberOfQ += 1
-            }
-        }
-
-        saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
-    }
+    
+//    var mca = [String]()
+//    var mcwa = [String]()
+//    func addNewQuestion(question: String?, explanation: String?) { // 객관식
+//        fetchQuestion()
+//
+//        mca.removeAll()
+//        mcwa.removeAll()
+//        let newQuestion = Question(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
+//        newQuestion.noteName = nowNoteName // 여기존재
+//        newQuestion.backPackName = nowBackPackName // 여기존재
+//        newQuestion.order = Int16(questionList.count) // 순서
+//        newQuestion.question = question // 파라미터
+////        for i in 0..<answerList.count {
+////            if rightList[i] == true {
+////                mca.append(answerList[i])
+////            } else {
+////                mcwa.append(answerList[i])
+////            }
+////        }
+//        newQuestion.answers = answerList
+////        newQuestion.multipleChoiceWrongAnswers = mcwa
+//
+//        newQuestion.isSubjective = false
+//        newQuestion.explanation = explanation
+//
+//        for i in imageList_MC {
+//            dataList.append(i.jpegData(compressionQuality: 0.75)!)
+//        }
+//        newQuestion.questionImages = dataList
+//        for i in imageList_MC_2 {
+//            dataList_2.append(i.jpegData(compressionQuality: 0.75)!)
+//        }
+//        newQuestion.explanationImages = dataList_2
+//
+//        for i in noteList{
+//            if i.name == nowNoteName{
+//                i.numberOfQ += 1
+//            }
+//        }
+//
+//        saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
+//    }
     
     func addNewMemo(content: String?){
         fetchMemo()

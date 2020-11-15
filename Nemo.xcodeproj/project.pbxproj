@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2A06BF062559840F00852443 /* TabPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF052559840F00852443 /* TabPagerView.swift */; };
-		2A06BF092559848F00852443 /* TabPagerHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF082559848F00852443 /* TabPagerHeaderCell.swift */; };
-		2A06BF0C255984F600852443 /* TabPagerContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF0B255984F600852443 /* TabPagerContents.swift */; };
-		2A06BF0F2559855900852443 /* MakeQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF0E2559855900852443 /* MakeQuestionViewController.swift */; };
-		2A06BF2525598E8000852443 /* TabPagerHeaderCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF2425598E8000852443 /* TabPagerHeaderCellModel.swift */; };
-		2A06BF28255991B300852443 /* TabPagerHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A06BF27255991B300852443 /* TabPagerHeaderView.swift */; };
 		2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */; };
 		2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */; };
 		2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26B25346FD40031E55C /* QuestionCell.swift */; };
@@ -38,8 +32,7 @@
 		2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94ED24A8587C000596D8 /* BackPackCell.swift */; };
 		2A5E94F024A860EF000596D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E94EF24A860EF000596D8 /* Main.storyboard */; };
 		2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */; };
-		2A6D74AE24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */; };
-		2A6D74B024A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */; };
+		2A6D74AE24A8883700AFD0E1 /* MakeQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74AD24A8883700AFD0E1 /* MakeQuestionViewController.swift */; };
 		2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */; };
 		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
@@ -50,7 +43,7 @@
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
 		2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */; };
-		2ADA4C5E24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */; };
+		2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */; };
 		2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */; };
 		2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */; };
 		2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */; };
@@ -58,12 +51,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2A06BF052559840F00852443 /* TabPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagerView.swift; sourceTree = "<group>"; };
-		2A06BF082559848F00852443 /* TabPagerHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagerHeaderCell.swift; sourceTree = "<group>"; };
-		2A06BF0B255984F600852443 /* TabPagerContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagerContents.swift; sourceTree = "<group>"; };
-		2A06BF0E2559855900852443 /* MakeQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeQuestionViewController.swift; sourceTree = "<group>"; };
-		2A06BF2425598E8000852443 /* TabPagerHeaderCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagerHeaderCellModel.swift; sourceTree = "<group>"; };
-		2A06BF27255991B300852443 /* TabPagerHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabPagerHeaderView.swift; sourceTree = "<group>"; };
 		2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCheckCell.swift; sourceTree = "<group>"; };
 		2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		2A36E26B25346FD40031E55C /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -91,8 +78,7 @@
 		2A5E94ED24A8587C000596D8 /* BackPackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackCell.swift; sourceTree = "<group>"; };
 		2A5E94EF24A860EF000596D8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Nemo/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
-		2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMultipleChoiceQuestionViewController.swift; sourceTree = "<group>"; };
-		2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeSubjectiveQuestionViewController.swift; sourceTree = "<group>"; };
+		2A6D74AD24A8883700AFD0E1 /* MakeQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeQuestionViewController.swift; sourceTree = "<group>"; };
 		2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
@@ -103,7 +89,7 @@
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
-		2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCell.swift; sourceTree = "<group>"; };
+		2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerCell.swift; sourceTree = "<group>"; };
 		2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCellForTest.swift; sourceTree = "<group>"; };
 		2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingCell.swift; sourceTree = "<group>"; };
 		2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTestTableViewController.swift; sourceTree = "<group>"; };
@@ -133,28 +119,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		2A06C0C1255AA44300852443 /* TabPager */ = {
+		2A1A6A98253AFDE100577E10 /* Make */ = {
 			isa = PBXGroup;
 			children = (
-				2A06BF2425598E8000852443 /* TabPagerHeaderCellModel.swift */,
-				2A06BF27255991B300852443 /* TabPagerHeaderView.swift */,
-				2A06BF052559840F00852443 /* TabPagerView.swift */,
-				2A06BF082559848F00852443 /* TabPagerHeaderCell.swift */,
-				2A06BF0B255984F600852443 /* TabPagerContents.swift */,
-			);
-			path = TabPager;
-			sourceTree = "<group>";
-		};
-		2A1A6A98253AFDE100577E10 /* MakerQ&M */ = {
-			isa = PBXGroup;
-			children = (
-				2A06C0C1255AA44300852443 /* TabPager */,
 				2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */,
-				2A06BF0E2559855900852443 /* MakeQuestionViewController.swift */,
-				2A6D74AD24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift */,
-				2A6D74AF24A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift */,
+				2A6D74AD24A8883700AFD0E1 /* MakeQuestionViewController.swift */,
+				2A673B56256147F9004B3479 /* Cell */,
 			);
-			path = "MakerQ&M";
+			path = Make;
 			sourceTree = "<group>";
 		};
 		2A1A6A99253AFF9D00577E10 /* MakeB&N */ = {
@@ -169,13 +141,8 @@
 		2A36E26A25346F230031E55C /* QuestionMemoViewController */ = {
 			isa = PBXGroup;
 			children = (
-				2A1A6A98253AFDE100577E10 /* MakerQ&M */,
-				2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */,
-				2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */,
-				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
-				2A36E26B25346FD40031E55C /* QuestionCell.swift */,
-				2A36E272253470360031E55C /* MemoCell.swift */,
-				2ADA4C5D24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift */,
+				2A673B572561483C004B3479 /* ListView */,
+				2A1A6A98253AFDE100577E10 /* Make */,
 			);
 			path = QuestionMemoViewController;
 			sourceTree = "<group>";
@@ -210,10 +177,10 @@
 				2AFFE4B6252B20920046C687 /* HomeViewController */,
 				2A36E26A25346F230031E55C /* QuestionMemoViewController */,
 				2A5E94C224A1C73E000596D8 /* Assets.xcassets */,
+				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
 				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
 				2A5E94C724A1C73E000596D8 /* Info.plist */,
 				2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */,
-				2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */,
 				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
 				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
 				2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */,
@@ -221,7 +188,6 @@
 				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
 				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
 				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
-				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
 				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
 				2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */,
 			);
@@ -232,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5E94D424A1D4D0000596D8 /* DataManager.swift */,
+				2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -257,6 +224,34 @@
 				2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		2A673B56256147F9004B3479 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */,
+				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
+				2A36E26B25346FD40031E55C /* QuestionCell.swift */,
+				2A36E272253470360031E55C /* MemoCell.swift */,
+				2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2A673B572561483C004B3479 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */,
+				2A673B5825614849004B3479 /* Cell */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		2A673B5825614849004B3479 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		2A6F84DB254C161D0000345F /* Foundation */ = {
@@ -401,7 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ADA4C5E24EBC7BD00283AC6 /* MultipleChoiceQuestionAnswerCell.swift in Sources */,
+				2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */,
 				2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */,
 				2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */,
 				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
@@ -409,10 +404,8 @@
 				2A5E94D024A1CAA5000596D8 /* RoundButton.swift in Sources */,
 				2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */,
 				2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */,
-				2A06BF092559848F00852443 /* TabPagerHeaderCell.swift in Sources */,
-				2A06BF0C255984F600852443 /* TabPagerContents.swift in Sources */,
 				2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */,
-				2A6D74AE24A8883700AFD0E1 /* MakeMultipleChoiceQuestionViewController.swift in Sources */,
+				2A6D74AE24A8883700AFD0E1 /* MakeQuestionViewController.swift in Sources */,
 				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
@@ -420,7 +413,6 @@
 				2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */,
 				2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */,
 				2A5E94DD24A22877000596D8 /* UIViewController+Alert.swift in Sources */,
-				2A06BF28255991B300852443 /* TabPagerHeaderView.swift in Sources */,
 				2A5E94B924A1C73B000596D8 /* SceneDelegate.swift in Sources */,
 				2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */,
 				2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */,
@@ -430,7 +422,6 @@
 				2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */,
 				2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */,
 				2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */,
-				2A06BF2525598E8000852443 /* TabPagerHeaderCellModel.swift in Sources */,
 				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
 				2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */,
@@ -440,11 +431,8 @@
 				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,
 				2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */,
 				2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */,
-				2A6D74B024A889CF00AFD0E1 /* MakeSubjectiveQuestionViewController.swift in Sources */,
 				2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */,
-				2A06BF062559840F00852443 /* TabPagerView.swift in Sources */,
 				2A5E94DB24A2261B000596D8 /* MakeBackPackViewController.swift in Sources */,
-				2A06BF0F2559855900852443 /* MakeQuestionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

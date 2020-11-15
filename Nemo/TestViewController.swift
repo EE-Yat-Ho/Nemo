@@ -73,7 +73,7 @@ class TestViewController: UIViewController {
             TableHeight = 0.0
         } else { // 객관식
             AnswerInput.alpha = 0.0
-            TableHeight = CGFloat(nowQ.multipleChoiceAnswers!.count + nowQ.multipleChoiceWrongAnswers!.count) * 43.5
+//            TableHeight = CGFloat(nowQ.multipleChoiceAnswers!.count + nowQ.multipleChoiceWrongAnswers!.count) * 43.5
         }
         TableHeightAnchor = TableView.heightAnchor.constraint(equalToConstant: TableHeight)
         TableHeightAnchor.isActive = true

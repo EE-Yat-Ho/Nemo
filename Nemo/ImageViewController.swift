@@ -9,42 +9,66 @@
 import UIKit
 
 class ImageViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    var img: UIImage!
-    var tag: Int! = 1
-    var idxPath: IndexPath!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var ScrollView: UIScrollView!
-    @IBOutlet weak var xButton: UIButton!
-    @IBOutlet weak var anotherImageButton: UIButton!
+    var tag = -1
+    var index = -1
+    let imageView = UIImageView().then{
+        $0.contentMode = .scaleAspectFit
+    }
+    let scrollView = UIScrollView()
+    var leftButton = UIButton().then{
+        $0.setImage(UIImage(named:"편집_뒤로가기"), for: .normal)
+        $0.addTarget(self, action: #selector(clickLeftButton), for: .touchUpInside)
+    }
+    var anotherImageButton = UIButton().then{
+        $0.layer.borderColor = UIColor.systemBlue.cgColor
+        $0.layer.borderWidth = 1.0
+        $0.layer.cornerRadius = 5.0
+        $0.addTarget(self, action: #selector(clickAnotherImageButton), for: .touchUpInside)
+        $0.setTitle("다른 이미지 선택", for: .normal)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(displayP3Red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-        imageView.image = img
-//        imageView.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-//        imageView.layer.borderWidth = 1.0
-//        imageView.layer.cornerRadius = 5.0
-//        ScrollView.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-//        ScrollView.layer.borderWidth = 1.0
-//        ScrollView.layer.cornerRadius = 5.0
-        xButton.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
-        xButton.layer.borderWidth = 1.0
-        xButton.layer.cornerRadius = 5.0
-        xButton.layer.masksToBounds = true
-        anotherImageButton.layer.borderColor = UIColor.systemBlue.cgColor
-        anotherImageButton.layer.borderWidth = 1.0
-        anotherImageButton.layer.cornerRadius = 5.0
-        
-        navigationController?.navigationBar.isHidden = true
-        
+        tabBarController?.tabBar.isHidden = true
+        setupLayout()
     }
     
-    @IBAction func xButtonClick(_ sender: Any) {
+    func setupLayout() {
+        navigationController?.navigationBar.isHidden = true
+        view.addSubview(leftButton)
+        view.addSubview(scrollView)
+        view.addSubview(anotherImageButton)
+        scrollView.addSubview(imageView)
+        
+        
+        scrollView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        
+        leftButton.snp.makeConstraints{
+            $0.top.leading.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.height.width.equalTo(30)
+        }
+        imageView.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-30)
+            $0.height.width.equalTo(30)
+        }
+        
+        anotherImageButton.snp.makeConstraints{
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(60)
+            $0.height.equalTo(40)
+        }
+        view.sendSubviewToBack(imageView)
+    }
+    
+    @objc func clickLeftButton() {
         navigationController?.navigationBar.isHidden = false
         navigationController?.popViewController(animated: true)
     }
     
     let imagePicker = UIImagePickerController()
-    @IBAction func anotherImageButtonClick(_ sender: Any) {
+    @objc func clickAnotherImageButton() {
         self.openImagePicker()
     }
     func openImagePicker(){
@@ -60,20 +84,10 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         if let img = info[.originalImage] as? UIImage{
             imageView.image = img
             if tag == 1 {
-                DataManager.shared.imageList[idxPath.row] = img
+                DataManager.shared.imageList_MC[index] = img
             } else {
-                DataManager.shared.imageList_2[idxPath.row] = img
+                DataManager.shared.imageList_MC_2[index] = img
             }
-            
-            //DataManager.shared.imageList.append(img)
-//            self.CollectionView.reloadData()
-//            CollectionViewHeight = CGFloat(((DataManager.shared.imageList.count + 2) / 3) * 110)
-//            if CollectionViewHeight == 0 { CollectionViewHeight = 10 }
-//            if CollectionViewHeight > 270.0 { CollectionViewHeight = 270.0}
-//            CollectionViewHeightAnchor?.isActive = false
-//            CollectionViewHeightAnchor = CollectionView.heightAnchor.constraint(equalToConstant: CollectionViewHeight)
-//            CollectionViewHeightAnchor?.isActive = true
-           
         }
     }
 }

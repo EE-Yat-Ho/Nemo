@@ -45,8 +45,8 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         DataManager.shared.imageList = []
+        super.viewDidAppear(animated)
     }
     
     func setupLayout() {
@@ -69,8 +69,8 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         addButton.snp.makeConstraints{
             $0.width.equalTo(120)
             $0.height.equalTo(60)
-            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-30)
         }
         
     }

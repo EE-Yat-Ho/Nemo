@@ -39,10 +39,10 @@ class EndTestTableViewController: UITableViewController {
             cell.textView.layer.cornerRadius = 5.0
             if DataManager.shared.testQuestionList[indexPath.row - 1].isSubjective == true {
                 // 주관식 답 체크
-                if DataManager.shared.testAnswerList[indexPath.row - 1].subjectiveAnswer == DataManager.shared.testQuestionList[indexPath.row - 1].subjectiveAnswer {
-                    cell.OX.image = UIImage(named: "맞은표시")
-                    rightAmount += 1
-                }
+//                if DataManager.shared.testAnswerList[indexPath.row - 1].subjectiveAnswer == DataManager.shared.testQuestionList[indexPath.row - 1].subjectiveAnswer {
+//                    cell.OX.image = UIImage(named: "맞은표시")
+//                    rightAmount += 1
+//                }
             } else {
                 // 객관식 답 체크
             }
