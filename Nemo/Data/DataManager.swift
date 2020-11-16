@@ -35,19 +35,27 @@ class DataManager{
     var memoList = [Memo]()
     var imageList = [UIImage]() // 문제, 메모
     var imageList2 = [UIImage]() // 풀이
-//    var imageList_MC = [UIImage]() // 객관식 만들기용 ㅡㅡ 하
-//    var imageList_MC_2 = [UIImage]()
     
     var nowBackPackName:String?
     var nowNoteName:String?
     var nowBPN:IndexPath?
     
-    var testQuestionList = [Question]()
-    var testAnswerList = [Answer]()
-    var timerTime: Int?
+    var testQuestionList = [Question]() // 지금 푸는 중인 문제들
+    var testAnswerList = [String]() // 지금 푸는 중에 입력한 정답들
+    var timerTime: Int? // ?
     var nowQNumber: Int? // 문제의 번호
     var nowQAmount: Int? // 풀 문제의 수
-    var noteAmount: Int?
+    var noteAmount: Int? // 아 시험 전에 노트수 띄우는거
+    
+    var orderingAnswers = [[String]]() // 푸는 문제들 인덱스에 맞게 보기를 셔플한 배열
+    
+    func orderingAnswersToTestQuestion() {
+        for i in testQuestionList {
+            var temp = i.answers
+            temp?.append(i.answer ?? "")
+            orderingAnswers.append(temp?.shuffled() ?? [""])
+        }
+    }
     
     // DB에서 데이터를 읽어오는 함수
     func fetchBackPack(){
@@ -196,8 +204,6 @@ class DataManager{
         saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
     }
     
-    var dataList = [Data]()
-    var dataList_2 = [Data]()
     var answerList = [String]()
     func addNewQuestion(question: String?, answer: String?, explanation: String?, isSubjective: Bool) { // 주관식
         fetchQuestion()
@@ -213,14 +219,8 @@ class DataManager{
         newQuestion.answers = answerList
         newQuestion.date = Date()
         
-        for i in imageList {
-            dataList.append(i.jpegData(compressionQuality: 0.75)!)
-        }
-        newQuestion.questionImages = dataList
-        for i in imageList2 {
-            dataList_2.append(i.jpegData(compressionQuality: 0.75)!)
-        }
-        newQuestion.explanationImages = dataList_2
+        newQuestion.questionImages = imageList.map{$0.jpegData(compressionQuality: 0.01)!}
+        newQuestion.explanationImages = imageList2.map{$0.jpegData(compressionQuality: 0.01)!}
         
         for i in noteList{
             for j in i {
@@ -312,9 +312,4 @@ class DataManager{
             }
         }
     }
-}
-
-struct Answer {
-    var subjectiveAnswer = ""
-    var multipleChoiceAnswer = [String]()
 }

@@ -155,10 +155,8 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     // MARK:- Properties
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
     var questionCollectionHeight: CGFloat = 10.0
-    var questionCollectionHeightAnchor: NSLayoutConstraint?
     var answerTableHeight: CGFloat! = 44 * 3
     var explanationCollectionHeight: CGFloat = 10.0
-    var explanationCollectionHeightAnchor: NSLayoutConstraint?
     
     var imageButtonTag: Int!
     let imagePicker = UIImagePickerController()

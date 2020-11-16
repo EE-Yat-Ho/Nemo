@@ -14,7 +14,7 @@ class TimerViewController: UIViewController {
         $0.setImage(UIImage(named: "타이머"), for: .normal)
         $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
         $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
-        $0.addTarget(self, action: <#T##Selector#>, for: <#T##UIControl.Event#>)
+        $0.addTarget(self, action: #selector(clickFirstTimer(_:)), for: .touchUpInside)
     }
     let firstLabel = UILabel().then {
         $0.text = "설정 안해"
@@ -24,6 +24,7 @@ class TimerViewController: UIViewController {
         $0.setImage(UIImage(named: "타이머"), for: .normal)
         $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
         $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
+        $0.addTarget(self, action: #selector(clickSecondTimer(_:)), for: .touchUpInside)
     }
     let secondLabel = UILabel().then {
         $0.text = "15s"
@@ -33,6 +34,7 @@ class TimerViewController: UIViewController {
         $0.setImage(UIImage(named: "타이머"), for: .normal)
         $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
         $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
+        $0.addTarget(self, action: #selector(clickLastTimer(_:)), for: .touchUpInside)
     }
     let lastLabel = UILabel().then {
         $0.text = "s"
@@ -44,7 +46,6 @@ class TimerViewController: UIViewController {
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.decimalPad
         $0.returnKeyType = UIReturnKeyType.done
-        //$0.clearButtonMode = UITextField.ViewMode.whileEditing
         $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
     }
     
@@ -57,7 +58,7 @@ class TimerViewController: UIViewController {
     let startTestButton = UIButton().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.setTitle("시험 시작", for: .normal)
-        //$0.addTarget(self, action: #selector(clickStartTestButton), for: .touchUpInside)
+        $0.addTarget(self, action: #selector(clickStartTestButton), for: .touchUpInside)
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
@@ -200,8 +201,10 @@ class TimerViewController: UIViewController {
         }
         
         DataManager.shared.testQuestionList.shuffle()
+        DataManager.shared.orderingAnswersToTestQuestion()
         DataManager.shared.nowQNumber = 1
         tabBarController?.tabBar.isHidden = true
+        navigationController?.pushViewController(TestViewController(), animated: true)
     }
 }
 

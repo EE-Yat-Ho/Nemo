@@ -44,6 +44,7 @@
 		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
 		2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F84DC254C16370000345F /* UnderlinedTextView.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
+		2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
 		2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */; };
 		2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */; };
@@ -93,6 +94,7 @@
 		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
 		2A6F84DC254C16370000345F /* UnderlinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerCell.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerCell.swift; sourceTree = "<group>"; };
@@ -130,9 +132,8 @@
 			children = (
 				2A12BCF82561A42E0007A971 /* Setting */,
 				2AA62C012561DA0000EA3E35 /* Timer */,
-				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
+				2AA62C072562249A00EA3E35 /* Test */,
 				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
-				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -236,6 +237,7 @@
 				2A36E26A25346F230031E55C /* QuestionMemo */,
 				2A12BCF525619C1B0007A971 /* Test */,
 				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
+				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
 				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
 				2A5E94C724A1C73E000596D8 /* Info.plist */,
 				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
@@ -319,6 +321,15 @@
 				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
 			);
 			path = Timer;
+			sourceTree = "<group>";
+		};
+		2AA62C072562249A00EA3E35 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
+				2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		2AFFE4B6252B20920046C687 /* Home */ = {
@@ -465,6 +476,7 @@
 				2A6D74AE24A8883700AFD0E1 /* MakeQuestionViewController.swift in Sources */,
 				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
 				2A12BD012561C1530007A971 /* NoteCell_Test.swift in Sources */,
+				2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
 				2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */,

@@ -46,7 +46,6 @@ class MakeMemoViewController: UIViewController {
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
         }
     var collectionViewHeight: CGFloat = 10.0
-    var collectionViewHeightAnchor: NSLayoutConstraint?
     
     let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
