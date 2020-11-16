@@ -85,7 +85,7 @@ class MakeBackPackViewController: UIViewController {
             return
         }
         DataManager.shared.addNewBackPack(name: name)
-        DataManager.shared.homeViewTalbeReloadTrigger.accept(())
+        DataManager.shared.homeViewTableReloadTrigger.accept(())
         
         dismiss(animated: true, completion: nil)
     }

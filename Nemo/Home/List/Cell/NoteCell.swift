@@ -53,8 +53,16 @@ class NoteCell: UITableViewCell {
         super.init(coder: coder)
     }
     
+    func mappingData(indexPath: IndexPath, editMode: Bool){
+        noteName.text = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
+        numberOfQuestion.text = "문제 " + String(DataManager.shared.noteList[indexPath.section][indexPath.row - 1].numberOfQ)
+        numberOfMemo.text = "필기 " + String(DataManager.shared.noteList[indexPath.section][indexPath.row - 1].numberOfM)
+        self.editMode = editMode
+    }
+    
     func setupLayout() {
         backgroundColor = UIColor.clear
+        selectionStyle = .none
         
         addSubview(noteImage)
         addSubview(noteName)

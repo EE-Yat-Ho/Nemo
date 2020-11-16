@@ -95,13 +95,13 @@ class MakeNoteViewController: UIViewController {
             alert(message: "넣을 가방을 선택해주세요")
             return
         }
-        DataManager.shared.fetchNote(backPackName: dropDownButton.titleLabel?.text)
+        //DataManager.shared.fetchNote(backPackName: dropDownButton.titleLabel?.text)
         if DataManager.shared.safetyNoteOverLap(name: name) == false{
-            alert(message: "해당 가방에 같은 이름의 노트가 이미 있어요.")
+            alert(message: "같은 이름의 노트가 이미 있어요.")
             return
         }
         DataManager.shared.addNewNote(noteName: name, backPackName: dropDownButton.titleLabel?.text) // 20200621 #19 db구현2. 위에것들 주석처리하고, 새로 작성한 디비 저장함수 실행
-        DataManager.shared.homeViewTalbeReloadTrigger.accept(())
+        DataManager.shared.homeViewTableReloadTrigger.accept(())
         
         dismiss(animated: true, completion: nil)
     }

@@ -37,7 +37,6 @@ class QuestionAnswerCell: UITableViewCell {
         $0.setImage(UIImage(named: "엑스_검정"), for: .normal)
     }
     var index: Int = 0
-    var right: Bool! = false
     var delegate: QuestionAnswerDelegate!
     var disposeBag = DisposeBag()
     
@@ -46,7 +45,6 @@ class QuestionAnswerCell: UITableViewCell {
     }
     
     func setupLayout() {
-        //contentView.backgroundColor = UIColor.clear
         backgroundColor = UIColor.clear
         
         contentView.addSubview(contents)

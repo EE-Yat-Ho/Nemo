@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A12BCFA2561A4520007A971 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BCF92561A4520007A971 /* TimeCell.swift */; };
+		2A12BCFE2561C12B0007A971 /* BackPackCell_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BCFD2561C12B0007A971 /* BackPackCell_Test.swift */; };
+		2A12BD012561C1530007A971 /* NoteCell_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BD002561C1530007A971 /* NoteCell_Test.swift */; };
 		2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */; };
 		2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */; };
 		2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26B25346FD40031E55C /* QuestionCell.swift */; };
@@ -38,7 +41,7 @@
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
 		2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */; };
 		2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */; };
-		2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */; };
+		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
 		2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F84DC254C16370000345F /* UnderlinedTextView.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
@@ -51,6 +54,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A12BCF92561A4520007A971 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		2A12BCFD2561C12B0007A971 /* BackPackCell_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackCell_Test.swift; sourceTree = "<group>"; };
+		2A12BD002561C1530007A971 /* NoteCell_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell_Test.swift; sourceTree = "<group>"; };
 		2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCheckCell.swift; sourceTree = "<group>"; };
 		2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		2A36E26B25346FD40031E55C /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -84,7 +90,7 @@
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
 		2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellt.swift; sourceTree = "<group>"; };
 		2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTimeTabBarController.swift; sourceTree = "<group>"; };
-		2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTestSettingViewController.swift; sourceTree = "<group>"; };
+		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
 		2A6F84DC254C16370000345F /* UnderlinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +125,55 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		2A12BCF525619C1B0007A971 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				2A12BCF82561A42E0007A971 /* Setting */,
+				2AA62C012561DA0000EA3E35 /* Timer */,
+				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
+				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
+				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		2A12BCF625619C390007A971 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */,
+				2A12BD042561C2F20007A971 /* Cell */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		2A12BCF82561A42E0007A971 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				2A12BD032561C1760007A971 /* Cell */,
+				2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		2A12BD032561C1760007A971 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2A12BCFD2561C12B0007A971 /* BackPackCell_Test.swift */,
+				2A12BD002561C1530007A971 /* NoteCell_Test.swift */,
+				2A12BCF92561A4520007A971 /* TimeCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		2A12BD042561C2F20007A971 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94ED24A8587C000596D8 /* BackPackCell.swift */,
+				2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		2A1A6A98253AFDE100577E10 /* Make */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,22 +184,22 @@
 			path = Make;
 			sourceTree = "<group>";
 		};
-		2A1A6A99253AFF9D00577E10 /* MakeB&N */ = {
+		2A1A6A99253AFF9D00577E10 /* Make */ = {
 			isa = PBXGroup;
 			children = (
 				2A5E94DA24A2261B000596D8 /* MakeBackPackViewController.swift */,
 				2A5E94E524A71C82000596D8 /* MakeNoteViewController.swift */,
 			);
-			path = "MakeB&N";
+			path = Make;
 			sourceTree = "<group>";
 		};
-		2A36E26A25346F230031E55C /* QuestionMemoViewController */ = {
+		2A36E26A25346F230031E55C /* QuestionMemo */ = {
 			isa = PBXGroup;
 			children = (
-				2A673B572561483C004B3479 /* ListView */,
+				2A673B572561483C004B3479 /* List */,
 				2A1A6A98253AFDE100577E10 /* Make */,
 			);
-			path = QuestionMemoViewController;
+			path = QuestionMemo;
 			sourceTree = "<group>";
 		};
 		2A5E94AA24A1C73B000596D8 = {
@@ -173,23 +228,19 @@
 				2A5E94E724A721D8000596D8 /* Buttons */,
 				2A5E94D324A1D4A7000596D8 /* Data */,
 				2A5E94B624A1C73B000596D8 /* AppDelegate.swift */,
+				2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */,
 				2A5E94EF24A860EF000596D8 /* Main.storyboard */,
-				2AFFE4B6252B20920046C687 /* HomeViewController */,
-				2A36E26A25346F230031E55C /* QuestionMemoViewController */,
+				2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */,
 				2A5E94C224A1C73E000596D8 /* Assets.xcassets */,
+				2AFFE4B6252B20920046C687 /* Home */,
+				2A36E26A25346F230031E55C /* QuestionMemo */,
+				2A12BCF525619C1B0007A971 /* Test */,
 				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
 				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
 				2A5E94C724A1C73E000596D8 /* Info.plist */,
-				2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */,
 				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
 				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
 				2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */,
-				2A6D74E224D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift */,
-				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
-				2A4886C924DBE598004A2CEB /* TestViewController.swift */,
-				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
-				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
-				2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */,
 			);
 			path = Nemo;
 			sourceTree = "<group>";
@@ -229,27 +280,27 @@
 		2A673B56256147F9004B3479 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */,
-				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
-				2A36E26B25346FD40031E55C /* QuestionCell.swift */,
-				2A36E272253470360031E55C /* MemoCell.swift */,
 				2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		2A673B572561483C004B3479 /* ListView */ = {
+		2A673B572561483C004B3479 /* List */ = {
 			isa = PBXGroup;
 			children = (
 				2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */,
 				2A673B5825614849004B3479 /* Cell */,
 			);
-			path = ListView;
+			path = List;
 			sourceTree = "<group>";
 		};
 		2A673B5825614849004B3479 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */,
+				2A36E2752534703F0031E55C /* MemoOpenCell.swift */,
+				2A36E26B25346FD40031E55C /* QuestionCell.swift */,
+				2A36E272253470360031E55C /* MemoCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -262,15 +313,21 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		2AFFE4B6252B20920046C687 /* HomeViewController */ = {
+		2AA62C012561DA0000EA3E35 /* Timer */ = {
 			isa = PBXGroup;
 			children = (
-				2A1A6A99253AFF9D00577E10 /* MakeB&N */,
-				2A5E94D124A1D3CE000596D8 /* HomeViewController.swift */,
-				2A5E94ED24A8587C000596D8 /* BackPackCell.swift */,
-				2A6D74A924A86C2600AFD0E1 /* NoteCell.swift */,
+				2A4886C724DBDB62004A2CEB /* TimerViewController.swift */,
 			);
-			path = HomeViewController;
+			path = Timer;
+			sourceTree = "<group>";
+		};
+		2AFFE4B6252B20920046C687 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2A12BCF625619C390007A971 /* List */,
+				2A1A6A99253AFF9D00577E10 /* Make */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		D0FF8176F59D5ADED261FB2C /* Frameworks */ = {
@@ -407,6 +464,7 @@
 				2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */,
 				2A6D74AE24A8883700AFD0E1 /* MakeQuestionViewController.swift in Sources */,
 				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
+				2A12BD012561C1530007A971 /* NoteCell_Test.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
 				2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */,
@@ -418,14 +476,16 @@
 				2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */,
 				2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */,
 				2A36E2702534702D0031E55C /* QuestionOpenCell.swift in Sources */,
+				2A12BCFA2561A4520007A971 /* TimeCell.swift in Sources */,
 				2A4886CC24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift in Sources */,
 				2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */,
 				2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */,
 				2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */,
+				2A12BCFE2561C12B0007A971 /* BackPackCell_Test.swift in Sources */,
 				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
 				2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */,
-				2A6D74E324D40C8B00AFD0E1 /* BackPackTestSettingViewController.swift in Sources */,
+				2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */,
 				2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */,
 				2A36E273253470360031E55C /* MemoCell.swift in Sources */,
 				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,

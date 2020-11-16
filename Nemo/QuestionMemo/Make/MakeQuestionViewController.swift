@@ -30,7 +30,6 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
     }
     let containerView = UIView()
-    var currentTab = -1
     
     let scrollView = UIScrollView()
     let contentView = UIView()
@@ -87,7 +86,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
     
     let wrongLabel = UILabel().then {
-        $0.text = "오답들"
+        $0.text = "보기에 섞을 오답들"
         $0.textColor = UIColor.red
     }
     let plusButton = UIButton().then {
@@ -368,8 +367,8 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     func editProcessor() {
         guard let editTarget = self.editTarget else {
             DataManager.shared.answerList = ["","",""]
-            DataManager.shared.imageList_MC.removeAll()
-            DataManager.shared.imageList_MC_2.removeAll()
+            DataManager.shared.imageList.removeAll()
+            DataManager.shared.imageList2.removeAll()
             return
         }
         questionText.text = editTarget.question
@@ -377,23 +376,23 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         explanationText.text = editTarget.explanation
         explanationText.textColor = UIColor.black
         
-        DataManager.shared.imageList_MC = []
+        DataManager.shared.imageList = []
         for i in editTarget.questionImages ?? [Data]() {
-            DataManager.shared.imageList_MC.append(UIImage(data: i)!)
+            DataManager.shared.imageList.append(UIImage(data: i)!)
         }
         
-        questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
+        questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
         if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
         if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
         questionImages.snp.updateConstraints{
             $0.height.equalTo(questionCollectionHeight)
         }
         
-        DataManager.shared.imageList_MC_2 = []
+        DataManager.shared.imageList2 = []
         for i in editTarget.explanationImages ?? [Data]() {
-            DataManager.shared.imageList_MC_2.append(UIImage(data: i)!)
+            DataManager.shared.imageList2.append(UIImage(data: i)!)
         }
-        explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
+        explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList2.count + 2) / 3)
         if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
         if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
         explanationImages.snp.updateConstraints{
@@ -419,7 +418,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         isSubjective.toggle()
         answerTable.reloadData()
         
-        wrongLabel.text = "오답들"
+        wrongLabel.text = "보기에 섞을 오답들"
         wrongLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
         separateView.snp.updateConstraints{
@@ -432,7 +431,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         isSubjective.toggle()
         answerTable.reloadData()
         
-        wrongLabel.text = "정답들"
+        wrongLabel.text = "또다른 정답들"
         wrongLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         
         separateView.snp.updateConstraints{
@@ -474,9 +473,10 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
             editTarget?.explanation = explanationText.text
             editTarget?.answer = answerTextField.text
             editTarget?.answers = DataManager.shared.answerList
-            editTarget?.questionImages = DataManager.shared.imageList_MC.map{ $0.jpegData(compressionQuality: 0.01)!}
-            editTarget?.explanationImages = DataManager.shared.imageList_MC_2.map{ $0.jpegData(compressionQuality: 0.01)!}
+            editTarget?.questionImages = DataManager.shared.imageList.map{ $0.jpegData(compressionQuality: 0.01)!}
+            editTarget?.explanationImages = DataManager.shared.imageList2.map{ $0.jpegData(compressionQuality: 0.01)!}
             editTarget?.isSubjective = isSubjective
+            editTarget?.date = Date()
             
             DataManager.shared.saveContext()
         }
@@ -506,18 +506,18 @@ extension MakeQuestionViewController: UINavigationControllerDelegate, UIImagePic
         dismiss(animated: true, completion: nil)
         if let img = info[.originalImage] as? UIImage{
             if imageButtonTag == 1 {
-                DataManager.shared.imageList_MC.append(img)
+                DataManager.shared.imageList.append(img)
                 questionImages.reloadData()
-                questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC.count + 2) / 3)
+                questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
                 if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
                 if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
                 questionImages.snp.updateConstraints{
                     $0.height.equalTo(questionCollectionHeight)
                 }
             } else {
-                DataManager.shared.imageList_MC_2.append(img)
+                DataManager.shared.imageList2.append(img)
                 explanationImages.reloadData()
-                explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList_MC_2.count + 2) / 3)
+                explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList2.count + 2) / 3)
                 if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
                 if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
                 explanationImages.snp.updateConstraints{
@@ -550,28 +550,25 @@ extension MakeQuestionViewController: UICollectionViewDelegate, UICollectionView
     // 20200720 올린 사진을 보여줄 콜랙션뷰 구현
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == 1 {
-            return DataManager.shared.imageList_MC.count
+            return DataManager.shared.imageList.count
         } else {
-            return DataManager.shared.imageList_MC_2.count
+            return DataManager.shared.imageList2.count
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
-        
-        if collectionView.tag == 1 {
-            cell.imageView.image = DataManager.shared.imageList_MC[indexPath.row]
-        } else {
-            cell.imageView.image = DataManager.shared.imageList_MC_2[indexPath.row]
-        }
+        cell.delegate = self
+        cell.mappingData(index: indexPath.row, tag: collectionView.tag)
+
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         collectionView.deselectItem(at: indexPath, animated: true)
         let imageViewController = ImageViewController()
         if collectionView.tag == 1 {
-            imageViewController.imageView.image = DataManager.shared.imageList_MC[indexPath.row]
+            imageViewController.imageView.image = DataManager.shared.imageList[indexPath.row]
         } else {
-            imageViewController.imageView.image = DataManager.shared.imageList_MC_2[indexPath.row]
+            imageViewController.imageView.image = DataManager.shared.imageList2[indexPath.row]
         }
         imageViewController.tag = collectionView.tag
         imageViewController.index = indexPath.row
@@ -619,7 +616,7 @@ extension MakeQuestionViewController: UITextViewDelegate {
 
 
 
-extension MakeQuestionViewController: QuestionAnswerDelegate{
+extension MakeQuestionViewController: QuestionAnswerDelegate {
     func clickXButton(_ cell: QuestionAnswerCell) {
         DataManager.shared.answerList.remove(at: cell.index)
         answerTableHeight = CGFloat(DataManager.shared.answerList.count) * 44
@@ -629,10 +626,32 @@ extension MakeQuestionViewController: QuestionAnswerDelegate{
         answerTable.reloadData()
     }
     
-    
     func textFieldDidChangeSelection(_ cell: QuestionAnswerCell) {
         if cell.index < DataManager.shared.answerList.count {
             DataManager.shared.answerList[cell.index] = cell.contents.text!
+        }
+    }
+}
+extension MakeQuestionViewController: CollectionDelegate {
+    func clickXButton(_ cell: CollectionViewCell) {
+        if cell.collectionTag == 1 {
+            DataManager.shared.imageList.remove(at: cell.index)
+            questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
+            if questionCollectionHeight == 0.0 { questionCollectionHeight = 10.0 }
+            if questionCollectionHeight > collectionItemSize * 2.5 { questionCollectionHeight = collectionItemSize * 2.5}
+            questionImages.snp.updateConstraints{
+                $0.height.equalTo(questionCollectionHeight)
+            }
+            questionImages.reloadData()
+        } else {
+            DataManager.shared.imageList2.remove(at: cell.index)
+            explanationCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList2.count + 2) / 3)
+            if explanationCollectionHeight == 0.0 { explanationCollectionHeight = 10.0 }
+            if explanationCollectionHeight > collectionItemSize * 2.5 { explanationCollectionHeight = collectionItemSize * 2.5}
+            explanationImages.snp.updateConstraints{
+                $0.height.equalTo(explanationCollectionHeight)
+            }
+            explanationImages.reloadData()
         }
     }
 }

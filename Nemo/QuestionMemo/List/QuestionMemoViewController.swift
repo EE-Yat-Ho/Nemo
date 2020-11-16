@@ -77,14 +77,14 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     
     // 우측 상단 버튼 조정
     @objc public func clickEditButton() {
-        if tableView.isEditing {
+        if tableView.isEditing {// 정상으로
             tableView.setEditing(false, animated: true)
-            editButton.title = ""//("", for: .normal)
-            editButton.image = UIImage(named: "기본아이콘_편집")//(UIImage(named: "기본아이콘_편집"), for: .normal)
-        } else {
+            editButton.title = ""
+            editButton.image = UIImage(named: "기본아이콘_편집")
+        } else { // 편집모드로
             tableView.setEditing(true, animated: true)
-            editButton.title = "완료"//("완료", for: .normal)
-            editButton.image = nil//(nil, for: .normal)
+            editButton.title = "완료"
+            editButton.image = nil
         }
     }
     
@@ -203,7 +203,10 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
 
     //순서바꾸기 허용
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool{
-        return true;
+        if indexPath.row == 0{
+            return false
+        }
+        return true
     }
 
     //순서바꿀때 배열이랑 디비 조정
@@ -235,7 +238,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
             
             
             if sourceIndexPath.section == ModifiedDestinationIndexPathSection { // 한 섹션 안에서 옮긴 경우
-                if sourceIndexPath.section == 0 { // 문제 보기에서 옮김
+                if sourceIndexPath.section != 0 { // 문제 보기에서 옮김
                     let target = DataManager.shared.questionList[ModifiedSourceIndexPathRow] // 노트들의 row값은 맨위의 가방때문에 인덱스보다 1 큼
                     DataManager.shared.questionList.remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
                     DataManager.shared.questionList.insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
@@ -278,9 +281,9 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete { //위에서 리턴한 딜리트 스타일을 처리하는 부분
-            if indexPath.row == 0 { // 가방을 삭제하는 경우
+            if indexPath.row == 0 { // 보기를 삭제하는 경우 = 불가능
                 
-            } else { // 노트를 삭제하는 경우
+            } else { // 필기나 문제 삭제
                 let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
                     // 확인 눌렀을 때 하는 소스
@@ -291,12 +294,13 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                            DataManager.shared.questionList[i].order = Int16(DataManager.shared.questionList.count - i - 1)
                         }
                         // 노트에서 문제 수 하나 빼기
-                        for i in DataManager.shared.noteList{
-                            if i.name == DataManager.shared.nowNoteName{
-                                i.numberOfQ -= 1
-                            }
-                        }
-                        // 디비에서 노트 삭제
+//                        for i in DataManager.shared.noteList{
+//                            if i.name == DataManager.shared.nowNoteName{
+//                                i.numberOfQ -= 1
+//                            }
+//                        }
+                        DataManager.shared.noteList[DataManager.shared.nowBPN!.section][DataManager.shared.nowBPN!.row - 1].numberOfQ -= 1
+                        // 디비에서 문제 삭제
                         DataManager.shared.deleteQuestion(target)
                     } else { // 메모 삭제
                         let target = DataManager.shared.memoList[indexPath.row - 1]
@@ -305,11 +309,12 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                            DataManager.shared.memoList[i].order = Int16(DataManager.shared.memoList.count - i - 1)
                         }
                         // 노트에서 문제 수 하나 빼기
-                        for i in DataManager.shared.noteList{
-                            if i.name == DataManager.shared.nowNoteName{
-                                i.numberOfM -= 1
-                            }
-                        }
+//                        for i in DataManager.shared.noteList{
+//                            if i.name == DataManager.shared.nowNoteName{
+//                                i.numberOfM -= 1
+//                            }
+//                        }
+                        DataManager.shared.noteList[DataManager.shared.nowBPN!.section][DataManager.shared.nowBPN!.row - 1].numberOfM -= 1
                         // 디비에서 노트 삭제
                         DataManager.shared.deleteMemo(target)
                     }

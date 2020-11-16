@@ -21,7 +21,7 @@ class DataManager{
 //    private init(){
 //
 //    }
-    let homeViewTalbeReloadTrigger = PublishRelay<Void>()
+    let homeViewTableReloadTrigger = PublishRelay<Void>()
     
     // 코어데이터에서 실행하는 대부분 작업은 컨텍스트 객체가 처리. 기본적으로 제공해주긴 하는데 그냥 하나 선언
     var mainContext:NSManagedObjectContext{
@@ -29,16 +29,18 @@ class DataManager{
     }
     
     var backPackList = [BackPack]() // 디비에서 꺼내올 때 저장할 빈 배열이로구나
-    var noteList = [Note]()
+    var noteList = [[Note]]()
     var questionList = [Question]()
+    var questionListToDate = [Question]()
     var memoList = [Memo]()
     var imageList = [UIImage]() // 문제, 메모
-    var imageList_2 = [UIImage]() // 풀이
-    var imageList_MC = [UIImage]() // 객관식 만들기용 ㅡㅡ 하 
-    var imageList_MC_2 = [UIImage]()
+    var imageList2 = [UIImage]() // 풀이
+//    var imageList_MC = [UIImage]() // 객관식 만들기용 ㅡㅡ 하
+//    var imageList_MC_2 = [UIImage]()
     
     var nowBackPackName:String?
     var nowNoteName:String?
+    var nowBPN:IndexPath?
     
     var testQuestionList = [Question]()
     var testAnswerList = [Answer]()
@@ -66,7 +68,7 @@ class DataManager{
         }
     }
     
-    func fetchNote(backPackName: String?){
+    func fetchNote(backPackName: String?, index: Int){
         let predicate = NSPredicate(format: "backPackName = %@", backPackName! as CVarArg)
         let request: NSFetchRequest<Note> = Note.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
         request.predicate = predicate
@@ -80,7 +82,7 @@ class DataManager{
         // fetch함수 자동완성 기능을 보면 throws가 적힌게 있는데 이건 오류가 발생할 수 있다는 뜻
         // 그래서 일반적인 호출로는 안되고, do catch문을 사용해야함
         do{
-            noteList = try mainContext.fetch(request)
+            noteList[index] = try mainContext.fetch(request)
         } catch {
             print(error)
         }
@@ -101,6 +103,23 @@ class DataManager{
         // 그래서 일반적인 호출로는 안되고, do catch문을 사용해야함
         do{
             questionList = try mainContext.fetch(request)
+        } catch {
+            print(error)
+        }
+    }
+    
+    func fetchQuestionToDate(second: Int) {
+        let predicate = NSPredicate(
+            format: "date >= %@",
+            second > 0 ?
+                Date() - TimeInterval(second) as NSDate
+                :   Date(timeIntervalSince1970: 0) as NSDate
+        )
+        let request: NSFetchRequest<Question> = Question.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
+        request.predicate = predicate
+        
+        do{
+            questionListToDate = try mainContext.fetch(request)
         } catch {
             print(error)
         }
@@ -137,8 +156,10 @@ class DataManager{
     
     func safetyNoteOverLap(name: String?) -> Bool{
         for i in noteList{
-            if i.name == name {
-                return false
+            for j in i {
+                if j.name == name {
+                    return false
+                }
             }
         }
         return true
@@ -156,7 +177,8 @@ class DataManager{
     }
     
     func addNewNote(noteName: String?, backPackName: String?){
-        fetchNote(backPackName: backPackName)
+        //fetchNote(backPackName: backPackName)
+        
         
         let newNote = Note(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
         newNote.name = noteName // 파라미터로 넘겨받은 내용과
@@ -189,68 +211,28 @@ class DataManager{
         newQuestion.explanation = explanation
         newQuestion.answer = answer
         newQuestion.answers = answerList
+        newQuestion.date = Date()
         
         for i in imageList {
             dataList.append(i.jpegData(compressionQuality: 0.75)!)
         }
         newQuestion.questionImages = dataList
-        for i in imageList_2 {
+        for i in imageList2 {
             dataList_2.append(i.jpegData(compressionQuality: 0.75)!)
         }
         newQuestion.explanationImages = dataList_2
         
         for i in noteList{
-            if i.name == nowNoteName{
-                i.numberOfQ += 1
+            for j in i {
+                if j.name == nowNoteName{
+                    j.numberOfQ += 1
+                }
             }
         }
         
         saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
     }
     
-    
-//    var mca = [String]()
-//    var mcwa = [String]()
-//    func addNewQuestion(question: String?, explanation: String?) { // 객관식
-//        fetchQuestion()
-//
-//        mca.removeAll()
-//        mcwa.removeAll()
-//        let newQuestion = Question(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
-//        newQuestion.noteName = nowNoteName // 여기존재
-//        newQuestion.backPackName = nowBackPackName // 여기존재
-//        newQuestion.order = Int16(questionList.count) // 순서
-//        newQuestion.question = question // 파라미터
-////        for i in 0..<answerList.count {
-////            if rightList[i] == true {
-////                mca.append(answerList[i])
-////            } else {
-////                mcwa.append(answerList[i])
-////            }
-////        }
-//        newQuestion.answers = answerList
-////        newQuestion.multipleChoiceWrongAnswers = mcwa
-//
-//        newQuestion.isSubjective = false
-//        newQuestion.explanation = explanation
-//
-//        for i in imageList_MC {
-//            dataList.append(i.jpegData(compressionQuality: 0.75)!)
-//        }
-//        newQuestion.questionImages = dataList
-//        for i in imageList_MC_2 {
-//            dataList_2.append(i.jpegData(compressionQuality: 0.75)!)
-//        }
-//        newQuestion.explanationImages = dataList_2
-//
-//        for i in noteList{
-//            if i.name == nowNoteName{
-//                i.numberOfQ += 1
-//            }
-//        }
-//
-//        saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
-//    }
     
     func addNewMemo(content: String?){
         fetchMemo()
@@ -260,10 +242,13 @@ class DataManager{
         newMemo.backPackName = nowBackPackName
         newMemo.order = Int16(questionList.count) // 순서
         newMemo.content = content
+        newMemo.images = imageList.map{$0.jpegData(compressionQuality: 0.01)!}
             
         for i in noteList{
-            if i.name == nowNoteName{
-                i.numberOfM += 1
+            for j in i {
+                if j.name == nowNoteName{
+                    j.numberOfM += 1
+                }
             }
         }
         

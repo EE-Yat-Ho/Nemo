@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 protocol CollectionDelegate {
     func clickXButton(_ cell: CollectionViewCell)
@@ -24,7 +26,15 @@ class CollectionViewCell: UICollectionViewCell {
     let xButton = UIButton().then {
         $0.setImage(UIImage(named: "엑스_하양회색"), for: .normal)
     }
+    
+    override func prepareForReuse() {
+        disposeBag = DisposeBag()
+    }
+    
+    var index: Int = -1
+    var collectionTag: Int = -1
     var delegate: CollectionDelegate!
+    var disposeBag = DisposeBag()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,6 +48,19 @@ class CollectionViewCell: UICollectionViewCell {
             $0.top.trailing.equalToSuperview().inset(5)
             $0.height.width.equalTo(25)
         }
+    }
+    
+    func mappingData(index:Int, tag:Int){
+        self.index = index
+        collectionTag = tag
+        if tag == 1 {
+            imageView.image = DataManager.shared.imageList[index]
+        } else {
+            imageView.image = DataManager.shared.imageList2[index]
+        }
+        xButton.rx.tap.bind { [weak self] in
+            self?.delegate.clickXButton(self!)
+        }.disposed(by:disposeBag)
     }
     
     required init?(coder: NSCoder) {

@@ -45,9 +45,19 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
 
-        
+//        tabBarController?.tabBar.isTranslucent = false
+        tabBarController?.tabBar.backgroundImage = UIImage(named: "배경")
+        tabBarController?.tabBar.frame.size.height = 60
+        tabBarController?.tabBar.frame.origin.y = view.frame.height - 60
         setupLayout()
         bindingData()
+        
+        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
+        for (index, element) in DataManager.shared.backPackList.enumerated() {
+            DataManager.shared.noteList.append([Note]())
+            DataManager.shared.fetchNote(backPackName: element.name, index: index)
+        }
+        
         // 폰트 이름 확인하기
 //        for name in UIFont.familyNames {
 //            print(name)
@@ -61,12 +71,12 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) { // 화면이 전환 될때(나타날때) 호출
         super.viewWillAppear(animated)
         
-        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
+        
         tableView.reloadData() // 배열 데이터로 뷰를 업데이트함
     }
     
     func bindingData() {
-        DataManager.shared.homeViewTalbeReloadTrigger
+        DataManager.shared.homeViewTableReloadTrigger
             .bind(onNext: {[weak self] in
                     self?.tableView.reloadData()})
             .disposed(by: rx.disposeBag)
@@ -119,16 +129,12 @@ class HomeViewController: UIViewController {
     @IBAction func clickEditButton() {
         if tableView.isEditing { // 정상 상태로
             tableView.setEditing(false, animated: true)
-//            editButton.setTitle("", for: .normal)
-//            editButton.setImage(UIImage(named: "기본아이콘_편집"), for: .normal)
-            editButton.title = ""//("", for: .normal)
+            editButton.title = ""
             editButton.image = UIImage(named: "기본아이콘_편집")
             tableViewEditMode = false
         } else { // 편집 모드로
             tableView.setEditing(true, animated: true)
-//            editButton.setTitle("완료", for: .normal)
-//            editButton.setImage(nil, for: .normal)
-            editButton.title = "완료"//("완료", for: .normal)
+            editButton.title = "완료"
             editButton.image = nil
             tableViewEditMode = true
         }
@@ -158,23 +164,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if(indexPath.row == 0) { // 가방일경우
-            DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             let backPackCell = self.tableView.dequeueReusableCell(withIdentifier: "BackPackCell", for: indexPath) as! BackPackCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
-            backPackCell.backPackName.text = DataManager.shared.backPackList[indexPath.section].name
-            backPackCell.numberOfNote.text = String(DataManager.shared.backPackList[indexPath.section].numberOfNote)
-            if DataManager.shared.backPackList[indexPath.section].opened == true {
-                backPackCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
-            } else {
-                backPackCell.rightImage.image = UIImage(named: "기본아이콘_이동")
-            }
-            backPackCell.editMode = tableViewEditMode
+            backPackCell.mappingData(index: indexPath.section, editMode: tableViewEditMode)
+            
             return backPackCell
         } else { // 노트일경우
             let noteCell = self.tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath) as! NoteCell
-            noteCell.noteName.text = DataManager.shared.noteList[indexPath.row - 1].name
-            noteCell.numberOfQuestion.text = "문제 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfQ)
-            noteCell.numberOfMemo.text = "필기 " + String(DataManager.shared.noteList[indexPath.row - 1].numberOfM)
-            noteCell.editMode = tableViewEditMode
+            noteCell.mappingData(indexPath: indexPath, editMode: tableViewEditMode)
+            
             return noteCell
         }
     }
@@ -186,15 +183,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             
             // 어째선지 cellForRowAt으로 넘어갈때 선택한 섹션번호랑 섹션이가진 "row수"가 넘어감;
             // 그래서 row == 0 으로 노트를 갱신하던게 안되서 여기서 갱신해주자 ^_^;
-            DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             tableView.reloadSections(sections, with: .none)
         } else { // 노트 선택
             DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
-            DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
-            DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.row - 1].name
+            //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
+            DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
 
+            DataManager.shared.nowBPN = indexPath
+            
             let noteVC = QuestionMemoViewController()
-            self.navigationController?.pushViewController(noteVC, animated: true)
+            navigationController?.pushViewController(noteVC, animated: true)
         }
     }
     
@@ -242,39 +240,39 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             if sourceIndexPath.section == ModifiedDestinationIndexPathSection { // 한 가방 안에서 옮긴 경우
-                DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
+                //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
                 let target = DataManager.shared.noteList[ModifiedSourceIndexPathRow] // 노트들의 row값은 맨위의 가방때문에 인덱스보다 1 큼
-                DataManager.shared.noteList.remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
-                DataManager.shared.noteList.insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
+                DataManager.shared.noteList[sourceIndexPath.section].remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
+                DataManager.shared.noteList[sourceIndexPath.section].insert(contentsOf: target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
                 if ModifiedSourceIndexPathRow < ModifiedDestinationIndexPathRow { // 원래자리와 새로운 자리 사이에 있는 애들 전부 리오더링
                     for i in ModifiedSourceIndexPathRow...ModifiedDestinationIndexPathRow {
-                        DataManager.shared.noteList[i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
                     }
                 } else {
                     for i in ModifiedDestinationIndexPathRow...ModifiedSourceIndexPathRow {
-                        DataManager.shared.noteList[i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
                     }
                 }
                 DataManager.shared.saveContext()
 
             } else { // 다른 가방으로 노트를 옮긴 경우
                 // 원래 가방에서 노트수 --, 노트 배열에서 제외, 순서 조정, 저장
-                DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
-                let target = DataManager.shared.noteList[ModifiedSourceIndexPathRow]
+                //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
+                let target = DataManager.shared.noteList[sourceIndexPath.section][ModifiedSourceIndexPathRow]
                 DataManager.shared.backPackList[sourceIndexPath.section].numberOfNote -= 1
                 DataManager.shared.noteList.remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
                 for i in 0..<ModifiedSourceIndexPathRow{
-                    DataManager.shared.noteList[i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                    DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
                 }
                 DataManager.shared.saveContext()
 
                 // 새 가방에 노트수 ++, 노트의 가방 이름 바꾸기, 노트 배열에 추가, 순서 조정, 저장
-                DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[ModifiedDestinationIndexPathSection].name)
+                //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[ModifiedDestinationIndexPathSection].name)
                 target.backPackName = DataManager.shared.backPackList[ModifiedDestinationIndexPathSection].name
                 DataManager.shared.backPackList[ModifiedDestinationIndexPathSection].numberOfNote += 1
-                DataManager.shared.noteList.insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
+                DataManager.shared.noteList[ModifiedDestinationIndexPathSection].insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
                 for i in 0...ModifiedDestinationIndexPathRow{ // 추가한 경우에는 0~타겟이 아닌 타겟~끝까지 순서조정해줘야함
-                    DataManager.shared.noteList[i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                    DataManager.shared.noteList[ModifiedDestinationIndexPathSection][i].order = Int16(DataManager.shared.noteList.count - i - 1)
                 }
                 DataManager.shared.saveContext()
             }
@@ -295,8 +293,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
                     // 확인 눌렀을 때 하는 소스
                     // 디비에서 노트 다 삭제
-                    DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
-                    for targetNote in DataManager.shared.noteList {
+                    //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
+                    for targetNote in DataManager.shared.noteList[indexPath.section] {
                         DataManager.shared.deleteNote(targetNote)
                     }
 
@@ -332,14 +330,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
                     // 확인 눌렀을 때 하는 소스
                     // 노트 배열 로딩
-                    DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
+                    //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
                     // 타겟 노트 지정
-                    let targetNote = DataManager.shared.noteList[indexPath.row - 1]
+                    let targetNote = DataManager.shared.noteList[indexPath.section][indexPath.row - 1]
                     // 배열에서 노트 삭제
                     DataManager.shared.noteList.remove(at: indexPath.row - 1)
                     // 노트들 순서 조정
                     for i in 0..<indexPath.row - 1{
-                       DataManager.shared.noteList[i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                       DataManager.shared.noteList[indexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
                     }
                     // 가방에서 노트 수 하나 빼기
                     DataManager.shared.backPackList[indexPath.section].numberOfNote -= 1

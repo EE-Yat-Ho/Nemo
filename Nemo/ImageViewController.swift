@@ -14,7 +14,10 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
     let imageView = UIImageView().then{
         $0.contentMode = .scaleAspectFit
     }
-    let scrollView = UIScrollView()
+    let scrollView = UIScrollView().then{
+        $0.minimumZoomScale = 1.0
+        $0.maximumZoomScale = 4.0
+    }
     var leftButton = UIButton().then{
         $0.setImage(UIImage(named:"편집_뒤로가기"), for: .normal)
         $0.addTarget(self, action: #selector(clickLeftButton), for: .touchUpInside)
@@ -24,12 +27,18 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
         $0.addTarget(self, action: #selector(clickAnotherImageButton), for: .touchUpInside)
+        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.setTitleColor(UIColor.white, for: .normal)
         $0.setTitle("다른 이미지 선택", for: .normal)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBarController?.tabBar.isHidden = true
+        scrollView.delegate = self
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
     
     func setupLayout() {
@@ -38,7 +47,6 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         view.addSubview(scrollView)
         view.addSubview(anotherImageButton)
         scrollView.addSubview(imageView)
-        
         
         scrollView.snp.makeConstraints{
             $0.edges.equalToSuperview()
@@ -50,16 +58,16 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         }
         imageView.snp.makeConstraints{
             $0.centerX.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-30)
-            $0.height.width.equalTo(30)
+            $0.centerY.equalToSuperview().offset(-50)
+            $0.edges.equalToSuperview()
         }
         
         anotherImageButton.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(60)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-60)
             $0.height.equalTo(40)
         }
-        view.sendSubviewToBack(imageView)
+        view.sendSubviewToBack(scrollView)
     }
     
     @objc func clickLeftButton() {
@@ -84,9 +92,9 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         if let img = info[.originalImage] as? UIImage{
             imageView.image = img
             if tag == 1 {
-                DataManager.shared.imageList_MC[index] = img
+                DataManager.shared.imageList[index] = img
             } else {
-                DataManager.shared.imageList_MC_2[index] = img
+                DataManager.shared.imageList2[index] = img
             }
         }
     }

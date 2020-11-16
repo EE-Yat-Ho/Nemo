@@ -27,6 +27,8 @@ class MakeMemoViewController: UIViewController {
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
         $0.becomeFirstResponder()
+        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.backgroundColor = UIColor.clear
     }
     
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
@@ -57,7 +59,6 @@ class MakeMemoViewController: UIViewController {
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
                             action: #selector(save(_:)))
-        //navigationController?.navigationItem.title = "필기 만들기"
         
         setupLayout()
         dataLoad()
@@ -128,16 +129,11 @@ class MakeMemoViewController: UIViewController {
         }
 
         if editTarget == nil {
-            DataManager.shared.addNewMemo(content: memoContent.text) // 20200621 #19 db구현2. 위에것들 주석처리하고, 새로 작성한 디비 저장함수 실행
-            //NotificationCenter.default.post(name:MakeBackPackViewController.newBackPackDidInsert, object: nil) // 앱의 모든 객체에게 노티피케이션을 전달
+            DataManager.shared.addNewMemo(content: memoContent.text)
+            
         } else {
             editTarget?.content = memoContent.text
-            
-            var dataList = [Data]()
-            for i in DataManager.shared.imageList {
-                dataList.append(i.jpegData(compressionQuality: 0.01)!)
-            }
-            editTarget?.images = dataList
+            editTarget?.images = DataManager.shared.imageList.map{$0.jpegData(compressionQuality: 0.01)!}
             DataManager.shared.saveContext()
         }
         navigationController?.popViewController(animated: true)
@@ -176,21 +172,27 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
 
 extension MakeMemoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     // 20200720 올린 사진을 보여줄 콜랙션뷰 구현
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            collectionView.deselectItem(at: indexPath, animated: true)
-            print("You tapped me")
-        }
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return DataManager.shared.imageList.count
-        }
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return DataManager.shared.imageList.count
+    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
+        cell.delegate = self
+        cell.mappingData(index: indexPath.row, tag: 1)
+//        cell.index = indexPath.row
+//        cell.imageView.image = DataManager.shared.imageList[indexPath.row]
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let imageViewController = ImageViewController()
+        imageViewController.imageView.image = DataManager.shared.imageList[indexPath.row]
 
-            cell.imageView.image = DataManager.shared.imageList[indexPath.row]
-         
-            
-            return cell
-        }
+        imageViewController.tag = 1
+        imageViewController.index = indexPath.row
+        navigationController?.pushViewController(imageViewController, animated: true)
+    }
 }
 
 
@@ -215,5 +217,19 @@ extension MakeMemoViewController: UITextViewDelegate {
             textView.resignFirstResponder()
         }
         return true
+    }
+}
+
+extension MakeMemoViewController: CollectionDelegate {
+    func clickXButton(_ cell: CollectionViewCell) {
+        DataManager.shared.imageList.remove(at: cell.index)
+        
+        collectionViewHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
+        if collectionViewHeight == 0 { collectionViewHeight = 10 }
+        if collectionViewHeight > 270 { collectionViewHeight = 270 }
+        collectionView.snp.updateConstraints{
+            $0.height.equalTo(collectionViewHeight)
+        }
+        collectionView.reloadData()
     }
 }
