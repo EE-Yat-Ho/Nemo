@@ -10,15 +10,18 @@
 		2A12BCFA2561A4520007A971 /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BCF92561A4520007A971 /* TimeCell.swift */; };
 		2A12BCFE2561C12B0007A971 /* BackPackCell_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BCFD2561C12B0007A971 /* BackPackCell_Test.swift */; };
 		2A12BD012561C1530007A971 /* NoteCell_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A12BD002561C1530007A971 /* NoteCell_Test.swift */; };
-		2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */; };
-		2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */; };
+		2A1F56F42562F83900312657 /* IncorrectNoteViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F56F32562F83900312657 /* IncorrectNoteViewContoller.swift */; };
+		2A1F56F82562FF9600312657 /* IncorrectQuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F56F72562FF9600312657 /* IncorrectQuestionCell.swift */; };
+		2A1F56FC25630EC300312657 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F56FB25630EC300312657 /* ConfigViewController.swift */; };
+		2A1F57002563107D00312657 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F56FF2563107D00312657 /* ConfigCell.swift */; };
+		2A1F57032563127900312657 /* AlermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F57022563127900312657 /* AlermViewController.swift */; };
+		2A1F57062563132500312657 /* AlermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F57052563132500312657 /* AlermCell.swift */; };
 		2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26B25346FD40031E55C /* QuestionCell.swift */; };
 		2A36E2702534702D0031E55C /* QuestionOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */; };
 		2A36E273253470360031E55C /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E272253470360031E55C /* MemoCell.swift */; };
 		2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E2752534703F0031E55C /* MemoOpenCell.swift */; };
 		2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C724DBDB62004A2CEB /* TimerViewController.swift */; };
 		2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C924DBE598004A2CEB /* TestViewController.swift */; };
-		2A4886CC24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */; };
 		2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94B624A1C73B000596D8 /* AppDelegate.swift */; };
 		2A5E94B924A1C73B000596D8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */; };
 		2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */; };
@@ -39,16 +42,13 @@
 		2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */; };
 		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
-		2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */; };
-		2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
-		2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6F84DC254C16370000345F /* UnderlinedTextView.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */; };
+		2AAC9749256785260037678C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC9748256785260037678C /* NotificationManager.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
 		2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */; };
 		2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */; };
-		2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */; };
 		2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */; };
 		2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */; };
 		3788CF0D15F44D47BA359ECC /* Pods_Nemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 735D830427728A39401B7DF3 /* Pods_Nemo.framework */; };
@@ -58,15 +58,18 @@
 		2A12BCF92561A4520007A971 /* TimeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		2A12BCFD2561C12B0007A971 /* BackPackCell_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackCell_Test.swift; sourceTree = "<group>"; };
 		2A12BD002561C1530007A971 /* NoteCell_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell_Test.swift; sourceTree = "<group>"; };
-		2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCheckCell.swift; sourceTree = "<group>"; };
-		2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
+		2A1F56F32562F83900312657 /* IncorrectNoteViewContoller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncorrectNoteViewContoller.swift; sourceTree = "<group>"; };
+		2A1F56F72562FF9600312657 /* IncorrectQuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncorrectQuestionCell.swift; sourceTree = "<group>"; };
+		2A1F56FB25630EC300312657 /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
+		2A1F56FF2563107D00312657 /* ConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
+		2A1F57022563127900312657 /* AlermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermViewController.swift; sourceTree = "<group>"; };
+		2A1F57052563132500312657 /* AlermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermCell.swift; sourceTree = "<group>"; };
 		2A36E26B25346FD40031E55C /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOpenCell.swift; sourceTree = "<group>"; };
 		2A36E272253470360031E55C /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
 		2A36E2752534703F0031E55C /* MemoOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoOpenCell.swift; sourceTree = "<group>"; };
 		2A4886C724DBDB62004A2CEB /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2A4886C924DBE598004A2CEB /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
-		2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentsCollectionViewCell.swift; sourceTree = "<group>"; };
 		2A5E94B324A1C73B000596D8 /* Nemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A5E94B624A1C73B000596D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,16 +92,13 @@
 		2A6D74B524B4816900AFD0E1 /* QuestionMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
-		2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCellt.swift; sourceTree = "<group>"; };
-		2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPackTimeTabBarController.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
-		2A6F84DC254C16370000345F /* UnderlinedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextView.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerCell.swift; sourceTree = "<group>"; };
+		2AAC9748256785260037678C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplanationViewController.swift; sourceTree = "<group>"; };
 		2ADA4C5D24EBC7BD00283AC6 /* QuestionAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerCell.swift; sourceTree = "<group>"; };
-		2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleChoiceQuestionAnswerCellForTest.swift; sourceTree = "<group>"; };
 		2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndingCell.swift; sourceTree = "<group>"; };
 		2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndTestTableViewController.swift; sourceTree = "<group>"; };
 		735D830427728A39401B7DF3 /* Pods_Nemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Nemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +133,8 @@
 				2A12BCF82561A42E0007A971 /* Setting */,
 				2AA62C012561DA0000EA3E35 /* Timer */,
 				2AA62C072562249A00EA3E35 /* Test */,
-				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
+				2A1F56EB2562CDA800312657 /* End */,
+				2A1F56EE2562EA8B00312657 /* EndDetail */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -194,6 +195,42 @@
 			path = Make;
 			sourceTree = "<group>";
 		};
+		2A1F56EB2562CDA800312657 /* End */ = {
+			isa = PBXGroup;
+			children = (
+				2AEAB5C324E2A15400FF6E33 /* EndTestTableViewController.swift */,
+				2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */,
+			);
+			path = End;
+			sourceTree = "<group>";
+		};
+		2A1F56EE2562EA8B00312657 /* EndDetail */ = {
+			isa = PBXGroup;
+			children = (
+				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
+			);
+			path = EndDetail;
+			sourceTree = "<group>";
+		};
+		2A1F56F12562F7AB00312657 /* IncorrectNote */ = {
+			isa = PBXGroup;
+			children = (
+				2A1F56F32562F83900312657 /* IncorrectNoteViewContoller.swift */,
+				2A1F56F72562FF9600312657 /* IncorrectQuestionCell.swift */,
+			);
+			name = IncorrectNote;
+			sourceTree = "<group>";
+		};
+		2A1F56FA25630E5300312657 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				2AAC97502567AFEC0037678C /* Alerm */,
+				2A1F56FB25630EC300312657 /* ConfigViewController.swift */,
+				2A1F56FF2563107D00312657 /* ConfigCell.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		2A36E26A25346F230031E55C /* QuestionMemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,36 +261,29 @@
 		2A5E94B524A1C73B000596D8 /* Nemo */ = {
 			isa = PBXGroup;
 			children = (
+				2AAC9739256775BE0037678C /* SupportingFiles */,
 				2A6F84DB254C161D0000345F /* Foundation */,
-				2A5E94EC24A85847000596D8 /* Cells */,
-				2A5E94E724A721D8000596D8 /* Buttons */,
-				2A5E94D324A1D4A7000596D8 /* Data */,
+				2A5E94D324A1D4A7000596D8 /* CoreData */,
 				2A5E94B624A1C73B000596D8 /* AppDelegate.swift */,
 				2A5E94B824A1C73B000596D8 /* SceneDelegate.swift */,
 				2A5E94EF24A860EF000596D8 /* Main.storyboard */,
-				2A30C22B24F8F9FA00BEAC9E /* MainTabbarController.swift */,
 				2A5E94C224A1C73E000596D8 /* Assets.xcassets */,
 				2AFFE4B6252B20920046C687 /* Home */,
 				2A36E26A25346F230031E55C /* QuestionMemo */,
 				2A12BCF525619C1B0007A971 /* Test */,
-				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
-				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
-				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
-				2A5E94C724A1C73E000596D8 /* Info.plist */,
-				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
-				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
-				2A6D74E024D405B400AFD0E1 /* BackPackTimeTabBarController.swift */,
+				2A1F56F12562F7AB00312657 /* IncorrectNote */,
+				2A1F56FA25630E5300312657 /* Config */,
 			);
 			path = Nemo;
 			sourceTree = "<group>";
 		};
-		2A5E94D324A1D4A7000596D8 /* Data */ = {
+		2A5E94D324A1D4A7000596D8 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				2A5E94D424A1D4D0000596D8 /* DataManager.swift */,
 				2A5E94BF24A1C73B000596D8 /* BrainSupporter2.xcdatamodeld */,
 			);
-			path = Data;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		2A5E94E724A721D8000596D8 /* Buttons */ = {
@@ -269,11 +299,6 @@
 		2A5E94EC24A85847000596D8 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				2A6D74D224C5783C00AFD0E1 /* CollectionViewCellt.swift */,
-				2A4886CB24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift */,
-				2A263F3424E28C39008D02A9 /* QuestionCheckCell.swift */,
-				2AEAB5C124E29EA000FF6E33 /* EndingCell.swift */,
-				2ADA4C5F24ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift */,
 				2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -310,7 +335,12 @@
 		2A6F84DB254C161D0000345F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2A6F84DC254C16370000345F /* UnderlinedTextView.swift */,
+				2AAC9747256784FE0037678C /* NotificationManager */,
+				2AAC9742256776120037678C /* Animate */,
+				2AAC973F256775DE0037678C /* Extensions */,
+				2AAC973D256775D60037678C /* ImageView */,
+				2A5E94E724A721D8000596D8 /* Buttons */,
+				2A5E94EC24A85847000596D8 /* Cells */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -330,6 +360,56 @@
 				2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		2AAC9739256775BE0037678C /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94C724A1C73E000596D8 /* Info.plist */,
+				2A5E94C424A1C73E000596D8 /* LaunchScreen.storyboard */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		2AAC973D256775D60037678C /* ImageView */ = {
+			isa = PBXGroup;
+			children = (
+				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
+			);
+			path = ImageView;
+			sourceTree = "<group>";
+		};
+		2AAC973F256775DE0037678C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2A5E94DC24A22877000596D8 /* UIViewController+Alert.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2AAC9742256776120037678C /* Animate */ = {
+			isa = PBXGroup;
+			children = (
+				2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */,
+			);
+			path = Animate;
+			sourceTree = "<group>";
+		};
+		2AAC9747256784FE0037678C /* NotificationManager */ = {
+			isa = PBXGroup;
+			children = (
+				2AAC9748256785260037678C /* NotificationManager.swift */,
+			);
+			path = NotificationManager;
+			sourceTree = "<group>";
+		};
+		2AAC97502567AFEC0037678C /* Alerm */ = {
+			isa = PBXGroup;
+			children = (
+				2A1F57022563127900312657 /* AlermViewController.swift */,
+				2A1F57052563132500312657 /* AlermCell.swift */,
+			);
+			path = Alerm;
 			sourceTree = "<group>";
 		};
 		2AFFE4B6252B20920046C687 /* Home */ = {
@@ -464,45 +544,45 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1F56F82562FF9600312657 /* IncorrectQuestionCell.swift in Sources */,
 				2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */,
 				2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */,
 				2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */,
 				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
 				2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */,
+				2A1F57032563127900312657 /* AlermViewController.swift in Sources */,
 				2A5E94D024A1CAA5000596D8 /* RoundButton.swift in Sources */,
-				2A6D74D324C5783C00AFD0E1 /* CollectionViewCellt.swift in Sources */,
 				2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */,
 				2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */,
 				2A6D74AE24A8883700AFD0E1 /* MakeQuestionViewController.swift in Sources */,
 				2A5E94D524A1D4D0000596D8 /* DataManager.swift in Sources */,
 				2A12BD012561C1530007A971 /* NoteCell_Test.swift in Sources */,
+				2AAC9749256785260037678C /* NotificationManager.swift in Sources */,
 				2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */,
+				2A1F56FC25630EC300312657 /* ConfigViewController.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
+				2A1F57062563132500312657 /* AlermCell.swift in Sources */,
 				2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */,
 				2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */,
 				2ADA4C5C24EBBDB200283AC6 /* ExplanationViewController.swift in Sources */,
 				2A5E94DD24A22877000596D8 /* UIViewController+Alert.swift in Sources */,
 				2A5E94B924A1C73B000596D8 /* SceneDelegate.swift in Sources */,
 				2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */,
-				2ADA4C6024ECF00400283AC6 /* MultipleChoiceQuestionAnswerCellForTest.swift in Sources */,
-				2A30C22C24F8F9FA00BEAC9E /* MainTabbarController.swift in Sources */,
 				2A36E2702534702D0031E55C /* QuestionOpenCell.swift in Sources */,
 				2A12BCFA2561A4520007A971 /* TimeCell.swift in Sources */,
-				2A4886CC24DBFF9F004A2CEB /* ContentsCollectionViewCell.swift in Sources */,
-				2A6D74E124D405B400AFD0E1 /* BackPackTimeTabBarController.swift in Sources */,
+				2A1F56F42562F83900312657 /* IncorrectNoteViewContoller.swift in Sources */,
 				2A5E94EE24A8587C000596D8 /* BackPackCell.swift in Sources */,
 				2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */,
 				2A12BCFE2561C12B0007A971 /* BackPackCell_Test.swift in Sources */,
 				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
-				2A263F3524E28C39008D02A9 /* QuestionCheckCell.swift in Sources */,
 				2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */,
-				2A6F84DD254C16370000345F /* UnderlinedTextView.swift in Sources */,
 				2A36E273253470360031E55C /* MemoCell.swift in Sources */,
 				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,
 				2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */,
 				2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */,
+				2A1F57002563107D00312657 /* ConfigCell.swift in Sources */,
 				2AEAB5C424E2A15400FF6E33 /* EndTestTableViewController.swift in Sources */,
 				2A5E94DB24A2261B000596D8 /* MakeBackPackViewController.swift in Sources */,
 			);
@@ -644,7 +724,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
-				INFOPLIST_FILE = Nemo/Info.plist;
+				INFOPLIST_FILE = Nemo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -666,7 +746,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
-				INFOPLIST_FILE = Nemo/Info.plist;
+				INFOPLIST_FILE = Nemo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

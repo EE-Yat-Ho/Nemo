@@ -212,7 +212,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     //순서바꿀때 배열이랑 디비 조정
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
         if sourceIndexPath.row == 0 { // 오픈메뉴를 옮긴 경우
-            
+            // 여기서 노트는 row == 0이 아닌 것들이기 떄문에 문제, 필기 모두 해당됨
         } else { // 노트를 옮긴 경우
             // 노트들의 row값은 맨 위 가방의 row 0 때문에 1 커서 1 빼줘야함
             var ModifiedDestinationIndexPathRow = destinationIndexPath.row - 1
@@ -225,12 +225,12 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                     ModifiedDestinationIndexPathRow = 0 // row값 -1에서 0으로 수정해주기
                 } else { // 메모보기 위에 얹은 경우. 문제보기의 맨 밑으로 생각하기
                     ModifiedDestinationIndexPathSection -= 1 // 1 => 0으로 문제보기로 되고
-                    ModifiedDestinationIndexPathRow = Int(DataManager.shared.questionList.count) // 젤 아래
+                    ModifiedDestinationIndexPathRow = Int(DataManager.shared.questionList.count - 1) // 젤 아래
                 }
             }
             if sourceIndexPath.section == 0 && destinationIndexPath.section == 1 { // 문제들에서 보기들로 내려버린 경우
                 ModifiedDestinationIndexPathSection = 0 // 위 섹션으로 고쳐버리고
-                ModifiedDestinationIndexPathRow = Int(DataManager.shared.questionList.count) // 젤 밑으로 봄
+                ModifiedDestinationIndexPathRow = Int(DataManager.shared.memoList.count - 1) // 젤 밑으로 봄
             } else if sourceIndexPath.section == 1 && destinationIndexPath.section == 0 { // 보기들에서 문제로 올려버린 경우
                 ModifiedDestinationIndexPathSection = 1 // 아래 섹션으로 고쳐버리고
                 ModifiedDestinationIndexPathRow = 0 // 맨 위라고 봄

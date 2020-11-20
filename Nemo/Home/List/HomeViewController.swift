@@ -17,7 +17,15 @@ import NSObject_Rx
 
 class HomeViewController: UIViewController {
     var tableViewEditMode = false
-    var tableView = UITableView().then {
+    let emptyImage = UIImageView().then {
+        $0.image = UIImage(named: "가방")
+    }
+    let emptyLabel = UILabel().then {
+        $0.text = "가방을 만들어주세요"
+        $0.textAlignment = .center
+        $0.font = UIFont.systemFont(ofSize: 24)
+    }
+    let tableView = UITableView().then {
         $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
         $0.register(BackPackCell.self, forCellReuseIdentifier: "BackPackCell")
         $0.tableFooterView = UIView()
@@ -37,27 +45,11 @@ class HomeViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.separatorColor = UIColor.clear
-        tableView.backgroundColor = UIColor.clear
         
-        navigationItem.rightBarButtonItem = editButton
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.backgroundColor = UIColor.clear
-
-//        tabBarController?.tabBar.isTranslucent = false
-        tabBarController?.tabBar.backgroundImage = UIImage(named: "배경")
-        tabBarController?.tabBar.frame.size.height = 60
-        tabBarController?.tabBar.frame.origin.y = view.frame.height - 60
         setupLayout()
         bindingData()
         
-        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
-        for (index, element) in DataManager.shared.backPackList.enumerated() {
-            DataManager.shared.noteList.append([Note]())
-            DataManager.shared.fetchNote(backPackName: element.name, index: index)
-        }
-        
+        AppInit()
         // 폰트 이름 확인하기
 //        for name in UIFont.familyNames {
 //            print(name)
@@ -68,10 +60,25 @@ class HomeViewController: UIViewController {
 //        }
     }
     
+    func AppInit() {
+        // 
+        NotificationManager.shared.synchNotiAuth()
+        
+        //첫 실행시 할 것들
+        if UserDefaults.standard.bool(forKey: "didLaunched") == false {
+            NotificationManager.shared.getAuthorization()
+            NotificationManager.shared.setNotiTime(hour:21, minite:0)
+            NotificationManager.shared.setNotification()
+            
+            /// 권한창에서 선택안하고 껏을 경우, 값이 비어있지않게 하기 위한 조치.
+            UserDefaults.standard.setValue(false, forKey: "notiAuth")
+            
+            UserDefaults.standard.setValue(true, forKey: "didLaunched")
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) { // 화면이 전환 될때(나타날때) 호출
         super.viewWillAppear(animated)
-        
-        
         tableView.reloadData() // 배열 데이터로 뷰를 업데이트함
     }
     
@@ -84,11 +91,37 @@ class HomeViewController: UIViewController {
     
     func setupLayout() {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        tableView.separatorColor = UIColor.clear
+        tableView.backgroundColor = UIColor.clear
         
+        // 네비게이션 레이아웃
+        navigationItem.rightBarButtonItem = editButton
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
+        
+        // 탭바 레이아웃
+        tabBarController?.tabBar.backgroundImage = UIImage(named: "배경")
+        let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0)]
+        UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
+        
+        // 가방 없을 경우 띄우는거
+        view.addSubview(emptyImage)
+        view.addSubview(emptyLabel)
+        emptyImage.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview().offset(-30)
+            $0.height.width.equalTo(80)
+        }
+        emptyLabel.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(emptyImage.snp.bottom).offset(20)
+        }
+        
+        // 나머지
         view.addSubview(tableView)
         view.addSubview(titleLabel)
         view.addSubview(addButton)
-        
         titleLabel.snp.makeConstraints{
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
@@ -145,6 +178,22 @@ class HomeViewController: UIViewController {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        DataManager.shared.fetchBackPack() // 디비에서 배열로 데이터를 가져옴
+        DataManager.shared.noteList = [[Note]]()
+        for (index, element) in DataManager.shared.backPackList.enumerated() {
+            DataManager.shared.noteList.append([Note]())
+            DataManager.shared.fetchNote(backPackName: element.name, index: index)
+        }
+        
+        if DataManager.shared.backPackList.count > 0 {
+            titleLabel.isHidden = false
+            emptyImage.isHidden = true
+            emptyLabel.isHidden = true
+        } else {
+            titleLabel.isHidden = true
+            emptyImage.isHidden = false
+            emptyLabel.isHidden = false
+        }
         return DataManager.shared.backPackList.count
     }
     //테이블 뷰에게 몇개의 셀을 표시하면 되는지 알려주는 부분
@@ -220,7 +269,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     DataManager.shared.backPackList[i].order = Int16(DataManager.shared.backPackList.count - i - 1)
                 }
             }
-            //아니 배열만 고치고 세이브하면 되는거였냐고 ㅅㅂ 이걸 하..
+            //아니 배열만 고치고 세이브하면 되는거였냐고 이걸..ㅠ
             DataManager.shared.saveContext()
         } else { // 노트를 옮긴 경우
             // 노트들의 row값은 맨 위 가방의 row 0 때문에 1 커서 1 빼줘야함
@@ -241,16 +290,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
             if sourceIndexPath.section == ModifiedDestinationIndexPathSection { // 한 가방 안에서 옮긴 경우
                 //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
-                let target = DataManager.shared.noteList[ModifiedSourceIndexPathRow] // 노트들의 row값은 맨위의 가방때문에 인덱스보다 1 큼
+                let target = DataManager.shared.noteList[sourceIndexPath.section][ModifiedSourceIndexPathRow] // 노트들의 row값은 맨위의 가방때문에 인덱스보다 1 큼
                 DataManager.shared.noteList[sourceIndexPath.section].remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
-                DataManager.shared.noteList[sourceIndexPath.section].insert(contentsOf: target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
+                DataManager.shared.noteList[sourceIndexPath.section].insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
                 if ModifiedSourceIndexPathRow < ModifiedDestinationIndexPathRow { // 원래자리와 새로운 자리 사이에 있는 애들 전부 리오더링
                     for i in ModifiedSourceIndexPathRow...ModifiedDestinationIndexPathRow {
-                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList[sourceIndexPath.section].count - i - 1)
                     }
                 } else {
                     for i in ModifiedDestinationIndexPathRow...ModifiedSourceIndexPathRow {
-                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                        DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList[sourceIndexPath.section].count - i - 1)
                     }
                 }
                 DataManager.shared.saveContext()
@@ -260,9 +309,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[sourceIndexPath.section].name)
                 let target = DataManager.shared.noteList[sourceIndexPath.section][ModifiedSourceIndexPathRow]
                 DataManager.shared.backPackList[sourceIndexPath.section].numberOfNote -= 1
-                DataManager.shared.noteList.remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
+                DataManager.shared.noteList[sourceIndexPath.section].remove(at: ModifiedSourceIndexPathRow) // 원래자리에서 지우고
                 for i in 0..<ModifiedSourceIndexPathRow{
-                    DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                    DataManager.shared.noteList[sourceIndexPath.section][i].order = Int16(DataManager.shared.noteList[sourceIndexPath.section].count - i - 1)
                 }
                 DataManager.shared.saveContext()
 
@@ -272,7 +321,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 DataManager.shared.backPackList[ModifiedDestinationIndexPathSection].numberOfNote += 1
                 DataManager.shared.noteList[ModifiedDestinationIndexPathSection].insert(target, at: ModifiedDestinationIndexPathRow) // 새로운 자리에 넣어줌
                 for i in 0...ModifiedDestinationIndexPathRow{ // 추가한 경우에는 0~타겟이 아닌 타겟~끝까지 순서조정해줘야함
-                    DataManager.shared.noteList[ModifiedDestinationIndexPathSection][i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                    DataManager.shared.noteList[ModifiedDestinationIndexPathSection][i].order = Int16(DataManager.shared.noteList[ModifiedDestinationIndexPathSection].count - i - 1)
                 }
                 DataManager.shared.saveContext()
             }
@@ -334,10 +383,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     // 타겟 노트 지정
                     let targetNote = DataManager.shared.noteList[indexPath.section][indexPath.row - 1]
                     // 배열에서 노트 삭제
-                    DataManager.shared.noteList.remove(at: indexPath.row - 1)
+                    DataManager.shared.noteList[indexPath.section].remove(at: indexPath.row - 1)
                     // 노트들 순서 조정
                     for i in 0..<indexPath.row - 1{
-                       DataManager.shared.noteList[indexPath.section][i].order = Int16(DataManager.shared.noteList.count - i - 1)
+                       DataManager.shared.noteList[indexPath.section][i].order = Int16(DataManager.shared.noteList[indexPath.section].count - i - 1)
                     }
                     // 가방에서 노트 수 하나 빼기
                     DataManager.shared.backPackList[indexPath.section].numberOfNote -= 1

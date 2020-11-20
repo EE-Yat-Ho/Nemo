@@ -27,6 +27,8 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="explanation" optional="YES" attributeType="String"/>
         <attribute name="explanationImages" optional="YES" attributeType="Transformable" customClassName="[Data]"/>
+        <attribute name="failCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="failDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="isSubjective" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="noteName" optional="YES" attributeType="String"/>
         <attribute name="order" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -37,6 +39,6 @@
         <element name="BackPack" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Memo" positionX="-45" positionY="63" width="128" height="118"/>
         <element name="Note" positionX="-45" positionY="36" width="128" height="118"/>
-        <element name="Question" positionX="-54" positionY="45" width="128" height="208"/>
+        <element name="Question" positionX="-54" positionY="45" width="128" height="238"/>
     </elements>
 </model>

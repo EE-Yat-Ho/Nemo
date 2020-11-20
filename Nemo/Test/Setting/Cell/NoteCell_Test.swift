@@ -24,9 +24,10 @@ class NoteCell_Test: UITableViewCell {
     var numberOfMemo = UILabel().then {
         $0.textColor = UIColor.gray
     }
-    var rightImage = UIImageView().then {
-        $0.image = UIImage(named: "기본아이콘_이동")
-    }
+    var rightImage = UIImageView()
+        //.then {
+        //$0.image = UIImage(named: "기본아이콘_이동")
+    //}
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -60,7 +61,7 @@ class NoteCell_Test: UITableViewCell {
         addSubview(rightImage)
         
         checkImage.snp.makeConstraints{
-            $0.edges.equalTo(noteImage)
+            $0.edges.equalTo(noteImage).inset(-10)
         }
         noteImage.snp.makeConstraints{
             $0.height.width.equalTo(30)

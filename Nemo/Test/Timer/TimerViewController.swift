@@ -50,9 +50,11 @@ class TimerViewController: UIViewController {
     }
     
     let fieldAmount = UILabel().then{
+        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 30)
         $0.textAlignment = .center
     }
     let questionAmount = UILabel().then{
+        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 23)
         $0.textAlignment = .center
     }
     let startTestButton = UIButton().then {
@@ -201,6 +203,12 @@ class TimerViewController: UIViewController {
         }
         
         DataManager.shared.testQuestionList.shuffle()
+        var temp = [DataManager.shared.testQuestionList[0]]
+        for i in 1..<DataManager.shared.nowQAmount! {
+            temp.append(DataManager.shared.testQuestionList[i])
+        }
+        DataManager.shared.testQuestionList = temp
+        
         DataManager.shared.orderingAnswersToTestQuestion()
         DataManager.shared.nowQNumber = 1
         tabBarController?.tabBar.isHidden = true

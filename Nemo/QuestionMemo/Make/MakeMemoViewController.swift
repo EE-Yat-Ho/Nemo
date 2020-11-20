@@ -165,6 +165,7 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
             collectionView.snp.updateConstraints{
                 $0.height.equalTo(collectionViewHeight)
             }
+            collectionView.reloadData()
         }
     }
 }

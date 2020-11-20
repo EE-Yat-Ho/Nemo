@@ -15,6 +15,12 @@ import RxCocoa
 //모델 파일 => 디비 설계도 개념
 //core data에서는 엔티티를 클래스로 다룸
 
+
+enum SortKey : String{
+    case failCount
+    case failDate
+}
+
 class DataManager{
     // 싱글톤으로 클래스를 구현하는 방식. 공유인스턴스로 앱 전체에서 하나의 인스턴스 사용가능. 아 정처기 거기있었는데 싱글톤
     static let shared = DataManager()
@@ -50,10 +56,41 @@ class DataManager{
     var orderingAnswers = [[String]]() // 푸는 문제들 인덱스에 맞게 보기를 셔플한 배열
     
     func orderingAnswersToTestQuestion() {
+        orderingAnswers = []
         for i in testQuestionList {
             var temp = i.answers
             temp?.append(i.answer ?? "")
             orderingAnswers.append(temp?.shuffled() ?? [""])
+        }
+    }
+    
+    var sortQuestionList = [Question]()
+    func fetchQuestionSort(key: SortKey) {
+        let request: NSFetchRequest<Question> = Question.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
+        
+        var predicate = NSPredicate()
+        switch key {
+        case .failCount:
+            predicate = NSPredicate(format: "failCount != 0")
+        case .failDate:
+            predicate = NSPredicate(format: "failDate != %@", Date(timeIntervalSince1970: 0) as CVarArg)
+        }
+        request.predicate = predicate
+        
+        // 코어데이터가 주는 데이터들을 정렬하기 위한 소트 디스크립터를 만듬
+        let firstSortDesc = NSSortDescriptor(key: key.rawValue, ascending: false)
+        let secondSortDesc = NSSortDescriptor(key: "question", ascending: true)
+        request.sortDescriptors = [firstSortDesc, secondSortDesc]
+        request.fetchLimit = 100
+        
+        // 패치 리퀘스트를 실행하고 데이터를 가져오는 코드
+        // 컨텍스트에서 제공하는 패치 메소드를 사용하며,
+        // fetch함수 자동완성 기능을 보면 throws가 적힌게 있는데 이건 오류가 발생할 수 있다는 뜻
+        // 그래서 일반적인 호출로는 안되고, do catch문을 사용해야함
+        do{
+            sortQuestionList = try mainContext.fetch(request)
+        } catch {
+            print(error)
         }
     }
     
