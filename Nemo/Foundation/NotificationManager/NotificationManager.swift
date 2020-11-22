@@ -24,9 +24,9 @@ class NotificationManager {
         })
     }
     
-    func setNotiTime(hour: Int, minite: Int){
+    func setNotiTime(hour: Int, minute: Int){
         UserDefaults.standard.setValue(hour, forKey: "notiHour")
-        UserDefaults.standard.setValue(minite, forKey: "notiMinite")
+        UserDefaults.standard.setValue(minute, forKey: "notiMinute")
     }
     
     let content = UNMutableNotificationContent().then {
@@ -49,7 +49,7 @@ class NotificationManager {
     
     func setNotification() {
         dateComponents.hour = UserDefaults.standard.integer(forKey: "notiHour")
-        dateComponents.minute = UserDefaults.standard.integer(forKey: "notiMinite")
+        dateComponents.minute = UserDefaults.standard.integer(forKey: "notiMinute")
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         

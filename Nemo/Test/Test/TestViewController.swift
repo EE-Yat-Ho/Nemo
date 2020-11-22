@@ -83,7 +83,7 @@ class TestViewController: UIViewController {
     var nowQuestion = Question()
     var useTime = -1
     var timer = Timer()
-    var minite = -1
+    var minute = -1
     var second = -1
     var isCheckList = [Bool]()
     var isExclusionList = [Bool]()
@@ -247,14 +247,14 @@ class TestViewController: UIViewController {
         if useTime == DataManager.shared.timerTime {
             self.clickNextQuestionButton() // 뭐냐 이 애니클래스는
         }
-        minite = useTime / 60
+        minute = useTime / 60
         second = useTime % 60
-        if minite < 10 {
+        if minute < 10 {
             timerLabel.text = "0"
         } else {
             timerLabel.text = ""
         }
-        timerLabel.text! += String(minite) + ":"
+        timerLabel.text! += String(minute) + ":"
         if second < 10 {
             timerLabel.text! += "0"
         }

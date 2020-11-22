@@ -17,10 +17,6 @@ protocol QuestionAnswerDelegate {
 
 class QuestionAnswerCell: UITableViewCell {
     
-    override func prepareForReuse() {
-        disposeBag = DisposeBag()
-    }
-    
     let contents = UITextField().then {
         $0.placeholder = "Enter"
         $0.font = UIFont.systemFont(ofSize: 15)
@@ -39,6 +35,9 @@ class QuestionAnswerCell: UITableViewCell {
     var index: Int = 0
     var delegate: QuestionAnswerDelegate!
     var disposeBag = DisposeBag()
+    override func prepareForReuse() {
+        disposeBag = DisposeBag()
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

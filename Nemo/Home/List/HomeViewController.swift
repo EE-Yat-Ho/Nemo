@@ -67,7 +67,7 @@ class HomeViewController: UIViewController {
         //첫 실행시 할 것들
         if UserDefaults.standard.bool(forKey: "didLaunched") == false {
             NotificationManager.shared.getAuthorization()
-            NotificationManager.shared.setNotiTime(hour:21, minite:0)
+            NotificationManager.shared.setNotiTime(hour:21, minute:0)
             NotificationManager.shared.setNotification()
             
             /// 권한창에서 선택안하고 껏을 경우, 값이 비어있지않게 하기 위한 조치.
