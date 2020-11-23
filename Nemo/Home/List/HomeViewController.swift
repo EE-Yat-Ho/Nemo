@@ -72,21 +72,25 @@ class HomeViewController: UIViewController {
                     
                     alert.addTextField { tf in
                         tf.font = UIFont.systemFont(ofSize: 15)
-                        //tf.borderStyle = UITextField.BorderStyle.roundedRect
-                        //이름 바꾸기 만들다가 회의하고 일하러감
                         tf.autocorrectionType = UITextAutocorrectionType.no
                         tf.keyboardType = UIKeyboardType.default
                         tf.returnKeyType = UIReturnKeyType.done
                         tf.clearButtonMode = UITextField.ViewMode.whileEditing
                         tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-                        tf.layer.borderWidth = 1
-                        tf.layer.cornerRadius = 5
-                        tf.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
                         tf.text = DataManager.shared.backPackList[indexPath.section].name
                     }
                     
-                    let okAction = UIAlertAction(title: "확인",  style: .default) {_ in
-                        print("ㅎ확인")
+                    let okAction = UIAlertAction(title: "확인",  style: .default) { [weak self] _ in
+                        if alert.textFields?[0].text == "" {
+                            self?.alert(message: "이름을 비울 수는 없어요.")
+                            return
+                        }
+                        DataManager.shared.backPackList[indexPath.section].name = alert.textFields?[0].text
+                        for i in DataManager.shared.noteList[indexPath.section] {
+                            i.backPackName = alert.textFields?[0].text
+                        }
+                        DataManager.shared.saveContext()
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
                     } // 버튼 객체 생성
                     alert.addAction(okAction) // 알림창에 버튼 객체 추가
                     
@@ -94,10 +98,51 @@ class HomeViewController: UIViewController {
                     alert.addAction(cancelAction)
                     
                     present(alert, animated: true, completion: nil) // 완성된 알림창 화면에 띄우기
-
                 } else {
                     //노트의 이름을 변경하는 경우
+                    let alert = UIAlertController(title: "노트 이름 바꾸기", message: "", preferredStyle: .alert) // 알림창 객체 생성
                     
+                    alert.addTextField { tf in
+                        tf.font = UIFont.systemFont(ofSize: 15)
+                        tf.autocorrectionType = UITextAutocorrectionType.no
+                        tf.keyboardType = UIKeyboardType.default
+                        tf.returnKeyType = UIReturnKeyType.done
+                        tf.clearButtonMode = UITextField.ViewMode.whileEditing
+                        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        tf.text = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
+                    }
+                    
+                    let okAction = UIAlertAction(title: "확인",  style: .default) { [weak self] _ in
+                        if alert.textFields?[0].text == "" {
+                            self?.alert(message: "이름을 비울 수는 없어요.")
+                            return
+                        }
+                        
+                        // 문제와 필기를 긁어오기위한 노트이름 설정
+                        DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
+                        
+                        // 필기의 노트이름 바꾸기
+                        DataManager.shared.fetchMemo()
+                        for i in DataManager.shared.memoList {
+                            i.noteName = alert.textFields?[0].text
+                        }
+                        // 문제의 노트이름 바꾸기
+                        DataManager.shared.fetchQuestion()
+                        for i in DataManager.shared.questionList {
+                            i.noteName = alert.textFields?[0].text
+                        }
+                        
+                        // 노트의 이름바꾸기, 저장
+                        DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name = alert.textFields?[0].text
+                        DataManager.shared.saveContext()
+                        self?.tableView.reloadRows(at: [indexPath], with: .automatic)
+                    } // 버튼 객체 생성
+                    alert.addAction(okAction) // 알림창에 버튼 객체 추가
+                    
+                    let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+                    alert.addAction(cancelAction)
+                    
+                    present(alert, animated: true, completion: nil) // 완성된 알림창 화면에 띄우기
                 }
             }
         }
@@ -277,7 +322,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             // 그래서 row == 0 으로 노트를 갱신하던게 안되서 여기서 갱신해주자 ^_^;
             tableView.reloadSections(sections, with: .none)
         } else { // 노트 선택
-            DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
+            //DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
             //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
 

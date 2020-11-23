@@ -40,7 +40,9 @@ class NotificationManager {
         UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { settings in
             switch settings.alertSetting {
             case .enabled:
-                UserDefaults.standard.setValue(true, forKey: "notiAuth")
+                print("에헤이 무조건 키면 안되지")
+                //어어 무조건 키면 안되지
+                //UserDefaults.standard.setValue(true, forKey: "notiAuth")
             default:
                 UserDefaults.standard.setValue(false, forKey: "notiAuth")
             }

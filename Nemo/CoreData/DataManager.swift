@@ -42,7 +42,7 @@ class DataManager{
     var imageList = [UIImage]() // 문제, 메모
     var imageList2 = [UIImage]() // 풀이
     
-    var nowBackPackName:String?
+    //var nowBackPackName:String?
     var nowNoteName:String?
     var nowBPN:IndexPath?
     
@@ -136,7 +136,7 @@ class DataManager{
     }
     
     func fetchQuestion(){
-        let predicate = NSPredicate(format: "(backPackName = %@) AND (noteName = %@)", nowBackPackName! as CVarArg, nowNoteName! as CVarArg)
+        let predicate = NSPredicate(format: "noteName = %@", nowNoteName! as CVarArg)
         let request: NSFetchRequest<Question> = Question.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
         request.predicate = predicate
         
@@ -173,7 +173,7 @@ class DataManager{
     }
     
     func fetchMemo(){
-        let predicate = NSPredicate(format: "(backPackName = %@) AND (noteName = %@)", nowBackPackName! as CVarArg, nowNoteName! as CVarArg)
+        let predicate = NSPredicate(format: "noteName = %@", nowNoteName! as CVarArg)
         let request: NSFetchRequest<Memo> = Memo.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
         request.predicate = predicate
         
@@ -250,7 +250,7 @@ class DataManager{
         
         let newQuestion = Question(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
         newQuestion.noteName = nowNoteName // 여기존재
-        newQuestion.backPackName = nowBackPackName // 여기존재
+        //newQuestion.backPackName = nowBackPackName // 여기존재
         newQuestion.order = Int16(questionList.count) // 순서
         newQuestion.question = question // 파라미터
         newQuestion.isSubjective = isSubjective
@@ -279,7 +279,7 @@ class DataManager{
         
         let newMemo = Memo(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
         newMemo.noteName = nowNoteName // 파라미터로 넘겨받은 내용과
-        newMemo.backPackName = nowBackPackName
+        //newMemo.backPackName = nowBackPackName
         newMemo.order = Int16(questionList.count) // 순서
         newMemo.content = content
         newMemo.images = imageList.map{$0.jpegData(compressionQuality: 0.01)!}

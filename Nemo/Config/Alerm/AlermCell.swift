@@ -68,9 +68,11 @@ class AlermCell: UITableViewCell {
             print("toggle")
             if self?.toggleButton.isSelected ?? true { //켜진걸 끄는경우 = 알람을 끄기
                 NotificationManager.shared.removeNotification(identifiers: ["ComeBack!"])
+                UserDefaults.standard.setValue(false, forKey: "notiAuth")
                 self?.toggleButton.isSelected = false
             } else {// 켜는 경우 = 알람 설정하기
                 NotificationManager.shared.setNotification()
+                UserDefaults.standard.setValue(true, forKey: "notiAuth")
                 self?.toggleButton.isSelected = true
                 UNUserNotificationCenter.current().getNotificationSettings(completionHandler: { settings in
                     switch settings.alertSetting {
@@ -102,8 +104,9 @@ class AlermCell: UITableViewCell {
             title += "0"
         }
         title += String(UserDefaults.standard.integer(forKey: "notiMinute"))
-        
         timerButton.setTitle(title, for: .normal)
+        
+        toggleButton.isSelected = UserDefaults.standard.bool(forKey: "notiAuth")
         
         contentView.addSubview(label)
         contentView.addSubview(timerButton)

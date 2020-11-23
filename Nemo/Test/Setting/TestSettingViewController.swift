@@ -250,7 +250,7 @@ class TestSettingViewController: UIViewController {
                 for j in 0..<DataManager.shared.noteList[i].count {
                     // 체크한
                     if bpBoolList[i][j] == true {
-                        DataManager.shared.nowBackPackName = DataManager.shared.backPackList[i].name
+                        //DataManager.shared.nowBackPackName = DataManager.shared.backPackList[i].name
                         DataManager.shared.nowNoteName = DataManager.shared.noteList[i][j].name
                         DataManager.shared.fetchQuestion()
                         DataManager.shared.testQuestionList += DataManager.shared.questionList
