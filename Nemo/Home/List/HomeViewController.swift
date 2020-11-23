@@ -58,6 +58,49 @@ class HomeViewController: UIViewController {
 //                print(UIFont.fontNames(forFamilyName: nameString))
 //            }
 //        }
+        let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(changeName))
+        tableView.addGestureRecognizer(longPressGesture)
+    }
+    
+    @objc func changeName(_ gestureRecognizer: UILongPressGestureRecognizer){
+        if gestureRecognizer.state == .began {
+            let touchPoint = gestureRecognizer.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                if indexPath.row == 0 {
+                    //가방의 이름을 변경하는 경우
+                    let alert = UIAlertController(title: "가방 이름 바꾸기", message: "", preferredStyle: .alert) // 알림창 객체 생성
+                    
+                    alert.addTextField { tf in
+                        tf.font = UIFont.systemFont(ofSize: 15)
+                        //tf.borderStyle = UITextField.BorderStyle.roundedRect
+                        //이름 바꾸기 만들다가 회의하고 일하러감
+                        tf.autocorrectionType = UITextAutocorrectionType.no
+                        tf.keyboardType = UIKeyboardType.default
+                        tf.returnKeyType = UIReturnKeyType.done
+                        tf.clearButtonMode = UITextField.ViewMode.whileEditing
+                        tf.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+                        tf.layer.borderWidth = 1
+                        tf.layer.cornerRadius = 5
+                        tf.layer.borderColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+                        tf.text = DataManager.shared.backPackList[indexPath.section].name
+                    }
+                    
+                    let okAction = UIAlertAction(title: "확인",  style: .default) {_ in
+                        print("ㅎ확인")
+                    } // 버튼 객체 생성
+                    alert.addAction(okAction) // 알림창에 버튼 객체 추가
+                    
+                    let cancelAction = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+                    alert.addAction(cancelAction)
+                    
+                    present(alert, animated: true, completion: nil) // 완성된 알림창 화면에 띄우기
+
+                } else {
+                    //노트의 이름을 변경하는 경우
+                    
+                }
+            }
+        }
     }
     
     func AppInit() {
@@ -343,9 +386,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     // 확인 눌렀을 때 하는 소스
                     // 디비에서 노트 다 삭제
                     //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
-                    for targetNote in DataManager.shared.noteList[indexPath.section] {
-                        DataManager.shared.deleteNote(targetNote)
-                    }
+//                    for targetNote in DataManager.shared.noteList[indexPath.section] {
+//                        DataManager.shared.deleteNote(targetNote)
+//                    }
 
                     // 삭제할 가방 지정
                     let targetBackPack = DataManager.shared.backPackList[indexPath.section]
@@ -359,7 +402,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     }
 
                     // 디비에서 가방 삭제
-                    DataManager.shared.deleteBackPack(targetBackPack)
+                    DataManager.shared.deleteBackPack(targetBackPack, indexPath.section)
 
                     // 테이블 뷰에서 섹션을 삭제하는 함수
                     tableView.deleteSections(IndexSet([indexPath.section]), with: .fade)

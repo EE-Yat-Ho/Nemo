@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestSettingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TestSettingViewController: UIViewController {
     
     var titleLabel = UILabel().then{
         $0.text = "풀어보기"
@@ -82,6 +82,21 @@ class TestSettingViewController: UIViewController, UITableViewDataSource, UITabl
         wantTextField.delegate = self
         
         setupLayout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        testableNumLabel.text = "0"
+        wantTextField.text = "0"
+        
+        for (idx, ele) in bpBoolList.enumerated() {
+            for (idx2, ele2) in ele.enumerated() {
+                if ele2 {
+                    bpBoolList[idx][idx2] = false
+                }
+            }
+        }
+        
+        tableView.reloadData()
     }
     
     func setupLayout() {
@@ -200,6 +215,57 @@ class TestSettingViewController: UIViewController, UITableViewDataSource, UITabl
         }
     }
     
+    @objc func clickTestReadyButton(_ sender: Any) {
+        if (Int(testableNumLabel.text!) ?? 0) == 0 {
+            let alert = UIAlertController(title: "알림", message: "가능한 문제가 없습니다. 문제가 들어있는 노트를 선택해주세요!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(okAction)
+            // 알림창 띄우기
+            present(alert, animated: true, completion: nil)
+        }
+        
+        if (Int(wantTextField.text!) ?? 0) == 0 {
+            let alert = UIAlertController(title: "알림", message: "풀고 싶은 문제 수를 1개 이상 입력해주세요!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default)
+            alert.addAction(okAction)
+            // 알림창 띄우기
+            present(alert, animated: true, completion: nil)
+        }
+        
+        if isTime {
+            DataManager.shared.testQuestionList = DataManager.shared.questionListToDate
+            DataManager.shared.nowQAmount = DataManager.shared.questionListToDate.count
+            for i in 0...3 {
+                if timeBoolList[i] {
+                    DataManager.shared.noteAmount = -i
+                    break
+                }
+            }
+        } else {
+            DataManager.shared.testQuestionList.removeAll()
+            DataManager.shared.noteAmount = 0
+            for i in 0..<DataManager.shared.backPackList.count {
+                // 일단, 백팩단위로 노트 패치해주시고요
+                //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[i].name)
+                for j in 0..<DataManager.shared.noteList[i].count {
+                    // 체크한
+                    if bpBoolList[i][j] == true {
+                        DataManager.shared.nowBackPackName = DataManager.shared.backPackList[i].name
+                        DataManager.shared.nowNoteName = DataManager.shared.noteList[i][j].name
+                        DataManager.shared.fetchQuestion()
+                        DataManager.shared.testQuestionList += DataManager.shared.questionList
+                        DataManager.shared.noteAmount! += 1
+                    }
+                }
+            }
+            DataManager.shared.nowQAmount = Int(wantTextField.text!) ?? 0
+        }
+        navigationController?.pushViewController(TimerViewController(), animated: true)
+    }
+    
+}
+
+extension TestSettingViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         if isTime {
             return 1
@@ -297,54 +363,6 @@ class TestSettingViewController: UIViewController, UITableViewDataSource, UITabl
             }
             bpBoolList[indexPath.section][indexPath.row - 1].toggle()
         }
-    }
-    
-    @objc func clickTestReadyButton(_ sender: Any) {
-        if (Int(testableNumLabel.text!) ?? 0) == 0 {
-            let alert = UIAlertController(title: "알림", message: "가능한 문제가 없습니다. 문제가 들어있는 노트를 선택해주세요!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default)
-            alert.addAction(okAction)
-            // 알림창 띄우기
-            present(alert, animated: true, completion: nil)
-        }
-        
-        if (Int(wantTextField.text!) ?? 0) == 0 {
-            let alert = UIAlertController(title: "알림", message: "풀고 싶은 문제 수를 1개 이상 입력해주세요!", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default)
-            alert.addAction(okAction)
-            // 알림창 띄우기
-            present(alert, animated: true, completion: nil)
-        }
-        
-        if isTime {
-            DataManager.shared.testQuestionList = DataManager.shared.questionListToDate
-            DataManager.shared.nowQAmount = DataManager.shared.questionListToDate.count
-            for i in 0...3 {
-                if timeBoolList[i] {
-                    DataManager.shared.noteAmount = -i
-                    break
-                }
-            }
-        } else {
-            DataManager.shared.testQuestionList.removeAll()
-            DataManager.shared.noteAmount = 0
-            for i in 0..<DataManager.shared.backPackList.count {
-                // 일단, 백팩단위로 노트 패치해주시고요
-                //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[i].name)
-                for j in 0..<DataManager.shared.noteList[i].count {
-                    // 체크한
-                    if bpBoolList[i][j] == true {
-                        DataManager.shared.nowBackPackName = DataManager.shared.backPackList[i].name
-                        DataManager.shared.nowNoteName = DataManager.shared.noteList[i][j].name
-                        DataManager.shared.fetchQuestion()
-                        DataManager.shared.testQuestionList += DataManager.shared.questionList
-                        DataManager.shared.noteAmount! += 1
-                    }
-                }
-            }
-            DataManager.shared.nowQAmount = Int(wantTextField.text!) ?? 0
-        }
-        navigationController?.pushViewController(TimerViewController(), animated: true)
     }
 }
 

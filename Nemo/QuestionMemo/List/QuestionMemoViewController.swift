@@ -150,7 +150,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 if memoOpened == true {
                     memoOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
                 } else {
-                    memoOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
+                    memoOpenCell.rightImage.image = UIImage(named: "편집_뒤로가기")
                 }
                 return memoOpenCell
             } else {
@@ -166,7 +166,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 if questionOpened == true {
                     questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
                 } else {
-                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_이동")
+                    questionOpenCell.rightImage.image = UIImage(named: "편집_뒤로가기")
                 }
                 return questionOpenCell
             } else {

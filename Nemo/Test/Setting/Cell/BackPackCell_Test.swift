@@ -34,9 +34,9 @@ class BackPackCell_Test: UITableViewCell {
         backPackName.text = DataManager.shared.backPackList[index].name
         numberOfNote.text = "노트 " + String(DataManager.shared.backPackList[index].numberOfNote)
         if DataManager.shared.backPackList[index].opened == true {
-            rightImage.image = UIImage(named: "위로화살표")
-        } else {
             rightImage.image = UIImage(named: "기본아이콘_펼치기")
+        } else {
+            rightImage.image = UIImage(named: "편집_뒤로가기")
         }
     }
     

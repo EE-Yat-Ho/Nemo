@@ -64,6 +64,8 @@ class DataManager{
         }
     }
     
+    // Fetch - Add - Delete 순서로 배치되어있음
+    // MARK:- Fetch Methods
     var sortQuestionList = [Question]()
     func fetchQuestionSort(key: SortKey) {
         let request: NSFetchRequest<Question> = Question.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
@@ -114,7 +116,7 @@ class DataManager{
     }
     
     func fetchNote(backPackName: String?, index: Int){
-        let predicate = NSPredicate(format: "backPackName = %@", backPackName! as CVarArg)
+        let predicate = NSPredicate(format: "backPackName = %@", backPackName!)
         let request: NSFetchRequest<Note> = Note.fetchRequest() // 데이터를 읽어오기 위한 패치 리퀘스트를 만듦
         request.predicate = predicate
         
@@ -210,6 +212,7 @@ class DataManager{
         return true
     }
     
+    // MARK:- Add Methods
     func addNewBackPack(name: String?){
         let newBackPack = BackPack(context: mainContext)// db에 메모를 저장하기 위한 비어있는 인스턴스 생성
         newBackPack.name = name // 파라미터로 넘겨받은 내용과
@@ -292,16 +295,61 @@ class DataManager{
         saveContext() // 코어 데이터가 지원하는 함수로, 메인 컨텍스트에 저장되어있는 내용을 디비에 저장하는 함수
     }
     
-    //#22 메모삭제구현
-    func deleteBackPack(_ backPack: BackPack?){
+    // MARK:- Delete Methods
+    func deleteBackPack(_ backPack: BackPack?,_ backPackIndex: Int){
         if let backPack = backPack { // 가방이 전달된 겨웅에만 삭제
+            
+            //Note들에 들어있는 문제와 필기들 디비에서 다 삭제.
+            for i in noteList[backPackIndex] {
+                // 필기 삭제
+                var request: NSFetchRequest<NSFetchRequestResult> = Memo.fetchRequest()
+                let predicate = NSPredicate(format: "noteName = %@", i.name!)
+                request.predicate = predicate
+                var delete = NSBatchDeleteRequest(fetchRequest: request)
+                do { try mainContext.execute(delete) } catch { }
+                
+                // 문제 삭제
+                request = Question.fetchRequest()
+                request.predicate = predicate
+                delete = NSBatchDeleteRequest(fetchRequest: request)
+                do { try mainContext.execute(delete) } catch { }
+            }
+            
+            //Note들의 배열(2차원)에서 노트들(1차원) 삭제
+            // == 메모리 상에서 삭제
+            noteList.remove(at: backPackIndex)
+            
+            //노트들 디비에서 삭제
+            let request: NSFetchRequest<NSFetchRequestResult> = Note.fetchRequest()
+            let predicate = NSPredicate(format: "backPackName = %@", backPack.name!)
+            request.predicate = predicate
+            
+            let delete = NSBatchDeleteRequest(fetchRequest: request)
+            
+            do { try mainContext.execute(delete) } catch { }
+            
+            //가방 디비에서 삭제
             mainContext.delete(backPack)
             saveContext()
         }
     }
     
     func deleteNote(_ note: Note?){
-        if let note = note { // 노트가 전달된 겨웅에만 삭제
+        if let note = note { // 노트가 전달된 경우에만 삭제
+            // 메모 삭제
+            var request: NSFetchRequest<NSFetchRequestResult> = Memo.fetchRequest()
+            let predicate = NSPredicate(format: "noteName = %@", note.name!)
+            request.predicate = predicate
+            var delete = NSBatchDeleteRequest(fetchRequest: request)
+            do { try mainContext.execute(delete) } catch { }
+            
+            // 필기 삭제
+            request = Question.fetchRequest()
+            request.predicate = predicate
+            delete = NSBatchDeleteRequest(fetchRequest: request)
+            do { try mainContext.execute(delete) } catch { } //DB단에서 일어나기 때문에 세이브 필요없음.
+            
+            // 노트 삭제
             mainContext.delete(note)
             saveContext()
         }
@@ -318,6 +366,21 @@ class DataManager{
         if let memo = memo { // 노트가 전달된 겨웅에만 삭제
             mainContext.delete(memo)
             saveContext()
+        }
+    }
+    
+    func deleteAllText() -> Bool {
+        let request: NSFetchRequest<NSFetchRequestResult> = BackPack.fetchRequest()
+        let predicate = NSPredicate(format: "name = 9")
+        request.predicate = predicate
+        
+        let delete = NSBatchDeleteRequest(fetchRequest: request)
+        
+        do {
+            try mainContext.execute(delete) //DB단에서 일어나기 때문에 세이브 필요없음.
+            return true
+        } catch {
+            return false
         }
     }
     

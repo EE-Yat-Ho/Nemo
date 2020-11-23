@@ -151,8 +151,8 @@
 		2A12BCF82561A42E0007A971 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				2A12BD032561C1760007A971 /* Cell */,
 				2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */,
+				2A12BD032561C1760007A971 /* Cell */,
 			);
 			path = Setting;
 			sourceTree = "<group>";

@@ -77,11 +77,13 @@ class AlermCell: UITableViewCell {
                     case .enabled:
                         UserDefaults.standard.setValue(true, forKey: "notiAuth")
                     default:
-                        UserDefaults.standard.setValue(false, forKey: "notiAuth")
-                        NotificationManager.shared.removeNotification(identifiers: ["ComeBack!"])
-                        // 쓰레드 문제 ㅠ
-                        self?.toggleButton.isSelected = false
-                        self?.delegate.showAlert()
+                        DispatchQueue.main.async {
+                            UserDefaults.standard.setValue(false, forKey: "notiAuth")
+                            NotificationManager.shared.removeNotification(identifiers: ["ComeBack!"])
+                            // 쓰레드 문제 ㅠ
+                            self?.toggleButton.isSelected = false
+                            self?.delegate.showAlert()
+                        }
                     }
                 })
             }
