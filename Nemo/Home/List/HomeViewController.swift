@@ -187,6 +187,9 @@ class HomeViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.topItem?.title = "가방"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]//, .font: UIFont.systemFont(ofSize: 100), .baselineOffset: -30]
+        
         
         // 탭바 레이아웃
         tabBarController?.tabBar.backgroundImage = UIImage(named: "배경")
@@ -315,6 +318,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 { // 가방 선택
+            if DataManager.shared.backPackList[indexPath.section].opened {
+                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "편집_뒤로가기")
+            } else {
+                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "기본아이콘_펼치기")
+            }
             DataManager.shared.backPackList[indexPath.section].opened.toggle()
             let sections = IndexSet.init(integer: indexPath.section)
             
@@ -322,7 +330,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             // 그래서 row == 0 으로 노트를 갱신하던게 안되서 여기서 갱신해주자 ^_^;
             tableView.reloadSections(sections, with: .none)
         } else { // 노트 선택
-            //DataManager.shared.nowBackPackName = DataManager.shared.backPackList[indexPath.section].name
+            // 뒤로가기 버튼에 가방이름을 띄워주기위한 행동
+            navigationController?.navigationBar.topItem?.title = DataManager.shared.backPackList[indexPath.section].name
             //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
             DataManager.shared.nowNoteName = DataManager.shared.noteList[indexPath.section][indexPath.row - 1].name
 

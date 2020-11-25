@@ -28,7 +28,9 @@ class ConfigViewContoller: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.backgroundColor = UIColor.clear
-
+        navigationController?.navigationBar.topItem?.title = "설정"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
+        
         setupLayout()
     }
     

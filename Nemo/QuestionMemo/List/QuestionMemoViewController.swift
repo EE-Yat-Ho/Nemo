@@ -47,10 +47,13 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     override func viewDidAppear(_ animated: Bool) {
         DataManager.shared.imageList = []
         super.viewDidAppear(animated)
+        navigationController?.navigationBar.topItem?.title = DataManager.shared.nowNoteName
     }
     
     func setupLayout() {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        
+        //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
         
         view.addSubview(tableView)
         view.addSubview(titleLabel)

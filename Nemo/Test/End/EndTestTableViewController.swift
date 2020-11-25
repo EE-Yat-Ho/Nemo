@@ -58,6 +58,10 @@ class EndTestTableViewController: UIViewController {
         setupLayout()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.topItem?.title = "시험결과"
+    }
+    
     func getRightList() {
         rightAmount = 0
         for (index, question) in DataManager.shared.testQuestionList.enumerated() {
