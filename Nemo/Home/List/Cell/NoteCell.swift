@@ -78,6 +78,7 @@ class NoteCell: UITableViewCell {
         noteName.snp.makeConstraints{
             //$0.height.width.equalTo(30)
             $0.leading.equalTo(noteImage.snp.trailing).offset(10)
+            $0.trailing.equalTo(numberOfMemo.snp.leading).offset(-20)
             $0.centerY.equalToSuperview()
         }
         numberOfMemo.snp.makeConstraints{

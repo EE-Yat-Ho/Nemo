@@ -81,6 +81,7 @@ class BackPackCell: UITableViewCell {
         backPackName.snp.makeConstraints{
             //$0.height.width.equalTo(30)
             $0.leading.equalTo(backPackImage.snp.trailing).offset(10)
+            $0.trailing.equalTo(numberOfNote.snp.leading).offset(-20)
             $0.centerY.equalToSuperview()
         }
         numberOfNote.snp.makeConstraints{
