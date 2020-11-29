@@ -147,7 +147,6 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
     
     @objc func keyBoardDown() {
-//        print("MMQ touchesBegan")
         self.view.endEditing(true)
     }
     
@@ -288,6 +287,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         
         contentView.snp.makeConstraints{
             $0.edges.equalToSuperview()
+            //$0.top.bottom.trailing.leading.equalToSuperview()
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width) }
         
         questionLabel.snp.makeConstraints{
@@ -357,12 +357,12 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
             $0.top.equalTo(explanationText.snp.bottom).offset(10)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(10)
-            $0.bottom.equalToSuperview().inset(100)
         }
         
         completeButton.snp.makeConstraints{
-            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20)
+            $0.top.equalTo(explanationImages.snp.bottom).offset(20)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalToSuperview().inset(50)
             $0.height.equalTo(40)
         }
     }

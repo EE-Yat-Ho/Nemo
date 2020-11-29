@@ -60,6 +60,12 @@ class NoteCell_Test: UITableViewCell {
         addSubview(numberOfMemo)
         addSubview(rightImage)
         
+        numberOfQuestion.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        numberOfQuestion.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        
+        numberOfMemo.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        numberOfMemo.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        
         checkImage.snp.makeConstraints{
             $0.edges.equalTo(noteImage).inset(-10)
         }
@@ -71,6 +77,7 @@ class NoteCell_Test: UITableViewCell {
         noteName.snp.makeConstraints{
             //$0.height.width.equalTo(30)
             $0.leading.equalTo(noteImage.snp.trailing).offset(10)
+            $0.trailing.equalTo(numberOfMemo.snp.leading).offset(-20)
             $0.centerY.equalToSuperview()
         }
         numberOfMemo.snp.makeConstraints{

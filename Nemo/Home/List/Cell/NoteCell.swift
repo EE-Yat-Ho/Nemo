@@ -70,6 +70,12 @@ class NoteCell: UITableViewCell {
         addSubview(numberOfMemo)
         addSubview(rightImage)
         
+        numberOfQuestion.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        numberOfQuestion.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        
+        numberOfMemo.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        numberOfMemo.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        
         noteImage.snp.makeConstraints{
             $0.height.width.equalTo(30)
             $0.leading.equalToSuperview().offset(20)

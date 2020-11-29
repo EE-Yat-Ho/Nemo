@@ -50,6 +50,9 @@ class BackPackCell_Test: UITableViewCell {
         addSubview(rightImage)
         addSubview(aboveLine)
         
+        numberOfNote.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        numberOfNote.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        
         aboveLine.layer.borderColor = UIColor(displayP3Red: 219.0/255.0, green: 219.0/255.0, blue: 219.0/255.0, alpha: 1.0).cgColor
         aboveLine.layer.borderWidth = 1.0
         
@@ -61,6 +64,7 @@ class BackPackCell_Test: UITableViewCell {
         backPackName.snp.makeConstraints{
             //$0.height.width.equalTo(30)
             $0.leading.equalTo(backPackImage.snp.trailing).offset(10)
+            $0.trailing.equalTo(numberOfNote.snp.leading).offset(-20)
             $0.centerY.equalToSuperview()
         }
         numberOfNote.snp.makeConstraints{

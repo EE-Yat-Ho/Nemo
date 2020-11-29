@@ -11,6 +11,7 @@ import UIKit
 class MakeMemoViewController: UIViewController {
     var editTarget: Memo?
     
+    var containerView = UIView()
     var scrollView = UIScrollView()
     var contentView = UIView()
     
@@ -47,6 +48,13 @@ class MakeMemoViewController: UIViewController {
         }
     var collectionViewHeight: CGFloat = 10.0
     
+    let touchesBeganButton = UIButton().then {
+        $0.setImage(nil, for: .normal)
+        $0.addTarget(self, action: #selector(keyBoardDown), for: .touchUpInside)
+    }
+    @objc func keyBoardDown() {
+        self.view.endEditing(true)
+    }
     let imagePicker = UIImagePickerController()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +71,29 @@ class MakeMemoViewController: UIViewController {
         dataLoad()
     }
     
+    @objc func KeyBoardwillShow(_ noti : Notification ){
+        let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        scrollView.snp.updateConstraints{
+            $0.bottom.equalToSuperview().offset(-keyboardHeight)
+        }
+    }
+    @objc func KeyBoardwillHide(_ noti : Notification ){
+        scrollView.snp.updateConstraints{
+            $0.bottom.equalToSuperview()
+        }
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     func setupLayout() {
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                       
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        //view.addSubview(containerView)
+        //containerView.addSubview(scrollView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(memoLabel)
@@ -73,7 +103,16 @@ class MakeMemoViewController: UIViewController {
         
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
         
-        scrollView.snp.makeConstraints{ $0.edges.equalTo(self.view.safeAreaLayoutGuide) }
+//        containerView.snp.makeConstraints{
+//            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
+//        }
+        
+        scrollView.snp.makeConstraints{
+            //$0.edges.equalTo(self.view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide)
+            $0.trailing.leading.bottom.equalToSuperview()
+            //$0.edges.equalToSuperview()
+        }
         
         contentView.snp.makeConstraints{
             $0.edges.equalTo(scrollView.contentLayoutGuide)
@@ -99,6 +138,14 @@ class MakeMemoViewController: UIViewController {
             $0.leading.trailing.bottom.equalToSuperview().inset(20)
             $0.height.equalTo(10)
         }
+        
+        /// ㅋㅋㅋㅋ 키보드 내리는거 결국 이캐하네 2
+        contentView.addSubview(touchesBeganButton)
+        touchesBeganButton.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        contentView.sendSubviewToBack(touchesBeganButton)
+        /// 굳
     }
     
     func dataLoad() {
