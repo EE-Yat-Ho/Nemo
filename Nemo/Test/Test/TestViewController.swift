@@ -32,14 +32,16 @@ class TestViewController: UIViewController {
     
     let questionScrollView = UIScrollView()
     let contentView = UIView()
-    let bigNum = UILabel().then {
-        $0.text = "1."
-        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 30)
-    }
+//    let bigNum = UILabel().then {
+//        $0.text = "1."
+//        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 30)
+//    }
     let question = UITextView().then {
         $0.text = "1 + 1 = ?"
         $0.backgroundColor = UIColor.clear
-        $0.isUserInteractionEnabled = false
+        //$0.isUserInteractionEnabled = false
+        $0.isScrollEnabled = false
+        $0.isEditable = false
         $0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
     }
     let separator = UIView().then {
@@ -76,10 +78,12 @@ class TestViewController: UIViewController {
         ).then{
             $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
+            $0.isScrollEnabled = false
         }
     
     var tableHeight: CGFloat = 10
     var collectionHeight: CGFloat = 10
+
     var nowQuestion = Question()
     var useTime = -1
     var timer = Timer()
@@ -95,13 +99,17 @@ class TestViewController: UIViewController {
         imageCollectionView.dataSource = self
         tableView.delegate = self
         tableView.dataSource = self
+        questionScrollView.delegate = self
         navigationController?.navigationBar.isHidden = true
         
         setupLayout()
         configure()
         
     }
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+         self.view.endEditing(true)
+    }   
+
     func configure() {
         nowQuestion = DataManager.shared.testQuestionList[DataManager.shared.nowQNumber! - 1]
         if nowQuestion.isSubjective == true { // 주관식
@@ -125,8 +133,8 @@ class TestViewController: UIViewController {
 
         imageCollectionView.reloadData()
         collectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
-        if collectionHeight == 0.0 { collectionHeight = 10.0 }
-        if collectionHeight > collectionItemSize * 2.5 { collectionHeight = collectionItemSize * 2.5}
+//        if collectionHeight == 0.0 { collectionHeight = 10.0 }
+//        if collectionHeight > collectionItemSize * 2.5 { collectionHeight = collectionItemSize * 2.5}
         imageCollectionView.snp.updateConstraints{
             $0.height.equalTo(collectionHeight)
         }
@@ -135,13 +143,19 @@ class TestViewController: UIViewController {
         useTime = 0
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCallback), userInfo: nil, repeats: true)
         
-        bigNum.text = String(DataManager.shared.nowQNumber!) + "."
-        question.text = "    " + DataManager.shared.testQuestionList[DataManager.shared.nowQNumber! - 1].question!
+        //bigNum.text = String(DataManager.shared.nowQNumber!) + "."
+        question.text = String(DataManager.shared.nowQNumber!) + "." + DataManager.shared.testQuestionList[DataManager.shared.nowQNumber! - 1].question!
     }
     
     
     
     func setupLayout() {
+//        question.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
+        //question.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+//        
+//        imageCollectionView.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
+//        imageCollectionView.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
+        
         progressNum.text = "0 / " + String(DataManager.shared.testQuestionList.count)
         
         topView.addSubview(timerImage)
@@ -152,7 +166,7 @@ class TestViewController: UIViewController {
 //        topView.addSubview(xButton)
         view.addSubview(topView)
         
-        contentView.addSubview(bigNum)
+       // contentView.addSubview(bigNum)
         contentView.addSubview(question)
         contentView.addSubview(imageCollectionView)
         questionScrollView.addSubview(contentView)
@@ -199,30 +213,33 @@ class TestViewController: UIViewController {
             $0.bottom.equalTo(separator.snp.top)
         }
         contentView.snp.makeConstraints{
-            $0.edges.equalTo(questionScrollView.frameLayoutGuide)
-            $0.width.equalTo(questionScrollView.contentLayoutGuide)
+            $0.edges.equalToSuperview()
+            $0.width.equalTo(questionScrollView.frameLayoutGuide.snp.width)
         }
         
-        bigNum.snp.makeConstraints{
-            $0.centerX.equalTo(timerImage)
-            $0.top.equalTo(topView.snp.bottom).offset(30)
-        }
+//        bigNum.snp.makeConstraints{
+//            $0.centerX.equalTo(timerImage)
+//            $0.top.equalTo(topView.snp.bottom).offset(30)
+//        }
         question.snp.makeConstraints{
-            $0.top.equalTo(bigNum)
-            $0.leading.equalTo(bigNum).offset(3)
+//            $0.top.equalTo(bigNum)
+//            $0.leading.equalTo(bigNum).offset(3)
+            $0.top.equalToSuperview().offset(10)
+            $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.height.greaterThanOrEqualTo(135)
+            $0.height.equalTo(500)//(135)
         }
         imageCollectionView.snp.makeConstraints{
             $0.top.equalTo(question.snp.bottom).offset(5)
-            $0.height.equalTo(10)
+            $0.height.equalTo(collectionHeight)
             $0.leading.trailing.equalToSuperview().inset(20)
-            $0.bottom.lessThanOrEqualTo(contentView.snp.bottom).offset(-40)
+            //$0.bottom.lessThanOrEqualTo(contentView.snp.bottom).offset(-40)
+            $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
         
         separator.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(50)
+            $0.centerY.equalToSuperview().offset(200)
             $0.height.equalTo(3)
         }
         tableView.snp.makeConstraints{
@@ -286,7 +303,7 @@ class TestViewController: UIViewController {
             tableView.alpha = 0.0
             answerInput.alpha = 0.0
             imageCollectionView.alpha = 0.1
-            bigNum.alpha = 0.1
+            //bigNum.alpha = 0.1
             question.alpha = 0.1
             progressBar.snp.remakeConstraints{
                 $0.top.height.leading.bottom.equalTo(progressBarBackground)
@@ -301,7 +318,7 @@ class TestViewController: UIViewController {
                     self?.tableView.reloadData()
                 }
                 self?.imageCollectionView.alpha = 1.0
-                self?.bigNum.alpha = 1.0
+                //self?.bigNum.alpha = 1.0
                 self?.question.alpha = 1.0
                
                 self?.imageCollectionView.reloadData()

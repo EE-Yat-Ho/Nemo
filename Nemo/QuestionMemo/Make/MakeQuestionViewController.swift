@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlowLayout {
     
     var editTarget: Question?
     var isSubjective: Bool = false

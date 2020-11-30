@@ -92,8 +92,6 @@ class MakeMemoViewController: UIViewController {
                        
         NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        //view.addSubview(containerView)
-        //containerView.addSubview(scrollView)
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(memoLabel)
@@ -103,15 +101,9 @@ class MakeMemoViewController: UIViewController {
         
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
         
-//        containerView.snp.makeConstraints{
-//            $0.edges.equalTo(self.view.safeAreaLayoutGuide)
-//        }
-        
         scrollView.snp.makeConstraints{
-            //$0.edges.equalTo(self.view.safeAreaLayoutGuide)
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.trailing.leading.bottom.equalToSuperview()
-            //$0.edges.equalToSuperview()
         }
         
         contentView.snp.makeConstraints{

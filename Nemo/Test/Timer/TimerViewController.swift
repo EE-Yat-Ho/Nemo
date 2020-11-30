@@ -65,7 +65,14 @@ class TimerViewController: UIViewController {
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
     }
-
+    let touchesBeganButton = UIButton().then {
+        $0.setImage(nil, for: .normal)
+        $0.addTarget(self, action: #selector(keyBoardDown), for: .touchUpInside)
+    }
+    @objc func keyBoardDown() {
+        self.view.endEditing(true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
@@ -156,6 +163,14 @@ class TimerViewController: UIViewController {
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.height.equalTo(40)
         }
+        
+        /// ㅋㅋㅋㅋ 키보드 내리는거 결국 이캐하네 4
+        view.addSubview(touchesBeganButton)
+        touchesBeganButton.snp.makeConstraints{
+            $0.edges.equalToSuperview()
+        }
+        view.sendSubviewToBack(touchesBeganButton)
+        /// 굳
     }
     
     @objc func clickFirstTimer(_ sender: UIButton) {
