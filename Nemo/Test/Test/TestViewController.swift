@@ -32,14 +32,9 @@ class TestViewController: UIViewController {
     
     let questionScrollView = UIScrollView()
     let contentView = UIView()
-//    let bigNum = UILabel().then {
-//        $0.text = "1."
-//        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 30)
-//    }
     let question = UITextView().then {
         $0.text = "1 + 1 = ?"
         $0.backgroundColor = UIColor.clear
-        //$0.isUserInteractionEnabled = false
         $0.isScrollEnabled = false
         $0.isEditable = false
         $0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
@@ -54,15 +49,27 @@ class TestViewController: UIViewController {
         $0.backgroundColor = UIColor.clear
     }
     let answerInput = UITextField().then {
-        $0.becomeFirstResponder()
+        //$0.becomeFirstResponder()
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
+        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        $0.contentHorizontalAlignment = .center
+        $0.layer.borderWidth = 3
+        $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.5)
+        $0.layer.cornerRadius = 12.0
+        
+        $0.autocorrectionType = UITextAutocorrectionType.no //키보드 상단 자동완성 끄기
+        //$0.returnKeyType = UIReturnKeyType.done
+        $0.clearButtonMode = UITextField.ViewMode.whileEditing // 지우기 버튼 추가
+        //$0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        $0.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+        $0.leftViewMode = .always
     }
     let nextButton = UIButton().then {
         $0.setTitle("다음문제", for: .normal)
-        $0.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+        $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(clickNextQuestionButton), for: .touchUpInside)
-        $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.5)
+        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 3.0
         $0.layer.cornerRadius = 12.0
     }
@@ -102,30 +109,45 @@ class TestViewController: UIViewController {
         questionScrollView.delegate = self
         navigationController?.navigationBar.isHidden = true
         
+        /// 키보드 내리는 제스처 추가
+        let singleTapGestureRecognizerForScrollView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
+        singleTapGestureRecognizerForScrollView.numberOfTapsRequired = 1
+        singleTapGestureRecognizerForScrollView.isEnabled = true
+        singleTapGestureRecognizerForScrollView.cancelsTouchesInView = false
+        questionScrollView.addGestureRecognizer(singleTapGestureRecognizerForScrollView)
+        
+        let singleTapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
+        singleTapGestureRecognizerForView.numberOfTapsRequired = 1
+        singleTapGestureRecognizerForView.isEnabled = true
+        singleTapGestureRecognizerForView.cancelsTouchesInView = false
+        view.addGestureRecognizer(singleTapGestureRecognizerForView)
+        
         setupLayout()
         configure()
         
     }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+    @objc func downKeyboard(){
          self.view.endEditing(true)
     }   
 
     func configure() {
         nowQuestion = DataManager.shared.testQuestionList[DataManager.shared.nowQNumber! - 1]
+        answerInput.text = ""
         if nowQuestion.isSubjective == true { // 주관식
             tableView.alpha = 0.0
-            answerInput.alpha = 1.0
-            answerInput.text = ""
+            //answerInput.alpha = 1.0
+            answerInput.becomeFirstResponder()
+            
         } else { // 객관식
-            answerInput.alpha = 0.0
+            //answerInput.alpha = 0.0
             tableView.alpha = 1.0
             isCheckList = Array(repeating: false, count: nowQuestion.answers!.count + 1)
             isExclusionList = Array(repeating: false, count: nowQuestion.answers!.count + 1)
             tableView.reloadData()
+            answerInput.backgroundColor = .lightGray
+            view.endEditing(true)
         }
         
-        
-
         DataManager.shared.imageList.removeAll()
         for i in nowQuestion.questionImages ?? [Data]() {
             DataManager.shared.imageList.append(UIImage(data: i)!)
@@ -150,12 +172,6 @@ class TestViewController: UIViewController {
     
     
     func setupLayout() {
-//        question.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
-        //question.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
-//        
-//        imageCollectionView.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
-//        imageCollectionView.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .vertical)
-        
         progressNum.text = "0 / " + String(DataManager.shared.testQuestionList.count)
         
         topView.addSubview(timerImage)
@@ -163,10 +179,8 @@ class TestViewController: UIViewController {
         topView.addSubview(progressNum)
         topView.addSubview(progressBar)
         topView.addSubview(progressBarBackground)
-//        topView.addSubview(xButton)
         view.addSubview(topView)
         
-       // contentView.addSubview(bigNum)
         contentView.addSubview(question)
         contentView.addSubview(imageCollectionView)
         questionScrollView.addSubview(contentView)
@@ -217,43 +231,39 @@ class TestViewController: UIViewController {
             $0.width.equalTo(questionScrollView.frameLayoutGuide.snp.width)
         }
         
-//        bigNum.snp.makeConstraints{
-//            $0.centerX.equalTo(timerImage)
-//            $0.top.equalTo(topView.snp.bottom).offset(30)
-//        }
         question.snp.makeConstraints{
-//            $0.top.equalTo(bigNum)
-//            $0.leading.equalTo(bigNum).offset(3)
             $0.top.equalToSuperview().offset(10)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview().offset(-20)
-            $0.height.equalTo(500)//(135)
+            //$0.height.equalTo(500)//(135)
         }
         imageCollectionView.snp.makeConstraints{
             $0.top.equalTo(question.snp.bottom).offset(5)
             $0.height.equalTo(collectionHeight)
             $0.leading.trailing.equalToSuperview().inset(20)
-            //$0.bottom.lessThanOrEqualTo(contentView.snp.bottom).offset(-40)
             $0.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
         
         separator.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(200)
+            $0.centerY.equalToSuperview().offset(50)
             $0.height.equalTo(3)
         }
         tableView.snp.makeConstraints{
             $0.top.equalTo(separator.snp.bottom).offset(3)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(nextButton.snp.top)
+            $0.bottom.equalToSuperview()//(nextButton.snp.top)
         }
         answerInput.snp.makeConstraints{
-            $0.top.equalTo(separator.snp.bottom).offset(10)
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+            $0.bottom.equalTo(separator.snp.top).offset(-10)
+            $0.leading.equalToSuperview().offset(10)
+            $0.trailing.equalTo(nextButton.snp.leading).offset(-10)
+            $0.height.equalTo(40)
+            //$0.bottom.equalToSuperview()//(nextButton.snp.top).offset(-20)
         }
         nextButton.snp.makeConstraints{
-            $0.bottom.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
+            $0.bottom.equalTo(separator.snp.top).offset(-10)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-10)
             $0.height.equalTo(40)
             $0.width.equalTo(100)
         }
@@ -300,8 +310,8 @@ class TestViewController: UIViewController {
             DataManager.shared.nowQNumber! += 1
             configure()
             
-            tableView.alpha = 0.0
-            answerInput.alpha = 0.0
+            //tableView.alpha = 0.0
+            //answerInput.alpha = 0.0
             imageCollectionView.alpha = 0.1
             //bigNum.alpha = 0.1
             question.alpha = 0.1
@@ -310,13 +320,17 @@ class TestViewController: UIViewController {
                 $0.width.equalTo(progressBarBackground.snp.width).multipliedBy(CGFloat(DataManager.shared.nowQNumber! - 1) / CGFloat(DataManager.shared.testQuestionList.count))
             }
             progressNum.text = String(DataManager.shared.nowQNumber! - 1) + " / " + String(DataManager.shared.testQuestionList.count)
-            UIView.animate(withDuration: 1.0, animations: {[weak self] () -> Void  in
+            UIView.animate(withDuration: 0.3, animations: {[weak self] () -> Void  in
                 if self?.nowQuestion.isSubjective == true { // 주관식
-                    self?.answerInput.alpha = 1.0
+                    self?.answerInput.backgroundColor = .clear
+                    self?.answerInput.isEnabled = true
                 } else { // 객관식
                     self?.tableView.alpha = 1.0
                     self?.tableView.reloadData()
+                    self?.answerInput.backgroundColor = .lightGray
+                    self?.answerInput.isEnabled = false
                 }
+                //self?.answerInput.resignFirstResponder()
                 self?.imageCollectionView.alpha = 1.0
                 //self?.bigNum.alpha = 1.0
                 self?.question.alpha = 1.0

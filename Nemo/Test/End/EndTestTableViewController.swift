@@ -36,9 +36,9 @@ class EndTestTableViewController: UIViewController {
         $0.text = "0 / 0"
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 22)
     }
-//    let separator = UIView().then {
-//        $0.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-//    }
+    let separator = UIView().then {
+        $0.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
     
     let tableView = UITableView().then {
         $0.register(EndingCell.self, forCellReuseIdentifier: "EndingCell")
@@ -108,7 +108,7 @@ class EndTestTableViewController: UIViewController {
         containerView.addSubview(rightNumPerNumLable)
         view.addSubview(containerView)
         
-        //view.addSubview(separator)
+        view.addSubview(separator)
         view.addSubview(tableView)
         
         topView.snp.makeConstraints{
@@ -146,11 +146,11 @@ class EndTestTableViewController: UIViewController {
             $0.centerX.equalToSuperview()
             //$0.height.equalTo(20)
         }
-//        separator.snp.makeConstraints{
-//            $0.height.equalTo(1)
-//            $0.top.equalTo(containerView.snp.bottom)
-//            $0.leading.trailing.equalToSuperview().inset(30)
-//        }
+        separator.snp.makeConstraints{
+            $0.height.equalTo(3)
+            $0.top.equalTo(containerView.snp.bottom)//.offset(-3)
+            $0.leading.trailing.equalToSuperview()//.inset(30)
+        }
         
         tableView.snp.makeConstraints{
             $0.top.equalTo(containerView.snp.bottom)

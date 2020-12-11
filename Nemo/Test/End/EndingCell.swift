@@ -11,7 +11,7 @@ import UIKit
 class EndingCell: UITableViewCell {
 
     let separator = UIView().then {
-        $0.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        $0.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 0.5)
     }
     let isRightImage = UILabel().then {
         $0.text = "정답"
@@ -63,9 +63,9 @@ class EndingCell: UITableViewCell {
         contentView.addSubview(question)
         
         separator.snp.makeConstraints{
-            $0.height.equalTo(1)
+            $0.height.equalTo(2)
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         isRightImage.snp.makeConstraints{
             $0.height.equalTo(30)
