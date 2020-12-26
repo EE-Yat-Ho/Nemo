@@ -65,6 +65,16 @@ class TimerViewController: UIViewController {
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
     }
+    let introdutionIcon = UIImageView().then {
+        $0.image = UIImage(named: "검정느낌표")
+    }
+    let introdutionLabel = UILabel().then {
+        $0.text = "타이머 설정시, 한 문제에서 해당 시간이 지나면 저절로 다음 문제로 넘어갑니다."
+        $0.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        $0.numberOfLines = 0
+        $0.font = UIFont(name: "NotoSansKannada", size: 8)
+    }
+    
     let touchesBeganButton = UIButton().then {
         $0.setImage(nil, for: .normal)
         $0.addTarget(self, action: #selector(keyBoardDown), for: .touchUpInside)
@@ -102,6 +112,7 @@ class TimerViewController: UIViewController {
         setupLayout()
         //테스트 화면에서 하는게 맞긴한데 저기는 문제마다 리로드되더라 ㅜ
         DataManager.shared.testAnswerList.removeAll()
+        firstTimer.isSelected = true
     }
     
     func setupLayout() {
@@ -115,6 +126,8 @@ class TimerViewController: UIViewController {
         view.addSubview(lastLabel)
         view.addSubview(lastTimerTimeTF)
         view.addSubview(startTestButton)
+        view.addSubview(introdutionIcon)
+        view.addSubview(introdutionLabel)
         
         fieldAmount.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
@@ -157,7 +170,16 @@ class TimerViewController: UIViewController {
             $0.centerY.equalTo(lastTimerTimeTF)
             $0.leading.equalTo(lastTimerTimeTF.snp.trailing).offset(1)
         }
-        
+        introdutionIcon.snp.makeConstraints{
+            $0.leading.equalTo(firstTimer.snp.leading).offset(-40)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(25)
+            $0.width.height.equalTo(20)
+        }
+        introdutionLabel.snp.makeConstraints{
+            $0.leading.equalTo(introdutionIcon.snp.trailing).offset(10)
+            $0.trailing.equalTo(lastTimer.snp.trailing).offset(40)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(25)
+        }
         
         startTestButton.snp.makeConstraints{
             $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)

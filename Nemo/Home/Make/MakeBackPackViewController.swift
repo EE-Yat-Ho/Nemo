@@ -41,6 +41,17 @@ class MakeBackPackViewController: UIViewController {
         setupLayout()
         
         backPackName.becomeFirstResponder()
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
+    @objc func KeyBoardwillShow(_ noti : Notification ){
+        let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        UserDefaults.standard.setValue(keyboardHeight, forKey: "keyboardHeight")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
     }
 
     func setupLayout() {

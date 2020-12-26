@@ -30,6 +30,7 @@ class MakeMemoViewController: UIViewController {
         $0.becomeFirstResponder()
         $0.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = UIColor.clear
+        $0.autocorrectionType = UITextAutocorrectionType.no
     }
     
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
@@ -73,6 +74,7 @@ class MakeMemoViewController: UIViewController {
     
     @objc func KeyBoardwillShow(_ noti : Notification ){
         let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        UserDefaults.standard.setValue(keyboardHeight, forKey: "keyboardHeight")
         scrollView.snp.updateConstraints{
             $0.bottom.equalToSuperview().offset(-keyboardHeight)
         }

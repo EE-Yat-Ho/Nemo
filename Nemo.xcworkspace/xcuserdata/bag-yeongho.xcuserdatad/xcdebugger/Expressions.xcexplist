@@ -122,6 +122,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HomeViewController.tableView(_:numberOfRowsInSection:):HomeViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.backPackList[section].numberOfNote">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.noteList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MultipleChoiceQuestionAnswerCell.mappingData(index:):MultipleChoiceQuestionAnswerCell.swift">
          <PersistentStrings>
             <PersistentString
@@ -139,13 +150,16 @@
          contextName = "HomeViewController.tableView(_:moveRowAt:to:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][1].order">
+               value = "destinationIndexPath.section">
             </PersistentString>
             <PersistentString
-               value = "sourceIndexPath.section">
+               value = "sourceIndexPath.row">
             </PersistentString>
             <PersistentString
                value = "destinationIndexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][1].order">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.noteList">
@@ -154,10 +168,7 @@
                value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][0].order">
             </PersistentString>
             <PersistentString
-               value = "destinationIndexPath.section">
-            </PersistentString>
-            <PersistentString
-               value = "sourceIndexPath.row">
+               value = "sourceIndexPath.section">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -166,6 +177,14 @@
          <PersistentStrings>
             <PersistentString
                value = "DataManager.shared.answerList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMultipleChoiceQuestionViewController.collectionView(_:numberOfItemsInSection:):MakeMultipleChoiceQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "DataManager.shared.imageList_MC">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -179,29 +198,10 @@
                value = "DataManager.shared.nowQNumber">
             </PersistentString>
             <PersistentString
-               value = "label.text">
-            </PersistentString>
-            <PersistentString
                value = "DataManager.shared.orderingAnswers">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MakeMultipleChoiceQuestionViewController.collectionView(_:numberOfItemsInSection:):MakeMultipleChoiceQuestionViewController.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.imageList_MC">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeViewController.tableView(_:numberOfRowsInSection:):HomeViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "DataManager.shared.backPackList[section].numberOfNote">
-            </PersistentString>
-            <PersistentString
-               value = "DataManager.shared.noteList">
+               value = "label.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -267,13 +267,13 @@
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -297,6 +297,17 @@
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.noteList[DataManager.shared.nowBPN!.section]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "AlermCell.setupLayout():AlermCell.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UserDefaults.standard.bool(forKey: &quot;notiAuth&quot;)">
+            </PersistentString>
+            <PersistentString
+               value = "toggleButton.isSelected">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -326,14 +337,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "closure #1 in MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "questionCollectionHeight">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "closure #3 in HomeViewController.changeName(_:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -342,13 +345,10 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "AlermCell.setupLayout():AlermCell.swift">
+         contextName = "closure #1 in MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "UserDefaults.standard.bool(forKey: &quot;notiAuth&quot;)">
-            </PersistentString>
-            <PersistentString
-               value = "toggleButton.isSelected">
+               value = "questionCollectionHeight">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -431,6 +431,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #11 in TestViewController.setupLayout():TestViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "UserDefaults.standard.double(forKey: &quot;keyboardHeight&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -448,13 +456,13 @@
          contextName = "MakeMultipleChoiceQuestionViewController.clickCompleteButton():MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "editTarget?.questionImages">
+            </PersistentString>
+            <PersistentString
                value = "editTarget?.explanationImages">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.imageList_MC">
-            </PersistentString>
-            <PersistentString
-               value = "editTarget?.questionImages">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

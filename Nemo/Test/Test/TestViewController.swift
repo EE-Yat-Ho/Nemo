@@ -136,6 +136,7 @@ class TestViewController: UIViewController {
         if nowQuestion.isSubjective == true { // 주관식
             tableView.alpha = 0.0
             //answerInput.alpha = 1.0
+            answerInput.isEnabled = true
             answerInput.becomeFirstResponder()
             
         } else { // 객관식
@@ -146,6 +147,7 @@ class TestViewController: UIViewController {
             tableView.reloadData()
             answerInput.backgroundColor = .lightGray
             view.endEditing(true)
+            answerInput.isEnabled = false
         }
         
         DataManager.shared.imageList.removeAll()
@@ -246,7 +248,8 @@ class TestViewController: UIViewController {
         
         separator.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(50)
+            //$0.centerY.equalToSuperview().offset(50)
+            $0.bottom.equalToSuperview().offset(-UserDefaults.standard.double(forKey: "keyboardHeight"))
             $0.height.equalTo(3)
         }
         tableView.snp.makeConstraints{

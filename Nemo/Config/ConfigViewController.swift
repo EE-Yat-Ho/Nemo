@@ -65,7 +65,7 @@ class ConfigViewContoller: UIViewController {
 extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -78,6 +78,10 @@ extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row{
         case 0:
             navigationController?.pushViewController(AlermViewController(), animated: true)
+        case 1:
+            print("백업미구현")
+        case 2:
+            navigationController?.pushViewController(ManualViewController(), animated: true)
         default:
             return
         }

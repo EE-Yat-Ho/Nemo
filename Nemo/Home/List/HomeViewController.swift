@@ -149,18 +149,25 @@ class HomeViewController: UIViewController {
     }
     
     func AppInit() {
-        // 
+        /// 현재 외부 설정이 어떻게 되어있는지 확인. 만약 꺼져있으면 앱 내에서도 끄기.
         NotificationManager.shared.synchNotiAuth()
         
-        //첫 실행시 할 것들
+        /// 첫 실행시 할 것들. didLaunched는 여기서만 쓰임. false가 초기값.
         if UserDefaults.standard.bool(forKey: "didLaunched") == false {
+            /// 알람 권한 허락받고 가능, 불가능 여부에 따라 앱 내에서도 설정
             NotificationManager.shared.getAuthorization()
+            
+            /// 알람 시간 초기값은 21시정각
             NotificationManager.shared.setNotiTime(hour:21, minute:0)
+            
+            /// 알람 세팅하기
             NotificationManager.shared.setNotification()
             
-            /// 권한창에서 선택안하고 껏을 경우, 값이 비어있지않게 하기 위한 조치.
+            /// 알람권한창에서 선택안하고 껏을 경우, 알람 설정은 꺼지게 설정... 값이 비어있으면 안됨ㅠ
             UserDefaults.standard.setValue(false, forKey: "notiAuth")
             
+            
+            /// 이거 이후에는 더이상 didLaunched구문은 실행안됨ㅇㅇ
             UserDefaults.standard.setValue(true, forKey: "didLaunched")
         }
     }

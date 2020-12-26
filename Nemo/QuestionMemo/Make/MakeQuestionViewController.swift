@@ -49,6 +49,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.tag = 1
         $0.backgroundColor = UIColor.clear
         $0.font = UIFont.systemFont(ofSize: 15)
+        $0.autocorrectionType = UITextAutocorrectionType.no
     }
     
     lazy var questionImages = UICollectionView(
@@ -113,10 +114,10 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
-        $0.becomeFirstResponder()
         $0.tag = 3
         $0.backgroundColor = UIColor.clear
         $0.font = UIFont.systemFont(ofSize: 15)
+        $0.autocorrectionType = UITextAutocorrectionType.no
     }
     lazy var explanationImages = UICollectionView(
         frame: CGRect(x: 0, y: 0, width: 0, height: 0),
@@ -205,6 +206,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
     @objc func KeyBoardwillShow(_ noti : Notification ){
         let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        UserDefaults.standard.setValue(keyboardHeight, forKey: "keyboardHeight")
         containerView.snp.updateConstraints{
             $0.bottom.equalToSuperview().offset(-keyboardHeight)
         }
