@@ -166,9 +166,15 @@ class HomeViewController: UIViewController {
             /// 알람권한창에서 선택안하고 껏을 경우, 알람 설정은 꺼지게 설정... 값이 비어있으면 안됨ㅠ
             UserDefaults.standard.setValue(false, forKey: "notiAuth")
             
-            
             /// 이거 이후에는 더이상 didLaunched구문은 실행안됨ㅇㅇ
             UserDefaults.standard.setValue(true, forKey: "didLaunched")
+        }
+        
+        if UserDefaults.standard.bool(forKey: "neverPopupManual") == false {
+            let alert = ManualPopupViewController()
+            present(alert, animated: true, completion: {
+                alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            }) // 완성된 알림창 화면에 띄우기
         }
     }
     
