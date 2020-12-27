@@ -212,8 +212,28 @@ class TimerViewController: UIViewController {
     }
     @objc func clickStartTestButton(_ sender: Any) {
         // 셤시작 버튼
-        
-        // 타이머 확인하면서 값 설정해쥬기, 타이머 선택 안할시 알림
+        /// 미선택시 오답처리 팝업
+        if UserDefaults.standard.bool(forKey: "neverSeeNoAnswerPopup") == false {
+            let alert = UIAlertController(title: "알림", message: "객관식 문제에서 답을 선택하지 않으면 자동으로 오답처리 됩니다.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+                self?.startTest()
+            }
+            alert.addAction(okAction)
+            let neverSeeAction = UIAlertAction(title: "다시보지않기", style: .default) { [weak self] _ in
+                UserDefaults.standard.setValue(true, forKey: "neverSeeNoAnswerPopup")
+                self?.startTest()
+            }
+            alert.addAction(neverSeeAction)
+            // 알림창 띄우기
+            present(alert, animated: true, completion: nil)
+            return
+        } else {
+            startTest()
+        }
+    }
+    
+    func startTest() {
+        /// 타이머 확인하면서 값 설정해쥬기, 타이머 선택 안할시 알림
         if firstTimer.isSelected == true {
             DataManager.shared.timerTime = -1
         } else if secondTimer.isSelected == true {
@@ -252,6 +272,7 @@ class TimerViewController: UIViewController {
         navigationController?.pushViewController(TestViewController(), animated: true)
     }
 }
+
 
 extension TimerViewController: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {// 캬 완벽~

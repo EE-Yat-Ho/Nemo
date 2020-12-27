@@ -42,6 +42,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
     }
     
     func setupLayout() {
+        view.backgroundColor = .black
         navigationController?.navigationBar.isHidden = true
         view.addSubview(leftButton)
         view.addSubview(scrollView)

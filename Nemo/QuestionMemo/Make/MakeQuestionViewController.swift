@@ -493,10 +493,30 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
 extension MakeQuestionViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     //20200720 사진을 고르는 화면 구현
     @objc func addQuestionImage() {
+        if DataManager.shared.imageList.count > 5 {
+            let alert = UIAlertController(title: "알림", message: "사진은 6개까지만 가능해요.", preferredStyle: .alert)
+        
+            let okAction = UIAlertAction(title: "확인",  style: .default)
+            alert.addAction(okAction) // 알림창에 버튼 객체 추가
+        
+            present(alert, animated: true, completion: nil) // 완
+            return
+        }
+        
         imageButtonTag = 1
         self.openImagePicker()
     }
     @objc func addExplanationImage() {
+        if DataManager.shared.imageList2.count > 5 {
+            let alert = UIAlertController(title: "알림", message: "사진은 6개까지만 가능해요.", preferredStyle: .alert)
+        
+            let okAction = UIAlertAction(title: "확인",  style: .default)
+            alert.addAction(okAction) // 알림창에 버튼 객체 추가
+        
+            present(alert, animated: true, completion: nil) // 완
+            return
+        }
+        
         imageButtonTag = 3
         self.openImagePicker()
     }

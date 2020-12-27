@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //print("Database FilePath : ", FileManager.default.urls(for:.documentDirectory, in: .userDomainMask).last ?? "Not Found")
+        //sleep(1)
         return true
     }
 

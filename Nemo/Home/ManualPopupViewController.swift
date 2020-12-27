@@ -64,7 +64,7 @@ class ManualPopupViewController: UIViewController {
         
         container.snp.makeConstraints{
             $0.top.equalToSuperview().inset(100)
-            $0.bottom.equalToSuperview().inset(120)
+            $0.bottom.equalTo(doneButton.snp.bottom)
             $0.leading.trailing.equalToSuperview().inset(35)
         }
         appStructManualImage.snp.makeConstraints{

@@ -159,13 +159,6 @@
                     <view key="view" contentMode="scaleToFill" id="bCk-en-7g9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOW-0Z-nsq">
-                                <rect key="frame" x="213" y="318" width="74" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="circle" catalog="system"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="aqe-Oz-0h6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -177,7 +170,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circle" catalog="system" width="128" height="121"/>
         <image name="문제_선택" width="24" height="24"/>
         <image name="문제_하단바" width="128" height="128"/>
         <image name="설정" width="24" height="24"/>
