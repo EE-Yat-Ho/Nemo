@@ -13,6 +13,8 @@ class IncorrectQuestionCell: UITableViewCell {
     let numLabel = UILabel().then {
         $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         $0.font = .systemFont(ofSize: 13)
+        $0.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
+        $0.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
     }
     let dateFormatter = DateFormatter().then {
         $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -44,6 +46,7 @@ class IncorrectQuestionCell: UITableViewCell {
         questionTitle.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().offset(20)
+            $0.trailing.equalTo(numLabel.snp.leading).offset(-10)
         }
         numLabel.snp.makeConstraints{
             $0.centerY.equalToSuperview()

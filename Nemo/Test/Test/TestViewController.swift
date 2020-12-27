@@ -226,7 +226,7 @@ class TestViewController: UIViewController {
         questionScrollView.snp.makeConstraints{
             $0.top.equalTo(topView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(separator.snp.top)
+            $0.bottom.equalTo(answerInput.snp.top).offset(-10)
         }
         contentView.snp.makeConstraints{
             $0.edges.equalToSuperview()

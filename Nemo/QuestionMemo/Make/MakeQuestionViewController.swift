@@ -448,6 +448,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     @objc func plusButtonClick() {
         if DataManager.shared.answerList.count > 4 {
             // 팝업
+            alert(message: "보기는 5개까지만 가능합니다.")
             return
         }
         DataManager.shared.answerList.append("")
