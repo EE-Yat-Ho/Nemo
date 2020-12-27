@@ -104,6 +104,10 @@ class TestSettingViewController: UIViewController {
             }
         }
         
+        for i in 0..<timeBoolList.count {
+            timeBoolList[i] = false
+        }
+        
         tableView.reloadData()
     }
     
@@ -322,6 +326,7 @@ extension TestSettingViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        keyBoardDown()
         if isTime {
             for i in 0...3 {
                 if indexPath.row == i {
