@@ -96,13 +96,17 @@ class TestSettingViewController: UIViewController {
         testableNumLabel.text = "0"
         wantTextField.text = "0"
         
-        for (idx, ele) in bpBoolList.enumerated() {
-            for (idx2, ele2) in ele.enumerated() {
-                if ele2 {
-                    bpBoolList[idx][idx2] = false
-                }
-            }
+        bpBoolList.removeAll()
+        for i in 0..<DataManager.shared.noteList.count{
+            bpBoolList.append(Array(repeating: false, count: DataManager.shared.noteList[i].count))
         }
+//        for (idx, ele) in bpBoolList.enumerated() {
+//            for (idx2, ele2) in ele.enumerated() {
+//                if ele2 {
+//                    bpBoolList[idx][idx2] = false
+//                }
+//            }
+//        }
         
         for i in 0..<timeBoolList.count {
             timeBoolList[i] = false
@@ -211,7 +215,7 @@ class TestSettingViewController: UIViewController {
         isTime.toggle()
         tableView.reloadData()
         
-        bpBoolList.removeAll()
+        //bpBoolList.removeAll()
         testableNumLabel.text = "0"
         wantTextField.text = "0"
         
@@ -312,7 +316,7 @@ extension TestSettingViewController: UITableViewDataSource, UITableViewDelegate 
         if(indexPath.row == 0) { // 가방일경우
             // DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name, index: <#Int#>)
             // bool list 관리 (생성)
-            bpBoolList.append(Array(repeating: false, count: DataManager.shared.noteList[indexPath.section].count))
+//            bpBoolList.append(Array(repeating: false, count: DataManager.shared.noteList[indexPath.section].count))
             
             let backPackCell = tableView.dequeueReusableCell(withIdentifier: "BackPackCell_Test", for: indexPath) as! BackPackCell_Test// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
             backPackCell.mappingData(index: indexPath.section)

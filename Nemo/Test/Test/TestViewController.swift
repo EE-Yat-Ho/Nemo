@@ -109,18 +109,18 @@ class TestViewController: UIViewController {
         questionScrollView.delegate = self
         navigationController?.navigationBar.isHidden = true
         
-        /// 키보드 내리는 제스처 추가
-        let singleTapGestureRecognizerForScrollView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
-        singleTapGestureRecognizerForScrollView.numberOfTapsRequired = 1
-        singleTapGestureRecognizerForScrollView.isEnabled = true
-        singleTapGestureRecognizerForScrollView.cancelsTouchesInView = false
-        questionScrollView.addGestureRecognizer(singleTapGestureRecognizerForScrollView)
-        
-        let singleTapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
-        singleTapGestureRecognizerForView.numberOfTapsRequired = 1
-        singleTapGestureRecognizerForView.isEnabled = true
-        singleTapGestureRecognizerForView.cancelsTouchesInView = false
-        view.addGestureRecognizer(singleTapGestureRecognizerForView)
+        /// 키보드 내리는 제스처 추가 >> 필요없어짐
+//        let singleTapGestureRecognizerForScrollView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
+//        singleTapGestureRecognizerForScrollView.numberOfTapsRequired = 1
+//        singleTapGestureRecognizerForScrollView.isEnabled = true
+//        singleTapGestureRecognizerForScrollView.cancelsTouchesInView = false
+//        questionScrollView.addGestureRecognizer(singleTapGestureRecognizerForScrollView)
+//
+//        let singleTapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
+//        singleTapGestureRecognizerForView.numberOfTapsRequired = 1
+//        singleTapGestureRecognizerForView.isEnabled = true
+//        singleTapGestureRecognizerForView.cancelsTouchesInView = false
+//        view.addGestureRecognizer(singleTapGestureRecognizerForView)
         
         setupLayout()
         configure()
