@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
         $0.register(BackPackCell.self, forCellReuseIdentifier: "BackPackCell")
         $0.tableFooterView = UIView()
+        $0.showsVerticalScrollIndicator = false
     }
     var titleLabel = UILabel().then{
         $0.text = "가방"

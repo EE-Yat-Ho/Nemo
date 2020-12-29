@@ -20,6 +20,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         $0.register(MemoCell.self, forCellReuseIdentifier: "MemoCell")
         $0.register(MemoOpenCell.self, forCellReuseIdentifier: "MemoOpenCell")
         $0.tableFooterView = UIView()
+        $0.showsVerticalScrollIndicator = false
     }
     var titleLabel = UILabel().then{
         $0.text = DataManager.shared.nowNoteName
