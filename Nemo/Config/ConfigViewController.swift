@@ -75,6 +75,7 @@ extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = false
         switch indexPath.row{
         case 0:
             navigationController?.pushViewController(AlermViewController(), animated: true)

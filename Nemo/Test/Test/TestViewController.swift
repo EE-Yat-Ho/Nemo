@@ -362,6 +362,17 @@ extension TestViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.xButton.isHidden = true
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let imageViewController = ImageViewControllerForTest()
+        imageViewController.imageView.image = DataManager.shared.imageList[indexPath.row]
+        imageViewController.leftButton.addTarget(self, action: #selector(clickLeftButton), for: .touchUpInside)
+        present(imageViewController, animated: true, completion: nil)
+    }
+    @objc func clickLeftButton() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 extension TestViewController: UITableViewDelegate, UITableViewDataSource {

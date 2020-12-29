@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ImageViewControllerForTest.clickLeftButton():ImageViewControllerForTest.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MakeMultipleChoiceQuestionViewController.imagePickerController(_:didFinishPickingMediaWithInfo:):MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -64,13 +72,16 @@
          contextName = "HomeViewController.tableView(_:moveRowAt:to:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.noteList">
+               value = "destinationIndexPath.section">
             </PersistentString>
             <PersistentString
-               value = "sourceIndexPath.row">
+               value = "sourceIndexPath.section">
             </PersistentString>
             <PersistentString
                value = "destinationIndexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = "DataManager.shared.noteList">
             </PersistentString>
             <PersistentString
                value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][0].order">
@@ -79,10 +90,7 @@
                value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][1].order">
             </PersistentString>
             <PersistentString
-               value = "destinationIndexPath.section">
-            </PersistentString>
-            <PersistentString
-               value = "sourceIndexPath.section">
+               value = "sourceIndexPath.row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -125,24 +133,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "QuestionMemoViewController.clickEditButton():QuestionMemoViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "navigationController?.navigationBar.topItem?.title">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "QuestionMemoViewController.clickEditButton():QuestionMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationController?.navigationBar.topItem?.title">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -230,7 +238,7 @@
          contextName = "TestSettingViewController.tableView(_:cellForRowAt:):TestSettingViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.noteList[indexPath.section]">
+               value = "bpBoolList">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.noteList">
@@ -239,7 +247,7 @@
                value = "indexPath.row">
             </PersistentString>
             <PersistentString
-               value = "bpBoolList">
+               value = "DataManager.shared.noteList[indexPath.section]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -430,10 +438,10 @@
                value = "DataManager.shared.nowQNumber">
             </PersistentString>
             <PersistentString
-               value = "DataManager.shared.orderingAnswers">
+               value = "label.text">
             </PersistentString>
             <PersistentString
-               value = "label.text">
+               value = "DataManager.shared.orderingAnswers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -542,24 +550,24 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "TabPagerView.binding():TabPagerView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "current">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "MakeMultipleChoiceQuestionViewController.clickCompleteButton():MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "editTarget?.questionImages">
+            </PersistentString>
             <PersistentString
                value = "editTarget?.explanationImages">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.imageList_MC">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TabPagerView.binding():TabPagerView.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "editTarget?.questionImages">
+               value = "current">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -9,8 +9,9 @@
 import UIKit
 
 class IncorrectNoteViewContoller: UIViewController {
-    let downArrow = UIImageView().then {
-        $0.image = UIImage(named: "기본아이콘_펼치기")
+    let downArrow = UIButton().then {
+        $0.setImage(UIImage(named: "기본아이콘_펼치기"), for: .normal)
+        $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     let sortButton = UIButton().then {
         $0.setTitle("많이 틀린 순", for: .normal)

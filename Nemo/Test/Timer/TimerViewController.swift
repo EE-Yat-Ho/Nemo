@@ -196,17 +196,17 @@ class TimerViewController: UIViewController {
     }
     
     @objc func clickFirstTimer(_ sender: UIButton) {
-        sender.isSelected.toggle()
+        sender.isSelected = true//toggle()
         secondTimer.isSelected = false
         lastTimer.isSelected = false
     }
     @objc func clickSecondTimer(_ sender: UIButton) {
-        sender.isSelected.toggle()
+        sender.isSelected = true//.toggle()
         firstTimer.isSelected = false
         lastTimer.isSelected = false
     }
     @objc func clickLastTimer(_ sender: UIButton) {
-        sender.isSelected.toggle()
+        sender.isSelected = true//.toggle()
         firstTimer.isSelected = false
         secondTimer.isSelected = false
     }

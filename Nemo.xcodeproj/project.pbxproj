@@ -23,6 +23,7 @@
 		2A3D294D2597209C008C8E10 /* ManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D294C2597209C008C8E10 /* ManualViewController.swift */; };
 		2A3D295725976F21008C8E10 /* ManualPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3D295625976F21008C8E10 /* ManualPopupViewController.swift */; };
 		2A3D295F25988117008C8E10 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D295E25988117008C8E10 /* LaunchScreen.storyboard */; };
+		2A4145AE259B148B004BA856 /* ImageViewControllerForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4145AD259B148B004BA856 /* ImageViewControllerForTest.swift */; };
 		2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C724DBDB62004A2CEB /* TimerViewController.swift */; };
 		2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4886C924DBE598004A2CEB /* TestViewController.swift */; };
 		2A5E94B724A1C73B000596D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5E94B624A1C73B000596D8 /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 		2A3D294C2597209C008C8E10 /* ManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualViewController.swift; sourceTree = "<group>"; };
 		2A3D295625976F21008C8E10 /* ManualPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualPopupViewController.swift; sourceTree = "<group>"; };
 		2A3D295E25988117008C8E10 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2A4145AD259B148B004BA856 /* ImageViewControllerForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewControllerForTest.swift; sourceTree = "<group>"; };
 		2A4886C724DBDB62004A2CEB /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		2A4886C924DBE598004A2CEB /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2A5E94B324A1C73B000596D8 /* Nemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */,
+				2A4145AD259B148B004BA856 /* ImageViewControllerForTest.swift */,
 			);
 			path = ImageView;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				2AAC9749256785260037678C /* NotificationManager.swift in Sources */,
 				2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */,
 				2A1F56FC25630EC300312657 /* ConfigViewController.swift in Sources */,
+				2A4145AE259B148B004BA856 /* ImageViewControllerForTest.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
 				2A1F57062563132500312657 /* AlermCell.swift in Sources */,

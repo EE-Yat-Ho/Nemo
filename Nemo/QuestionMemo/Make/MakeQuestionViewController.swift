@@ -170,6 +170,10 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         configure()
         setupLayout()
         editProcessor()
+        
+        navigationItem.rightBarButtonItem =
+            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
+                            action: #selector(clickCompleteButton(_:)))
     }
    
     
@@ -462,7 +466,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
    
 
-    @objc func clickCompleteButton() {
+    @objc func clickCompleteButton(_ sender: Any) {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if questionText.text.count < 1 || questionText.text == "질문 입력" {
             alert(message: "질문을 입력하세요")
