@@ -9,7 +9,9 @@
 import UIKit
 
 class QuestionCell: UITableViewCell {
-    var questionTitle = UILabel()
+    var questionTitle = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupLayout()

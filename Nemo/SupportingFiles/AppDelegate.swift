@@ -8,7 +8,7 @@
 
 import UIKit
 import CoreData
-
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //print("Database FilePath : ", FileManager.default.urls(for:.documentDirectory, in: .userDomainMask).last ?? "Not Found")
         //sleep(1)
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont.handSmall()], for: .normal)
+        
         return true
     }
 

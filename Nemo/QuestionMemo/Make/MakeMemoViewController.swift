@@ -28,9 +28,10 @@ class MakeMemoViewController: UIViewController {
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
         $0.becomeFirstResponder()
-        $0.font = UIFont.systemFont(ofSize: 15)
+        //$0.font = UIFont.systemFont(ofSize: 15)
         $0.backgroundColor = UIColor.clear
         $0.autocorrectionType = UITextAutocorrectionType.no
+        $0.font = UIFont.handNormal()
     }
     
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
@@ -88,11 +89,16 @@ class MakeMemoViewController: UIViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        tabBarController?.tabBar.isHidden = false
     }
-    func setupLayout() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                        
         NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    func setupLayout() {
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)

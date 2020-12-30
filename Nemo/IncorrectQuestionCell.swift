@@ -9,12 +9,15 @@
 import UIKit
 
 class IncorrectQuestionCell: UITableViewCell {
-    let questionTitle = UILabel()
+    let questionTitle = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     let numLabel = UILabel().then {
         $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        $0.font = .systemFont(ofSize: 13)
+        //$0.font = .systemFont(ofSize: 13)
         $0.setContentCompressionResistancePriority(UILayoutPriority(1000), for: .horizontal)
         $0.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
+        $0.font = UIFont.handSmall()
     }
     let dateFormatter = DateFormatter().then {
         $0.dateFormat = "yyyy-MM-dd HH:mm:ss"

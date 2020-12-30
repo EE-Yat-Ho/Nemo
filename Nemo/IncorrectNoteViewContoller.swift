@@ -17,6 +17,7 @@ class IncorrectNoteViewContoller: UIViewController {
         $0.setTitle("많이 틀린 순", for: .normal)
         $0.setTitleColor(UIColor.black, for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     var tableView = UITableView().then {
         $0.register(IncorrectQuestionCell.self, forCellReuseIdentifier: "IncorrectQuestionCell")

@@ -16,6 +16,7 @@ class AlermViewController: UIViewController {
     let alermLabel = UILabel().then {
         $0.text = "네모 알람"
         $0.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        $0.font = UIFont.handNormal()
     }
     let tableView = UITableView().then {
         $0.register(AlermCell.self, forCellReuseIdentifier: "AlermCell")

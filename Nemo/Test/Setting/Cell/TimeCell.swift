@@ -9,7 +9,9 @@
 import UIKit
 
 class TimeCell: UITableViewCell {
-    let timeLabel = UILabel()
+    let timeLabel = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     let checkImage = UIImageView()
     let unCheckImage = UIImageView().then {
         $0.image = UIImage(systemName: "circle")

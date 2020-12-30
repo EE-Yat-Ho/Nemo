@@ -18,8 +18,8 @@ protocol QuestionAnswerDelegate {
 class QuestionAnswerCell: UITableViewCell {
     
     let contents = UITextField().then {
-        $0.placeholder = "Enter"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.placeholder = "입력해주세요."
+        //$0.font = UIFont.systemFont(ofSize: 15)
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.default
@@ -28,6 +28,7 @@ class QuestionAnswerCell: UITableViewCell {
         $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         $0.layer.borderWidth = 1
         $0.layer.cornerRadius = 5
+        $0.font = UIFont.handNormal()
     }
     let xButton = UIButton().then {
         $0.setImage(UIImage(named: "엑스_검정"), for: .normal)

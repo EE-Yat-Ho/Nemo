@@ -33,12 +33,16 @@ class NoteCell: UITableViewCell {
     var noteImage = UIImageView().then {
         $0.image = UIImage(named: "노트")
     }
-    var noteName = UILabel()
+    var noteName = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     var numberOfQuestion = UILabel().then {
         $0.textColor = UIColor.gray
+        $0.font = UIFont.handNormal()
     }
     var numberOfMemo = UILabel().then {
         $0.textColor = UIColor.gray
+        $0.font = UIFont.handNormal()
     }
     var rightImage = UIImageView().then {
         $0.image = UIImage(named: "기본아이콘_이동")

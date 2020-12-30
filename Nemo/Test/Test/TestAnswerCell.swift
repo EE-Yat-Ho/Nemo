@@ -27,7 +27,9 @@ class TestAnswerCell: UITableViewCell {
     let checkImage = UIImageView().then {
         $0.image = UIImage(named:"틀린표시-파랑")
     }
-    let label = UILabel()
+    let label = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     let cancelLine = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.7371307791)
     }

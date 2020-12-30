@@ -30,6 +30,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.setTitleColor(UIColor.white, for: .normal)
         $0.setTitle("다른 이미지 선택", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     override func viewDidLoad() {
         super.viewDidLoad()

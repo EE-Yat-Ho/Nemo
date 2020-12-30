@@ -10,7 +10,9 @@ import UIKit
 
 class ConfigCell: UITableViewCell {
     let icon = UIImageView()
-    let label = UILabel()
+    let label = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     let rightArrow = UIImageView().then {
         $0.image = UIImage(named: "기본아이콘_이동")
     }

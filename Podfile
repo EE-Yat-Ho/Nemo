@@ -25,4 +25,5 @@ target 'Nemo' do
 
   pod 'BonMot'
 
+  pod 'Google-Mobile-Ads-SDK'
 end

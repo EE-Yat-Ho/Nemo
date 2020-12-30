@@ -18,11 +18,13 @@ class TestSettingViewController: UIViewController {
         $0.setTitle("가방", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setBP), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     let timeButton = UIButton().then{
         $0.setTitle("시간", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setT), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     let separateView = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
@@ -45,7 +47,8 @@ class TestSettingViewController: UIViewController {
     }
     let wantTextField = UITextField().then {
         $0.text = "0"
-        $0.font = UIFont.systemFont(ofSize: 18)
+        //$0.font = UIFont.systemFont(ofSize: 18)
+        $0.font = UIFont.handNormal()
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.decimalPad
@@ -66,6 +69,7 @@ class TestSettingViewController: UIViewController {
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
+        $0.titleLabel?.font = UIFont.handBig()
     }
     
     let touchesBeganButton = UIButton().then {

@@ -26,15 +26,17 @@ class EndTestTableViewController: UIViewController {
         $0.backgroundColor = UIColor.clear
     }
     let rightQuestionNumLabel = UILabel().then {
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
         $0.text = "맞춘 문제 수"
+        $0.font = UIFont.handBig()
     }
     let questionImage = UIImageView().then {
         $0.image = UIImage(named:"문제")
     }
     let rightNumPerNumLable = UILabel().then {
         $0.text = "0 / 0"
-        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 22)
+        $0.font = UIFont.handBig()
+        //$0.font = UIFont(name: "NotoSansKannada-Bold", size: 22)
     }
     let separator = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)

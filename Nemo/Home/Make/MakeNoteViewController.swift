@@ -27,17 +27,19 @@ class MakeNoteViewController: UIViewController {
     }
     var noteName = UITextField().then{
         $0.placeholder = "노트 이름 입력"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        //$0.font = UIFont.systemFont(ofSize: 14)
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.default
         $0.returnKeyType = UIReturnKeyType.done
         $0.clearButtonMode = UITextField.ViewMode.whileEditing
         $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        $0.font = UIFont.handNormal()
     }
     // 넣을 가방 선택용 드랍다운버튼
     var dropDownButton = DropDownButton(frame: CGRect(x: 0, y: 0, width: 0, height: 0)).then{
         $0.setTitle("가방 선택", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     
     override func viewDidLoad() {

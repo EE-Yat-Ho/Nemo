@@ -53,6 +53,7 @@ public class DropDownView: UIView, UITableViewDelegate, UITableViewDataSource {
         let cell = UITableViewCell()
         cell.textLabel?.text = DataManager.shared.backPackList[indexPath.row].name
         cell.textLabel?.textColor = UIColor.black
+        cell.textLabel?.font = UIFont.handNormal()
         cell.backgroundColor = UIColor.white
         return cell
     }

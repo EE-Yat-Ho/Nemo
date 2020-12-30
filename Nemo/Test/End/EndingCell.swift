@@ -20,10 +20,11 @@ class EndingCell: UITableViewCell {
         $0.layer.borderWidth = 2
         $0.layer.cornerRadius = 5
         $0.textAlignment = .center
+        $0.font = UIFont.handNormal()
     }
-    let rightArrow = UIImageView().then {
-        $0.image = UIImage(named: "기본아이콘_이동")
-    }
+//    let rightArrow = UIImageView().then {
+//        $0.image = UIImage(named: "기본아이콘_이동")
+//    }
     
     let isRightShape = UIImageView().then {
         $0.image = UIImage(named: "맞은표시-파랑") // "틀린표시"
@@ -32,6 +33,7 @@ class EndingCell: UITableViewCell {
         $0.text = "1 + 1 = ?"
         $0.backgroundColor = UIColor.clear
         $0.isUserInteractionEnabled = false
+        $0.font = UIFont.handNormal()
         //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 17)
         // NSMutableAttributedString 써서 나중에 셀 데이터 매핑할 때 폰트 정함
     }
@@ -66,12 +68,14 @@ class EndingCell: UITableViewCell {
     let myAnswerLabel2 = UILabel().then {
         $0.textAlignment = .center
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        $0.font = UIFont.handNormal()
     }
     let rightAnswerLabel2 = UILabel().then {
         $0.textAlignment = .center
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+       // $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        $0.font = UIFont.handNormal()
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -88,7 +92,7 @@ class EndingCell: UITableViewCell {
         
         contentView.addSubview(separator)
         contentView.addSubview(isRightImage)
-        contentView.addSubview(rightArrow)
+        //contentView.addSubview(rightArrow)
         contentView.addSubview(isRightShape)
         contentView.addSubview(question)
         contentView.addSubview(answerView)
@@ -110,11 +114,11 @@ class EndingCell: UITableViewCell {
             $0.top.equalTo(separator.snp.bottom).offset(20)
             $0.trailing.equalToSuperview().offset(-20)
         }
-        rightArrow.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-20)
-            $0.height.width.equalTo(20)
-        }
+//        rightArrow.snp.makeConstraints{
+//            $0.centerY.equalToSuperview()
+//            $0.trailing.equalToSuperview().offset(-20)
+//            $0.height.width.equalTo(20)
+//        }
         question.snp.makeConstraints{
             $0.top.equalTo(isRightImage.snp.top)
             $0.leading.equalToSuperview().offset(20)
@@ -184,7 +188,7 @@ class EndingCell: UITableViewCell {
         
         /// 전체폰트 + 부분폰트 지정
         let bigNumFont = UIFont.boldSystemFont(ofSize: 20)
-        let normalFont = UIFont(name: "NotoSansKannada-Regular", size: 17)
+        let normalFont = UIFont.handNormal()
         
         let attributedStr = NSMutableAttributedString(string: question.text)
         attributedStr.addAttribute(.font,

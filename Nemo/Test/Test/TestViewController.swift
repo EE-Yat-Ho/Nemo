@@ -15,10 +15,12 @@ class TestViewController: UIViewController {
     let timerLabel = UILabel().then {
         $0.text = "00:00"
         $0.textColor = UIColor.white
+        $0.font = UIFont.handNormal()
     }
     let progressNum = UILabel().then {
         $0.text = "0 / 0"
         $0.textColor = UIColor.white
+        $0.font = UIFont.handNormal()
     }
     let progressBar = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
@@ -37,7 +39,8 @@ class TestViewController: UIViewController {
         $0.backgroundColor = UIColor.clear
         $0.isScrollEnabled = false
         $0.isEditable = false
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
+        $0.font = UIFont.handBig()
+        //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
     }
     let separator = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.5)
@@ -51,12 +54,12 @@ class TestViewController: UIViewController {
     let answerInput = UITextField().then {
         //$0.becomeFirstResponder()
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
+        //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
         $0.contentHorizontalAlignment = .center
         $0.layer.borderWidth = 3
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.5)
         $0.layer.cornerRadius = 12.0
-        
+        $0.font = UIFont.handNormal()
         $0.autocorrectionType = UITextAutocorrectionType.no //키보드 상단 자동완성 끄기
         //$0.returnKeyType = UIReturnKeyType.done
         $0.clearButtonMode = UITextField.ViewMode.whileEditing // 지우기 버튼 추가
@@ -72,6 +75,7 @@ class TestViewController: UIViewController {
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 3.0
         $0.layer.cornerRadius = 12.0
+        $0.titleLabel?.font = UIFont.handBig()
     }
     
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3
@@ -169,6 +173,19 @@ class TestViewController: UIViewController {
         
         //bigNum.text = String(DataManager.shared.nowQNumber!) + "."
         question.text = String(DataManager.shared.nowQNumber!) + "." + DataManager.shared.testQuestionList[DataManager.shared.nowQNumber! - 1].question!
+        
+        /// 전체폰트 + 부분폰트 지정
+        let bigNumFont = UIFont.boldSystemFont(ofSize: 30)
+        let normalFont = UIFont.handBig()
+        
+        let attributedStr = NSMutableAttributedString(string: question.text)
+        attributedStr.addAttribute(.font,
+                                   value: normalFont,
+                                   range: (question.text! as NSString).range(of: question.text))
+        attributedStr.addAttribute(.font,
+                                   value: bigNumFont,
+                                   range: (question.text! as NSString).range(of: String(DataManager.shared.nowQNumber!) + "."))
+        question.attributedText = attributedStr
     }
     
     

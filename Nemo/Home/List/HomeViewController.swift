@@ -13,6 +13,7 @@ import Then
 import RxSwift
 import RxCocoa
 import NSObject_Rx
+import GoogleMobileAds
 // 헛짓하지말고 옵저버블로 해결하자 ㄱ
 
 class HomeViewController: UIViewController {
@@ -33,7 +34,7 @@ class HomeViewController: UIViewController {
     }
     var titleLabel = UILabel().then{
         $0.text = "가방"
-        $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
+        $0.font = UIFont.notoBig()//(name: "NotoSansKannada-Bold", size: 34)
     }
     var addButton = UIButton().then{
         $0.setImage(UIImage(named: "가방만들기"), for: .normal)
@@ -41,24 +42,43 @@ class HomeViewController: UIViewController {
     }
     lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
     
+    var banner: GADBannerView!
+    func loadBanner() {
+        banner = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        banner.adUnitID = "ca-app-pub-9616604463157917/3905009278"
+        banner.rootViewController = self
+        let req: GADRequest = GADRequest()
+        banner.load(req)
+        banner.delegate = self
+        
+        view.addSubview(banner)
+        
+        banner.snp.makeConstraints{
+            //$0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalToSuperview()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        loadBanner()
         setupLayout()
         bindingData()
         
         AppInit()
         // 폰트 이름 확인하기
-//        for name in UIFont.familyNames {
-//            print(name)
-//            if let nameString = name as? String
-//            {
-//                print(UIFont.fontNames(forFamilyName: nameString))
-//            }
-//        }
+        for name in UIFont.familyNames {
+            print(name)
+            if let nameString = name as? String
+            {
+                print(UIFont.fontNames(forFamilyName: nameString))
+            }
+        }
         let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(changeName))
         tableView.addGestureRecognizer(longPressGesture)
     }
@@ -228,7 +248,8 @@ class HomeViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(addButton)
         titleLabel.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(banner.snp.bottom).offset(20)
+            //$0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(50)
         }
@@ -518,5 +539,34 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             }
         } else if editingStyle == .insert {
         }
+    }
+}
+
+extension HomeViewController: GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
     }
 }

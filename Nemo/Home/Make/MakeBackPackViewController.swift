@@ -25,13 +25,14 @@ class MakeBackPackViewController: UIViewController {
     }
     var backPackName = UITextField().then{
         $0.placeholder = "가방 이름 입력"
-        $0.font = UIFont.systemFont(ofSize: 14)
+        //$0.font = UIFont.systemFont(ofSize: 14)
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.default
         $0.returnKeyType = UIReturnKeyType.done
         $0.clearButtonMode = UITextField.ViewMode.whileEditing
         $0.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        $0.font = UIFont.handNormal()
     }
     
     

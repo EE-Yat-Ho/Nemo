@@ -19,6 +19,7 @@ class TimerViewController: UIViewController {
     let firstLabel = UILabel().then {
         $0.text = "설정 안해"
         $0.textAlignment = .center
+        $0.font = UIFont.handNormal()
     }
     let secondTimer = UIButton().then {
         $0.setImage(UIImage(named: "타이머"), for: .normal)
@@ -29,6 +30,7 @@ class TimerViewController: UIViewController {
     let secondLabel = UILabel().then {
         $0.text = "15s"
         $0.textAlignment = .center
+        $0.font = UIFont.handNormal()
     }
     let lastTimer = UIButton().then {
         $0.setImage(UIImage(named: "타이머"), for: .normal)
@@ -38,10 +40,12 @@ class TimerViewController: UIViewController {
     }
     let lastLabel = UILabel().then {
         $0.text = "s"
+        $0.font = UIFont.handNormal()
     }
     let lastTimerTimeTF = UITextField().then {
         $0.text = "30"
-        $0.font = UIFont.systemFont(ofSize: 18)
+        $0.font = UIFont.handNormal()
+        //$0.font = UIFont.systemFont(ofSize: 18)
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.decimalPad
@@ -64,6 +68,7 @@ class TimerViewController: UIViewController {
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
+        $0.titleLabel?.font = UIFont.handBig()
     }
     let introdutionIcon = UIImageView().then {
         $0.image = UIImage(named: "검정느낌표")
@@ -72,7 +77,8 @@ class TimerViewController: UIViewController {
         $0.text = "타이머 설정시, 한 문제에서 해당 시간이 지나면 저절로 다음 문제로 넘어갑니다."
         $0.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         $0.numberOfLines = 0
-        $0.font = UIFont(name: "NotoSansKannada", size: 8)
+        $0.font = UIFont.handNormal()
+        //$0.font = UIFont(name: "NotoSansKannada", size: 8)
     }
     
     let touchesBeganButton = UIButton().then {
@@ -107,7 +113,7 @@ class TimerViewController: UIViewController {
             }
         }
         
-        questionAmount.text = String(DataManager.shared.nowQAmount!) + " 문제"
+        questionAmount.text = "[ " + String(DataManager.shared.nowQAmount!) + " 문제 ]"
         
         setupLayout()
         //테스트 화면에서 하는게 맞긴한데 저기는 문제마다 리로드되더라 ㅜ
@@ -131,11 +137,11 @@ class TimerViewController: UIViewController {
         
         fieldAmount.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-100)
+            $0.centerY.equalToSuperview().offset(-130)
         }
         questionAmount.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.top.equalTo(fieldAmount.snp.bottom).offset(20)
+            $0.top.equalTo(fieldAmount.snp.bottom).offset(10)
         }
         
         firstTimer.snp.makeConstraints{
@@ -144,7 +150,7 @@ class TimerViewController: UIViewController {
             $0.height.width.equalTo(30)
         }
         secondTimer.snp.makeConstraints{
-            $0.top.equalTo(questionAmount.snp.bottom).offset(20)
+            $0.top.equalTo(questionAmount.snp.bottom).offset(30)
             $0.centerX.equalToSuperview()
             $0.height.width.equalTo(30)
         }
@@ -172,13 +178,13 @@ class TimerViewController: UIViewController {
         }
         introdutionIcon.snp.makeConstraints{
             $0.leading.equalTo(firstTimer.snp.leading).offset(-40)
-            $0.top.equalTo(firstLabel.snp.bottom).offset(25)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(30)
             $0.width.height.equalTo(20)
         }
         introdutionLabel.snp.makeConstraints{
             $0.leading.equalTo(introdutionIcon.snp.trailing).offset(10)
             $0.trailing.equalTo(lastTimer.snp.trailing).offset(40)
-            $0.top.equalTo(firstLabel.snp.bottom).offset(25)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(30)
         }
         
         startTestButton.snp.makeConstraints{

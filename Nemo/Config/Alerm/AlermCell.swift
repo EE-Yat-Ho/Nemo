@@ -26,6 +26,7 @@ class AlermCell: UITableViewCell {
     
     let label = UILabel().then {
         $0.text = "문제풀기 알람"
+        $0.font = UIFont.handNormal()
     }
     let timerButton = UIButton().then {
         $0.semanticContentAttribute = .forceRightToLeft// 타이틀이 먼저오게

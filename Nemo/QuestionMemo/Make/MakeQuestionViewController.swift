@@ -17,11 +17,13 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.setTitle("객관식", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setMCQ), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     let subjectQuestionButton = UIButton().then{
         $0.setTitle("주관식", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setSQ), for: .touchUpInside)
+        $0.titleLabel?.font = UIFont.handNormal()
     }
     let separateView = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
@@ -48,8 +50,9 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.becomeFirstResponder()
         $0.tag = 1
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont.systemFont(ofSize: 15)
+        //$0.font = UIFont.systemFont(ofSize: 15)
         $0.autocorrectionType = UITextAutocorrectionType.no
+        $0.font = UIFont.handNormal()
     }
     
     lazy var questionImages = UICollectionView(
@@ -72,8 +75,8 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
     }
     let answerTextField = UITextField().then {
-        $0.placeholder = "Enter"
-        $0.font = UIFont.systemFont(ofSize: 15)
+        $0.placeholder = "입력해주세요."
+        //$0.font = UIFont.systemFont(ofSize: 15)
         $0.borderStyle = UITextField.BorderStyle.roundedRect
         $0.autocorrectionType = UITextAutocorrectionType.no
         $0.keyboardType = UIKeyboardType.default
@@ -84,6 +87,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.layer.cornerRadius = 5
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.2)
+        $0.font = UIFont.handNormal()
     }
     
     let wrongLabel = UILabel().then {
@@ -111,13 +115,16 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.addTarget(self, action: #selector(addExplanationImage), for: .touchUpInside)
     }
     let explanationText = UITextView().then {
+        $0.text = "풀이 입력"
+        $0.textColor = UIColor.lightGray
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
         $0.tag = 3
         $0.backgroundColor = UIColor.clear
-        $0.font = UIFont.systemFont(ofSize: 15)
+        //$0.font = UIFont.systemFont(ofSize: 15)
         $0.autocorrectionType = UITextAutocorrectionType.no
+        $0.font = UIFont.handNormal()
     }
     lazy var explanationImages = UICollectionView(
         frame: CGRect(x: 0, y: 0, width: 0, height: 0),
@@ -141,6 +148,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
+        $0.titleLabel?.font = UIFont.handBig()
     }
     let touchesBeganButton = UIButton().then {
         $0.setImage(nil, for: .normal)
@@ -180,6 +188,11 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     override func viewWillAppear(_ animated: Bool) {
         questionImages.reloadData()
         explanationImages.reloadData()
+        
+        tabBarController?.tabBar.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                       
+        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     var isEnd = false
@@ -223,11 +236,6 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     func setupLayout() {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
         //contentView.backgroundColor = UIColor.clear
-        tabBarController?.tabBar.isHidden = true
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-                       
-        NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
         
         containerView.addSubview(scrollView)
         scrollView.addSubview(contentView)

@@ -33,8 +33,11 @@ class BackPackCell: UITableViewCell {
     let backPackImage = UIImageView().then {
         $0.image = UIImage(named: "가방")
     }
-    let backPackName = UILabel()
+    let backPackName = UILabel().then {
+        $0.font = UIFont.handNormal()
+    }
     let numberOfNote = UILabel().then {
+        $0.font = UIFont.handNormal()
         $0.textColor = UIColor.gray
     }
     var rightImage = UIImageView()

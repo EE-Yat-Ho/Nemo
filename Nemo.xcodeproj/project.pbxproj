@@ -16,6 +16,8 @@
 		2A1F57002563107D00312657 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F56FF2563107D00312657 /* ConfigCell.swift */; };
 		2A1F57032563127900312657 /* AlermViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F57022563127900312657 /* AlermViewController.swift */; };
 		2A1F57062563132500312657 /* AlermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F57052563132500312657 /* AlermCell.swift */; };
+		2A2057B7259C71F60027510F /* NanumGoDigANiGoGoDing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A2057B6259C71F60027510F /* NanumGoDigANiGoGoDing.ttf */; };
+		2A2057BB259C73100027510F /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2057BA259C73100027510F /* UIFont+.swift */; };
 		2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26B25346FD40031E55C /* QuestionCell.swift */; };
 		2A36E2702534702D0031E55C /* QuestionOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */; };
 		2A36E273253470360031E55C /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E272253470360031E55C /* MemoCell.swift */; };
@@ -67,6 +69,8 @@
 		2A1F56FF2563107D00312657 /* ConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
 		2A1F57022563127900312657 /* AlermViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermViewController.swift; sourceTree = "<group>"; };
 		2A1F57052563132500312657 /* AlermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermCell.swift; sourceTree = "<group>"; };
+		2A2057B6259C71F60027510F /* NanumGoDigANiGoGoDing.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGoDigANiGoGoDing.ttf; sourceTree = "<group>"; };
+		2A2057BA259C73100027510F /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
 		2A36E26B25346FD40031E55C /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOpenCell.swift; sourceTree = "<group>"; };
 		2A36E272253470360031E55C /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
@@ -238,6 +242,14 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		2A2057B9259C72FC0027510F /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2A2057BA259C73100027510F /* UIFont+.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		2A36E26A25346F230031E55C /* QuestionMemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +265,14 @@
 				2A3D294C2597209C008C8E10 /* ManualViewController.swift */,
 			);
 			path = Manual;
+			sourceTree = "<group>";
+		};
+		2A4145C9259C6ECD004BA856 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				2A2057B6259C71F60027510F /* NanumGoDigANiGoGoDing.ttf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 		2A5E94AA24A1C73B000596D8 = {
@@ -276,6 +296,7 @@
 		2A5E94B524A1C73B000596D8 /* Nemo */ = {
 			isa = PBXGroup;
 			children = (
+				2A2057B9259C72FC0027510F /* Extension */,
 				2AAC9739256775BE0037678C /* SupportingFiles */,
 				2A6F84DB254C161D0000345F /* Foundation */,
 				2A5E94D324A1D4A7000596D8 /* CoreData */,
@@ -376,6 +397,7 @@
 		2AAC9739256775BE0037678C /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2A4145C9259C6ECD004BA856 /* Font */,
 				2A5E94C724A1C73E000596D8 /* Info.plist */,
 				2A3D295E25988117008C8E10 /* LaunchScreen.storyboard */,
 				2A5E94B624A1C73B000596D8 /* AppDelegate.swift */,
@@ -454,6 +476,7 @@
 			buildConfigurationList = 2A5E94CA24A1C73E000596D8 /* Build configuration list for PBXNativeTarget "Nemo" */;
 			buildPhases = (
 				3E7F37449D748E3EA6A053A5 /* [CP] Check Pods Manifest.lock */,
+				7C36E0C08AAF23F34E63BBCA /* [CP] Prepare Artifacts */,
 				2A5E94AF24A1C73B000596D8 /* Sources */,
 				2A5E94B024A1C73B000596D8 /* Frameworks */,
 				2A5E94B124A1C73B000596D8 /* Resources */,
@@ -506,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A2057B7259C71F60027510F /* NanumGoDigANiGoGoDing.ttf in Resources */,
 				2A5E94F024A860EF000596D8 /* Main.storyboard in Resources */,
 				2A3D295F25988117008C8E10 /* LaunchScreen.storyboard in Resources */,
 				2A5E94C324A1C73E000596D8 /* Assets.xcassets in Resources */,
@@ -554,6 +578,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		7C36E0C08AAF23F34E63BBCA /* [CP] Prepare Artifacts */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-artifacts-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Prepare Artifacts";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-artifacts-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Nemo/Pods-Nemo-artifacts.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -598,6 +639,7 @@
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
 				2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */,
 				2A36E273253470360031E55C /* MemoCell.swift in Sources */,
+				2A2057BB259C73100027510F /* UIFont+.swift in Sources */,
 				2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */,
 				2A4886C824DBDB62004A2CEB /* TimerViewController.swift in Sources */,
 				2A4886CA24DBE598004A2CEB /* TestViewController.swift in Sources */,

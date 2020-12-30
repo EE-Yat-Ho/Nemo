@@ -17,6 +17,7 @@ class QuestionOpenCell: UITableViewCell {
     }
     let numberOfQuestion = UILabel().then {
         $0.textColor = UIColor.gray
+        $0.font = UIFont.handNormal()
     }
     var rightImage = UIImageView()
     var aboveLine = UIView()
