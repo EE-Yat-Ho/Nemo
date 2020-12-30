@@ -471,7 +471,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             if indexPath.row == 0 { // 가방을 삭제하는 경우
                 // 안에 있는 노트와 문제들이 다 삭제된다고 물어보기
                 let alert = UIAlertController(title: "알림", message: "들어있는 노트와 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
+                let okAction = UIAlertAction(title: "확인", style: .default){ (action) in
                     // 확인 눌렀을 때 하는 소스
                     // 디비에서 노트 다 삭제
                     //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
@@ -497,7 +497,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     tableView.deleteSections(IndexSet([indexPath.section]), with: .fade)
                 }
                 alert.addAction(okAction)
-                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ [weak self] (action) in
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in
                     // 취소 눌렀을 때 하는 소스
                     // 암거도 안함 dd
                 }
@@ -508,7 +508,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             } else { // 노트를 삭제하는 경우
                 // 안에 있는 문제들이 다 삭제된다고 물어보기
                 let alert = UIAlertController(title: "알림", message: "들어있는 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
+                let okAction = UIAlertAction(title: "확인", style: .default){(action) in
                     // 확인 눌렀을 때 하는 소스
                     // 노트 배열 로딩
                     //DataManager.shared.fetchNote(backPackName: DataManager.shared.backPackList[indexPath.section].name)
@@ -529,7 +529,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                     tableView.reloadRows(at: [IndexPath(row: 0, section: indexPath.section)], with: .fade)
                 }
                 alert.addAction(okAction)
-                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ [weak self] (action) in
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in
                     // 취소 눌렀을 때 하는 소스
                     // 암거도 안함 22
                 }

@@ -62,13 +62,16 @@ class TimerViewController: UIViewController {
         $0.textAlignment = .center
     }
     let startTestButton = UIButton().then {
-        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        //$0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.setTitle("시험 시작", for: .normal)
         $0.addTarget(self, action: #selector(clickStartTestButton), for: .touchUpInside)
-        $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
-        $0.layer.borderWidth = 1.0
+        //$0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.layer.borderWidth = 0.0
         $0.layer.cornerRadius = 5.0
         $0.titleLabel?.font = UIFont.handBig()
+        $0.layer.masksToBounds = true
+        $0.setBackgroundColor(color: Resource.buttonNormal, forState: .normal)
+        $0.setBackgroundColor(color: Resource.buttonHighLight, forState: .highlighted)
     }
     let introdutionIcon = UIImageView().then {
         $0.image = UIImage(named: "검정느낌표")

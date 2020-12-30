@@ -71,11 +71,14 @@ class TestViewController: UIViewController {
         $0.setTitle("다음문제", for: .normal)
         $0.setTitleColor(.white, for: .normal)
         $0.addTarget(self, action: #selector(clickNextQuestionButton), for: .touchUpInside)
-        $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
-        $0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
-        $0.layer.borderWidth = 3.0
+        //$0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        //$0.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.layer.borderWidth = 0
         $0.layer.cornerRadius = 12.0
         $0.titleLabel?.font = UIFont.handBig()
+        $0.layer.masksToBounds = true
+        $0.setBackgroundColor(color: Resource.buttonNormal, forState: .normal)
+        $0.setBackgroundColor(color: Resource.buttonHighLight, forState: .highlighted)
     }
     
     let collectionItemSize: CGFloat = (UIScreen.main.bounds.size.width - 40) / 3

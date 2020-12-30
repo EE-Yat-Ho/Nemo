@@ -13,12 +13,9 @@ class MakeBackPackViewController: UIViewController {
     var naviItem = UINavigationItem().then{
         $0.title = "가방 만들기"
     }
-    var saveButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: nil, action: #selector(save)).then{
-        $0.title = "저장"
-    }
-    var cancelButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.cancel, target: nil, action: #selector(cancel)).then{
-        $0.title = "취소"
-    }
+    
+    var saveButton = UIBarButtonItem(title: "저장", style: .done, target: nil, action: #selector(save))
+    var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: nil, action: #selector(cancel))
     
     var backPackNameLabel = UILabel().then{
         $0.text = "가방 이름"
@@ -63,7 +60,7 @@ class MakeBackPackViewController: UIViewController {
         view.addSubview(backPackName)
         
         naviItem.setLeftBarButton(cancelButton, animated: true)
-        naviItem.setRightBarButton(saveButton, animated: true)
+            naviItem.setRightBarButton(saveButton, animated: true)
         naviBar.setItems([naviItem], animated: true)
         
         naviBar.snp.makeConstraints{

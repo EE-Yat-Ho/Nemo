@@ -18,6 +18,8 @@
 		2A1F57062563132500312657 /* AlermCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1F57052563132500312657 /* AlermCell.swift */; };
 		2A2057B7259C71F60027510F /* NanumGoDigANiGoGoDing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2A2057B6259C71F60027510F /* NanumGoDigANiGoGoDing.ttf */; };
 		2A2057BB259C73100027510F /* UIFont+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2057BA259C73100027510F /* UIFont+.swift */; };
+		2A2057C8259CAD020027510F /* UIButton+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2057C7259CAD020027510F /* UIButton+.swift */; };
+		2A2057CC259CAE110027510F /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2057CB259CAE110027510F /* Resource.swift */; };
 		2A36E26C25346FD40031E55C /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26B25346FD40031E55C /* QuestionCell.swift */; };
 		2A36E2702534702D0031E55C /* QuestionOpenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */; };
 		2A36E273253470360031E55C /* MemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36E272253470360031E55C /* MemoCell.swift */; };
@@ -71,6 +73,8 @@
 		2A1F57052563132500312657 /* AlermCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlermCell.swift; sourceTree = "<group>"; };
 		2A2057B6259C71F60027510F /* NanumGoDigANiGoGoDing.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumGoDigANiGoGoDing.ttf; sourceTree = "<group>"; };
 		2A2057BA259C73100027510F /* UIFont+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+.swift"; sourceTree = "<group>"; };
+		2A2057C7259CAD020027510F /* UIButton+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+.swift"; sourceTree = "<group>"; };
+		2A2057CB259CAE110027510F /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		2A36E26B25346FD40031E55C /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		2A36E26F2534702D0031E55C /* QuestionOpenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOpenCell.swift; sourceTree = "<group>"; };
 		2A36E272253470360031E55C /* MemoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCell.swift; sourceTree = "<group>"; };
@@ -246,8 +250,17 @@
 			isa = PBXGroup;
 			children = (
 				2A2057BA259C73100027510F /* UIFont+.swift */,
+				2A2057C7259CAD020027510F /* UIButton+.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		2A2057CA259CAE050027510F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				2A2057CB259CAE110027510F /* Resource.swift */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		2A36E26A25346F230031E55C /* QuestionMemo */ = {
@@ -367,6 +380,7 @@
 		2A6F84DB254C161D0000345F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2A2057CA259CAE050027510F /* Resource */,
 				2AAC9747256784FE0037678C /* NotificationManager */,
 				2AAC9742256776120037678C /* Animate */,
 				2AAC973F256775DE0037678C /* Extensions */,
@@ -621,6 +635,7 @@
 				2A4145AE259B148B004BA856 /* ImageViewControllerForTest.swift in Sources */,
 				2AEAB5C224E29EA000FF6E33 /* EndingCell.swift in Sources */,
 				2A6D74AA24A86C2600AFD0E1 /* NoteCell.swift in Sources */,
+				2A2057CC259CAE110027510F /* Resource.swift in Sources */,
 				2A1F57062563132500312657 /* AlermCell.swift in Sources */,
 				2A5E94EB24A73727000596D8 /* DropDownView.swift in Sources */,
 				2A5E94C124A1C73B000596D8 /* BrainSupporter2.xcdatamodeld in Sources */,
@@ -637,6 +652,7 @@
 				2A3D295725976F21008C8E10 /* ManualPopupViewController.swift in Sources */,
 				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
+				2A2057C8259CAD020027510F /* UIButton+.swift in Sources */,
 				2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */,
 				2A36E273253470360031E55C /* MemoCell.swift in Sources */,
 				2A2057BB259C73100027510F /* UIFont+.swift in Sources */,
