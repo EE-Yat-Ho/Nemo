@@ -216,6 +216,9 @@ class EndingCell: UITableViewCell {
         question.text = "\(index + 1). " + DataManager.shared.testQuestionList[index].question!
         myAnswerLabel2.text = DataManager.shared.testAnswerList[index]
         rightAnswerLabel2.text = DataManager.shared.testQuestionList[index].answer
+        if !DataManager.shared.testQuestionList[index].isSubjective {
+            myAnswerLabel.text = "내가 고른 답"
+        }
         
         /// 전체폰트 + 부분폰트 지정
         let bigNumFont = UIFont.boldSystemFont(ofSize: 20)

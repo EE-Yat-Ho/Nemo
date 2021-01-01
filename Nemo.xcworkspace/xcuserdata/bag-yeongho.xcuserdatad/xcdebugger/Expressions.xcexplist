@@ -199,6 +199,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "MakeQuestionViewController.textView(_:shouldChangeTextIn:replacementText:):MakeQuestionViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "textView.text">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MakeQuestionViewController.editProcessor():MakeQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString

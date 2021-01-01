@@ -185,6 +185,9 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self,
                             action: #selector(clickCompleteButton(_:)))
+        
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "《 " + DataManager.shared.nowNoteName!, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancel))
     }
    
     
@@ -222,7 +225,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         // 텍스트 필드에 초기값 회색으로 넣는거
         questionText.delegate = self
         explanationText.delegate = self
-        
+        answerTextField.delegate = self
     }
     @objc func KeyBoardwillShow(_ noti : Notification ){
         let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
@@ -435,6 +438,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
     @objc func setMCQ() {
         if !isSubjective { return }
+        isEdited = true
         isSubjective.toggle()
         answerTable.reloadData()
         
@@ -448,6 +452,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     
     @objc func setSQ() {
         if isSubjective { return }
+        isEdited = true
         isSubjective.toggle()
         answerTable.reloadData()
         
@@ -472,10 +477,51 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         answerTable.snp.updateConstraints{
             $0.height.equalTo(answerTableHeight)
         }
-        
+        isEdited = true
         answerTable.reloadData()
     }
    
+    ///20210101 그냥 나갈때 저장할지 물어보기
+    var isEdited = false
+    @objc func cancel() {
+        if editTarget == nil { // 새로 만드는 경우, 뭐든 처음과 다르면 수정된 것이라 여김
+            for string in DataManager.shared.answerList {
+                if string != "" {
+                    isEdited = true
+                    break
+                }
+            }
+        } else { // 이미 만든 경우
+            // 정답들의 갯수가 다를 경우 볼것도 없이 수정한 것.
+            if editTarget?.answers?.count != DataManager.shared.answerList.count {
+                isEdited = true
+            } else { // 정답들의 갯수가 같으면 스트링 비교.
+                for i in 0...DataManager.shared.answerList.count - 1 {
+                    if DataManager.shared.answerList[i] != editTarget?.answers?[i]  {
+                        isEdited = true
+                        break
+                    }
+                }
+            }
+        }
+        
+        /// 변경사항이 있다
+        if isEdited {
+            let alert = UIAlertController(title: "저장할까요?", message: "", preferredStyle: .alert)
+            let justOut = UIAlertAction(title: "그냥 나가기", style: .destructive, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            alert.addAction(justOut)
+            let saveAndOut = UIAlertAction(title: "저장 후 나가기", style: .cancel, handler: clickCompleteButton(_:))
+            alert.addAction(saveAndOut)
+            let cancel = UIAlertAction(title: "취소", style: .default, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
+        else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 
     @objc func clickCompleteButton(_ sender: Any) {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
@@ -587,6 +633,7 @@ extension MakeQuestionViewController: UINavigationControllerDelegate, UIImagePic
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey :Any]){
         dismiss(animated: true, completion: nil)
         if let img = info[.originalImage] as? UIImage{
+            isEdited = true
             if imageButtonTag == 1 {
                 DataManager.shared.imageList.append(img)
                 questionImages.reloadData()
@@ -689,9 +736,10 @@ extension MakeQuestionViewController: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if textView.text == "\n"{
+        if textView.text == "\n" {
             textView.resignFirstResponder()
         }
+        isEdited = true
         return true
     }
 }
@@ -706,16 +754,20 @@ extension MakeQuestionViewController: QuestionAnswerDelegate {
             $0.height.equalTo(answerTableHeight)
         }
         answerTable.reloadData()
+        isEdited = true
     }
     
     func textFieldDidChangeSelection(_ cell: QuestionAnswerCell) {
+       
         if cell.index < DataManager.shared.answerList.count {
             DataManager.shared.answerList[cell.index] = cell.contents.text!
+            //isEdited = true 얘는 처음부터 트루 박아버려서 안됨
         }
     }
 }
 extension MakeQuestionViewController: CollectionDelegate {
     func clickXButton(_ cell: CollectionViewCell) {
+        isEdited = true
         if cell.collectionTag == 1 {
             DataManager.shared.imageList.remove(at: cell.index)
             questionCollectionHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
@@ -735,5 +787,11 @@ extension MakeQuestionViewController: CollectionDelegate {
             }
             explanationImages.reloadData()
         }
+    }
+}
+
+extension MakeQuestionViewController: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        isEdited = true
     }
 }
