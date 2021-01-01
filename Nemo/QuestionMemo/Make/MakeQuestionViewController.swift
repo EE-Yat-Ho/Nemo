@@ -183,7 +183,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         editProcessor()
         
         navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
+            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self,
                             action: #selector(clickCompleteButton(_:)))
     }
    
@@ -480,13 +480,54 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     @objc func clickCompleteButton(_ sender: Any) {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if questionText.text.count < 1 || questionText.text == "질문 입력" {
+            questionText.becomeFirstResponder()
             alert(message: "질문을 입력하세요")
             return
         }
         if explanationText.text.count < 1 || explanationText.text == "풀이 입력" {
+            explanationText.becomeFirstResponder()
             alert(message: "풀이를 입력하세요")
             return
         }
+        
+        /// 20210101 빈 답 불가
+        if answerTextField.text == "" {
+            answerTextField.becomeFirstResponder()
+            alert(message: "답을 입력하세요")
+            return
+        }
+        for (index, string) in DataManager.shared.answerList.enumerated() {
+            if string == "" {
+                (answerTable.cellForRow(at: IndexPath(row: index,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
+                alert(message: "답을 입력해주세요")
+
+                return
+            }
+        }
+        
+        /// 20210101 중복 답 불가
+        for (index, string) in DataManager.shared.answerList.enumerated() {
+            if answerTextField.text == string {
+                (answerTable.cellForRow(at: IndexPath(row: index,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
+                alert(message: "중복된 답을 제거해주세요")
+
+                return
+            }
+        }
+        let answersSize = DataManager.shared.answerList.count
+        if answersSize > 1 {
+            for i in 0...answersSize - 2 {
+                for j in i + 1...answersSize - 1 {
+                    if DataManager.shared.answerList[i] == DataManager.shared.answerList[j] {
+                        (answerTable.cellForRow(at: IndexPath(row: j,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
+                        alert(message: "중복된 답을 제거해주세요")
+                        
+                        return
+                    }
+                }
+            }
+        }
+        
         if editTarget == nil { // 새로만드는 경우
             DataManager.shared.addNewQuestion(question: questionText.text, answer: answerTextField.text,explanation: explanationText.text, isSubjective: isSubjective)
         } else { // 편집인 경우

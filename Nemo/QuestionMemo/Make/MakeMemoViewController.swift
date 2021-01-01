@@ -66,15 +66,18 @@ class MakeMemoViewController: UIViewController {
         memoContent.delegate = self
         
         navigationItem.rightBarButtonItem =
-            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: nil,
+            UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self,
                             action: #selector(save(_:)))
+        
+        navigationItem.leftBarButtonItem =
+            UIBarButtonItem(title: "《 " + DataManager.shared.nowNoteName!, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancel))
         
         setupLayout()
         dataLoad()
     }
     
     @objc func KeyBoardwillShow(_ noti : Notification ){
-        let keyboardHeight = ((noti.userInfo as! NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
+        let keyboardHeight = ((noti.userInfo! as NSDictionary).value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.height
         UserDefaults.standard.setValue(keyboardHeight, forKey: "keyboardHeight")
         scrollView.snp.updateConstraints{
             $0.bottom.equalToSuperview().offset(-keyboardHeight)
@@ -97,6 +100,7 @@ class MakeMemoViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                        
         NotificationCenter.default.addObserver(self, selector: #selector(KeyBoardwillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     func setupLayout() {
         
@@ -164,8 +168,37 @@ class MakeMemoViewController: UIViewController {
             $0.height.equalTo(collectionViewHeight)
         }
     }
+    
+    ///20210101 그냥 나갈때 저장할지 물어보기
+    var isEdited = false
     @objc func cancel() {
-        navigationController?.popViewController(animated: true)
+        var oriContent = ""
+        if editTarget != nil {
+            oriContent = (editTarget?.content)!
+        } else {
+            // 새로 만드는 경우인데, memoContent에 플레이스홀드값이라면?
+            // 변경사항이 없는 것으로 만들어줘야함.
+            if memoContent.text == "메모 내용 입력" {
+                oriContent = "메모 내용 입력"
+            }
+        }
+        
+        /// 변경사항이 있다
+        if oriContent != memoContent.text || isEdited {
+            let alert = UIAlertController(title: "저장할까요?", message: "", preferredStyle: .alert)
+            let justOut = UIAlertAction(title: "그냥 나가기", style: .destructive, handler: { [weak self] _ in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            alert.addAction(justOut)
+            let saveAndOut = UIAlertAction(title: "저장 후 나가기", style: .cancel, handler: save)
+            alert.addAction(saveAndOut)
+            let cancel = UIAlertAction(title: "취소", style: .default, handler: nil)
+            alert.addAction(cancel)
+            present(alert, animated: true, completion: nil)
+        }
+        else {
+            navigationController?.popViewController(animated: true)
+        }
     }
     @objc private func save(_ sender: Any) {
         //메모 갈아거 0이면 메모 입력하세요 띄우기
@@ -214,8 +247,9 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey :Any]){
         dismiss(animated: true, completion: nil)
         if let img = info[.originalImage] as? UIImage{
+            isEdited = true
             DataManager.shared.imageList.append(img)
-            self.collectionView.reloadData()
+            
             collectionViewHeight = collectionItemSize * CGFloat((DataManager.shared.imageList.count + 2) / 3)
             if collectionViewHeight == 0 { collectionViewHeight = 10 }
             if collectionViewHeight > 270 { collectionViewHeight = 270 }
@@ -287,6 +321,7 @@ extension MakeMemoViewController: CollectionDelegate {
         collectionView.snp.updateConstraints{
             $0.height.equalTo(collectionViewHeight)
         }
+        isEdited = true
         collectionView.reloadData()
     }
 }

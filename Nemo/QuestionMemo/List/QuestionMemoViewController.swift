@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 import SnapKit
 import Then
+import GoogleMobileAds
 
 class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var questionOpened:Bool? = false
@@ -33,6 +34,25 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     //clickEditButton가 생성된 후 만들어야하므로 lazy
     lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
     
+    
+    var banner: GADBannerView!
+    func loadBanner() {
+        banner = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        banner.adUnitID = "ca-app-pub-9616604463157917/3905009278"
+        banner.rootViewController = self
+        let req: GADRequest = GADRequest()
+        banner.load(req)
+        banner.delegate = self
+        
+        view.addSubview(banner)
+        
+        banner.snp.makeConstraints{
+            //$0.bottom.equalTo(view.safeAreaLayoutGuide)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.centerX.equalToSuperview()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -41,6 +61,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         tableView.backgroundColor = UIColor.clear
         
         navigationItem.rightBarButtonItem = editButton
+        loadBanner()
         setupLayout()
     }
     
@@ -61,7 +82,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         view.addSubview(addButton)
         
         titleLabel.snp.makeConstraints{
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(banner.snp.bottom).offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(50)
         }
@@ -337,5 +358,34 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
             }
         } else if editingStyle == .insert {
         }
+    }
+}
+
+extension QuestionMemoViewController: GADBannerViewDelegate {
+    /// Tells the delegate an ad request loaded an ad.
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+    }
+    /// Tells the delegate an ad request failed.
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print("adView:didFailToReceiveAdWithError: \(error.localizedDescription)")
+    }
+    /// Tells the delegate that a full-screen view will be presented in response
+    /// to the user clicking on an ad.
+    func adViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("adViewWillPresentScreen")
+    }
+    /// Tells the delegate that the full-screen view will be dismissed.
+    func adViewWillDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewWillDismissScreen")
+    }
+    /// Tells the delegate that the full-screen view has been dismissed.
+    func adViewDidDismissScreen(_ bannerView: GADBannerView) {
+        print("adViewDidDismissScreen")
+    }
+    /// Tells the delegate that a user click will open another app (such as
+    /// the App Store), backgrounding the current app.
+    func adViewWillLeaveApplication(_ bannerView: GADBannerView) {
+        print("adViewWillLeaveApplication")
     }
 }

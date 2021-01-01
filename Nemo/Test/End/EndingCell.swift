@@ -175,11 +175,42 @@ class EndingCell: UITableViewCell {
             isRightImage.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
             isRightImage.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
             isRightShape.image = UIImage(named: "맞은표시-파랑")
+            myAnswerLabel.snp.remakeConstraints{
+                $0.top.equalToSuperview().offset(3)
+                $0.leading.equalToSuperview()
+                $0.trailing.equalToSuperview()
+                $0.height.equalTo(21)
+            }
+            myAnswerLabel2.snp.remakeConstraints{
+                $0.bottom.trailing.equalToSuperview()
+                $0.leading.equalToSuperview()
+                $0.top.equalTo(separatorHorizon.snp.bottom)
+            }
+            
+            rightAnswerLabel.isHidden = true
+            rightAnswerLabel2.isHidden = true
+            separatorVector.isHidden = true
         } else {
             isRightImage.text = "오답"
             isRightImage.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             isRightImage.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             isRightShape.image = UIImage(named: "틀린표시")
+            
+            rightAnswerLabel.isHidden = false
+            rightAnswerLabel2.isHidden = false
+            separatorVector.isHidden = false
+            
+            myAnswerLabel.snp.remakeConstraints{
+                $0.top.equalToSuperview().offset(3)
+                $0.leading.equalToSuperview()
+                $0.trailing.equalTo(answerView.snp.centerX)
+                $0.height.equalTo(21)
+            }
+            myAnswerLabel2.snp.remakeConstraints{
+                $0.leading.bottom.equalToSuperview()
+                $0.trailing.equalTo(answerView.snp.centerX)
+                $0.top.equalTo(separatorHorizon.snp.bottom)
+            }
         }
         
         question.text = "\(index + 1). " + DataManager.shared.testQuestionList[index].question!

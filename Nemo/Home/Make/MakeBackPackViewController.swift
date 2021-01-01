@@ -14,8 +14,8 @@ class MakeBackPackViewController: UIViewController {
         $0.title = "가방 만들기"
     }
     
-    var saveButton = UIBarButtonItem(title: "저장", style: .done, target: nil, action: #selector(save))
-    var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: nil, action: #selector(cancel))
+    var saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(save))
+    var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancel))
     
     var backPackNameLabel = UILabel().then{
         $0.text = "가방 이름"

@@ -15,8 +15,8 @@ class MakeNoteViewController: UIViewController {
     var naviItem = UINavigationItem().then{
         $0.title = "노트 만들기"
     }
-    var saveButton = UIBarButtonItem(title: "저장", style: .done, target: nil, action: #selector(save))
-    var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: nil, action: #selector(cancel))
+    var saveButton = UIBarButtonItem(title: "저장", style: .done, target: self, action: #selector(save))
+    var cancelButton = UIBarButtonItem(title: "취소", style: .plain, target: self, action: #selector(cancel))
     
     var noteNameLabel = UILabel().then{
         $0.text = "노트 이름"

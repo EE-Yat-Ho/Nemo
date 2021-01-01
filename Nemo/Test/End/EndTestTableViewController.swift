@@ -178,19 +178,18 @@ extension EndTestTableViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let makeQuestionViewController = MakeQuestionViewController()
-        makeQuestionViewController.isEnd = true
-        makeQuestionViewController.editTarget = DataManager.shared.testQuestionList[indexPath.row]
+//        let makeQuestionViewController = MakeQuestionViewController()
+//        makeQuestionViewController.isEnd = true
+//        makeQuestionViewController.editTarget = DataManager.shared.testQuestionList[indexPath.row]
+//        navigationController?.navigationBar.isHidden = false
+//        navigationController?.pushViewController(makeQuestionViewController, animated: true)
+
+        let explanationViewController = ExplanationViewController()
+        explanationViewController.mappingData(index: indexPath.row, isRight: isRightList[indexPath.row])
         navigationController?.navigationBar.isHidden = false
-        navigationController?.pushViewController(makeQuestionViewController, animated: true)
+        navigationController?.pushViewController(explanationViewController, animated: true)
     }
-//
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if indexPath.row == DataManager.shared.nowQAmount { // 한번만 하면 되자너 ^_^ㅜ 다른 좋은 방법이 있을거같긴함..
-//            endingCell.rightPerAll.text = String(rightAmount) + " / " + String(DataManager.shared.nowQAmount!)
-//        }
-//    }
-//
+    
     @objc func xmarkClick(_ sender: Any) {
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false

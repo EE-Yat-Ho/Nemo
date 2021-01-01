@@ -83,6 +83,7 @@ class TestAnswerCell: UITableViewCell {
         label.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(numImage.snp.trailing).offset(8)
+            $0.trailing.equalTo(xButton.snp.leading).offset(8)
         }
         cancelLine.snp.makeConstraints{
             $0.centerY.equalToSuperview()

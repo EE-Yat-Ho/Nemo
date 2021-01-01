@@ -41,6 +41,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #5 in ExplanationViewController.mappingData(index:isRight:):ExplanationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "HomeViewController.AppInit():HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -72,13 +80,16 @@
          contextName = "HomeViewController.tableView(_:moveRowAt:to:):HomeViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][1].order">
+               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][0].order">
             </PersistentString>
             <PersistentString
-               value = "sourceIndexPath.row">
+               value = "sourceIndexPath.section">
             </PersistentString>
             <PersistentString
                value = "destinationIndexPath.row">
+            </PersistentString>
+            <PersistentString
+               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][1].order">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.noteList">
@@ -87,10 +98,7 @@
                value = "destinationIndexPath.section">
             </PersistentString>
             <PersistentString
-               value = " DataManager.shared.noteList[ModifiedDestinationIndexPathSection][0].order">
-            </PersistentString>
-            <PersistentString
-               value = "sourceIndexPath.section">
+               value = "sourceIndexPath.row">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -125,6 +133,31 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ExplanationViewController.tableView(_:numberOfRowsInSection:):ExplanationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "question.answers!.count">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMemoViewController.save(_:):MakeMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationItem.backBarButtonItem?.action">
+            </PersistentString>
+            <PersistentString
+               value = "navigationItem.backBarButtonItem">
+            </PersistentString>
+            <PersistentString
+               value = "navigationItem.rightBarButtonItem?.action">
+            </PersistentString>
+            <PersistentString
+               value = "navigationItem.leftBarButtonItem?.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "MakeMemoViewController.dataLoad():MakeMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -136,13 +169,13 @@
          contextName = "QuestionMemoViewController.tableView(_:cellForRowAt:):QuestionMemoViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.questionList">
+               value = "indexPath.row - 1">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.memoList[indexPath.row - 1].content">
             </PersistentString>
             <PersistentString
-               value = "indexPath.row - 1">
+               value = "DataManager.shared.questionList">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -249,7 +282,7 @@
          contextName = "TestSettingViewController.tableView(_:cellForRowAt:):TestSettingViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "DataManager.shared.noteList[indexPath.section]">
+               value = "bpBoolList">
             </PersistentString>
             <PersistentString
                value = "DataManager.shared.noteList">
@@ -258,7 +291,7 @@
                value = "indexPath.row">
             </PersistentString>
             <PersistentString
-               value = "bpBoolList">
+               value = "DataManager.shared.noteList[indexPath.section]">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -267,6 +300,25 @@
          <PersistentStrings>
             <PersistentString
                value = "sortQuestionList">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMemoViewController.viewWillAppear(_:):MakeMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationItem.leftBarButtonItem">
+            </PersistentString>
+            <PersistentString
+               value = "navigationItem.leftBarButtonItem?.action">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMemoViewController.viewDidLoad():MakeMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "navigationItem.leftBarButtonItem?.action">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -460,10 +512,10 @@
                value = "DataManager.shared.nowQNumber">
             </PersistentString>
             <PersistentString
-               value = "DataManager.shared.orderingAnswers">
+               value = "label.text">
             </PersistentString>
             <PersistentString
-               value = "label.text">
+               value = "DataManager.shared.orderingAnswers">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -572,6 +624,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "closure #21 in ExplanationViewController.setupLayout():ExplanationViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tableHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "closure #3 in AlermViewController.clickTimer(_:):AlermViewController.swift">
          <PersistentStrings>
             <PersistentString
@@ -583,13 +643,13 @@
          contextName = "MakeMultipleChoiceQuestionViewController.clickCompleteButton():MakeMultipleChoiceQuestionViewController.swift">
          <PersistentStrings>
             <PersistentString
+               value = "editTarget?.explanationImages">
+            </PersistentString>
+            <PersistentString
                value = "DataManager.shared.imageList_MC">
             </PersistentString>
             <PersistentString
                value = "editTarget?.questionImages">
-            </PersistentString>
-            <PersistentString
-               value = "editTarget?.explanationImages">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -628,6 +688,14 @@
             </PersistentString>
             <PersistentString
                value = "questionCollectionHeight">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MakeMemoViewController.cancel():MakeMemoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "memoContent.text">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
