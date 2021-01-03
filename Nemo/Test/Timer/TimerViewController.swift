@@ -61,6 +61,12 @@ class TimerViewController: UIViewController {
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 23)
         $0.textAlignment = .center
     }
+    let timerSetLabel = UILabel().then {
+        $0.textAlignment = .center
+        $0.text = "타이머를 설정하시나요?"
+        $0.font = UIFont.handNormal()
+    }
+    
     let startTestButton = UIButton().then {
         //$0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         $0.setTitle("시험 시작", for: .normal)
@@ -77,7 +83,7 @@ class TimerViewController: UIViewController {
         $0.image = UIImage(named: "검정느낌표")
     }
     let introdutionLabel = UILabel().then {
-        $0.text = "타이머 설정시, 한 문제에서 해당 시간이 지나면 저절로 다음 문제로 넘어갑니다."
+        $0.text = "타이머 설정시, 한 문제에서 시간이 경과되면 다음 문제로 넘어가요..!"
         $0.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
         $0.numberOfLines = 0
         $0.font = UIFont.handNormal()
@@ -138,6 +144,7 @@ class TimerViewController: UIViewController {
     func setupLayout() {
         view.addSubview(fieldAmount)
         view.addSubview(questionAmount)
+        view.addSubview(timerSetLabel)
         view.addSubview(firstTimer)
         view.addSubview(firstLabel)
         view.addSubview(secondTimer)
@@ -151,11 +158,16 @@ class TimerViewController: UIViewController {
         
         fieldAmount.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
-            $0.centerY.equalToSuperview().offset(-130)
+            $0.centerY.equalToSuperview().offset(-190)
         }
         questionAmount.snp.makeConstraints{
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(fieldAmount.snp.bottom).offset(10)
+        }
+        
+        timerSetLabel.snp.makeConstraints{
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(questionAmount.snp.bottom).offset(50)
         }
         
         firstTimer.snp.makeConstraints{
@@ -164,7 +176,7 @@ class TimerViewController: UIViewController {
             $0.height.width.equalTo(30)
         }
         secondTimer.snp.makeConstraints{
-            $0.top.equalTo(questionAmount.snp.bottom).offset(30)
+            $0.top.equalTo(timerSetLabel.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
             $0.height.width.equalTo(30)
         }
@@ -198,7 +210,7 @@ class TimerViewController: UIViewController {
         introdutionLabel.snp.makeConstraints{
             $0.leading.equalTo(introdutionIcon.snp.trailing).offset(10)
             $0.trailing.equalTo(lastTimer.snp.trailing).offset(40)
-            $0.top.equalTo(firstLabel.snp.bottom).offset(30)
+            $0.top.equalTo(firstLabel.snp.bottom).offset(25)
         }
         
         startTestButton.snp.makeConstraints{
