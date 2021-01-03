@@ -85,7 +85,7 @@ class ConfigViewContoller: UIViewController {
 extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +102,9 @@ extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
         case 1:
             print("백업미구현")
         case 2:
-            navigationController?.pushViewController(ManualViewController(), animated: true)
+            navigationController?.pushViewController(ManualPageViewController(), animated: true)
+        case 3:
+            alert(title: "개발자 이메일", message: "enough6157@naver.com")
         default:
             return
         }

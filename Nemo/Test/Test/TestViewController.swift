@@ -273,8 +273,8 @@ class TestViewController: UIViewController {
             $0.height.equalTo(3)
         }
         tableView.snp.makeConstraints{
-            $0.top.equalTo(separator.snp.bottom).offset(3)
-            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(separator.snp.bottom)
+            $0.leading.trailing.equalToSuperview().inset(10)
             $0.bottom.equalToSuperview()//(nextButton.snp.top)
         }
         answerInput.snp.makeConstraints{

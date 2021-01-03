@@ -16,11 +16,17 @@ class MakeMemoViewController: UIViewController {
     var contentView = UIView()
     
     var memoLabel = UILabel().then{
-        $0.text = "메모 내용"
+        $0.text = "머릿속의 지식을 잘 필기해주세요!"
+        $0.adjustsFontSizeToFitWidth = true
     }
     var cameraButton = UIButton().then{
         $0.setImage(UIImage(named: "이미지"), for: .normal)
         $0.addTarget(self, action: #selector(addImageToQuestion), for: .touchUpInside)
+        $0.setTitle("사진 추가", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
+        $0.setTitleColor(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
     }
     var memoContent = UITextView().then{
         $0.tag = 1
@@ -125,12 +131,15 @@ class MakeMemoViewController: UIViewController {
         memoLabel.snp.makeConstraints{
             $0.top.equalTo(contentView.snp.top).inset(20)
             $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(cameraButton.snp.leading)
             $0.height.equalTo(20)
         }
         cameraButton.snp.makeConstraints{
             $0.top.equalTo(contentView.snp.top).inset(20)
-            $0.leading.equalTo(memoLabel.snp.trailing).offset(10)
-            $0.height.width.equalTo(20)
+            //$0.leading.equalTo(memoLabel.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(20)
+            $0.width.equalTo(110)
         }
         memoContent.snp.makeConstraints{
             $0.top.equalTo(memoLabel.snp.bottom).offset(10)
@@ -225,7 +234,7 @@ extension MakeMemoViewController: UIImagePickerControllerDelegate , UINavigation
     //20200720 사진을 고르는 화면 구현
     @objc func addImageToQuestion() {
         if DataManager.shared.imageList.count > 5 {
-            let alert = UIAlertController(title: "알림", message: "사진은 6개까지만 가능해요.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "사진은 6개까지만 가능해요.", message: "", preferredStyle: .alert)
         
             let okAction = UIAlertAction(title: "확인",  style: .default)
             alert.addAction(okAction) // 알림창에 버튼 객체 추가

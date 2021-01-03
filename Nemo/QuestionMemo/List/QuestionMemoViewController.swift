@@ -63,6 +63,17 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         navigationItem.rightBarButtonItem = editButton
         loadBanner()
         setupLayout()
+        
+        if UserDefaults.standard.bool(forKey: "neverNotePopup") == false {
+            let alert = ManualPopupViewController()
+            alert.popupKind = .note
+            alert.imageView.image = UIImage(named: "필기문제설명")
+            alert.manualLabel.text = "처음 노트를 생성했을 때는 아무런 필기도 문제도 없어요. 우측 하단 버튼으로 생성해주실래요?"
+            present(alert, animated: true, completion: {
+                /// present화면 스크롤 다운 못하게하기
+                alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            }) // 완성된 알림창 화면에 띄우기
+        }
     }
     
     
@@ -309,7 +320,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
             if indexPath.row == 0 { // 보기를 삭제하는 경우 = 불가능
                 
             } else { // 필기나 문제 삭제
-                let alert = UIAlertController(title: "알림", message: "정말 삭제하시겠습니까?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "정말 삭제하시겠습니까?", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
                     // 확인 눌렀을 때 하는 소스
                     if indexPath.section != 0 { // 문제 삭제

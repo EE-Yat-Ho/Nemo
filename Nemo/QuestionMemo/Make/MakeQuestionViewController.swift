@@ -37,11 +37,17 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     let contentView = UIView()
     // MARK:- Question
     let questionLabel = UILabel().then {
-        $0.text = "질문"
+        $0.text = "문제의 질문을 써주세요!"
+        $0.adjustsFontSizeToFitWidth = true
     }
     lazy var questionCamera = UIButton().then {
         $0.setImage(UIImage(named: "이미지"), for: .normal)
         $0.addTarget(self, action: #selector(addQuestionImage), for: .touchUpInside)
+        $0.setTitle("사진 추가", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
+        $0.setTitleColor(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
     }
     let questionText = UITextView().then {
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
@@ -71,8 +77,9 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         }
     // MARK:- Answer
     let answerLabel = UILabel().then {
-        $0.text = "정답"
+        $0.text = "정답은 무엇인가요?"
         $0.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
+        $0.adjustsFontSizeToFitWidth = true
     }
     let answerTextField = UITextField().then {
         $0.placeholder = "입력해주세요."
@@ -91,12 +98,18 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     }
     
     let wrongLabel = UILabel().then {
-        $0.text = "보기에 섞을 오답들"
+        $0.text = "보기에 섞을 오답들..!"
         $0.textColor = UIColor.red
+        $0.adjustsFontSizeToFitWidth = true
     }
     let plusButton = UIButton().then {
         $0.setImage(UIImage(named: "플러스"), for: .normal)
         $0.addTarget(self, action: #selector(plusButtonClick), for: .touchUpInside)
+        $0.setTitle("답안 추가", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
+        $0.setTitleColor(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
     }
     let answerTable = UITableView().then{
         $0.register(QuestionAnswerCell.self, forCellReuseIdentifier: "QuestionAnswerCell")
@@ -108,11 +121,17 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     
     // MARK:- Explanation
     let explanationLabel = UILabel().then {
-        $0.text = "풀이"
+        $0.text = "일목요연한 풀이를 적어주세요."
+        $0.adjustsFontSizeToFitWidth = true
     }
     let explanationCamera = UIButton().then {
         $0.setImage(UIImage(named: "이미지"), for: .normal)
         $0.addTarget(self, action: #selector(addExplanationImage), for: .touchUpInside)
+        $0.setTitle("사진 추가", for: .normal)
+        $0.titleLabel?.font = UIFont.handNormal()
+        $0.setTitleColor(#colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.imageEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 0)
     }
     let explanationText = UITextView().then {
         $0.text = "풀이 입력"
@@ -181,13 +200,13 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         configure()
         setupLayout()
         editProcessor()
-        
+        isEdited = false
         navigationItem.rightBarButtonItem =
             UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self,
                             action: #selector(clickCompleteButton(_:)))
         
         navigationItem.leftBarButtonItem =
-            UIBarButtonItem(title: "《 " + DataManager.shared.nowNoteName!, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancel))
+            UIBarButtonItem(title: "《 " + (DataManager.shared.nowNoteName ?? "오답노트"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancel))
     }
    
     
@@ -312,13 +331,16 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         
         questionLabel.snp.makeConstraints{
             $0.top.equalTo(contentView.snp.top).inset(20)
+            $0.trailing.equalTo(questionCamera.snp.leading)
             $0.leading.equalToSuperview().inset(20)
             $0.height.equalTo(20)
         }
         questionCamera.snp.makeConstraints{
             $0.top.equalTo(contentView.snp.top).inset(20)
-            $0.leading.equalTo(questionLabel.snp.trailing).offset(10)
-            $0.height.width.equalTo(20)
+            //$0.leading.equalTo(questionLabel.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(20)
+            $0.width.equalTo(110)
         }
         questionText.snp.makeConstraints{
             $0.top.equalTo(questionLabel.snp.bottom).offset(10)
@@ -345,12 +367,15 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         wrongLabel.snp.makeConstraints{
             $0.top.equalTo(answerTextField.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(plusButton.snp.leading)
             $0.height.equalTo(20)
         }
         plusButton.snp.makeConstraints{
             $0.top.equalTo(answerTextField.snp.bottom).offset(20)
-            $0.leading.equalTo(wrongLabel.snp.trailing).offset(10)
-            $0.height.width.equalTo(20)
+            //$0.leading.equalTo(wrongLabel.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(20)
+            $0.width.equalTo(115)
         }
         answerTable.snp.makeConstraints{
             $0.top.equalTo(wrongLabel.snp.bottom).offset(10)
@@ -361,12 +386,15 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         explanationLabel.snp.makeConstraints{
             $0.top.equalTo(answerTable.snp.bottom).offset(20)
             $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalTo(explanationCamera.snp.leading)
             $0.height.equalTo(20)
         }
         explanationCamera.snp.makeConstraints{
             $0.top.equalTo(answerTable.snp.bottom).offset(20)
-            $0.leading.equalTo(questionLabel.snp.trailing).offset(10)
-            $0.height.width.equalTo(20)
+            //$0.leading.equalTo(questionLabel.snp.trailing).offset(10)
+            $0.trailing.equalToSuperview().offset(-20)
+            $0.height.equalTo(20)
+            $0.width.equalTo(110)
         }
         explanationText.snp.makeConstraints{
             $0.top.equalTo(explanationLabel.snp.bottom).offset(10)
@@ -442,7 +470,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         isSubjective.toggle()
         answerTable.reloadData()
         
-        wrongLabel.text = "보기에 섞을 오답들"
+        wrongLabel.text = "보기에 섞을 오답들..!"
         wrongLabel.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
         
         separateView.snp.updateConstraints{
@@ -456,7 +484,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         isSubjective.toggle()
         answerTable.reloadData()
         
-        wrongLabel.text = "또다른 정답들"
+        wrongLabel.text = "주관식은 답이 여러개일 수 있죠!"
         wrongLabel.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
         
         separateView.snp.updateConstraints{
@@ -468,7 +496,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
     @objc func plusButtonClick() {
         if DataManager.shared.answerList.count > 4 {
             // 팝업
-            alert(message: "보기는 5개까지만 가능합니다.")
+            alert(message: "답안은 5개까지만 가능해요..ㅠㅠ")
             return
         }
         DataManager.shared.answerList.append("")
@@ -507,7 +535,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         
         /// 변경사항이 있다
         if isEdited {
-            let alert = UIAlertController(title: "저장할까요?", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "저장할까요!?", message: "", preferredStyle: .alert)
             let justOut = UIAlertAction(title: "그냥 나가기", style: .destructive, handler: { [weak self] _ in
                 self?.navigationController?.popViewController(animated: true)
             })
@@ -527,25 +555,25 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         //메모 갈아거 0이면 메모 입력하세요 띄우기
         if questionText.text.count < 1 || questionText.text == "질문 입력" {
             questionText.becomeFirstResponder()
-            alert(message: "질문을 입력하세요")
+            alert(message: "질문을 입력해주세요!")
             return
         }
         if explanationText.text.count < 1 || explanationText.text == "풀이 입력" {
             explanationText.becomeFirstResponder()
-            alert(message: "풀이를 입력하세요")
+            alert(message: "풀이를 입력해주세요!")
             return
         }
         
         /// 20210101 빈 답 불가
         if answerTextField.text == "" {
             answerTextField.becomeFirstResponder()
-            alert(message: "답을 입력하세요")
+            alert(message: "답을 입력해주세요!")
             return
         }
         for (index, string) in DataManager.shared.answerList.enumerated() {
             if string == "" {
                 (answerTable.cellForRow(at: IndexPath(row: index,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
-                alert(message: "답을 입력해주세요")
+                alert(message: "답을 입력해주세요!")
 
                 return
             }
@@ -555,7 +583,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         for (index, string) in DataManager.shared.answerList.enumerated() {
             if answerTextField.text == string {
                 (answerTable.cellForRow(at: IndexPath(row: index,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
-                alert(message: "중복된 답을 제거해주세요")
+                alert(message: "중복된 답을 제거해주세요!")
 
                 return
             }
@@ -566,7 +594,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
                 for j in i + 1...answersSize - 1 {
                     if DataManager.shared.answerList[i] == DataManager.shared.answerList[j] {
                         (answerTable.cellForRow(at: IndexPath(row: j,section: 0)) as! QuestionAnswerCell).contents.becomeFirstResponder()
-                        alert(message: "중복된 답을 제거해주세요")
+                        alert(message: "중복된 답을 제거해주세요!")
                         
                         return
                     }
@@ -596,7 +624,7 @@ extension MakeQuestionViewController: UINavigationControllerDelegate, UIImagePic
     //20200720 사진을 고르는 화면 구현
     @objc func addQuestionImage() {
         if DataManager.shared.imageList.count > 5 {
-            let alert = UIAlertController(title: "알림", message: "사진은 6개까지만 가능해요.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "사진은 6개까지만 가능해요.", message: "", preferredStyle: .alert)
         
             let okAction = UIAlertAction(title: "확인",  style: .default)
             alert.addAction(okAction) // 알림창에 버튼 객체 추가
@@ -610,7 +638,7 @@ extension MakeQuestionViewController: UINavigationControllerDelegate, UIImagePic
     }
     @objc func addExplanationImage() {
         if DataManager.shared.imageList2.count > 5 {
-            let alert = UIAlertController(title: "알림", message: "사진은 6개까지만 가능해요.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "사진은 6개까지만 가능해요.", message: "", preferredStyle: .alert)
         
             let okAction = UIAlertAction(title: "확인",  style: .default)
             alert.addAction(okAction) // 알림창에 버튼 객체 추가

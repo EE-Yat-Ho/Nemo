@@ -51,6 +51,7 @@
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
+		2A912BFD25A1ECD200DBE23D /* ManualPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */; };
 		2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */; };
 		2AAC9749256785260037678C /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAC9748256785260037678C /* NotificationManager.swift */; };
 		2ADA4C5A24E6832C00283AC6 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */; };
@@ -108,6 +109,7 @@
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualPageViewController.swift; sourceTree = "<group>"; };
 		2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerCell.swift; sourceTree = "<group>"; };
 		2AAC9748256785260037678C /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		2ADA4C5924E6832C00283AC6 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -148,7 +150,7 @@
 				2AA62C012561DA0000EA3E35 /* Timer */,
 				2AA62C072562249A00EA3E35 /* Test */,
 				2A1F56EB2562CDA800312657 /* End */,
-				2A1F56EE2562EA8B00312657 /* EndDetail */,
+				2A1F56EE2562EA8B00312657 /* Explanation */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -218,12 +220,12 @@
 			path = End;
 			sourceTree = "<group>";
 		};
-		2A1F56EE2562EA8B00312657 /* EndDetail */ = {
+		2A1F56EE2562EA8B00312657 /* Explanation */ = {
 			isa = PBXGroup;
 			children = (
 				2ADA4C5B24EBBDB200283AC6 /* ExplanationViewController.swift */,
 			);
-			path = EndDetail;
+			path = Explanation;
 			sourceTree = "<group>";
 		};
 		2A1F56F12562F7AB00312657 /* IncorrectNote */ = {
@@ -275,6 +277,7 @@
 		2A3D294B25972075008C8E10 /* Manual */ = {
 			isa = PBXGroup;
 			children = (
+				2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */,
 				2A3D294C2597209C008C8E10 /* ManualViewController.swift */,
 			);
 			path = Manual;
@@ -380,6 +383,7 @@
 		2A6F84DB254C161D0000345F /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2A912BFA25A1E17800DBE23D /* Popup */,
 				2A2057CA259CAE050027510F /* Resource */,
 				2AAC9747256784FE0037678C /* NotificationManager */,
 				2AAC9742256776120037678C /* Animate */,
@@ -389,6 +393,14 @@
 				2A5E94EC24A85847000596D8 /* Cells */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		2A912BFA25A1E17800DBE23D /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				2A3D295625976F21008C8E10 /* ManualPopupViewController.swift */,
+			);
+			path = Popup;
 			sourceTree = "<group>";
 		};
 		2AA62C012561DA0000EA3E35 /* Timer */ = {
@@ -469,7 +481,6 @@
 			children = (
 				2A12BCF625619C390007A971 /* List */,
 				2A1A6A99253AFF9D00577E10 /* Make */,
-				2A3D295625976F21008C8E10 /* ManualPopupViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -619,6 +630,7 @@
 				2A1F56F82562FF9600312657 /* IncorrectQuestionCell.swift in Sources */,
 				2ADA4C5E24EBC7BD00283AC6 /* QuestionAnswerCell.swift in Sources */,
 				2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */,
+				2A912BFD25A1ECD200DBE23D /* ManualPageViewController.swift in Sources */,
 				2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */,
 				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
 				2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */,
@@ -788,8 +800,8 @@
 			baseConfigurationReference = D0B22AD1724CE7C93030A3CC /* Pods-Nemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
 				INFOPLIST_FILE = Nemo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -799,7 +811,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "지윤누나폰으로 테스트";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -810,8 +822,8 @@
 			baseConfigurationReference = 824906C8C52517E3020608CD /* Pods-Nemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = KXKQCH6X89;
 				INFOPLIST_FILE = Nemo/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -821,7 +833,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Young-ho-park.Nemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "지윤누나폰으로 테스트";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -12,6 +12,9 @@ extension UIFont {
     static func handSmall() -> UIFont {
         return UIFont(name: "NanumGoDigANiGoGoDing", size: 15)!
     }
+    static func handNormal16() -> UIFont {
+        return UIFont(name: "NanumGoDigANiGoGoDing", size: 16)!
+    }
     static func handNormal() -> UIFont {
         return UIFont(name: "NanumGoDigANiGoGoDing", size: 20)!
     }

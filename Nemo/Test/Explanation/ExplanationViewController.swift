@@ -63,7 +63,7 @@ class ExplanationViewController: UIViewController {
     }
     
     let explanationLabel = UILabel().then {
-        $0.text = "풀이:"
+        $0.text = "플이!  "
         $0.font = UIFont.handNormal()
         $0.setContentHuggingPriority(UILayoutPriority(1000), for: .horizontal)
     }
@@ -145,76 +145,76 @@ class ExplanationViewController: UIViewController {
             $0.width.equalTo(scrollView.frameLayoutGuide.snp.width) }
         
         rightImage.snp.makeConstraints{
-            $0.leading.equalToSuperview().offset(10)
-            $0.top.equalToSuperview().offset(10)
-            $0.height.width.equalTo(60)
+            $0.leading.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.height.width.equalTo(80)
         }
         questionTV.snp.makeConstraints{
-            $0.top.equalToSuperview().offset(10)
+            $0.top.equalToSuperview().offset(20)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         questionCollectionView.snp.makeConstraints{
-            $0.top.equalTo(questionTV.snp.bottom)
+            $0.top.equalTo(questionTV.snp.bottom).offset(20)
             $0.height.equalTo(collectionHeight)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         myChoiceTableView.snp.makeConstraints{
-            $0.top.equalTo(questionCollectionView.snp.bottom).offset(10)
+            $0.top.equalTo(questionCollectionView.snp.bottom).offset(20)
             $0.height.equalTo(100)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         separator1.snp.makeConstraints{
-            $0.top.equalTo(myChoiceTableView.snp.bottom).offset(10)
+            $0.top.equalTo(myChoiceTableView.snp.bottom).offset(20)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         myChoiceLabel.snp.makeConstraints{
-            $0.top.equalTo(separator1.snp.bottom)
+            $0.top.equalTo(separator1.snp.bottom).offset(20)
             //$0.height.equalTo(100)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         separator2.snp.makeConstraints{
-            $0.top.equalTo(myChoiceLabel.snp.bottom).offset(10)
+            $0.top.equalTo(myChoiceLabel.snp.bottom).offset(20)
             $0.height.equalTo(1)
             $0.leading.trailing.equalToSuperview().inset(20)
         }
         rightAnswerLabel.snp.makeConstraints{
-            $0.top.equalTo(separator2.snp.bottom)
+            $0.top.equalTo(separator2.snp.bottom).offset(20)
             //$0.height.equalTo(100)
             $0.leading.equalToSuperview().inset(20)
         }
         rightAnswerTable.snp.makeConstraints{
-            $0.top.equalTo(separator2.snp.bottom)
+            $0.top.equalTo(separator2.snp.bottom).offset(20)
             $0.height.equalTo(100)
             $0.leading.equalTo(rightAnswerLabel.snp.trailing)
             $0.trailing.equalToSuperview().inset(20)
         }
         if question.isSubjective {
             separator3.snp.makeConstraints{
-                $0.top.equalTo(rightAnswerTable.snp.bottom).offset(10)
+                $0.top.equalTo(rightAnswerTable.snp.bottom).offset(20)
                 $0.height.equalTo(1)
                 $0.leading.trailing.equalToSuperview().inset(20)
             }
         } else {
             separator3.snp.makeConstraints{
-                $0.top.equalTo(rightAnswerLabel.snp.bottom).offset(10)
+                $0.top.equalTo(rightAnswerLabel.snp.bottom).offset(20)
                 $0.height.equalTo(1)
                 $0.leading.trailing.equalToSuperview().inset(20)
             }
         }
         explanationLabel.snp.makeConstraints{
-            $0.top.equalTo(separator3.snp.bottom)
+            $0.top.equalTo(separator3.snp.bottom).offset(20)
             //$0.height.equalTo(100)
             $0.leading.equalToSuperview().inset(20)
         }
         explanationTV.snp.makeConstraints{
-            $0.top.equalTo(separator3.snp.bottom)
+            $0.top.equalTo(separator3.snp.bottom).offset(10)
             //$0.height.equalTo(100)
             $0.leading.equalTo(explanationLabel.snp.trailing).offset(8)
             $0.trailing.equalToSuperview().inset(20)
         }
         explanationCollectionView.snp.makeConstraints{
-            $0.top.equalTo(explanationTV.snp.bottom)
+            $0.top.equalTo(explanationTV.snp.bottom).offset(20)
             $0.height.equalTo(100)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().offset(-50)
@@ -275,11 +275,11 @@ class ExplanationViewController: UIViewController {
         }
         
         if question.isSubjective {
-            myChoiceLabel.text = "내가 쓴 답:  " + DataManager.shared.testAnswerList[index]
-            rightAnswerLabel.text = "정답들:"
+            myChoiceLabel.text = "내가 쓴 답은?  " + DataManager.shared.testAnswerList[index]
+            rightAnswerLabel.text = "정답들은?!  "
         } else {
-            myChoiceLabel.text = "내가 고른 답:  " + DataManager.shared.testAnswerList[index]
-            rightAnswerLabel.text = "정답:  " + (question.answer ?? "")
+            myChoiceLabel.text = "내가 고른 답은?  " + DataManager.shared.testAnswerList[index]
+            rightAnswerLabel.text = "정답은?!  " + (question.answer ?? "")
             rightAnswerTable.isHidden = true
         }
         explanationTV.text = question.explanation
@@ -295,11 +295,12 @@ extension ExplanationViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.tag == 0 {
-            return question.answers!.count + 1
-        } else {
-            return question.answers!.count
-        }
+//        if tableView.tag == 0 {
+//            return question.answers!.count + 1
+//        } else {
+//            return question.answers!.count
+//        }
+        return question.answers!.count + 1
     }
     
     
@@ -313,6 +314,7 @@ extension ExplanationViewController: UITableViewDelegate, UITableViewDataSource 
             cell.setupLayout()
             cell.checkImage.isHidden = !isCheck
             cell.cancelLine.isHidden = true
+            cell.xButton.isHidden = true
             
             cell.numImage.image = UIImage(systemName: String(indexPath.row + 1) + ".circle")
             cell.label.text = DataManager.shared.orderingAnswers[index][indexPath.row]
@@ -320,7 +322,11 @@ extension ExplanationViewController: UITableViewDelegate, UITableViewDataSource 
             return cell
         } else { // 주관식 답들 테이블
             let cell = tableView.dequeueReusableCell(withIdentifier: "UITableViewCell", for: indexPath)
-            cell.textLabel?.text = question.answers?[indexPath.row]
+            if indexPath.row == 0 { // answer 로 세팅
+                cell.textLabel?.text = question.answer
+            } else { // answers로 세팅
+                cell.textLabel?.text = question.answers?[indexPath.row - 1]
+            }
             cell.textLabel?.textColor = UIColor.black
             cell.textLabel?.font = UIFont.handNormal()
             cell.backgroundColor = UIColor.clear

@@ -37,6 +37,9 @@ class ConfigCell: UITableViewCell {
         case 2:
             icon.image = UIImage(named: "고객센터")
             label.text = "사용법"
+        case 3:
+            icon.image = UIImage(named: "버전정보")
+            label.text = "개발자 이메일 문의"
         default:
             print("error")
         }

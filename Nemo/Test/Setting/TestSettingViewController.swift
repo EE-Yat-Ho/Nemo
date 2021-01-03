@@ -16,13 +16,13 @@ class TestSettingViewController: UIViewController {
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
     }
     let backPackButton = UIButton().then{
-        $0.setTitle("가방", for: .normal)
+        $0.setTitle("노트로", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setBP), for: .touchUpInside)
         $0.titleLabel?.font = UIFont.handNormal()
     }
     let timeButton = UIButton().then{
-        $0.setTitle("시간", for: .normal)
+        $0.setTitle("시간으로", for: .normal)
         $0.setTitleColor(UIColor.systemBlue, for: .normal)
         $0.addTarget(self, action: #selector(setT), for: .touchUpInside)
         $0.titleLabel?.font = UIFont.handNormal()
@@ -44,7 +44,7 @@ class TestSettingViewController: UIViewController {
     
     let wantContainer = UIView()
     let wantLabel = UILabel().then {
-        $0.text = "풀고 싶은 문제 수:"
+        $0.text = "     몇 문제 풀까? :"
     }
     let wantTextField = UITextField().then {
         $0.text = "0"
@@ -117,6 +117,17 @@ class TestSettingViewController: UIViewController {
         
         loadBanner()
         setupLayout()
+        
+        if UserDefaults.standard.bool(forKey: "neverSetTestPopup") == false {
+            let alert = ManualPopupViewController()
+            alert.popupKind = .setTest
+            alert.imageView.image = UIImage(named: "문제풀기설명")
+            alert.manualLabel.text = "여기서 생성한 문제들을 풀어볼 수 있어요!\n\"노트\" 혹은 \"생성시간\"별로 문제들을 선택하고, 원하는 문제 수를 입력하면, 입력한 수 만큼 랜덤으로 문제를 제출해줘요!"
+            present(alert, animated: true, completion: {
+                /// present화면 스크롤 다운 못하게하기
+                alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            }) // 완성된 알림창 화면에 띄우기
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -240,9 +251,14 @@ class TestSettingViewController: UIViewController {
     @objc func setBP() {
         if !isTime { return }
         isTime.toggle()
+        
+        for i in 0..<bpBoolList.count {
+            for j in 0..<bpBoolList[i].count {
+                bpBoolList[i][j] = false
+            }
+        }
         tableView.reloadData()
         
-        //bpBoolList.removeAll()
         testableNumLabel.text = "0"
         wantTextField.text = "0"
         
@@ -254,9 +270,9 @@ class TestSettingViewController: UIViewController {
     @objc func setT() {
         if isTime { return }
         isTime.toggle()
-        tableView.reloadData()
         
         timeBoolList = [false,false,false,false]
+        tableView.reloadData()
         testableNumLabel.text = "0"
         wantTextField.text = "0"
         
@@ -267,7 +283,7 @@ class TestSettingViewController: UIViewController {
     
     @objc func clickTestReadyButton(_ sender: Any) {
         if (Int(testableNumLabel.text!) ?? 0) == 0 {
-            let alert = UIAlertController(title: "알림", message: "가능한 문제가 없습니다. 문제가 들어있는 노트를 선택해주세요!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "가능한 문제가 없습니다. 문제가 들어있는 노트를 선택해주세요!", message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "확인", style: .default)
             alert.addAction(okAction)
             // 알림창 띄우기
@@ -275,7 +291,7 @@ class TestSettingViewController: UIViewController {
         }
         
         if (Int(wantTextField.text!) ?? 0) == 0 {
-            let alert = UIAlertController(title: "알림", message: "풀고 싶은 문제 수를 1개 이상 입력해주세요!", preferredStyle: .alert)
+            let alert = UIAlertController(title: "풀고 싶은 문제 수를 1개 이상 입력해주세요!", message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "확인", style: .default)
             alert.addAction(okAction)
             // 알림창 띄우기
@@ -375,6 +391,9 @@ extension TestSettingViewController: UITableViewDataSource, UITableViewDelegate 
                         print("isTime for timeBoolList error")
                     }
                     testableNumLabel.text = String(DataManager.shared.questionListToDate.count)
+                    //if DataManager.shared.questionListToDate.count < 11 {
+                        wantTextField.text = testableNumLabel.text
+                    //}
                 } else {
                     timeBoolList[i] = false
                 }
@@ -412,6 +431,9 @@ extension TestSettingViewController: UITableViewDataSource, UITableViewDelegate 
                 testableNumLabel.text = String((Int(testableNumLabel.text!) ?? 0) + Int(DataManager.shared.noteList[indexPath.section][indexPath.row - 1].numberOfQ))
                 selectedCell.checkImage.isHidden = false
             }
+            //if Int(testableNumLabel.text!) ?? 0 < 11 {
+                wantTextField.text = testableNumLabel.text
+            //}
             bpBoolList[indexPath.section][indexPath.row - 1].toggle()
         }
     }

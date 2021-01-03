@@ -61,7 +61,16 @@ class IncorrectNoteViewContoller: UIViewController {
         setupLayout()
         //bindingData()
         
-        
+        if UserDefaults.standard.bool(forKey: "neverIncorrectNotePopup") == false {
+            let alert = ManualPopupViewController()
+            alert.popupKind = .incorrectNote
+            alert.imageView.image = UIImage(named: "오답노트설명")
+            alert.manualLabel.text = "여기는 오답노트에요! \"틀린 횟수\" 혹은 \"최근 틀린 시간\" 순으로 볼 수 있어요.\n여기서 삭제시, 해당 문제의 틀린 횟수와 틀린 시간이 초기화되요!"
+            present(alert, animated: true, completion: {
+                /// present화면 스크롤 다운 못하게하기
+                alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            }) // 완성된 알림창 화면에 띄우기
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) { // 화면이 전환 될때(나타날때) 호출
@@ -179,11 +188,11 @@ extension IncorrectNoteViewContoller: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete { //위에서 리턴한 딜리트 스타일을 처리하는 부분
-            if sortButton.title(for: .normal) == "많이 틀린 순" {
+            //if sortButton.title(for: .normal) == "많이 틀린 순" {
                 DataManager.shared.sortQuestionList[indexPath.row].failCount = 0
-            } else {
+            //} else {
                 DataManager.shared.sortQuestionList[indexPath.row].failDate = Date(timeIntervalSince1970: 0)
-            }
+            //}
             DataManager.shared.saveContext()
             DataManager.shared.sortQuestionList.remove(at: indexPath.row)
             tableView.reloadData()

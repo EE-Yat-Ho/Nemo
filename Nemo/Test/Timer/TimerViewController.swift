@@ -122,6 +122,17 @@ class TimerViewController: UIViewController {
         //테스트 화면에서 하는게 맞긴한데 저기는 문제마다 리로드되더라 ㅜ
         DataManager.shared.testAnswerList.removeAll()
         firstTimer.isSelected = true
+        
+        if UserDefaults.standard.bool(forKey: "neverTimerPopup") == false {
+            let alert = ManualPopupViewController()
+            alert.popupKind = .timer
+            alert.imageView.image = UIImage(named: "타이머설명")
+            alert.manualLabel.text = "여기서는 한 문제당 시간제한을 걸 수 있어요!\n시간이 경과되면 오답처리되고, 다음문제로 넘어가버려요..!"
+            present(alert, animated: true, completion: {
+                /// present화면 스크롤 다운 못하게하기
+                alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
+            }) // 완성된 알림창 화면에 띄우기
+        }
     }
     
     func setupLayout() {
@@ -223,8 +234,8 @@ class TimerViewController: UIViewController {
         // 셤시작 버튼
         /// 미선택시 오답처리 팝업
         if UserDefaults.standard.bool(forKey: "neverSeeNoAnswerPopup") == false {
-            let alert = UIAlertController(title: "알림", message: "객관식 문제에서 답을 선택하지 않으면 자동으로 오답처리 됩니다.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "확인", style: .default) { [weak self] _ in
+            let alert = UIAlertController(title: "객관식 문제에서 미선택으로 넘어가면 오답처리되요!!", message: "", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "확인", style: .cancel) { [weak self] _ in
                 self?.startTest()
             }
             alert.addAction(okAction)
@@ -250,7 +261,7 @@ class TimerViewController: UIViewController {
         } else if lastTimer.isSelected == true {
             // 커스텀 타이머했는데, 값이 0이면 알림
             if Int(lastTimerTimeTF.text!) ?? 0 == 0{
-                let alert = UIAlertController(title: "알림", message: "커스텀 타이머의 값은 1이상으로 해주세요.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "커스텀 타이머의 값은 1이상으로 해주세요.", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default)
                 alert.addAction(okAction)
                 // 알림창 띄우기
@@ -260,7 +271,7 @@ class TimerViewController: UIViewController {
             
             DataManager.shared.timerTime = Int(lastTimerTimeTF.text!) ?? 1
         } else {
-            let alert = UIAlertController(title: "알림", message: "타이머를 선택해주세요.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "타이머를 선택해주세요.", message: "", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "확인", style: .default)
             alert.addAction(okAction)
             // 알림창 띄우기

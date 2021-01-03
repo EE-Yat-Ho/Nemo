@@ -22,6 +22,7 @@ class CollectionViewCell: UICollectionViewCell {
         $0.layer.cornerRadius = 5.0
         $0.clipsToBounds = true
         $0.backgroundColor = UIColor.black
+        $0.contentMode = .scaleAspectFit
     }
     let xButton = UIButton().then {
         $0.setImage(UIImage(named: "엑스_하양회색"), for: .normal)

@@ -155,7 +155,7 @@ class EndTestTableViewController: UIViewController {
         }
         
         tableView.snp.makeConstraints{
-            $0.top.equalTo(containerView.snp.bottom)
+            $0.top.equalTo(separator.snp.bottom)
             $0.leading.trailing.bottom.equalToSuperview()
         }
     }

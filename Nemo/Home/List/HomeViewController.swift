@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     let emptyLabel = UILabel().then {
         $0.text = "가방을 만들어주세요"
         $0.textAlignment = .center
-        $0.font = UIFont.systemFont(ofSize: 24)
+        $0.font = UIFont.handBig()
     }
     let tableView = UITableView().then {
         $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
@@ -72,13 +72,13 @@ class HomeViewController: UIViewController {
         
         AppInit()
         // 폰트 이름 확인하기
-        for name in UIFont.familyNames {
-            print(name)
-            if let nameString = name as? String
-            {
-                print(UIFont.fontNames(forFamilyName: nameString))
-            }
-        }
+//        for name in UIFont.familyNames {
+//            print(name)
+//            if let nameString = name as? String
+//            {
+//                print(UIFont.fontNames(forFamilyName: nameString))
+//            }
+//        }
         let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(changeName))
         tableView.addGestureRecognizer(longPressGesture)
     }
@@ -191,8 +191,9 @@ class HomeViewController: UIViewController {
             UserDefaults.standard.setValue(true, forKey: "didLaunched")
         }
         
-        if UserDefaults.standard.bool(forKey: "neverPopupManual") == false {
+        if UserDefaults.standard.bool(forKey: "neverHomePopup") == false {
             let alert = ManualPopupViewController()
+            alert.popupKind = .home
             present(alert, animated: true, completion: {
                 alert.presentationController?.presentedView?.gestureRecognizers?[0].isEnabled = false
             }) // 완성된 알림창 화면에 띄우기
@@ -470,7 +471,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         if editingStyle == .delete { //위에서 리턴한 딜리트 스타일을 처리하는 부분
             if indexPath.row == 0 { // 가방을 삭제하는 경우
                 // 안에 있는 노트와 문제들이 다 삭제된다고 물어보기
-                let alert = UIAlertController(title: "알림", message: "들어있는 노트와 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "들어있는 노트와 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default){ (action) in
                     // 확인 눌렀을 때 하는 소스
                     // 디비에서 노트 다 삭제
@@ -507,7 +508,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
             } else { // 노트를 삭제하는 경우
                 // 안에 있는 문제들이 다 삭제된다고 물어보기
-                let alert = UIAlertController(title: "알림", message: "들어있는 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", preferredStyle: .alert)
+                let alert = UIAlertController(title: "들어있는 문제, 메모가 삭제됩니다. 정말 삭제하시겠습니까?", message: "", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default){(action) in
                     // 확인 눌렀을 때 하는 소스
                     // 노트 배열 로딩
