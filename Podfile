@@ -14,7 +14,6 @@ target 'Nemo' do
   pod 'NSObject+Rx'
   pod 'RxDataSources'
   pod 'Cell+Rx'
-  pod 'Action'
 
   pod 'Then'
   pod 'SnapKit'
