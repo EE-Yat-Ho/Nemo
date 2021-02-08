@@ -25,6 +25,7 @@ class HomeViewController: UIViewController {
         $0.text = "가방을 만들어주세요"
         $0.textAlignment = .center
         $0.font = UIFont.handBig()
+        $0.textColor = .black
     }
     let tableView = UITableView().then {
         $0.register(NoteCell.self, forCellReuseIdentifier: "NoteCell")
@@ -34,6 +35,7 @@ class HomeViewController: UIViewController {
     }
     var titleLabel = UILabel().then{
         $0.text = "가방"
+        $0.textColor = .black
         $0.font = UIFont.notoBig()//(name: "NotoSansKannada-Bold", size: 34)
     }
     var addButton = UIButton().then{

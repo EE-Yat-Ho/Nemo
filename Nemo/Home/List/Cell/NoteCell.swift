@@ -35,6 +35,7 @@ class NoteCell: UITableViewCell {
     }
     var noteName = UILabel().then {
         $0.font = UIFont.handNormal()
+        $0.textColor = .black
     }
     var numberOfQuestion = UILabel().then {
         $0.textColor = UIColor.gray

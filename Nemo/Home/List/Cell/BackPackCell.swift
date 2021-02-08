@@ -35,6 +35,7 @@ class BackPackCell: UITableViewCell {
     }
     let backPackName = UILabel().then {
         $0.font = UIFont.handNormal()
+        $0.textColor = .black
     }
     let numberOfNote = UILabel().then {
         $0.font = UIFont.handNormal()
