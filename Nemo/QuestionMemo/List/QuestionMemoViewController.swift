@@ -322,7 +322,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 
             } else { // 필기나 문제 삭제
                 let alert = UIAlertController(title: "정말 삭제하시겠습니까?", message: "", preferredStyle: .alert)
-                let okAction = UIAlertAction(title: "확인", style: .default){ [weak self] (action) in
+                let okAction = UIAlertAction(title: "확인", style: .default){ (action) in
                     // 확인 눌렀을 때 하는 소스
                     if indexPath.section != 0 { // 문제 삭제
                         let target = DataManager.shared.questionList[indexPath.row - 1]
@@ -360,7 +360,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                     tableView.reloadRows(at: [IndexPath(row: 0, section:indexPath.section)], with: .fade)
                 }
                 alert.addAction(okAction)
-                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ [weak self] (action) in
+                let cancelAction = UIAlertAction(title: "취소", style: .cancel){ (action) in
                     // 취소 눌렀을 때 하는 소스
                     // 암거도 안함 22
                 }
