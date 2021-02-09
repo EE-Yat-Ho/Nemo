@@ -19,7 +19,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         $0.maximumZoomScale = 4.0
     }
     var leftButton = UIButton().then{
-        $0.setImage(UIImage(named:"편집_뒤로가기"), for: .normal)
+        $0.setImage(UIImage(named:"arrow_left"), for: .normal)
         $0.addTarget(self, action: #selector(clickLeftButton), for: .touchUpInside)
     }
     var anotherImageButton = UIButton().then{

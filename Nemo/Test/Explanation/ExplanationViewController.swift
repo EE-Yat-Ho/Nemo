@@ -269,9 +269,9 @@ class ExplanationViewController: UIViewController {
         
         
         if isRight {
-            rightImage.image = UIImage(named: "맞은표시-파랑")
+            rightImage.image = UIImage(named: "right_blue")
         } else {
-            rightImage.image = UIImage(named: "틀린표시")
+            rightImage.image = UIImage(named: "fail_red")
         }
         
         if question.isSubjective {

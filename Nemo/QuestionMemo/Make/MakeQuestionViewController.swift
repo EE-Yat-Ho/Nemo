@@ -41,7 +41,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.adjustsFontSizeToFitWidth = true
     }
     lazy var questionCamera = UIButton().then {
-        $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.setImage(UIImage(named: "image"), for: .normal)
         $0.addTarget(self, action: #selector(addQuestionImage), for: .touchUpInside)
         $0.setTitle("사진 추가", for: .normal)
         $0.titleLabel?.font = UIFont.handNormal()
@@ -103,7 +103,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.adjustsFontSizeToFitWidth = true
     }
     let plusButton = UIButton().then {
-        $0.setImage(UIImage(named: "플러스"), for: .normal)
+        $0.setImage(UIImage(named: "plus"), for: .normal)
         $0.addTarget(self, action: #selector(plusButtonClick), for: .touchUpInside)
         $0.setTitle("답안 추가", for: .normal)
         $0.titleLabel?.font = UIFont.handNormal()
@@ -125,7 +125,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         $0.adjustsFontSizeToFitWidth = true
     }
     let explanationCamera = UIButton().then {
-        $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.setImage(UIImage(named: "image"), for: .normal)
         $0.addTarget(self, action: #selector(addExplanationImage), for: .touchUpInside)
         $0.setTitle("사진 추가", for: .normal)
         $0.titleLabel?.font = UIFont.handNormal()

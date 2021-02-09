@@ -11,9 +11,9 @@ import UIKit
 class TimerViewController: UIViewController {
 
     let firstTimer = UIButton().then {
-        $0.setImage(UIImage(named: "타이머"), for: .normal)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
+        $0.setImage(UIImage(named: "timer_normal"), for: .normal)
+        $0.setImage(UIImage(named: "timer_sel"), for: .selected)
+        $0.setImage(UIImage(named: "timer_sel"), for: .highlighted)
         $0.addTarget(self, action: #selector(clickFirstTimer(_:)), for: .touchUpInside)
     }
     let firstLabel = UILabel().then {
@@ -22,9 +22,9 @@ class TimerViewController: UIViewController {
         $0.font = UIFont.handNormal()
     }
     let secondTimer = UIButton().then {
-        $0.setImage(UIImage(named: "타이머"), for: .normal)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
+        $0.setImage(UIImage(named: "timer_normal"), for: .normal)
+        $0.setImage(UIImage(named: "timer_sel"), for: .selected)
+        $0.setImage(UIImage(named: "timer_sel"), for: .highlighted)
         $0.addTarget(self, action: #selector(clickSecondTimer(_:)), for: .touchUpInside)
     }
     let secondLabel = UILabel().then {
@@ -33,9 +33,9 @@ class TimerViewController: UIViewController {
         $0.font = UIFont.handNormal()
     }
     let lastTimer = UIButton().then {
-        $0.setImage(UIImage(named: "타이머"), for: .normal)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .selected)
-        $0.setImage(UIImage(named: "타이머_선택"), for: .highlighted)
+        $0.setImage(UIImage(named: "timer_normal"), for: .normal)
+        $0.setImage(UIImage(named: "timer_sel"), for: .selected)
+        $0.setImage(UIImage(named: "timer_sel"), for: .highlighted)
         $0.addTarget(self, action: #selector(clickLastTimer(_:)), for: .touchUpInside)
     }
     let lastLabel = UILabel().then {
@@ -80,7 +80,7 @@ class TimerViewController: UIViewController {
         $0.setBackgroundColor(color: Resource.buttonHighLight, forState: .highlighted)
     }
     let introdutionIcon = UIImageView().then {
-        $0.image = UIImage(named: "검정느낌표")
+        $0.image = UIImage(named: "blacki")
     }
     let introdutionLabel = UILabel().then {
         $0.text = "타이머 설정시, 한 문제에서 시간이 경과되면 다음 문제로 넘어가요..!"
@@ -132,7 +132,7 @@ class TimerViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "neverTimerPopup") == false {
             let alert = ManualPopupViewController()
             alert.popupKind = .timer
-            alert.imageView.image = UIImage(named: "타이머설명")
+            alert.imageView.image = UIImage(named: "timer")
             alert.manualLabel.text = "여기서는 한 문제당 시간제한을 걸 수 있어요!\n시간이 경과되면 오답처리되고, 다음문제로 넘어가버려요..!"
             present(alert, animated: true, completion: {
                 /// present화면 스크롤 다운 못하게하기

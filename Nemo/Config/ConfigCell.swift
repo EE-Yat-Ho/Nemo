@@ -14,7 +14,7 @@ class ConfigCell: UITableViewCell {
         $0.font = UIFont.handNormal()
     }
     let rightArrow = UIImageView().then {
-        $0.image = UIImage(named: "기본아이콘_이동")
+        $0.image = UIImage(named: "arrow_right")
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -29,16 +29,16 @@ class ConfigCell: UITableViewCell {
     func mappingData(index: Int) {
         switch index {
         case 0:
-            icon.image = UIImage(named: "알림")
+            icon.image = UIImage(named: "alarm")
             label.text = "알림"
         case 1:
-            icon.image = UIImage(named: "백업")
+            icon.image = UIImage(named: "backup")
             label.text = "백업 (개발중)"
         case 2:
-            icon.image = UIImage(named: "고객센터")
+            icon.image = UIImage(named: "company")
             label.text = "사용법"
         case 3:
-            icon.image = UIImage(named: "버전정보")
+            icon.image = UIImage(named: "grenn_i")
             label.text = "개발자 이메일 문의"
         default:
             print("error")

@@ -11,11 +11,11 @@ import Then
 
 class NoteCell_Test: UITableViewCell {
     var checkImage = UIImageView().then{
-        $0.image = UIImage(named: "틀린표시-파랑")
+        $0.image = UIImage(named: "fail_blue")
         $0.isHidden = true
     }
     var noteImage = UIImageView().then {
-        $0.image = UIImage(named: "노트")
+        $0.image = UIImage(named: "note_main")
     }
     var noteName = UILabel().then {
         $0.font = UIFont.handNormal()
@@ -30,7 +30,7 @@ class NoteCell_Test: UITableViewCell {
     }
     var rightImage = UIImageView()
         //.then {
-        //$0.image = UIImage(named: "기본아이콘_이동")
+        //$0.image = UIImage(named: "arrow_right")
     //}
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

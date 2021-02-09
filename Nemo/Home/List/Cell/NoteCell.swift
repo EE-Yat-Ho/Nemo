@@ -31,7 +31,7 @@ class NoteCell: UITableViewCell {
     }
     
     var noteImage = UIImageView().then {
-        $0.image = UIImage(named: "노트")
+        $0.image = UIImage(named: "note_main")
     }
     var noteName = UILabel().then {
         $0.font = UIFont.handNormal()
@@ -46,7 +46,7 @@ class NoteCell: UITableViewCell {
         $0.font = UIFont.handNormal()
     }
     var rightImage = UIImageView().then {
-        $0.image = UIImage(named: "기본아이콘_이동")
+        $0.image = UIImage(named: "arrow_right")
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

@@ -10,7 +10,7 @@ import UIKit
 
 class TestViewController: UIViewController {
     let timerImage = UIImageView().then {
-        $0.image = UIImage(named: "타이머_선택")
+        $0.image = UIImage(named: "timer_sel")
     }
     let timerLabel = UILabel().then {
         $0.text = "00:00"

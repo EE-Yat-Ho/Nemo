@@ -20,7 +20,7 @@ class MakeMemoViewController: UIViewController {
         $0.adjustsFontSizeToFitWidth = true
     }
     var cameraButton = UIButton().then{
-        $0.setImage(UIImage(named: "이미지"), for: .normal)
+        $0.setImage(UIImage(named: "image"), for: .normal)
         $0.addTarget(self, action: #selector(addImageToQuestion), for: .touchUpInside)
         $0.setTitle("사진 추가", for: .normal)
         $0.titleLabel?.font = UIFont.handNormal()

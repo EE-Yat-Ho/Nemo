@@ -10,7 +10,7 @@ import UIKit
 
 class ManualPageViewController: UIViewController {
 
-    var imageNames:[String] = ["가방노트설명","필기문제설명","문제풀기설명","타이머설명","오답노트설명"]
+    var imageNames:[String] = ["backpack_note","memo_question","question","timer","incorrect"]
     var labelTexts:[String] = [
         "가방을 만들고,\n가방 안에 노트를 만들어 넣고,\n노트에 문제를 작성한 후 매일매일 풀어보세요!\n\n포함관계: 가방 ⊃ 노트 ⊃ (문제, 필기)",
         "처음 노트를 생성했을 때는 아무런 필기도 문제도 없어요. 우측 하단 버튼으로 생성해주실래요?",

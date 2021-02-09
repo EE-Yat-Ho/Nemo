@@ -23,11 +23,11 @@ class EndingCell: UITableViewCell {
         $0.font = UIFont.handNormal()
     }
 //    let rightArrow = UIImageView().then {
-//        $0.image = UIImage(named: "기본아이콘_이동")
+//        $0.image = UIImage(named: "arrow_right")
 //    }
     
     let isRightShape = UIImageView().then {
-        $0.image = UIImage(named: "맞은표시-파랑") // "틀린표시"
+        $0.image = UIImage(named: "right_blue") // "틀린표시"
     }
     let question = UITextView().then {
         $0.text = "1 + 1 = ?"
@@ -174,7 +174,7 @@ class EndingCell: UITableViewCell {
             isRightImage.text = "정답"
             isRightImage.textColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
             isRightImage.layer.borderColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
-            isRightShape.image = UIImage(named: "맞은표시-파랑")
+            isRightShape.image = UIImage(named: "right_blue")
             myAnswerLabel.snp.remakeConstraints{
                 $0.top.equalToSuperview().offset(3)
                 $0.leading.equalToSuperview()
@@ -194,7 +194,7 @@ class EndingCell: UITableViewCell {
             isRightImage.text = "오답"
             isRightImage.textColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
             isRightImage.layer.borderColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1)
-            isRightShape.image = UIImage(named: "틀린표시")
+            isRightShape.image = UIImage(named: "fail_red")
             
             rightAnswerLabel.isHidden = false
             rightAnswerLabel2.isHidden = false

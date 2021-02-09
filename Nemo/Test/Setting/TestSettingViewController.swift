@@ -121,7 +121,7 @@ class TestSettingViewController: UIViewController {
         if UserDefaults.standard.bool(forKey: "neverSetTestPopup") == false {
             let alert = ManualPopupViewController()
             alert.popupKind = .setTest
-            alert.imageView.image = UIImage(named: "문제풀기설명")
+            alert.imageView.image = UIImage(named: "question")
             alert.manualLabel.text = "여기서 생성한 문제들을 풀어볼 수 있어요!\n\"노트\" 혹은 \"생성시간\"별로 문제들을 선택하고, 원하는 문제 수를 입력하면, 입력한 수 만큼 랜덤으로 문제를 제출해줘요!"
             present(alert, animated: true, completion: {
                 /// present화면 스크롤 다운 못하게하기

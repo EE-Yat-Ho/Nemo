@@ -11,7 +11,7 @@ import GoogleMobileAds
 
 class IncorrectNoteViewContoller: UIViewController {
     let downArrow = UIButton().then {
-        $0.setImage(UIImage(named: "기본아이콘_펼치기"), for: .normal)
+        $0.setImage(UIImage(named: "arrow_down"), for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     let sortButton = UIButton().then {
@@ -30,7 +30,7 @@ class IncorrectNoteViewContoller: UIViewController {
         $0.text = "오답노트"
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
     }
-    lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
+    lazy var editButton = UIBarButtonItem(image: UIImage(named: "sissor"), style: .plain, target: self, action: #selector(clickEditButton))
     var sortKey: SortKey = .failCount
     
     
@@ -64,7 +64,7 @@ class IncorrectNoteViewContoller: UIViewController {
         if UserDefaults.standard.bool(forKey: "neverIncorrectNotePopup") == false {
             let alert = ManualPopupViewController()
             alert.popupKind = .incorrectNote
-            alert.imageView.image = UIImage(named: "오답노트설명")
+            alert.imageView.image = UIImage(named: "incorrect")
             alert.manualLabel.text = "여기는 오답노트에요! \"틀린 횟수\" 혹은 \"최근 틀린 시간\" 순으로 볼 수 있어요.\n여기서 삭제시, 해당 문제의 틀린 횟수와 틀린 시간이 초기화되요!"
             present(alert, animated: true, completion: {
                 /// present화면 스크롤 다운 못하게하기
@@ -147,7 +147,7 @@ class IncorrectNoteViewContoller: UIViewController {
         if tableView.isEditing { // 정상 상태로
             tableView.setEditing(false, animated: true)
             editButton.title = ""
-            editButton.image = UIImage(named: "기본아이콘_편집")
+            editButton.image = UIImage(named: "sissor")
         } else { // 편집 모드로
             tableView.setEditing(true, animated: true)
             editButton.title = "완료"

@@ -19,7 +19,7 @@ import GoogleMobileAds
 class HomeViewController: UIViewController {
     var tableViewEditMode = false
     let emptyImage = UIImageView().then {
-        $0.image = UIImage(named: "가방")
+        $0.image = UIImage(named: "backpack_main")
     }
     let emptyLabel = UILabel().then {
         $0.text = "가방을 만들어주세요"
@@ -39,10 +39,10 @@ class HomeViewController: UIViewController {
         $0.font = UIFont.notoBig()//(name: "NotoSansKannada-Bold", size: 34)
     }
     var addButton = UIButton().then{
-        $0.setImage(UIImage(named: "가방만들기"), for: .normal)
+        $0.setImage(UIImage(named: "make_backpack"), for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
-    lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
+    lazy var editButton = UIBarButtonItem(image: UIImage(named: "sissor"), style: .plain, target: self, action: #selector(clickEditButton))
     
     var banner: GADBannerView!
     func loadBanner() {
@@ -292,7 +292,7 @@ class HomeViewController: UIViewController {
         if tableView.isEditing { // 정상 상태로
             tableView.setEditing(false, animated: true)
             editButton.title = ""
-            editButton.image = UIImage(named: "기본아이콘_편집")
+            editButton.image = UIImage(named: "sissor")
             tableViewEditMode = false
         } else { // 편집 모드로
             tableView.setEditing(true, animated: true)
@@ -357,9 +357,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 { // 가방 선택
             if DataManager.shared.backPackList[indexPath.section].opened {
-                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "편집_뒤로가기")
+                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "arrow_left")
             } else {
-                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "기본아이콘_펼치기")
+                (tableView.cellForRow(at: indexPath) as! BackPackCell).rightImage.image = UIImage(named: "arrow_down")
             }
             DataManager.shared.backPackList[indexPath.section].opened.toggle()
             let sections = IndexSet.init(integer: indexPath.section)

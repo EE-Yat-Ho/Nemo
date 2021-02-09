@@ -31,7 +31,7 @@ class QuestionAnswerCell: UITableViewCell {
         $0.font = UIFont.handNormal()
     }
     let xButton = UIButton().then {
-        $0.setImage(UIImage(named: "엑스_검정"), for: .normal)
+        $0.setImage(UIImage(named: "x_black"), for: .normal)
     }
     var index: Int = 0
     var delegate: QuestionAnswerDelegate!

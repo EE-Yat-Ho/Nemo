@@ -10,7 +10,7 @@ import UIKit
 
 class MemoOpenCell: UITableViewCell {
     let memoImage = UIImageView().then {
-        $0.image = UIImage(named: "필기")
+        $0.image = UIImage(named: "memo_main")
     }
     let memoLabel = UILabel().then {
         $0.text = "필기 보기"

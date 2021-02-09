@@ -22,7 +22,7 @@ class ManualPopupViewController: UIViewController {
         $0.backgroundColor = .white
     }
     var imageView = UIImageView().then {
-        $0.image = UIImage(named: "가방노트설명")
+        $0.image = UIImage(named: "backpack_note")
         $0.contentMode = .scaleAspectFit
     }
     var manualLabel = UILabel().then {

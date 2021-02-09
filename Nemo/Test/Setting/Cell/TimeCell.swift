@@ -61,7 +61,7 @@ class TimeCell: UITableViewCell {
             timeLabel.text = "index Error"
         }
         if isCheck {
-            checkImage.image = UIImage(named: "틀린표시-파랑")
+            checkImage.image = UIImage(named: "fail_blue")
         } else {
             checkImage.image = nil
         }

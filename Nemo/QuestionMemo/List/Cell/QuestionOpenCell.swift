@@ -10,7 +10,7 @@ import UIKit
 
 class QuestionOpenCell: UITableViewCell {
     let questionImage = UIImageView().then {
-        $0.image = UIImage(named: "문제")
+        $0.image = UIImage(named: "question_main")
     }
     let questionLabel = UILabel().then {
         $0.text = "문제 보기"

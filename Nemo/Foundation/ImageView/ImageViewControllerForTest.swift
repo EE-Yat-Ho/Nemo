@@ -17,7 +17,7 @@ class ImageViewControllerForTest: UIViewController, UINavigationControllerDelega
         $0.maximumZoomScale = 4.0
     }
     var leftButton = UIButton().then{
-        $0.setImage(UIImage(named:"엑스_회색"), for: .normal)
+        $0.setImage(UIImage(named:"x_gray"), for: .normal)
         //$0.addTarget(self, action: #selector(clickLeftButton), for: .touchUpInside)
     }
     override func viewDidLoad() {

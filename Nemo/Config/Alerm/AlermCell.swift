@@ -34,15 +34,15 @@ class AlermCell: UITableViewCell {
         $0.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: -30)
         
-        $0.setImage(UIImage(named:"위로화살표"), for: .normal)
+        $0.setImage(UIImage(named:"arrow_up"), for: .normal)
         $0.imageView?.contentMode = .scaleAspectFit
         $0.imageEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 0)
     }
     
     let toggleButton = UIButton().then {
         $0.imageView?.contentMode = .scaleAspectFit
-        $0.setImage(UIImage(named:"꺼진스위치"), for: .normal)
-        $0.setImage(UIImage(named:"켜진스위치"), for: .selected)
+        $0.setImage(UIImage(named:"switch_off"), for: .normal)
+        $0.setImage(UIImage(named:"switch_on"), for: .selected)
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

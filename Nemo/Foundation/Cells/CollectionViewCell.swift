@@ -16,7 +16,7 @@ protocol CollectionDelegate {
 
 class CollectionViewCell: UICollectionViewCell {
     let imageView = UIImageView().then{
-        $0.image = UIImage(named: "가방")
+        $0.image = UIImage(named: "backpack_main")
         $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
         $0.layer.borderWidth = 1.0
         $0.layer.cornerRadius = 5.0
@@ -25,7 +25,7 @@ class CollectionViewCell: UICollectionViewCell {
         $0.contentMode = .scaleAspectFit
     }
     let xButton = UIButton().then {
-        $0.setImage(UIImage(named: "엑스_하양회색"), for: .normal)
+        $0.setImage(UIImage(named: "x_white"), for: .normal)
     }
     
     override func prepareForReuse() {

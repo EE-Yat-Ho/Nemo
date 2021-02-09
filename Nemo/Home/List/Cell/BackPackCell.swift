@@ -31,7 +31,7 @@ class BackPackCell: UITableViewCell {
     }
     
     let backPackImage = UIImageView().then {
-        $0.image = UIImage(named: "가방")
+        $0.image = UIImage(named: "backpack_main")
     }
     let backPackName = UILabel().then {
         $0.font = UIFont.handNormal()
@@ -57,9 +57,9 @@ class BackPackCell: UITableViewCell {
         backPackName.text = DataManager.shared.backPackList[index].name
         numberOfNote.text = "노트 " + String(DataManager.shared.backPackList[index].numberOfNote)
         if DataManager.shared.backPackList[index].opened == true {
-            rightImage.image = UIImage(named: "기본아이콘_펼치기")
+            rightImage.image = UIImage(named: "arrow_down")
         } else {
-            rightImage.image = UIImage(named: "편집_뒤로가기")
+            rightImage.image = UIImage(named: "arrow_left")
         }
         self.editMode = editMode
     }

@@ -18,7 +18,7 @@ class EndTestTableViewController: UIViewController {
         $0.textColor = UIColor.white
     }
     let xButton = UIButton().then {
-        $0.setImage(UIImage(named: "엑스_회색"), for: .normal)
+        $0.setImage(UIImage(named: "x_gray"), for: .normal)
         $0.addTarget(self, action: #selector(xmarkClick(_:)), for: .touchUpInside)
     }
     
@@ -31,7 +31,7 @@ class EndTestTableViewController: UIViewController {
         $0.font = UIFont.handBig()
     }
     let questionImage = UIImageView().then {
-        $0.image = UIImage(named:"문제")
+        $0.image = UIImage(named:"question_main")
     }
     let rightNumPerNumLable = UILabel().then {
         $0.text = "0 / 0"

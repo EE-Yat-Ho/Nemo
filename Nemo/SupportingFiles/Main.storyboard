@@ -30,7 +30,7 @@
         <scene sceneID="41D-kA-U3l">
             <objects>
                 <navigationController id="4Oy-ra-h5k" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="홈" selectedImage="홈_선택" id="rXf-eb-CTD"/>
+                    <tabBarItem key="tabBarItem" title="홈" image="home_normal" selectedImage="home_sel" id="rXf-eb-CTD"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ijx-b0-XIM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -73,7 +73,7 @@
         <scene sceneID="RHv-H0-YpA">
             <objects>
                 <navigationController id="IbE-La-uHU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="오답노트" image="오답_하단바" selectedImage="오답_선택" id="l9A-jZ-jtS"/>
+                    <tabBarItem key="tabBarItem" title="오답노트" image="incorrect_normal" selectedImage="incorrect_sel" id="l9A-jZ-jtS"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="A5P-JW-Dxl">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -90,7 +90,7 @@
         <scene sceneID="fOS-1x-tMW">
             <objects>
                 <navigationController id="bEP-qR-DKR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="문제풀기" image="문제_하단바" selectedImage="문제_선택" id="5ld-SR-m9m"/>
+                    <tabBarItem key="tabBarItem" title="문제풀기" image="question_normal" selectedImage="question_sel" id="5ld-SR-m9m"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3Fg-kG-Sa8">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -123,7 +123,7 @@
         <scene sceneID="kTH-uZ-0va">
             <objects>
                 <navigationController id="F42-ST-IoP" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="설정" image="설정" selectedImage="설정_선택" id="CYR-OJ-loA"/>
+                    <tabBarItem key="tabBarItem" title="설정" image="option_normal" selectedImage="option_sel" id="CYR-OJ-loA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7wf-Xk-qGe">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -170,14 +170,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="문제_선택" width="24" height="24"/>
-        <image name="문제_하단바" width="128" height="128"/>
-        <image name="설정" width="24" height="24"/>
-        <image name="설정_선택" width="24" height="24"/>
-        <image name="오답_선택" width="24" height="24"/>
-        <image name="오답_하단바" width="128" height="128"/>
-        <image name="홈" width="24" height="24"/>
-        <image name="홈_선택" width="24" height="24"/>
+        <image name="home_normal" width="24" height="24"/>
+        <image name="home_sel" width="24" height="24"/>
+        <image name="incorrect_normal" width="24" height="24"/>
+        <image name="incorrect_sel" width="24" height="24"/>
+        <image name="option_normal" width="24" height="24"/>
+        <image name="option_sel" width="24" height="24"/>
+        <image name="question_normal" width="24" height="24"/>
+        <image name="question_sel" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -29,11 +29,11 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         $0.textColor = .black
     }
     var addButton = UIButton().then{
-        $0.setImage(UIImage(named: "필기하기"), for: .normal)
+        $0.setImage(UIImage(named: "make_question"), for: .normal)
         $0.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
     }
     //clickEditButton가 생성된 후 만들어야하므로 lazy
-    lazy var editButton = UIBarButtonItem(image: UIImage(named: "기본아이콘_편집"), style: .plain, target: self, action: #selector(clickEditButton))
+    lazy var editButton = UIBarButtonItem(image: UIImage(named: "sissor"), style: .plain, target: self, action: #selector(clickEditButton))
     
     
     var banner: GADBannerView!
@@ -68,7 +68,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         if UserDefaults.standard.bool(forKey: "neverNotePopup") == false {
             let alert = ManualPopupViewController()
             alert.popupKind = .note
-            alert.imageView.image = UIImage(named: "필기문제설명")
+            alert.imageView.image = UIImage(named: "memo_question")
             alert.manualLabel.text = "처음 노트를 생성했을 때는 아무런 필기도 문제도 없어요. 우측 하단 버튼으로 생성해주실래요?"
             present(alert, animated: true, completion: {
                 /// present화면 스크롤 다운 못하게하기
@@ -117,7 +117,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
         if tableView.isEditing {// 정상으로
             tableView.setEditing(false, animated: true)
             editButton.title = ""
-            editButton.image = UIImage(named: "기본아이콘_편집")
+            editButton.image = UIImage(named: "sissor")
         } else { // 편집모드로
             tableView.setEditing(true, animated: true)
             editButton.title = "완료"
@@ -185,9 +185,9 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 let memoOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "MemoOpenCell", for: indexPath) as! MemoOpenCell
                 memoOpenCell.numberOfMemo.text = String(DataManager.shared.memoList.count)
                 if memoOpened == true {
-                    memoOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
+                    memoOpenCell.rightImage.image = UIImage(named: "arrow_down")
                 } else {
-                    memoOpenCell.rightImage.image = UIImage(named: "편집_뒤로가기")
+                    memoOpenCell.rightImage.image = UIImage(named: "arrow_left")
                 }
                 return memoOpenCell
             } else {
@@ -201,9 +201,9 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
                 let questionOpenCell = self.tableView.dequeueReusableCell(withIdentifier: "QuestionOpenCell", for: indexPath) as! QuestionOpenCell// cell이라는 아이덴티파이어를 가진 놈으로 셀 생성(디자인부분)
                 questionOpenCell.numberOfQuestion.text = String(DataManager.shared.questionList.count)
                 if questionOpened == true {
-                    questionOpenCell.rightImage.image = UIImage(named: "기본아이콘_펼치기")
+                    questionOpenCell.rightImage.image = UIImage(named: "arrow_down")
                 } else {
-                    questionOpenCell.rightImage.image = UIImage(named: "편집_뒤로가기")
+                    questionOpenCell.rightImage.image = UIImage(named: "arrow_left")
                 }
                 return questionOpenCell
             } else {
