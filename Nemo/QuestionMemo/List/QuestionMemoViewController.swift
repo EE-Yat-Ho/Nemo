@@ -26,6 +26,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     var titleLabel = UILabel().then{
         $0.text = DataManager.shared.nowNoteName
         $0.font = UIFont(name: "NotoSansKannada-Bold", size: 34)
+        $0.textColor = .black
     }
     var addButton = UIButton().then{
         $0.setImage(UIImage(named: "필기하기"), for: .normal)
