@@ -71,7 +71,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
             $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
             $0.layer.borderWidth = 1.0
             $0.layer.cornerRadius = 5.0
-            $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+            $0.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
             $0.tag = 1
         }
@@ -155,7 +155,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
             $0.layer.borderColor = UIColor(displayP3Red: 204.0/255.0, green: 204.0/255.0, blue: 204.0/255.0, alpha: 1.0).cgColor
             $0.layer.borderWidth = 1.0
             $0.layer.cornerRadius = 5.0
-            $0.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+            $0.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
             $0.tag = 3
         }
@@ -259,7 +259,7 @@ class MakeQuestionViewController: UIViewController, UICollectionViewDelegateFlow
         }
     }
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         //contentView.backgroundColor = UIColor.clear
         
         containerView.addSubview(scrollView)

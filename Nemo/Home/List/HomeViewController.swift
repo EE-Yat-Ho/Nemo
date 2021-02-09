@@ -215,7 +215,7 @@ class HomeViewController: UIViewController {
     }
     
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         tableView.separatorColor = UIColor.clear
         tableView.backgroundColor = UIColor.clear
         
@@ -229,7 +229,7 @@ class HomeViewController: UIViewController {
         
         
         // 탭바 레이아웃
-        tabBarController?.tabBar.backgroundImage = UIImage(named: "배경")
+        tabBarController?.tabBar.backgroundImage = UIImage(named: "background_paper")
         let fontAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0)]
         UITabBarItem.appearance().setTitleTextAttributes(fontAttributes, for: .normal)
         

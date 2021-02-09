@@ -87,7 +87,7 @@ class IncorrectNoteViewContoller: UIViewController {
 //    }
     
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         tableView.backgroundColor = UIColor.clear
         tableView.separatorColor = UIColor.clear
         

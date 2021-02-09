@@ -85,7 +85,7 @@ class QuestionMemoViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         
         //navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.clear]
         

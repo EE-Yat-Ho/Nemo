@@ -100,7 +100,7 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         lastTimerTimeTF.delegate = self
         
         if DataManager.shared.noteAmount! > 0 {

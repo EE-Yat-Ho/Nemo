@@ -90,7 +90,7 @@ class TestViewController: UIViewController {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0}
         ).then{
-            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
+            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "background_paper")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
             $0.isScrollEnabled = false
         }
@@ -108,7 +108,7 @@ class TestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         imageCollectionView.delegate = self
         imageCollectionView.dataSource = self
         tableView.delegate = self

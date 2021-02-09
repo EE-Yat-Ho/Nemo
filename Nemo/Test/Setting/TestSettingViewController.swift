@@ -109,7 +109,7 @@ class TestSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         
         tableView.delegate = self
         tableView.dataSource = self

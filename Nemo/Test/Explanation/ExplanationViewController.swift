@@ -31,7 +31,7 @@ class ExplanationViewController: UIViewController {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0}
         ).then{
-            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
+            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "background_paper")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
             $0.isScrollEnabled = false
             $0.tag = 0
@@ -81,7 +81,7 @@ class ExplanationViewController: UIViewController {
             $0.minimumInteritemSpacing = 0
             $0.minimumLineSpacing = 0}
         ).then{
-            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "배경")!)
+            $0.backgroundColor = UIColor.clear//(patternImage: UIImage(named: "background_paper")!)
             $0.register(CollectionViewCell.self, forCellWithReuseIdentifier: "CollectionViewCell")
             $0.isScrollEnabled = false
             $0.tag = 1
@@ -118,7 +118,7 @@ class ExplanationViewController: UIViewController {
     }
     
     func setupLayout() {
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "배경")!)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "background_paper")!)
         
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
