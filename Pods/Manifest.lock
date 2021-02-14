@@ -1,8 +1,4 @@
 PODS:
-  - BonMot (5.6.0)
-  - "Cell+Rx (1.4)":
-    - RxSwift (>= 4)
-  - Differentiator (4.0.1)
   - Google-Mobile-Ads-SDK (7.69.0):
     - GoogleAppMeasurement (~> 7.0)
     - GoogleUserMessagingPlatform (~> 1.1)
@@ -30,7 +26,6 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.1.1)"
   - GoogleUtilities/Reachability (7.1.1):
     - GoogleUtilities/Logger
-  - lottie-ios (3.1.9)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
@@ -39,107 +34,52 @@ PODS:
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
   - PromisesObjC (1.2.12)
-  - Reusable (4.1.1):
-    - Reusable/Storyboard (= 4.1.1)
-    - Reusable/View (= 4.1.1)
-  - Reusable/Storyboard (4.1.1)
-  - Reusable/View (4.1.1)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxDataSources (4.0.1):
-    - Differentiator (~> 4.0)
-    - RxCocoa (~> 5.0)
-    - RxSwift (~> 5.0)
-  - RxFlow (2.11.0):
-    - RxCocoa (>= 5.1.1)
-    - RxSwift (>= 5.1.1)
-  - RxOptional (4.1.0):
-    - RxCocoa (~> 5)
     - RxSwift (~> 5)
   - RxRelay (5.1.1):
     - RxSwift (~> 5)
   - RxSwift (5.1.1)
-  - RxSwiftExt (5.2.0):
-    - RxSwiftExt/Core (= 5.2.0)
-    - RxSwiftExt/RxCocoa (= 5.2.0)
-  - RxSwiftExt/Core (5.2.0):
-    - RxSwift (~> 5.0)
-  - RxSwiftExt/RxCocoa (5.2.0):
-    - RxCocoa (~> 5.0)
-    - RxSwiftExt/Core
-  - SDWebImage (5.10.2):
-    - SDWebImage/Core (= 5.10.2)
-  - SDWebImage/Core (5.10.2)
   - SnapKit (5.0.1)
   - Then (2.7.0)
 
 DEPENDENCIES:
-  - BonMot
-  - "Cell+Rx"
   - Google-Mobile-Ads-SDK
-  - lottie-ios
   - "NSObject+Rx"
-  - Reusable
   - RxCocoa (~> 5)
-  - RxDataSources
-  - RxFlow
-  - RxOptional
   - RxSwift (~> 5)
-  - RxSwiftExt
-  - SDWebImage
   - SnapKit
   - Then
 
 SPEC REPOS:
   trunk:
-    - BonMot
-    - "Cell+Rx"
-    - Differentiator
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUserMessagingPlatform
     - GoogleUtilities
-    - lottie-ios
     - nanopb
     - "NSObject+Rx"
     - PromisesObjC
-    - Reusable
     - RxCocoa
-    - RxDataSources
-    - RxFlow
-    - RxOptional
     - RxRelay
     - RxSwift
-    - RxSwiftExt
-    - SDWebImage
     - SnapKit
     - Then
 
 SPEC CHECKSUMS:
-  BonMot: 2217a66e5ddc6a8d2ffb759fe8c85a8528e0d3e7
-  "Cell+Rx": 80e460b65816fee45dc8a09fdb454c2b7c01ee7d
-  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Google-Mobile-Ads-SDK: 2f288748a42920d1c744946a460896a95b0e9110
   GoogleAppMeasurement: 8d3c0aeede16ab7764144b5a4ca8e1d4323841b7
   GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
   GoogleUtilities: 3dc4ff0d5e4840e2fa8eef0889620e8c33d4218c
-  lottie-ios: 3a3758ef5a008e762faec9c9d50a39842f26d124
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  Reusable: 53a9acf5c536f229b31b5865782414b508252ddb
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
-  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
-  RxFlow: c5242626a73a03d0a0163f0ab795538c467b791f
-  RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
-  RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
-  SDWebImage: b969dcfc02c40a5da71eac0b03b8f1a0c794a86f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: e576a26257177c97b0b051f376664cf2aaa2b466
+PODFILE CHECKSUM: dde8b052ce21b23821c10a3bb41a1998e792d032
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.9.3

@@ -8,21 +8,10 @@ target 'Nemo' do
   # Pods for Nemo
   pod 'RxSwift',    '~> 5'
   pod 'RxCocoa',    '~> 5'
-  pod 'RxFlow'
-  pod 'RxOptional'
-  pod 'RxSwiftExt'
   pod 'NSObject+Rx'
-  pod 'RxDataSources'
-  pod 'Cell+Rx'
 
   pod 'Then'
   pod 'SnapKit'
-  pod 'Reusable'
-  
-  pod 'SDWebImage'
-  pod 'lottie-ios'
-
-  pod 'BonMot'
 
   pod 'Google-Mobile-Ads-SDK'
 end
