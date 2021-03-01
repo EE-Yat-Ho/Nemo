@@ -9,7 +9,7 @@ target 'Nemo' do
   pod 'RxSwift',    '~> 5'
   pod 'RxCocoa',    '~> 5'
   pod 'NSObject+Rx'
- 
+
   pod 'Then'
   pod 'SnapKit'
 
