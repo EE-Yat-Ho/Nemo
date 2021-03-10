@@ -29,6 +29,7 @@ class TestAnswerCell: UITableViewCell {
     }
     let label = UILabel().then {
         $0.font = UIFont.handNormal()
+        $0.numberOfLines = 0
     }
     let cancelLine = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.7371307791)
@@ -37,10 +38,10 @@ class TestAnswerCell: UITableViewCell {
         $0.setImage(UIImage(named:"x_white"), for: .normal)
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        //setupLayout()
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        updateConstraints()
+//    }
     
     func mappingDate(index: Int, isCheck: Bool, isExclusion: Bool) {
         setupLayout()
@@ -73,9 +74,9 @@ class TestAnswerCell: UITableViewCell {
         contentView.addSubview(xButton)
         
         numImage.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
+            $0.top.equalTo(label).offset(2.5)
             $0.leading.equalToSuperview().offset(10)
-            $0.width.height.equalTo(30)
+            $0.width.height.equalTo(23.5)
         }
         checkImage.snp.makeConstraints{
             $0.edges.equalTo(numImage).inset(-10)
@@ -83,17 +84,18 @@ class TestAnswerCell: UITableViewCell {
         label.snp.makeConstraints{
             $0.centerY.equalToSuperview()
             $0.leading.equalTo(numImage.snp.trailing).offset(8)
-            $0.trailing.equalTo(xButton.snp.leading).offset(8)
+            $0.trailing.equalTo(xButton.snp.leading).offset(-8)
+            $0.top.bottom.equalToSuperview().inset(10)
         }
         cancelLine.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
+            $0.centerY.equalTo(numImage)
             $0.leading.equalTo(numImage.snp.leading).offset(-3)
             $0.trailing.equalTo(label).offset(3)
             $0.height.equalTo(2)
         }
         xButton.snp.makeConstraints{
-            $0.centerY.equalToSuperview()
-            $0.trailing.equalToSuperview().offset(-20)
+            $0.centerY.equalTo(numImage)
+            $0.trailing.equalToSuperview().offset(-10)
             $0.height.width.equalTo(20)
         }
     }

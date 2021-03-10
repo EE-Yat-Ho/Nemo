@@ -40,7 +40,6 @@ class TestViewController: UIViewController {
         $0.isScrollEnabled = false
         $0.isEditable = false
         $0.font = UIFont.handBig()
-        //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 24)
     }
     let separator = UIView().then {
         $0.backgroundColor = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 0.5)
@@ -50,9 +49,9 @@ class TestViewController: UIViewController {
         $0.register(TestAnswerCell.self, forCellReuseIdentifier: "TestAnswerCell")
         $0.separatorStyle = .none
         $0.backgroundColor = UIColor.clear
+        $0.showsVerticalScrollIndicator = false
     }
     let answerInput = UITextField().then {
-        //$0.becomeFirstResponder()
         $0.backgroundColor = UIColor.clear
         //$0.font = UIFont(name: "NotoSansKannada-Regular", size: 18)
         $0.contentHorizontalAlignment = .center
@@ -115,19 +114,6 @@ class TestViewController: UIViewController {
         tableView.dataSource = self
         questionScrollView.delegate = self
         navigationController?.navigationBar.isHidden = true
-        
-        /// 키보드 내리는 제스처 추가 >> 필요없어짐
-//        let singleTapGestureRecognizerForScrollView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
-//        singleTapGestureRecognizerForScrollView.numberOfTapsRequired = 1
-//        singleTapGestureRecognizerForScrollView.isEnabled = true
-//        singleTapGestureRecognizerForScrollView.cancelsTouchesInView = false
-//        questionScrollView.addGestureRecognizer(singleTapGestureRecognizerForScrollView)
-//
-//        let singleTapGestureRecognizerForView = UITapGestureRecognizer(target: self, action: #selector(downKeyboard))
-//        singleTapGestureRecognizerForView.numberOfTapsRequired = 1
-//        singleTapGestureRecognizerForView.isEnabled = true
-//        singleTapGestureRecognizerForView.cancelsTouchesInView = false
-//        view.addGestureRecognizer(singleTapGestureRecognizerForView)
         
         setupLayout()
         configure()

@@ -8,8 +8,27 @@
 
 import UIKit
 
-class Resource {
-    //static let shared = Resource()
+enum FontKind: String {
+    case NotoSansKannada = "NotoSansKannada-Regular"
+    case NanumGoDigANiGoGoDing = "NanumGoDigANiGoGoDing"
+}
+
+struct Resource {
     static let buttonNormal = #colorLiteral(red: 0.03921568627, green: 0.5176470588, blue: 1, alpha: 1)
     static let buttonHighLight = #colorLiteral(red: 0.03921568627, green: 0.4383561644, blue: 0.8965111301, alpha: 1)
+    
+    struct Font {
+        static var globalFont: FontKind = .NanumGoDigANiGoGoDing
+        // 유저디폴트와 인스턴스 모두 세팅
+        static func setGlobalFont(font: FontKind) {
+            self.globalFont = font
+            UserDefaults.standard.set(font, forKey: "GlobalFont")
+        }
+        // 유저디폴트에 있는 값을 인스턴스로
+        static func FontUDtoInstance() {
+            guard let font = UserDefaults.standard.value(forKey: "GlobalFont") as? FontKind
+            else { return }
+            self.globalFont = font
+        }
+    }
 }

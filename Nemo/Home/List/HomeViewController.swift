@@ -14,7 +14,6 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import GoogleMobileAds
-// 헛짓하지말고 옵저버블로 해결하자 ㄱ
 
 class HomeViewController: UIViewController {
     var tableViewEditMode = false
@@ -73,14 +72,7 @@ class HomeViewController: UIViewController {
         bindingData()
         
         AppInit()
-        // 폰트 이름 확인하기
-//        for name in UIFont.familyNames {
-//            print(name)
-//            if let nameString = name as? String
-//            {
-//                print(UIFont.fontNames(forFamilyName: nameString))
-//            }
-//        }
+        
         let longPressGesture:UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(changeName))
         tableView.addGestureRecognizer(longPressGesture)
     }
