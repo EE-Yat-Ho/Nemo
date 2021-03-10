@@ -8,9 +8,9 @@
 
 import UIKit
 
-enum FontKind: String {
-    case NotoSansKannada = "NotoSansKannada-Regular"
-    case NanumGoDigANiGoGoDing = "NanumGoDigANiGoGoDing"
+enum FontKind: String { // fontSize, topPadding, bottomPadding
+    case NanumGoDigANiGoGoDing = "NanumGoDigANiGoGoDing" // 1.00, 0, 0
+    case NotoSansKannada = "NotoSansKannada-Regular" // 0.85, 7, -6.5
 }
 
 struct Resource {
@@ -19,16 +19,28 @@ struct Resource {
     
     struct Font {
         static var globalFont: String = "NanumGoDigANiGoGoDing"
+        static var sizeCorrect: CGFloat = 1
+        static var topPadding: CGFloat = 0
+        static var bottomPadding: CGFloat = 0
         // 유저디폴트와 인스턴스 모두 세팅
         static func setGlobalFont(font: FontKind) {
-            self.globalFont = font.rawValue
             UserDefaults.standard.set(font.rawValue, forKey: "GlobalFont")
+            FontUDtoInstance()
         }
         // 유저디폴트에 있는 값을 인스턴스로
         static func FontUDtoInstance() {
             guard let font = UserDefaults.standard.value(forKey: "GlobalFont") as? String
             else { return }
-            self.globalFont = font
+            globalFont = font
+            if globalFont == "NanumGoDigANiGoGoDing" {
+                sizeCorrect = 1.0
+                topPadding = 0
+                bottomPadding = 0
+            } else if globalFont == "NotoSansKannada-Regular" {
+                sizeCorrect = 0.85
+                topPadding = 7
+                bottomPadding = -6.5
+            }
         }
     }
 }

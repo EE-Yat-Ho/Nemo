@@ -50,6 +50,7 @@
 		2A6D74C024BB09BB00AFD0E1 /* MakeMemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */; };
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
+		2A77977225F8FCA2003D55E3 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2A912BFD25A1ECD200DBE23D /* ManualPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */; };
 		2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */; };
@@ -108,6 +109,7 @@
 		2A6D74BF24BB09BB00AFD0E1 /* MakeMemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeMemoViewController.swift; sourceTree = "<group>"; };
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
+		2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualPageViewController.swift; sourceTree = "<group>"; };
 		2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerCell.swift; sourceTree = "<group>"; };
@@ -312,6 +314,8 @@
 		2A5E94B524A1C73B000596D8 /* Nemo */ = {
 			isa = PBXGroup;
 			children = (
+				2A2057CA259CAE050027510F /* Resource */,
+				2A77977025F8FC8C003D55E3 /* Controls */,
 				2A2057B9259C72FC0027510F /* Extension */,
 				2AAC9739256775BE0037678C /* SupportingFiles */,
 				2A6F84DB254C161D0000345F /* Foundation */,
@@ -384,7 +388,6 @@
 			isa = PBXGroup;
 			children = (
 				2A912BFA25A1E17800DBE23D /* Popup */,
-				2A2057CA259CAE050027510F /* Resource */,
 				2AAC9747256784FE0037678C /* NotificationManager */,
 				2AAC9742256776120037678C /* Animate */,
 				2AAC973F256775DE0037678C /* Extensions */,
@@ -393,6 +396,14 @@
 				2A5E94EC24A85847000596D8 /* Cells */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		2A77977025F8FC8C003D55E3 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		2A912BFA25A1E17800DBE23D /* Popup */ = {
@@ -663,6 +674,7 @@
 				2A12BCFE2561C12B0007A971 /* BackPackCell_Test.swift in Sources */,
 				2A3D295725976F21008C8E10 /* ManualPopupViewController.swift in Sources */,
 				2A5E94D224A1D3CE000596D8 /* HomeViewController.swift in Sources */,
+				2A77977225F8FCA2003D55E3 /* PaddingLabel.swift in Sources */,
 				2A36E2762534703F0031E55C /* MemoOpenCell.swift in Sources */,
 				2A2057C8259CAD020027510F /* UIButton+.swift in Sources */,
 				2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */,

@@ -42,7 +42,7 @@ class ConfigCell: UITableViewCell {
             label.text = "개발자 이메일 문의"
         case 4:
             icon.image = UIImage(named: "blacki")
-            label.text = "폰트 설정"
+            label.text = "시험 문제 폰트 설정"
         default:
             print("error")
         }

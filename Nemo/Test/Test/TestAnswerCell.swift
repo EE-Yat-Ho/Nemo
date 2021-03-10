@@ -27,8 +27,8 @@ class TestAnswerCell: UITableViewCell {
     let checkImage = UIImageView().then {
         $0.image = UIImage(named:"fail_blue")
     }
-    let label = UILabel().then {
-        $0.font = UIFont.handNormal()
+    let label = PaddingLabel().then {
+        $0.font = .testAnswer()
         $0.numberOfLines = 0
     }
     let cancelLine = UIView().then {
@@ -56,7 +56,6 @@ class TestAnswerCell: UITableViewCell {
         
         numImage.image = UIImage(systemName: String(index + 1) + ".circle")
         label.text = DataManager.shared.orderingAnswers[DataManager.shared.nowQNumber! - 1][index]
-        
         xButton.rx.tap.bind { [weak self] in
             self?.delegate.clickXButton(self!)
         }.disposed(by:disposeBag)
