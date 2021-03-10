@@ -51,6 +51,7 @@
 		2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */; };
 		2A6D74E324D40C8B00AFD0E1 /* TestSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */; };
 		2A77977225F8FCA2003D55E3 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */; };
+		2A77977925F907B4003D55E3 /* ToastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A77977825F907B4003D55E3 /* ToastManager.swift */; };
 		2A8FE583255022EF002B35E5 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */; };
 		2A912BFD25A1ECD200DBE23D /* ManualPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */; };
 		2AA62C0A25622A7500EA3E35 /* TestAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */; };
@@ -110,6 +111,7 @@
 		2A6D74C924C1964900AFD0E1 /* AnimUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimUtils.swift; sourceTree = "<group>"; };
 		2A6D74E224D40C8B00AFD0E1 /* TestSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSettingViewController.swift; sourceTree = "<group>"; };
 		2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
+		2A77977825F907B4003D55E3 /* ToastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastManager.swift; sourceTree = "<group>"; };
 		2A8FE582255022EF002B35E5 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		2A912BFC25A1ECD200DBE23D /* ManualPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualPageViewController.swift; sourceTree = "<group>"; };
 		2AA62C0925622A7500EA3E35 /* TestAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAnswerCell.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 		2A5E94B524A1C73B000596D8 /* Nemo */ = {
 			isa = PBXGroup;
 			children = (
+				2A77977725F907A5003D55E3 /* Managers */,
 				2A2057CA259CAE050027510F /* Resource */,
 				2A77977025F8FC8C003D55E3 /* Controls */,
 				2A2057B9259C72FC0027510F /* Extension */,
@@ -404,6 +407,14 @@
 				2A77977125F8FCA2003D55E3 /* PaddingLabel.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		2A77977725F907A5003D55E3 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2A77977825F907B4003D55E3 /* ToastManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		2A912BFA25A1E17800DBE23D /* Popup */ = {
@@ -643,6 +654,7 @@
 				2A6D74CA24C1964900AFD0E1 /* AnimUtils.swift in Sources */,
 				2A912BFD25A1ECD200DBE23D /* ManualPageViewController.swift in Sources */,
 				2A5E94E924A721FF000596D8 /* DropDownButton.swift in Sources */,
+				2A77977925F907B4003D55E3 /* ToastManager.swift in Sources */,
 				2A5E94E624A71C82000596D8 /* MakeNoteViewController.swift in Sources */,
 				2A6D74B624B4816900AFD0E1 /* QuestionMemoViewController.swift in Sources */,
 				2A1F57032563127900312657 /* AlermViewController.swift in Sources */,

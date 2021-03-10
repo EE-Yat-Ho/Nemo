@@ -107,12 +107,23 @@ extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
             alert(title: "개발자 이메일", message: "enough6157@naver.com")
         case 4:
             let fontChoice = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            let choice1 = UIAlertAction(title: "귀여운 글씨체 (기본)", style: .default) { _ in
+            
+            var str = "귀여운 글씨체"
+            if Resource.Font.globalFont == FontKind.NanumGoDigANiGoGoDing.rawValue
+            { str += " (적용 중)" }
+            let choice1 = UIAlertAction(title: str, style: .default) { _ in
                 Resource.Font.setGlobalFont(font: .NanumGoDigANiGoGoDing)
+                ToastManager.showToast(message: "\"귀여운 글씨체\"가 선택 되었습니다~")
             }
-            let choice2 = UIAlertAction(title: "일반 글씨체", style: .default) { _ in
+            
+            str = "일반 글씨체"
+            if Resource.Font.globalFont == FontKind.NotoSansKannada.rawValue
+            { str += " (적용 중)" }
+            let choice2 = UIAlertAction(title: str, style: .default) { _ in
                 Resource.Font.setGlobalFont(font: .NotoSansKannada)
+                ToastManager.showToast(message: "문제풀기 좋은 \"일반 글씨체\"가 선택 되었습니다~")
             }
+            
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             
             fontChoice.addAction(choice1)
