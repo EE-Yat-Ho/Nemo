@@ -85,7 +85,7 @@ class ConfigViewContoller: UIViewController {
 extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -105,6 +105,21 @@ extension ConfigViewContoller: UITableViewDelegate, UITableViewDataSource {
             navigationController?.pushViewController(ManualPageViewController(), animated: true)
         case 3:
             alert(title: "개발자 이메일", message: "enough6157@naver.com")
+        case 4:
+            let fontChoice = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            let choice1 = UIAlertAction(title: "귀여운 글씨체 (기본)", style: .default) { _ in
+                Resource.Font.setGlobalFont(font: .NanumGoDigANiGoGoDing)
+            }
+            let choice2 = UIAlertAction(title: "일반 글씨체", style: .default) { _ in
+                Resource.Font.setGlobalFont(font: .NotoSansKannada)
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            
+            fontChoice.addAction(choice1)
+            fontChoice.addAction(choice2)
+            fontChoice.addAction(cancel)
+            
+            present(fontChoice, animated: true)
         default:
             return
         }

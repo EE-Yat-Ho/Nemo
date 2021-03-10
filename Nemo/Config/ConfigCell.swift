@@ -40,6 +40,9 @@ class ConfigCell: UITableViewCell {
         case 3:
             icon.image = UIImage(named: "grenn_i")
             label.text = "개발자 이메일 문의"
+        case 4:
+            icon.image = UIImage(named: "blacki")
+            label.text = "폰트 설정"
         default:
             print("error")
         }

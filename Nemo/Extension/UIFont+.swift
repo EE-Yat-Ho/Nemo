@@ -10,16 +10,16 @@ import UIKit
 
 extension UIFont {
     static func handSmall() -> UIFont {
-        return UIFont(name: Resource.Font.globalFont.rawValue, size: 15)! // "NanumGoDigANiGoGoDing"
+        return UIFont(name: Resource.Font.globalFont, size: 15)! // "NanumGoDigANiGoGoDing"
     }
     static func handNormal16() -> UIFont {
-        return UIFont(name: Resource.Font.globalFont.rawValue, size: 16)! // "NanumGoDigANiGoGoDing"
+        return UIFont(name: Resource.Font.globalFont, size: 16)! // "NanumGoDigANiGoGoDing"
     }
     static func handNormal() -> UIFont {
-        return UIFont(name: Resource.Font.globalFont.rawValue, size: 20)! // "NanumGoDigANiGoGoDing"
+        return UIFont(name: Resource.Font.globalFont, size: 20)! // "NanumGoDigANiGoGoDing"
     }
     static func handBig() -> UIFont {
-        return UIFont(name: Resource.Font.globalFont.rawValue, size: 30)! // "NanumGoDigANiGoGoDing"
+        return UIFont(name: Resource.Font.globalFont, size: 30)! // "NanumGoDigANiGoGoDing"
     }
     static func notoBig() -> UIFont {
         return UIFont(name: "NotoSansKannada-Bold", size: 30)!
