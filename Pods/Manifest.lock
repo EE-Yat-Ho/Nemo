@@ -44,12 +44,12 @@ PODS:
   - Then (2.7.0)
 
 DEPENDENCIES:
-  - Google-Mobile-Ads-SDK
-  - "NSObject+Rx"
-  - RxCocoa (~> 5)
-  - RxSwift (~> 5)
-  - SnapKit
-  - Then
+  - Google-Mobile-Ads-SDK (= 7.69.0)
+  - "NSObject+Rx (= 5.1.0)"
+  - RxCocoa (= 5.1.1)
+  - RxSwift (= 5.1.1)
+  - SnapKit (= 5.0.1)
+  - Then (= 2.7.0)
 
 SPEC REPOS:
   trunk:
@@ -80,6 +80,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: dde8b052ce21b23821c10a3bb41a1998e792d032
+PODFILE CHECKSUM: bca8795750e4bccdd2aa760ce50138ccd503d469
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
