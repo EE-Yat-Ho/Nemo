@@ -3,9 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>compileBitcode</key>
-	<true/>
-	<key>destination</key>
-	<string>export</string>
+	<false/>
 	<key>manifest</key>
 	<dict>
 		<key>appURL</key>
